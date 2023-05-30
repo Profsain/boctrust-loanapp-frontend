@@ -1,5 +1,5 @@
 
-import HomeCarousel from "./components/homepage/carousel/HomeCarousel";
+import Home from "./components/homepage/Home";
 import NavigationBar from "./components/navigation/NavigationBar";
 
 function App() {
@@ -7,12 +7,8 @@ function App() {
     <> 
       <div>
         <NavigationBar />
-        <HomeCarousel />
+        <Home />
 
-      </div>
-      {/* <NavigationBar /> */}
-      <div className="App">
-        <h1>Welcome to Boctrust Microfinance Bank</h1>
       </div>
     </>
   );

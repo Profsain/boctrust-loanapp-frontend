@@ -1,28 +1,72 @@
+import { FaCoins, FaCommentsDollar, FaChartLine } from "react-icons/fa";
+
+import FeaturesCard from "./FeaturesCard";
+
 const HomeCarousel = () => {
+  const images = [
+    "../images/1.png",
+    "../images/2.png",
+    "../images/3.png",
+    "../images/4.png",
+    "../images/5.png",
+  ];
+
+  const features = [
+    {
+      title: "Savings",
+      description:
+        "Our savings products encourages individuals, micro enterprises and cooperative societies to grow their savings and easy their transactions. Saving for personal/family project i.e. (vacation, festival and ceremony e.t.c)",
+      icon: <FaCoins />,
+    },
+    {
+      title: "Loans",
+      description:
+        "Our loan products help you cater to pressing needs. If you’re ready to upgrade your home decor or merely want to improve your lifestyle efficiency with a new laptop, look no further than the Boctrust Microfinance Bank retail asset Acquisition/Leases.",
+      icon: <FaCommentsDollar />,
+    },
+    {
+      title: "Investment",
+      description:
+        "Our investment products help you secure the future by building up streams of investment towards a target while we match it up with attractive interest rates to achieve your desired goals. Emerald has the following:",
+      icon: <FaChartLine />,
+    },
+  ];
+
+  const carouselStyle = {
+    top: "70px",
+    left: "0",
+    width: "100%",
+    marginTop: "-160px",
+  }
+
+  const containerStyle = {
+    position: "relative",
+    width: "100%",
+   
+  };
+
   return (
     <div>
       <div
         id="carouselExampleControlsNoTouching"
         className="carousel slide"
-        // data-bs-touch="false"
         data-bs-ride="carousel"
+        style={carouselStyle}
       >
         <div className="carousel-inner">
-          <div className="carousel-item active" data-bs-interval="5000">
-            <img src="../images/1.png" className="d-block w-100" alt="..." />
-          </div>
-          <div className="carousel-item" data-bs-interval="5000">
-            <img src="../images/2.png" className="d-block w-100" alt="..." />
-          </div>
-          <div className="carousel-item" data-bs-interval="5000">
-            <img src="../images/3.png" className="d-block w-100" alt="..." />
-          </div>
-          <div className="carousel-item" data-bs-interval="5000">
-            <img src="../images/4.png" className="d-block w-100" alt="..." />
-          </div>
-          <div className="carousel-item" data-bs-interval="5000">
-            <img src="../images/5.png" className="d-block w-100" alt="..." />
-          </div>
+          {images.map((image, index) => {
+            return (
+              <div
+                key={index}
+                className={
+                  index === 0 ? "carousel-item active" : "carousel-item"
+                }
+                data-bs-interval="5000"
+              >
+                <img src={image} className="d-block w-100" alt="..." />
+              </div>
+            );
+          })}
         </div>
         <button
           className="carousel-control-prev"
@@ -48,6 +92,19 @@ const HomeCarousel = () => {
           ></span>
           <span className="visually-hidden">Next</span>
         </button>
+      </div>
+      <div className="container" style={containerStyle}>
+        <div className="row">
+          {features.map((feature, index) => (
+            <div key={index} className="col-md-4">
+              <FeaturesCard
+                title={feature.title}
+                description={feature.description}
+                icon={feature.icon}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
