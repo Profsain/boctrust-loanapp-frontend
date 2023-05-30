@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
+import TopNav from "./TopNav";
 
 const drawerWidth = 240;
 const navItems = [
@@ -75,6 +76,9 @@ function NavigationBar(props) {
         position="fixed"
         sx={{ backgroundColor: "#1a237e" }}
       >
+        <Box>   
+            <TopNav />
+        </Box>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -90,7 +94,7 @@ function NavigationBar(props) {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Buctrust
+            Growing Together
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
