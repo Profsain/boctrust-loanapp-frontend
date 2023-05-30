@@ -1,12 +1,13 @@
-// import TopNav from "./components/navigation/TopNav";
+
+import HomeCarousel from "./components/homepage/carousel/HomeCarousel";
 import NavigationBar from "./components/navigation/NavigationBar";
 
 function App() {
   return (
     <> 
       <div>
-        {/* <TopNav /> */}
         <NavigationBar />
+        <HomeCarousel />
 
       </div>
       {/* <NavigationBar /> */}
