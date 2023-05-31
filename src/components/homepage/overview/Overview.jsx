@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { Container, Box, Typography, Tab, Tabs } from "@mui/material";
+import { Box, Typography, Tab, Tabs } from "@mui/material";
 import TabPanel from "./TabPanel";
+import OurVisionMission from "./OurVisionMission";
+import WhoWeAre from "./WhoWeAre";
+import OurBoard from "./OurBoard";
 
 const Overview = () => {
   const a11yProps = (index) => {
@@ -14,8 +17,9 @@ const Overview = () => {
     setValue(newValue);
   };
 
+  const tabContainer = { backgroundColor: "#ecaa00", color: "#fff" };
   return (
-    <Container maxWidth="false">
+    <>
       <Box sx={{ textAlign: "center", padding: "68px" }}>
         <Typography
           variant="h4"
@@ -40,7 +44,7 @@ const Overview = () => {
         </Typography>
       </Box>
 
-      <div style={{backgroundColor: "blue"}}>
+      <div style={tabContainer}>
         <Box sx={{ width: "100%" }}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
@@ -57,17 +61,17 @@ const Overview = () => {
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            Vision and Mission
+            <OurVisionMission />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Who we are
+            <WhoWeAre />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Our Board
+            <OurBoard />
           </TabPanel>
         </Box>
       </div>
-    </Container>
+    </>
   );
 };
 
