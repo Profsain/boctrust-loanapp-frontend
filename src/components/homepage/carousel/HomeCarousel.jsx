@@ -36,13 +36,7 @@ const HomeCarousel = () => {
     top: "70px",
     left: "0",
     width: "100%",
-    marginTop: "-160px",
-  }
-
-  const containerStyle = {
-    position: "relative",
-    width: "100%",
-   
+    marginTop: "-80px",
   };
 
   return (
@@ -93,14 +87,12 @@ const HomeCarousel = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <div className="container" style={containerStyle}>
-        <div className="row">
+      <div className="container text-center" >
+        <div className="row align-items-center g-5 mx-5">
           {features.map((feature, index) => (
-            <div key={index} className="col-md-4">
+            <div key={index} className="col-sm-12 col-md-4">
               <FeaturesCard
-                title={feature.title}
-                description={feature.description}
-                icon={feature.icon}
+                {...feature}
               />
             </div>
           ))}
