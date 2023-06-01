@@ -1,0 +1,27 @@
+footer {
+    position: relative;
+
+}
+.FooterTop {
+     color: #fff;
+    background-color: #272f35;
+    padding: 40px 10%; 
+}
+
+.FooterTop h6 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+
+.FooterTop p {
+    font-size: 12px;
+}
+
+.FooterBottom {
+    padding: 40px 0px 20px 0px;
+    text-align: center;
+    background-color: #191d20;
+    color: #fff;
+    letter-spacing: 1px;
+}

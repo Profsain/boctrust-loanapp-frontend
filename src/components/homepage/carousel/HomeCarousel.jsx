@@ -55,7 +55,7 @@ const HomeCarousel = () => {
                 className={
                   index === 0 ? "carousel-item active" : "carousel-item"
                 }
-                data-bs-interval="5000"
+                data-bs-interval="4000"
               >
                 <img src={image} className="d-block w-100" alt="..." />
               </div>

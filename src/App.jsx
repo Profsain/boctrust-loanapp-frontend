@@ -1,15 +1,29 @@
-
-import Home from "./components/homepage/Home";
+import { Route, Routes } from "react-router-dom";
+import Footer from "./components/footer/Footer";
 import NavigationBar from "./components/navigation/NavigationBar";
+import Home from "./components/homepage/Home";
+import About from "./components/aboutpage/About";
+import Contact from "./components/contactpage/Contact";
+import Blog from "./components/blogpage/Blog";
+import Loan from "./components/loanapplication/Loan";
+import OurProduct from "./components/ourproductpage/OurProduct";
+import Support from "./components/supportpage/Support";
+
 
 function App() {
   return (
-    <> 
-      <div>
-        <NavigationBar />
-        <Home />
-
-      </div>
+    <>
+      <NavigationBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/product" element={<OurProduct />} />
+        <Route path="/loan" element={<Loan />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      <Footer />
     </>
   );
 }

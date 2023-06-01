@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import {
   AppBar,
@@ -19,14 +20,36 @@ import IconButton from "@mui/material/IconButton";
 import TopNav from "./TopNav";
 
 const drawerWidth = 240;
+
 const navItems = [
-  "Home",
-  "About Us",
-  "Our Product",
-  "Apply for Loan",
-  "Support",
-  "Blog",
-  "Contact",
+  {
+    label: "Home",
+    path: "/",
+  },
+  {
+    label: "About Us",
+    path: "/about",
+  },
+  {
+    label: "Our Product",
+    path: "/product",
+  },
+  {
+    label: "Apply for Loan",
+    path: "/loan",
+  },
+  {
+    label: "Support",
+    path: "/support",
+  },
+  {
+    label: "Blog",
+    path: "/blog",
+  },
+  {
+    label: "Contact",
+    path: "/contact",
+  },
 ];
 
 function NavigationBar(props) {
@@ -51,13 +74,13 @@ function NavigationBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.label} disablePadding>
             <ListItemButton
               sx={{ textAlign: "center" }}
-              selected={activeLink === item}
-              onClick={() => handleLinkClick(item)}
+              selected={activeLink === item.label}
+              onClick={() => handleLinkClick(item.label)}
             >
-              <ListItemText primary={item} />
+              <ListItemText primary={item.label} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -76,8 +99,8 @@ function NavigationBar(props) {
         position="fixed"
         sx={{ backgroundColor: "#1a237e" }}
       >
-        <Box>   
-            <TopNav />
+        <Box>
+          <TopNav />
         </Box>
         <Toolbar>
           <IconButton
@@ -98,17 +121,24 @@ function NavigationBar(props) {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button
-                key={item}
-                sx={{
-                  color: activeLink === item ? "#fff" : "#ccc",
-                  marginRight: "16px",
-                  fontSize: activeLink === item ? "18px" : "12px",
+              <Link
+                key={item.label}
+                to={item.path}
+                style={{
+                  textDecoration: "none",
                 }}
-                onClick={() => handleLinkClick(item)}
               >
-                {item}
-              </Button>
+                <Button
+                  sx={{
+                    color: activeLink === item.label ? "#fff" : "#ccc",
+                    marginRight: "16px",
+                    fontSize: activeLink === item.label ? "18px" : "12px",
+                  }}
+                  onClick={() => handleLinkClick(item.label)}
+                >
+                  {item.label}
+                </Button>
+              </Link>
             ))}
           </Box>
         </Toolbar>

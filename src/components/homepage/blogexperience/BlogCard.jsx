@@ -20,6 +20,7 @@ const BlogCard = ({
       backgroundSize: "cover",
       backgroundPosition: "center",
     },
+
     blogTitle: {
       position: "relative",
       bottom: "0",
