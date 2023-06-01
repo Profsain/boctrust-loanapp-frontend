@@ -1,11 +1,10 @@
-import { Stack } from "@mui/material";
 import "./Overview.css";
 
 const WhoWeAre = () => {
   return (
-    <div>
-      <Stack direction="row" spacing={4}>
-        <div className="VisionLeft">
+    <div className="container">
+      <div className="row">
+        <div className="VisionLeft col-md-6 col-sm-12">
           <h3>Boctrust Microfinance Bank Ltd</h3>
           <p>
             BOCTRUST MICROFINANCE BANK is a financial institution licensed by
@@ -39,31 +38,31 @@ const WhoWeAre = () => {
             our dynamic skilled workforce.
           </p>
         </div>
-        <div className="VisionRight">
+        <div className="VisionRight col-md-6 col-sm-12">
           <img
             className="TopImg"
             src="src/assets/boctrust-staff1.avif"
             alt="bocstrust-microfinance-staff"
           />
-          <div>
+          <div className="row text-center">
             <img
-              className="CardImg"
+              className="CardImg col-md-4 col-sm-6"
               src="src/assets/boctrust1.jpg"
               alt="boctrust-img"
             />
             <img
-              className="CardImg"
+              className="CardImg col-md-4 col-sm-6"
               src="src/assets/boctrustmeet.avif"
               alt="boctrust-img"
             />
             <img
-              className="CardImg"
+              className="CardImg col-md-4 col-sm-6"
               src="src/assets/boctrustcustomer.avif"
               alt="boctrust-img"
             />
           </div>
         </div>
-      </Stack>
+      </div>
     </div>
   );
 };

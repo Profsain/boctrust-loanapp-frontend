@@ -1,11 +1,10 @@
-import { Stack } from "@mui/material";
 import "./Overview.css";
 
 const OurVisionMission = () => {
   return (
-    <div>
-      <Stack direction="row" spacing={4}>
-        <div className="VisionLeft">
+    <div className="container">
+      <div className="row">
+        <div className="VisionLeft col-md-6 col-sm-12">
           <h3>Our Company Vision</h3>
           <p>
             To be the Number 1 Microfinance Bank in terms of customer service,
@@ -27,19 +26,31 @@ const OurVisionMission = () => {
             Growing Together with our customer.
           </p>
         </div>
-        <div className="VisionRight">
+        <div className="VisionRight col-md-6 col-sm-12">
           <img
             className="TopImg"
             src="src/assets/boctrust-staff1.avif"
             alt="bocstrust-microfinance-staff"
           />
           <div>
-            <img className="CardImg" src="src/assets/boctrust1.jpg" alt="boctrust-img" />
-            <img className="CardImg" src="src/assets/boctrustmeet.avif" alt="boctrust-img" />
-            <img className="CardImg" src="src/assets/boctrustcustomer.avif" alt="boctrust-img" />
+            <img
+              className="CardImg"
+              src="src/assets/boctrust1.jpg"
+              alt="boctrust-img"
+            />
+            <img
+              className="CardImg"
+              src="src/assets/boctrustmeet.avif"
+              alt="boctrust-img"
+            />
+            <img
+              className="CardImg"
+              src="src/assets/boctrustcustomer.avif"
+              alt="boctrust-img"
+            />
           </div>
         </div>
-      </Stack>
+      </div>
     </div>
   );
 };

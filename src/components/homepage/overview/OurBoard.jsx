@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  Stack,
   Accordion,
   AccordionDetails,
   AccordionSummary,
@@ -17,9 +16,9 @@ const OurBoard = () => {
   };
 
   return (
-    <div>
-      <Stack direction="row" spacing={4}>
-        <div className="VisionLeft">
+    <div className="container">
+      <div className="row">
+        <div className="VisionLeft col-md-6 col-sm-12">
           <h3>Meet Our Board</h3>
           <div>
             <Accordion
@@ -255,7 +254,7 @@ const OurBoard = () => {
           </div>
         </div>
 
-        <div className="VisionRight">
+        <div className="VisionRight col-md-6 col-sm-12">
           <img
             className="TopImg"
             src="src/assets/boctrust-staff1.avif"
@@ -279,7 +278,7 @@ const OurBoard = () => {
             />
           </div>
         </div>
-      </Stack>
+      </div>
     </div>
   );
 };
