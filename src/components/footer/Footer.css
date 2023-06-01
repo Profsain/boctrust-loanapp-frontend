@@ -1,16 +1,29 @@
-footer {
-    position: relative;
-
-}
 .FooterTop {
-     color: #fff;
+    color: #fff;
     background-color: #272f35;
-    padding: 40px 10%; 
+    padding: 60px; 
+}
+
+ul {
+    list-style: none;
+}
+
+.Link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-left: -28px;
+}
+
+.Link:hover {
+    color: #999898;
+    text-decoration: none;
 }
 
 .FooterTop h6 {
     font-size: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     letter-spacing: 1px;
 }
 

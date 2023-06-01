@@ -1,8 +1,10 @@
+import Header from "../shared/Header";
+
 const Support = () => {
   return (
-    <div>
-      <h1>Welcome to Support page</h1>
-    </div>
+    <>
+      <Header imgurl="public/images/support.png" />
+    </>
   );
 };
 

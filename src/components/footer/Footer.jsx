@@ -1,14 +1,25 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
   return (
     <footer className="container-fluid">
-      <div className="FooterTop row">
+      <div className="FooterTop row justify-content-center">
         <div className="col-md-4 col-sm-12">
           <h6 className="FooterHeadline">Quick Links</h6>
-          <p>Privacy Policy</p>
-          <p>Terms and Condition</p>
+          <ul>
+            <li>
+              <Link className="Link" to="/">
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link className="Link" to="/">
+                Terms and Condition
+              </Link>
+            </li>
+          </ul>
+
           <h6 className="FooterHeadline">About</h6>
           <p>
             BOCTRUST MICROFINANCE BANK is a financial institution licensed by
@@ -16,32 +27,77 @@ const Footer = () => {
             lower middle class, working class and the economically active poor.
           </p>
         </div>
-        <div className="col-md-4 col-sm-12">
+        <div className="col-md-4 col-sm-12 Space">
           <h6 className="FooterHeadline">Company Links</h6>
           <div className="row">
             <div className="col-md-6">
-              {/* <ul>
+              <ul>
                 <li>
-                  <Link to="/about">About App</Link>
+                  <Link className="Link" to="/about">
+                    About App
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/team">Team</Link>
+                  <Link className="Link" to="/about">
+                    Team
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/loans">Loans</Link>
+                  <Link className="Link" to="/loan">
+                    Loans
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/newsevent">News & Events</Link>
+                  <Link className="Link" to="/blog">
+                    News & Events
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/faq">FAQ</Link>
+                  <Link className="Link" to="/support">
+                    FAQ
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/contact">Contact Us</Link>
+                  <Link className="Link" to="/contact">
+                    Contact Us
+                  </Link>
                 </li>
-              </ul> */}
+              </ul>
             </div>
-            <div className="col-md-6"></div>
+            <div className="col-md-6">
+              <ul>
+                <li>
+                  <Link className="Link" to="/product">
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link className="Link" to="/#">
+                    Account Opening
+                  </Link>
+                </li>
+                <li>
+                  <Link className="Link" to="/#">
+                    Careers
+                  </Link>
+                </li>
+                <li>
+                  <Link className="Link" to="/">
+                    Internet Banking
+                  </Link>
+                </li>
+                <li>
+                  <Link className="Link" to="/#">
+                    Portfolio
+                  </Link>
+                </li>
+                <li>
+                  <Link className="Link" to="/support">
+                    Help
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div className="col-md-4 col-sm-12">

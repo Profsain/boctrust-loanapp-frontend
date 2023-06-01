@@ -1,10 +1,11 @@
+import Header from "../shared/Header";
 
 const About = () => {
     return (
-        <div>
-            <h1>Welcome to About page</h1>
-        </div>
-    )
+      <>
+        <Header imgurl="public/images/companyover.png" />
+      </>
+    );
 }
 
 export default About;

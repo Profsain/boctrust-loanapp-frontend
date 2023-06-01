@@ -13,8 +13,8 @@ const TopNav = () => {
             />
           </Link>
         </div>
-        <h1>Welcome to BOCTRUST Microfinance Bank Limited</h1>
-        <button>Call us today! 08076710000</button>
+        <h1 className="Welcome">Welcome to BOCTRUST Microfinance Bank Limited</h1>
+        <button className="CallUs">Call us today! 08076710000</button>
       </div>
     );
 }
