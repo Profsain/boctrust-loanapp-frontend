@@ -20,10 +20,10 @@ const Overview = () => {
   const tabContainer = { backgroundColor: "#ecaa00", color: "#fff" };
   return (
     <>
-      <Box sx={{ textAlign: "center", padding: "18px" }}>
+      <Box sx={{ textAlign: "center", padding: " 38px 148px" }}>
         <Typography
           variant="h4"
-          sx={{ margin: "38px", fontWeight: 600, color: "#145088" }}
+          sx={{ marginTop: "58px", marginBottom: "28px", fontWeight: 600, color: "#145088" }}
         >
           Company Overview
         </Typography>
