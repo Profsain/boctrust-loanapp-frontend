@@ -23,7 +23,7 @@ const Overview = () => {
       <Box sx={{ textAlign: "center", padding: "18px" }}>
         <Typography
           variant="h4"
-          sx={{ marginBottom: "18px", fontWeight: 600, color: "#1a237e" }}
+          sx={{ margin: "38px", fontWeight: 600, color: "#145088" }}
         >
           Company Overview
         </Typography>

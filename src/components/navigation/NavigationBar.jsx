@@ -97,7 +97,7 @@ function NavigationBar(props) {
       <AppBar
         component="nav"
         position="fixed"
-        sx={{ backgroundColor: "#1a237e" }}
+        sx={{ backgroundColor: "#145088" }}
       >
         <Box>
           <TopNav />

@@ -13,7 +13,6 @@ const Header = ({ imgurl }) => {
 
   return (
     <div className="container-fluid" style={styles.header}>
-      {/* <img  src="public/images/companyover.png" alt="boctrust-header" /> */}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import Headline from "../shared/Headline";
 import TopCard from "./TopCard";
-import "./_variable.scss"
 
 const CustomerProduct = () => {
   const styles = {

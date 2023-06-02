@@ -13,7 +13,7 @@ const FeaturesCard = ({ title, description, icon }) => {
     width: "50px",
     height: "50px",
     borderRadius: "15%",
-    backgroundColor: "#1A237E",
+    backgroundColor: "#145088",
     color: "white",
     fontSize: "30px",
     margin: "0 auto",
