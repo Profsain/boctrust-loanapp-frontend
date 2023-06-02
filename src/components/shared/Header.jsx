@@ -1,4 +1,5 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
+
 const Header = ({ imgurl }) => {
   const styles = {
     header: {

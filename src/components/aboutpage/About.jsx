@@ -1,6 +1,7 @@
 import Header from "../shared/Header";
 import Headline from "../shared/Headline";
 import CustomerProduct from "./CustomerProduct";
+import OurValue from "./OurValue";
 import TopCard from "./TopCard";
 import TopCardSection from "./TopCardSection";
 
@@ -26,6 +27,7 @@ const About = () => {
           </div>
         </div>
         <CustomerProduct />
+        <OurValue />
       </>
     );
 }
