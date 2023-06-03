@@ -1,6 +1,16 @@
+import { useEffect } from "react";
+// animation library
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./Explore.css";
 
 const ExploreBoctrust = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
+
   return (
     <div className="Container">
       <div className="Explore">
@@ -14,19 +24,19 @@ const ExploreBoctrust = () => {
         </p>
       </div>
       <div className="row">
-        <div className="col-sm-6 col-md-3 ExCard">
+        <div className="col-sm-6 col-md-3 ExCard" data-aos="fade-right">
           <img src="src/assets/Vector.png" alt="safe-banking" />
           <h5>Safe & Secure</h5>
         </div>
-        <div className="col-sm-6 col-md-3 ExCard">
+        <div className="col-sm-6 col-md-3 ExCard" data-aos="fade-right">
           <img src="src/assets/online.png" alt="safe-banking" />
           <h5>Online Banking</h5>
         </div>
-        <div className="col-sm-6 col-md-3 ExCard">
+        <div className="col-sm-6 col-md-3 ExCard" data-aos="fade-right">
           <img src="src/assets/easy.png" alt="easy-access" />
           <h5>Easy to access</h5>
         </div>
-        <div className="col-sm-6 col-md-3 ExCard">
+        <div className="col-sm-6 col-md-3 ExCard" data-aos="fade-right">
           <img src="src/assets/banking.png" alt="interest-icon" />
           <h5>Affordable interest rates</h5>
         </div>
