@@ -45,6 +45,18 @@ const About = () => {
               text="Our core objective is to provide avenue for saving, access to credit and financial advisory services to individuals and micro, small & medium enterprises with competitive advantages. We believe in Growing Together with our customer."
             />
           </div>
+          <div data-aos="fade-up">
+            <TopCard
+              spacer="0 38px 28px 38px"
+              size="18px"
+              lineHeight="38px"
+              letterSpacing="0.02em"
+              padding="28px 88px"
+              title={<Headline text="Our People" />}
+              text="Experience Unmatched Financial Excellence: Join our exceptional financial institution led by seasoned administrators, accomplished Chief Executives, and a diverse management team. With a relentless focus on customer service and innovation, we prioritize understanding and meeting your needs, delivering the best-in-class financial services. 
+              Backed by a visionary Board and experienced staff, we guarantee efficient and friendly customer service, ensuring your financial goals are met with excellence. Join us today and experience the difference in financial services.."
+            />
+          </div>
         </div>
       </div>
       <div data-aos="fade-up">
