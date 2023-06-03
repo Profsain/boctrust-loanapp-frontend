@@ -25,7 +25,7 @@ const About = () => {
         <div>
           <div data-aos="fade-up">
             <TopCard
-              spacer="0 18px 68px 18px"
+              spacer="0 38px 28px 38px"
               size="18px"
               lineHeight="38px"
               letterSpacing="0.02em"
@@ -36,7 +36,7 @@ const About = () => {
           </div>
           <div data-aos="fade-up">
             <TopCard
-              spacer="0 18px 68px 18px"
+              spacer="0 38px 28px 38px"
               size="18px"
               lineHeight="38px"
               letterSpacing="0.02em"
