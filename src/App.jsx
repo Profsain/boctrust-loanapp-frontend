@@ -9,6 +9,7 @@ import Blog from "./components/blogpage/Blog";
 import Loan from "./components/loanapplication/Loan";
 import OurProduct from "./components/ourproductpage/OurProduct";
 import Support from "./components/supportpage/Support";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
+      <ScrollToTop />
     </>
   );
 }
