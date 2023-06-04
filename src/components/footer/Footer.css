@@ -1,0 +1,40 @@
+.FooterTop {
+    color: #fff;
+    background-color: #272f35;
+    padding: 60px; 
+}
+
+ul {
+    list-style: none;
+}
+
+.Link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-left: -28px;
+}
+
+.Link:hover {
+    color: #999898;
+    text-decoration: none;
+}
+
+.FooterTop h6 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.FooterTop p {
+    font-size: 12px;
+}
+
+.FooterBottom {
+    padding: 40px 0px 20px 0px;
+    text-align: center;
+    background-color: #191d20;
+    color: #fff;
+    letter-spacing: 1px;
+}
