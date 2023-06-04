@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+// animation library
+import AOS from "aos";
+import "aos/dist/aos.css";
 import data from "../../mockdatabase/products.json";
 import Headline from "../shared/Headline";
 import Header from "../shared/Header";
@@ -21,7 +24,6 @@ const OurProduct = () => {
   const [benefits, setBenefits] = useState(savingsData[0].benefits);
   const [features, setFeatures] = useState(savingsData[0].features);
 
-  console.log("My regular", features);
   // create object of products, key is category and value is array of products
   const productsByCategory = products.reduce((acc, product) => {
     if (!acc[product.category]) {
@@ -30,17 +32,32 @@ const OurProduct = () => {
     acc[product.category].push(product);
     return acc;
   }, {});
-  console.log(productsByCategory);
+  
+  // function to handle button click and change image, description, benefits and features
+  const changeProduct = (id) => {
+    const product = products.find((product) => product.id === id);
+    setImage(product.image);
+    setProductName(product.productName);
+    setDescription(product.description);
+    setBenefits(product.benefits);
+    setFeatures(product.features);
+  };
+
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
+
   return (
     <>
       <Header imgurl="public/images/ourproduct.png" />
       <div className="container">
         <div className="row">
-
           {/* left side container */}
-          <div className="col-md-8">
+          <div className="col-md-8 col-sm-12">
             {/* top row container */}
-            <div className="row">
+            <div className="row" data-aos="fade-up">
               <div className="col-md-6 col-sm-12">
                 <div className="ImgDescription">
                   <Headline
@@ -60,9 +77,9 @@ const OurProduct = () => {
                 />
               </div>
             </div>
-            
+
             {/* bottom row container */}
-            <div className="row">
+            <div className="row" data-aos="fade-up">
               <div className="col-md-6 col-sm-12 DetailsCard">
                 <Headline
                   color="#593d0e"
@@ -91,10 +108,10 @@ const OurProduct = () => {
           </div>
 
           {/* right side container */}
-          <div className="col-md-4 Category">
+          <div className="col-md-4 col-sm-12 Category">
             {Object.keys(productsByCategory).map((category) => {
               return (
-                <div key={category}>
+                <div key={category} data-aos="fade-up">
                   <Headline
                     color="#fff"
                     spacer="8px 0"
@@ -102,7 +119,11 @@ const OurProduct = () => {
                   />
                   <div className="BtnContainer">
                     {productsByCategory[category].map(({ id, productName }) => (
-                      <ProductBtn key={id} text={productName} />
+                      <ProductBtn
+                        key={id}
+                        text={productName}
+                        func={() => changeProduct(id)}
+                      />
                     ))}
                   </div>
                 </div>
