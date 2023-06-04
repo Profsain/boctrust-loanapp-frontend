@@ -24,9 +24,14 @@ body {
     font-size: 8px;
   }
 
+  /* from product page */
   .Category {
     margin-top: 18px;
     min-width: 80%;
+  }
+  .DetailsCard {
+    width: 90%;
+    margin: 0 auto;
   }
 }
   
