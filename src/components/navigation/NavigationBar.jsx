@@ -43,6 +43,7 @@ const navItems = [
       },
     ],
   },
+  
   {
     label: "Our Product",
     path: "/product",
@@ -149,8 +150,8 @@ function NavigationBar(props) {
       <CssBaseline />
       <AppBar
         component="nav"
-        position="fixed"
         sx={{ backgroundColor: "#145088" }}
+        position="fixed"
       >
         <Box>
           <TopNav />
