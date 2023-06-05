@@ -33,6 +33,11 @@ body {
     width: 90%;
     margin: 0 auto;
   }
+
+  /* Search Page */
+  .SearchContainer {
+    width: 90% !important;
+  }
 }
   
 
