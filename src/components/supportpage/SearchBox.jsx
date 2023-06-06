@@ -1,4 +1,4 @@
-
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -58,4 +58,8 @@ const SearchBox = ({func}) => {
   );
 }
 
-export default SearchBox
+SearchBox.propTypes = {
+  func: PropTypes.func.isRequired,
+}
+
+export default SearchBox;
