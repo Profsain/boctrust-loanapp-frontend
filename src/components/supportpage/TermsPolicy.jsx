@@ -16,8 +16,8 @@ const TermsPolicy = () => {
         <Divider />
         <ul>
           <li className="Tlink"> Boctrust Mfb Privacy Policy </li>
-          <li className="Tlink"> Boctrust Mfb Remita Consent </li>
-          <li className="Tlink"> Boctrust Mfb Term of Use </li>
+          <li className="Tlink"> Boctrust Mfb Terms & Conditions </li>
+          <li className="Tlink"> Boctrust Mfb Loan App Terms of use </li>
           <li className="Tlink"> Boctrust Mfb end-user agreement </li>
         </ul>
       </div>

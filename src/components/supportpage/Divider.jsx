@@ -5,4 +5,4 @@ const Divider = () => {
   )
 }
 
-export default Divider
+export default Divider;
