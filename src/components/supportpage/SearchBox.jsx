@@ -4,7 +4,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import Headline from "../shared/Headline";
 
-const SearchBox = () => {
+const SearchBox = ({func}) => {
     const styles = {
         container: {
             position: "relative",
@@ -48,6 +48,7 @@ const SearchBox = () => {
         style={styles.input}
         type="text"
         placeholder="Enter your search term here...."
+        onChange={func}
       />
       <FontAwesomeIcon
               icon={faSearch}
