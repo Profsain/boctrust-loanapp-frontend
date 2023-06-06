@@ -10,6 +10,12 @@ import Loan from "./components/loanapplication/Loan";
 import OurProduct from "./components/ourproductpage/OurProduct";
 import Support from "./components/supportpage/Support";
 import ScrollToTop from "./components/ScrollToTop";
+import NotFound from "./components/NotFound";
+
+// terms and conditions
+import LoanTerms from "./components/terms&condition/LoanTerms";
+import PrivacyPolicy from "./components/terms&condition/PrivacyPolicy";
+import TermsCondition from "./components/terms&condition/TermsCondition";
 
 
 function App() {
@@ -26,6 +32,13 @@ function App() {
         <Route path="/support" element={<Support />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+
+        {/* terms and conditions */}
+        <Route path="/terms" element={<TermsCondition />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/loanterms" element={<LoanTerms />} />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
       <ScrollToTop />

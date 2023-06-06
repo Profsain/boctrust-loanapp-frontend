@@ -10,7 +10,6 @@ import SearchBox from "./SearchBox";
 import "./Support.css";
 import Divider from "./Divider";
 import TermsPolicy from "./TermsPolicy";
-// import SupportTab from "./SupportTab";
 
 const Support = () => {
   useEffect(() => {
@@ -118,6 +117,7 @@ const Support = () => {
         </div>
         {/* end of knowledge base section */}
       </div>
+
       {/* terms and policy section */}
       <div data-aos="fade-up">
         <TermsPolicy />
