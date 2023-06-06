@@ -1,18 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+// animation library
+import AOS from "aos";
+import "aos/dist/aos.css";
 import data from "../../mockdatabase/faqs.json";
 import Accordion from "react-bootstrap/Accordion";
 import Header from "../shared/Header";
 import Headline from "../shared/Headline";
 import SearchBox from "./SearchBox";
 import "./Support.css";
+import Divider from "./Divider";
+import TermsPolicy from "./TermsPolicy";
 // import SupportTab from "./SupportTab";
 
 const Support = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
+
   const styles = {
     container: {
       display: "flex",
       justifyContent: "center",
-      padding: "2rem",
+      padding: "1rem",
       backgroundColor: "#145088",
     },
   };
@@ -22,7 +33,7 @@ const Support = () => {
   // component state
   const [firstFaqs, setFirstFaqs] = useState(currentFaqs);
   const [searchTerm, setSearchTerm] = useState("");
-  
+
   //    create object of faqs, key is category and value is array of object question and answer
   const faqsByCategory = faqs.reduce((acc, faq) => {
     if (!acc[faq.category]) {
@@ -42,12 +53,10 @@ const Support = () => {
     const btns = document.querySelectorAll(".CategoryBtn");
     btns.forEach((btn) => {
       btn.classList.remove("ActiveCategory");
-    }
-    );
+    });
     const currentBtn = document.querySelector(`#${category}`);
     currentBtn.classList.add("ActiveCategory");
     console.log(currentBtn);
-
   };
 
   // handle search term change
@@ -70,6 +79,7 @@ const Support = () => {
         {/* knowledge base section */}
         <div className="container KnowledgeBase">
           <Headline color="#fff" align="left" text="Knowledge Base" />
+
           {/* wiki categories list */}
           <div className="row">
             {categories.map((category) => (
@@ -84,14 +94,20 @@ const Support = () => {
               </div>
             ))}
           </div>
-          <div className="Divider"></div>
+
+          <Divider />
+          {/* faqs */}
           {firstFaqs.length === 0 ? (
             <p>No results found</p>
           ) : (
             <div>
               {firstFaqs.map(({ id, question, answer }) => (
                 <Accordion key={id} defaultActiveKey="0" flush>
-                  <Accordion.Item eventKey={id} className="AccordionItem">
+                  <Accordion.Item
+                    eventKey={id}
+                    className="AccordionItem"
+                    data-aos="fade-up"
+                  >
                     <Accordion.Header>{question}</Accordion.Header>
                     <Accordion.Body>{answer}</Accordion.Body>
                   </Accordion.Item>
@@ -101,6 +117,10 @@ const Support = () => {
           )}
         </div>
         {/* end of knowledge base section */}
+      </div>
+      {/* terms and policy section */}
+      <div data-aos="fade-up">
+        <TermsPolicy />
       </div>
     </>
   );

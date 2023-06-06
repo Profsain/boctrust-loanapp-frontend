@@ -1,5 +1,6 @@
 .KnowledgeBase {
     color: #fff !important;
+    padding-bottom: 68px;
 }
 
 .Divider {
@@ -17,4 +18,17 @@
 .ActiveCategory {
     background-color: #fff !important;
     color: #ecaa00 !important;
+}
+
+/* Terms and Policy */
+.Tlink {
+    list-style: square !important;
+    font-size: 18px !important;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.Tlink:hover {
+    color: #d1d1d1 !important;
+
 }
