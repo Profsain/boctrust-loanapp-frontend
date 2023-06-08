@@ -7,7 +7,7 @@
       "deadline": "2023-06-30",
       "dateposted": "2023-06-01",
       "isclosed": false,
-      "image": "loan_officer.jpg"
+      "image": "https://shorturl.at/klRX2"
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "deadline": "2023-07-15",
       "dateposted": "2023-06-02",
       "isclosed": false,
-      "image": "branch_manager.jpg"
+      "image": "https://shorturl.at/eBDJV"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "deadline": "2023-06-30",
       "dateposted": "2023-06-05",
       "isclosed": false,
-      "image": "accountant.jpg"
+      "image": "https://shorturl.at/axX34"
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "deadline": "2023-07-10",
       "dateposted": "2023-06-08",
       "isclosed": false,
-      "image": "credit_analyst.jpg"
+      "image": "https://shorturl.at/bGPTU"
     },
     {
       "id": 5,
@@ -43,7 +43,7 @@
       "deadline": "2023-06-25",
       "dateposted": "2023-06-10",
       "isclosed": false,
-      "image": "customer_service_rep.jpg"
+      "image": "https://shorturl.at/fqESX"
     },
     {
       "id": 6,
@@ -52,7 +52,7 @@
       "deadline": "2023-07-05",
       "dateposted": "2023-06-12",
       "isclosed": false,
-      "image": "risk_manager.jpg"
+      "image": "https://shorturl.at/cgyLV"
     },
     {
       "id": 7,
@@ -61,7 +61,7 @@
       "deadline": "2023-07-15",
       "dateposted": "2023-06-15",
       "isclosed": false,
-      "image": "internal_auditor.jpg"
+      "image": "https://shorturl.at/hptGT"
     },
     {
       "id": 8,
@@ -70,7 +70,7 @@
       "deadline": "2023-07-10",
       "dateposted": "2023-06-18",
       "isclosed": false,
-      "image": "it_support_specialist.jpg"
+      "image": "https://shorturl.at/pvzRZ"
     },
     {
       "id": 9,
@@ -79,7 +79,7 @@
       "deadline": "2023-07-05",
       "dateposted": "2023-06-20",
       "isclosed": false,
-      "image": "marketing_officer.jpg"
+      "image": "https://shorturl.at/hptGT"
     },
     {
       "id": 10,
@@ -88,7 +88,7 @@
       "deadline": "2023-07-10",
       "dateposted": "2023-06-22",
       "isclosed": false,
-      "image": "teller.jpg"
+      "image": "https://shorturl.at/hptGT"
     }
   ]
 }
