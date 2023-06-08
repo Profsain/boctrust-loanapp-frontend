@@ -8,7 +8,7 @@ const LoanTerms = () => {
         align="left"
       />
       <p>
-        hese Terms and Conditions apply to and regulate the provision of credit
+        These Terms and Conditions apply to and regulate the provision of credit
         facilities advanced by Boctrust MFB(“Boctrust”) to the Borrower herein:
       </p>
       <hr />
@@ -32,7 +32,7 @@ const LoanTerms = () => {
           <li>
             All payments by the Borrower will be made by one of the following
             methods: Personal Cheque, Standing Order, or through an acceptable
-            electronic channel. All other methods will be accepted with Firmus’s
+            electronic channel. All other methods will be accepted with Boctrust MFB’s
             consent only
           </li>
           <li>
@@ -45,13 +45,13 @@ const LoanTerms = () => {
           </li>
           <li>
             The Borrower hereby agrees that nonpayment of the amount owed by the
-            due date shall render the Borrower in default and entitles Firmus to
+            due date shall render the Borrower in default and entitles Boctrust MFB to
             take steps to recover the outstanding loan amount in accordance with
             section 5 below.
           </li>
           <li>
             In cases where the Borrower makes a direct transfer in advance of
-            due date, Firmus reserves the right to destroy all cheques not
+            due date, Boctrust MFB reserves the right to destroy all cheques not
             retrieved within thirty days after the expiration of the loan.
           </li>
         </ul>
@@ -59,13 +59,13 @@ const LoanTerms = () => {
         <Headline text="3. CREDIT REFERENCE" align="left" fontSize="16px" />
         <ul>
           <li>
-            Firmus or its duly authorized agents will utilize a dedicated Credit
+            Boctrust MFB or its duly authorized agents will utilize a dedicated Credit
             Agency for a credit report on the Borrower in considering any
             application for credit
           </li>
           <li>
-            The Borrower authorizes Firmus to access any information available
-            to Firmus as provided by the Credit Agency
+            The Borrower authorizes Boctrust MFB to access any information available
+            to Boctrust MFB as provided by the Credit Agency
           </li>
           <li>
             The Borrower also agrees that the Borrower’s details and the loan
@@ -75,13 +75,13 @@ const LoanTerms = () => {
 
         <Headline text="4. NOTE" align="left" fontSize="16px" />
         <p>
-          The Borrower agrees that Firmus may communicate with them by sending
+          The Borrower agrees that Boctrust MFB may communicate with them by sending
           notices, messages, alerts and statements in relation to this Agreement
           in the following manner:
         </p>
         <ul>
           <li>
-            To the most recent physical address Firmus holds for the Borrower on
+            To the most recent physical address Boctrust MFB holds for the Borrower on
             file
           </li>
           <li>
@@ -90,7 +90,7 @@ const LoanTerms = () => {
           </li>
           <li>
             By delivery of an SMS to any mobile telephone number the Borrower
-            has provided to Firmus
+            has provided to Boctrust MFB
           </li>
         </ul>
 
@@ -111,31 +111,31 @@ const LoanTerms = () => {
           </li>
           <li>
             The Borrower does or omits to do anything which may prejudice
-            Firmus’s rights in terms of this Agreement or causes Firmus to
+            Boctrust MFB’s rights in terms of this Agreement or causes Boctrust MFB to
             suffer any loss or damage. In the event of any default by the
             Borrower subject to the clauses above
           </li>
           <li>
-            Firmus shall apply a 1% flat default charge daily on overdue
+            Boctrust MFB shall apply a 1% flat default charge daily on overdue
             principal until account is made current
           </li>
           <li>
-            Firmus reserves the right to notify the general public (including,
-            but not limited to employer) in the event of default ornon-repayment
+            Boctrust MFB reserves the right to notify the general public (including,
+            but not limited to employer) in the event of default or non-repayment
           </li>
           <li>
-            Firmus reserves the right to assign its right, title and interest
+            Boctrust MFB reserves the right to assign its right, title and interest
             under the Agreement to an external Collections Agency who will take
             all reasonable steps to collect the outstanding loan amount
           </li>
           <li>
-            Firmus s also reserves the right to institute legal proceedings
+            Boctrust MFB s also reserves the right to institute legal proceedings
             against the defaulting Borrower and is under no obligation to inform
             the Borrower before such proceedings commence
           </li>
           <li>
             The Borrower shall be responsible for all legal costs and expenses
-            incurred by Firmus in attempting to obtain repayment of any
+            incurred by Boctrust MFB in attempting to obtain repayment of any
             outstanding loan balance owed by the Borrower. Interest on any
             amount which becomes due and payable shall be charged
           </li>
@@ -144,7 +144,7 @@ const LoanTerms = () => {
         <Headline text="6. GENERAL" align="left" fontSize="16px" />
         <ul>
           <li>
-            This Agreement represents the entire understanding between Firmus
+            This Agreement represents the entire understanding between Boctrust MFB
             and the Borrower. No amendment shall be made unless same is agreed
             in writing by the parties
           </li>
@@ -156,31 +156,31 @@ const LoanTerms = () => {
           <li>
             This Agreement shall be governed by the laws of the Federal Republic
             of Nigeria and shall be subject to the jurisdiction of the courts of
-            theFederal Republic of Nigeria
+            the Federal Republic of Nigeria
           </li>
           <li>
-            If Firmus does not strictly enforce its rights under thisAgreement
+            If Boctrust MFB does not strictly enforce its rights under thisAgreement
             (including its right to insist on the repayment of all sums due
             onthe Repayment Due Date) or grant the Borrower an indulgence,
-            Firmus will not be deemed to have lost those rights and will not be
+            Boctrust MFB will not be deemed to have lost those rights and will not be
             prevented from insisting upon its strict rights at a later date
           </li>
           <li>
-            Firmus reserves the right to transfer or assign its rights and
+            Boctrust MFB reserves the right to transfer or assign its rights and
             obligations under this Agreement (including its obligation to lend
             money to the Borrower or the amount owed under this Agreement) to
             another person
           </li>
           <li>
-            Firmus will only inform the Borrower if such a transfer causes the
+            Boctrust MFB will only inform the Borrower if such a transfer causes the
             arrangements for the administration of this Agreement to change
           </li>
           <li>
             The Borrower authorizes and consents to all lawful access, use or
             disclosure of the Borrower’s particulars in the application by
-            Firmus which may include but shall not be limited to purposes
-            necessary to promote or sustain the business of Firmus; and the
-            Borrower waives any claims the Borrower may have against Firmus
+            Boctrust MFB which may include but shall not be limited to purposes
+            necessary to promote or sustain the business of Boctrust MFB; and the
+            Borrower waives any claims the Borrower may have against Boctrust MFB
             arising from any such access, use or disclosure
           </li>
           <li>
@@ -190,7 +190,7 @@ const LoanTerms = () => {
             penalties as the regulatory body deems fit
           </li>
           <li>
-            The Lender (Firmus) reserves the right to review, verify and screen
+            The Lender (Boctrust MFB) reserves the right to review, verify and screen
             all details, including but not limited to the loan amount applied
             for by the Borrower and the Lender is not bound to grant the exact
             loan amount applied for by the Borrower

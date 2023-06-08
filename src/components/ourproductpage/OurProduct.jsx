@@ -57,7 +57,7 @@ const OurProduct = () => {
           {/* left side container */}
           <div className="col-md-8 col-sm-12">
             {/* top row container */}
-            <div className="row" data-aos="fade-up">
+            <div className="row">
               <div className="col-md-6 col-sm-12">
                 <div className="ImgDescription">
                   <Headline
