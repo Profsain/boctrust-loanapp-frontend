@@ -1,5 +1,5 @@
 import Headline from "../shared/Headline";
-import TopCard from "./TopCard";
+import TopCard from "../shared/TopCard";
 
 const TopCardSection = () => {
     const style = {

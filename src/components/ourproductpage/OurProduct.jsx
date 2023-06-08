@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 import data from "../../mockdatabase/products.json";
 import Headline from "../shared/Headline";
 import Header from "../shared/Header";
-import TopCard from "../aboutpage/TopCard";
+import TopCard from "../shared/TopCard";
 import ProductBtn from "../ourproductpage/ProductBtn";
 import "../ourproductpage/OurProduct.css";
 import ProductImage from "./ProductImage";
