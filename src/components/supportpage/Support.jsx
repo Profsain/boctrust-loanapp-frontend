@@ -6,7 +6,7 @@ import data from "../../mockdatabase/faqs.json";
 import Accordion from "react-bootstrap/Accordion";
 import Header from "../shared/Header";
 import Headline from "../shared/Headline";
-import SearchBox from "./SearchBox";
+import SearchBox from "../shared/SearchBox";
 import "./Support.css";
 import Divider from "./Divider";
 import TermsPolicy from "./TermsPolicy";
@@ -71,7 +71,10 @@ const Support = () => {
     <>
       <Header imgurl="public/images/support.png" />
       <div className="container-fluid" style={styles.container}>
-        <SearchBox func={handleSearch} />
+        <SearchBox
+          heandlinTxt="How can we help you today?"
+          func={handleSearch}
+        />
       </div>
 
       <div className="container-fluid" style={styles.container}>

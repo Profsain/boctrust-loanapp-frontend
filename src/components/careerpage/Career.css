@@ -1,6 +1,5 @@
 .TopContainer {
   width: 100%;
-  height: 100vh;
   background-color: #fff !important;
   margin-top: -10% !important;
   padding: 18px;
@@ -9,4 +8,23 @@
 
 .TabContainer {
     margin: 38px 0;
+}
+
+li {
+  margin-bottom: 6px;
+}
+.Orientation ul > li {
+  list-style: disc;
+}
+
+
+.Wrap {
+  display: flex;
+
+  flex-wrap: right;
+  margin: 28px;
+}
+
+.Text {
+  margin: 0 16px;
 }
