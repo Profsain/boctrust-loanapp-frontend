@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Tabs, Tab } from "react-bootstrap";
 import Header from "../shared/Header";
 import Headline from "../shared/Headline";
@@ -5,6 +6,7 @@ import TopCard from "../shared/TopCard";
 import "./Career.css";
 
 const Career = () => {
+  const [key, setKey] = useState("joinus");
   return (
     <>
       <Header imgurl="public/images/career.png" />
@@ -19,20 +21,22 @@ const Career = () => {
           />
 
           {/* Career Tabs section */}
-          <div>
+          <div className="TabContainer">
             <Tabs
-              defaultActiveKey="profile"
-              id="uncontrolled-tab-example"
+              id="controlled-tab-example"
+              activeKey={key}
+              onSelect={(k) => setKey(k)}
               className="mb-3"
+              fill
             >
-              <Tab eventKey="home" title="Home">
-                Tab content for Home
+              <Tab eventKey="joinus" title="Why Join Us">
+                Tab content for why join us
               </Tab>
-              <Tab eventKey="profile" title="Profile">
-                Tab content for Profile
+              <Tab eventKey="onboard" title="New Staff Orientation">
+                Tab content for New Staff Orientation
               </Tab>
-              <Tab eventKey="contact" title="Contact" disabled>
-                Tab content for Contact
+              <Tab eventKey="vacancy" title="Vacancy">
+                Tab content for Vacancy
               </Tab>
             </Tabs>
           </div>

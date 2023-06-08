@@ -21,6 +21,12 @@ const Contact = () => {
       backgroundColor: "#f5f5f5",
       borderRadius: "16px",
     },
+    top: {
+      marginTop: "-140px",
+      backgroundColor: "#fff",
+      borderRadius: "16px",
+      paddingTop: "28px",
+    }
   };
 
   useEffect(() => {
@@ -84,7 +90,7 @@ const Contact = () => {
     <>
       <Header imgurl="public/images/contactus.png" />
       <div className="container-fluid">
-        <div className="container">
+        <div className="container" style={styles.top}>
           <Headline
             spacer="38px 0 18px 0"
             text="Contact Us For Your Financial Needs"
@@ -175,7 +181,11 @@ const Contact = () => {
                   />
                 </Form.Group>
 
-                <Button variant="primary" type="submit">
+                <Button
+                  style={{
+                    backgroundColor: "#145088", border: "none",
+                  }}
+                  variant="primary" type="submit">
                   Submit
                 </Button>
               </Form>
