@@ -28,3 +28,18 @@ li {
 .Text {
   margin: 0 16px;
 }
+
+.VacancyList {
+  display: flex;
+  justify-content: center;
+  /* align-self: center; */
+  margin: 38px;
+  padding-left: 38px;
+}
+
+.JobDate {
+  padding: 8px 12px;
+  height: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}

@@ -4,7 +4,14 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import Headline from "./Headline";
 
-const SearchBox = ({ func, bgcolor = "#f5f5f5", marginTop="-6rem", heandlinTxt, width="60%" }) => {
+const SearchBox = ({
+  func,
+  bgcolor = "#f5f5f5",
+  marginTop = "-6rem",
+  headlineTxt,
+  width = "60%",
+  placeholder = "Enter your search term here....",
+}) => {
   const styles = {
     container: {
       position: "relative",
@@ -37,15 +44,11 @@ const SearchBox = ({ func, bgcolor = "#f5f5f5", marginTop="-6rem", heandlinTxt, 
 
   return (
     <div style={styles.container} className="SearchContainer">
-      <Headline
-        spacer="0 0 12px 0"
-        fontSize="1.3rem"
-        text={heandlinTxt}
-      />
+      <Headline spacer="0 0 12px 0" fontSize="1.3rem" text={headlineTxt} />
       <input
         style={styles.input}
         type="text"
-        placeholder="Enter your search term here...."
+        placeholder={placeholder}
         onChange={func}
       />
       <FontAwesomeIcon icon={faSearch} style={styles.icon} />
@@ -57,8 +60,9 @@ SearchBox.propTypes = {
   func: PropTypes.func.isRequired,
   bgcolor: PropTypes.string,
   marginTop: PropTypes.string,
-  heandlinTxt: PropTypes.string.isRequired,
+  headlineTxt: PropTypes.string.isRequired,
   width: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 export default SearchBox;

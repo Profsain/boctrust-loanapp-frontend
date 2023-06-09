@@ -1,6 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-import store from "../src/redux/app/store.js";
-import { Provider } from "react-redux";
 import Footer from "./components/footer/Footer";
 import NavigationBar from "./components/navigation/NavigationBar";
 import Home from "./components/homepage/Home";
@@ -24,26 +22,24 @@ function App() {
   return (
     <>
       <NavigationBar />
-      <Provider store={store}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/board" element={<OurBoardPage />} />
-          <Route path="/product" element={<OurProduct />} />
-          <Route path="/loan" element={<Loan />} />
-          <Route path="/support" element={<Support />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/career" element={<Career />} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/board" element={<OurBoardPage />} />
+        <Route path="/product" element={<OurProduct />} />
+        <Route path="/loan" element={<Loan />} />
+        <Route path="/support" element={<Support />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/career" element={<Career />} />
 
-          {/* terms and conditions */}
-          <Route path="/terms" element={<TermsCondition />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/loanterms" element={<LoanTerms />} />
+        {/* terms and conditions */}
+        <Route path="/terms" element={<TermsCondition />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/loanterms" element={<LoanTerms />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Provider>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Footer />
       <ScrollToTop />
     </>

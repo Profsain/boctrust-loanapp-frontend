@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
+import jobs from "../../mockdatabase/jobs.json";
 // animation library
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { Tabs, Tab } from "react-bootstrap";
+// redux library operations
+import { useDispatch, useSelector } from "react-redux";
+import { fetchJobsSuccess } from "../../redux/reducers/fetchJobs";
+import { Tabs, Tab, Row } from "react-bootstrap";
 import Header from "../shared/Header";
 import Headline from "../shared/Headline";
 import TopCard from "../shared/TopCard";
 import "./Career.css";
 import SearchBox from "../shared/SearchBox";
+import VacancyCard from "./VacancyCard";
 
 const Career = () => {
   const [key, setKey] = useState("joinus");
@@ -17,6 +22,30 @@ const Career = () => {
       duration: 2000,
     });
   });
+
+  // redux dispatch
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchJobsSuccess(jobs));
+  }, [dispatch]);
+
+  // redux state
+  const jobsData = useSelector((state) => state.fetchJobs.jobs);
+  const [vacancies, setVacancies] = useState(jobsData.jobs);
+
+  // search function
+  const handleJobSearch = (e) => {
+    const keyword = e.target.value;
+
+    if (keyword !== "") {
+      const results = jobsData.jobs.filter((job) => {
+        return job.jobtitle.toLowerCase().startsWith(keyword.toLowerCase());
+      });
+      setVacancies(results);
+    } else {
+      setVacancies(jobsData.jobs);
+    }
+  };
 
   return (
     <>
@@ -460,11 +489,39 @@ const Career = () => {
               </Tab>
               <Tab eventKey="vacancy" title="Vacancy">
                 <div className="container ">
-                  <Headline spacer="48px 0 98px 0" text="Find a place with us!" />
+                  <Headline spacer="48px 0" text="Find a place with us!" />
                   <div className="SearchBox">
-                    <SearchBox heandlinTxt="" marginTop="-48px" width="100%" />
+                    <SearchBox
+                      func={handleJobSearch}
+                      placeholder="Search for a job"
+                      headlineTxt=""
+                      marginTop="-48px"
+                      width="100%" />
                   </div>
-                  <div className="VacancyList"></div>
+                  <div className="VacancyList">
+                    {vacancies?.length === 0 && (
+                      <div className="NoVacancy">
+                        <Headline spacer="48px 0" text="No Vacancy Available" />
+                      </div>
+                    )
+                    }
+                    <Row xs={1} md={2}>
+                      {vacancies?.map((vacancy) => (
+                        <VacancyCard
+                          data-aos="fade-up"
+                          key={vacancy.id}
+                          img={vacancy.image}
+                          title={vacancy.jobtitle}
+                          // shorten description to 200 characters
+                          description={vacancy.description.substring(0, 100) + "..."}
+                          postdate={vacancy.dateposted}
+                          deadline={vacancy.deadline}
+                          func={() => console.log("View Details")}
+
+                        />
+                      ))}
+                    </Row>
+                  </div>
                 </div>
               </Tab>
             </Tabs>

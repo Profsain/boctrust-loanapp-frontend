@@ -72,7 +72,7 @@ const Support = () => {
       <Header imgurl="public/images/support.png" />
       <div className="container-fluid" style={styles.container}>
         <SearchBox
-          heandlinTxt="How can we help you today?"
+          headlineTxt="How can we help you today?"
           func={handleSearch}
         />
       </div>
