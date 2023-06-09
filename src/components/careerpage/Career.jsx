@@ -27,7 +27,7 @@ const Career = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchJobsSuccess(jobs));
-  }, [dispatch]);
+  }, [key]);
 
   // redux state
   const jobsData = useSelector((state) => state.fetchJobs.jobs);
@@ -495,15 +495,15 @@ const Career = () => {
                       placeholder="Search for a job"
                       headlineTxt=""
                       marginTop="-48px"
-                      width="100%" />
+                      width="100%"
+                    />
                   </div>
                   <div className="VacancyList">
                     {vacancies?.length === 0 && (
                       <div className="NoVacancy">
                         <Headline spacer="48px 0" text="No Vacancy Available" />
                       </div>
-                    )
-                    }
+                    )}
                     <Row xs={1} md={2}>
                       {vacancies?.map((vacancy) => (
                         <VacancyCard
@@ -512,11 +512,12 @@ const Career = () => {
                           img={vacancy.image}
                           title={vacancy.jobtitle}
                           // shorten description to 200 characters
-                          description={vacancy.description.substring(0, 100) + "..."}
+                          description={
+                            vacancy.description.substring(0, 100) + "..."
+                          }
                           postdate={vacancy.dateposted}
                           deadline={vacancy.deadline}
                           func={() => console.log("View Details")}
-
                         />
                       ))}
                     </Row>
