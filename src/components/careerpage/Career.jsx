@@ -36,7 +36,6 @@ const Career = () => {
   // search function
   const handleJobSearch = (e) => {
     const keyword = e.target.value;
-
     if (keyword !== "") {
       const results = jobsData.jobs.filter((job) => {
         return job.jobtitle.toLowerCase().startsWith(keyword.toLowerCase());
