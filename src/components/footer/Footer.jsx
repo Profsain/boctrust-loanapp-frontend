@@ -27,7 +27,7 @@ const Footer = () => {
             lower middle class, working class and the economically active poor.
           </p>
         </div>
-        <div className="col-md-4 col-sm-12 Space">
+        <div className="col-md-4 col-sm-12">
           <h6 className="FooterHeadline">Company Links</h6>
           <div className="row">
             <div className="col-md-6">

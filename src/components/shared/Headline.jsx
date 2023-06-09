@@ -5,6 +5,7 @@ const Headline = ({
   fontSize = "26px",
   fontWeight = "600",
   align = "center",
+  spacer = "20px 0"
 }) => {
   const style = {
     color: color,
@@ -12,7 +13,7 @@ const Headline = ({
     fontWeight: fontWeight,
     fontFamily: "Inter, sans-serif",
     textAlign: align,
-    margin: "20px 0",
+    margin: spacer,
   };
   return <h3 style={style}>{text} </h3>;
 };
@@ -23,6 +24,7 @@ Headline.propTypes = {
   color: PropTypes.string,
   fontSize: PropTypes.string,
   fontWeight: PropTypes.string,
+  spacer: PropTypes.string,
 };
 
 export default Headline;

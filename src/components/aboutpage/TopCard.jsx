@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-const TopCard = ({ title, text, width, spacer, height }) => {
+const TopCard = ({ title, text, width, spacer, height, size, lineHeight, letterSpacing, padding="18px 28px", align="center" }) => {
   const style = {
     width: width,
     height: height,
@@ -7,9 +7,12 @@ const TopCard = ({ title, text, width, spacer, height }) => {
     background: "#FFFFFF",
     borderRadius: "18px",
     boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-    padding: "12px 28px 28px 28px",
+    padding: padding,
     margin: spacer,
-    textAlign: "center",
+    textAlign: align,
+    fontSize: size,
+    lineHeight: lineHeight,
+    letterSpacing: letterSpacing,
   };
   return (
     <div style={style}>
@@ -25,6 +28,11 @@ TopCard.propTypes = {
   width: PropTypes.string,
   spacer: PropTypes.string,
   height: PropTypes.string,
+  size: PropTypes.string,
+  lineHeight: PropTypes.string,
+  letterSpacing: PropTypes.string,
+  padding: PropTypes.string,
+  align: PropTypes.string,
 };
 
 export default TopCard;
