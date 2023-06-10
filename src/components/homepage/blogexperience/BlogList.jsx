@@ -28,7 +28,7 @@ const BlogList = () => {
       <div className="container">
         <div className="row text-center">
           {blogData.map((blog) => (
-            <div className="col-md-4 col-sm-12" key={blog.id}>
+            <div className="col-md-6 col-lg-4" key={blog.id}>
               <BlogCard title={blog.title} blogImg={blog.blogImg} />
             </div>
           ))}

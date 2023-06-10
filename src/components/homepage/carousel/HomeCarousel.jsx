@@ -92,7 +92,7 @@ const HomeCarousel = () => {
       <div className="container text-center ">
         <div className="row g-5 CardContainer">
           {features.map((feature, index) => (
-            <div key={index} className="col-sm-12 col-md-4">
+            <div key={index} className="col-md-6 col-lg-4 ">
               <FeaturesCard {...feature} />
             </div>
           ))}
