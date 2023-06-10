@@ -24,6 +24,23 @@ body {
     font-size: 8px;
   }
 
+  /* Home page */
+  .OverviewContainer {
+    width: 80% !important;
+    margin: 0 auto;
+    padding: 0 !important;
+  }
+
+  /* footer section */
+  .FooterTop {
+    padding-left: 0px !important;
+    padding: 38px !important;
+  }
+
+  .Link {
+    display: none;
+  }
+
   /* from product page */
   .Category {
     margin-top: 18px;

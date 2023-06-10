@@ -11,8 +11,8 @@ const VacancyCard = ({
   func,
 }) => {
   return (
-    <Card style={{ width: "28rem", padding: "12px", margin: "12px" }}>
-      <Card.Img variant="top" src={img} style={{ width: "100%", height: "300px"}}/>
+    <Card style={{ width: "22rem", padding: "6px", margin: "6px" }}>
+      <Card.Img variant="top" src={img} style={{ width: "100%", height: "250px"}}/>
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>

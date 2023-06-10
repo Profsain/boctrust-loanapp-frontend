@@ -57,8 +57,8 @@ const Career = () => {
         <div className="container TopContainer">
           <Headline spacer="48px 0" text="Welcome to BoctrustMFB Careers" />
           <TopCard
-            size="18px"
-            padding="0 88px"
+            size="1.2rem"
+            padding="0 2rem"
             lineHeight="38px"
             text="Our success is our people. We are very proud of the people who work for us. They are talented, committed and resourceful. We are apt to discover more people, equally good and with the same desire for quality and pride in what they do.With continuous training and development programs, exquisite professional courses from best hands within and outside the country, we are out to maintain our standard of excellence service delivery to both our external and internal customers."
           />
@@ -508,7 +508,7 @@ const Career = () => {
                         <Headline spacer="48px 0" text="No Vacancy Available" />
                       </div>
                     )}
-                    <Row xs={1} md={2}>
+                    <Row xs={1} md={2} className="VacancyRow">
                       {vacancies?.map(({ id, image, jobtitle, description, dateposted,deadline}) => (
                         <VacancyCard
                           data-aos="fade-up"

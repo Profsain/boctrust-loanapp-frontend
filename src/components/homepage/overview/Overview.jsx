@@ -20,7 +20,7 @@ const Overview = () => {
   const tabContainer = { backgroundColor: "#ecaa00", color: "#fff" };
   return (
     <>
-      <Box sx={{ textAlign: "center", padding: " 38px 148px" }}>
+      <Box className="OverviewContainer" sx={{ textAlign: "center", padding: " 38px 8rem",  }}>
         <Typography
           variant="h4"
           sx={{ marginTop: "58px", marginBottom: "28px", fontWeight: 600, color: "#145088" }}
@@ -32,12 +32,12 @@ const Overview = () => {
           variant="p"
           sx={{
             fontSize: "24px",
-            padding: "0 38px",
+            // padding: "0 38px",
             marginBottom: "38px",
             lineHeight: "38px",
           }}
         >
-          Company overview Our core objective is to provide avenue for saving,
+         Our core objective is to provide avenue for saving,
           access to credit and financial advisory services to individuals and
           micro, small & medium enterprises with competitive advantages. We
           believe in Growing Together with our customer.

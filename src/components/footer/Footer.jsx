@@ -4,7 +4,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="container-fluid">
-      <div className="FooterTop row justify-content-center">
+      <div className="row FooterTop">
         <div className="col-md-4 col-sm-12">
           <h6 className="FooterHeadline">Quick Links</h6>
           <ul>
@@ -27,7 +27,7 @@ const Footer = () => {
             lower middle class, working class and the economically active poor.
           </p>
         </div>
-        <div className="col-md-4 col-sm-12">
+        <div className="col-md-4 col-sm-12 Link">
           <h6 className="FooterHeadline">Company Links</h6>
           <div className="row">
             <div className="col-md-6">

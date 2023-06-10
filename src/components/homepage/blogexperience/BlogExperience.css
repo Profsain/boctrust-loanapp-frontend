@@ -11,10 +11,11 @@
 }
 
 .BlogContainer h3 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 700;
     color: #ecaa00;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .BlogContainer p {

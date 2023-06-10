@@ -1,6 +1,7 @@
 import { FaCoins, FaCommentsDollar, FaChartLine } from "react-icons/fa";
 
 import FeaturesCard from "./FeaturesCard";
+import "../Home.css";
 
 const HomeCarousel = () => {
   const images = [
@@ -89,7 +90,7 @@ const HomeCarousel = () => {
       </div>
 
       <div className="container text-center ">
-        <div className="row align-items-center g-5 mx-5  CardContainer">
+        <div className="row g-5 CardContainer">
           {features.map((feature, index) => (
             <div key={index} className="col-sm-12 col-md-4">
               <FeaturesCard {...feature} />

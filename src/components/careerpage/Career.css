@@ -32,9 +32,6 @@ li {
 .VacancyList {
   display: flex;
   justify-content: center;
-  /* align-self: center; */
-  margin: 38px;
-  padding-left: 38px;
 }
 
 .JobDate {

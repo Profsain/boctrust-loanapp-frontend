@@ -1,7 +1,9 @@
 .FooterTop {
     color: #fff;
     background-color: #272f35;
-    padding: 60px 140px; 
+    padding: 60px; 
+    letter-spacing: 1px;
+    padding-left: 198px !important;
 }
 
 ul {
