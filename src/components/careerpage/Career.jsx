@@ -27,12 +27,16 @@ const Career = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchJobsSuccess(jobs));
-  }, [key]);
+  }, []);
 
   // redux state
   const jobsData = useSelector((state) => state.fetchJobs.jobs);
-  const [vacancies, setVacancies] = useState(jobsData.jobs);
 
+  const [vacancies, setVacancies] = useState([]);
+  useEffect(() => {
+    setVacancies(jobsData.jobs)
+  }, [jobsData])
+  
   // search function
   const handleJobSearch = (e) => {
     const keyword = e.target.value;
@@ -505,18 +509,18 @@ const Career = () => {
                       </div>
                     )}
                     <Row xs={1} md={2}>
-                      {vacancies?.map((vacancy) => (
+                      {vacancies?.map(({ id, image, jobtitle, description, dateposted,deadline}) => (
                         <VacancyCard
                           data-aos="fade-up"
-                          key={vacancy.id}
-                          img={vacancy.image}
-                          title={vacancy.jobtitle}
+                          key={id}
+                          img={image}
+                          title={jobtitle}
                           // shorten description to 200 characters
                           description={
-                            vacancy.description.substring(0, 100) + "..."
+                            description.substring(0, 100) + "..."
                           }
-                          postdate={vacancy.dateposted}
-                          deadline={vacancy.deadline}
+                          postdate={dateposted}
+                          deadline={deadline}
                           func={() => console.log("View Details")}
                         />
                       ))}

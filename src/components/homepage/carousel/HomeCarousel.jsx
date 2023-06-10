@@ -43,7 +43,7 @@ const HomeCarousel = () => {
     <div>
       <div
         id="carouselExampleControlsNoTouching"
-        className="carousel slide"
+        className="carousel slide CarouselContainer"
         data-bs-ride="carousel"
         style={carouselStyle}
       >
@@ -87,13 +87,12 @@ const HomeCarousel = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <div className="container text-center" >
-        <div className="row align-items-center g-5 mx-5">
+
+      <div className="container text-center ">
+        <div className="row align-items-center g-5 mx-5  CardContainer">
           {features.map((feature, index) => (
             <div key={index} className="col-sm-12 col-md-4">
-              <FeaturesCard
-                {...feature}
-              />
+              <FeaturesCard {...feature} />
             </div>
           ))}
         </div>

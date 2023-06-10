@@ -150,12 +150,12 @@ function NavigationBar(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ position: "static", top: 0, left: 0, right: 0, zIndex: 999 }}>
       <CssBaseline />
       <AppBar
         component="nav"
+        // position="static"
         sx={{ backgroundColor: "#145088" }}
-        position="fixed"
       >
         <Box>
           <TopNav />

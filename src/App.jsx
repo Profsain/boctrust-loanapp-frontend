@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/Footer";
-import NavigationBar from "./components/navigation/NavigationBar";
 import Home from "./components/homepage/Home";
 import About from "./components/aboutpage/About";
 import OurBoardPage from "./components/aboutpage/OurBoardPage";
@@ -17,11 +16,12 @@ import NotFound from "./components/NotFound";
 import LoanTerms from "./components/terms&condition/LoanTerms";
 import PrivacyPolicy from "./components/terms&condition/PrivacyPolicy";
 import TermsCondition from "./components/terms&condition/TermsCondition";
+import NavBar from "./components/navigation/Navbar";
 
 function App() {
   return (
     <>
-      <NavigationBar />
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

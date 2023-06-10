@@ -16,7 +16,7 @@ const BlogCard = ({
           <Headline spacer="12px" fontSize="18px" text={title} />
         </Card.Title>
         <Card.Text>{content}</Card.Text>
-        <Button variant="outline-primary" onClick={func}>
+        <Button variant="link" onClick={func}>
           Read more...
         </Button>
       </Card.Body>

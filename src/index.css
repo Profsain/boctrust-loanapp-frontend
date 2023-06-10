@@ -38,6 +38,15 @@ body {
   .SearchContainer {
     width: 90% !important;
   }
+
+  /* carousel mobile  */
+  .CarouselContainer {
+    margin-top: 12px !important;
+  }
+
+  .CardContainer {
+    margin-top: 5px !important;
+  }
 }
   
 
