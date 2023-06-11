@@ -59,14 +59,12 @@
 }
 
 
-.NavContainer {
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:100;
-}
-
 .Nav {
     background-color: #145088 !important;
+    box-shadow: 0 0 20px #ffffff33;
+}
+
+.Sticky {
+    background-color: #094379 !important;
 }
 

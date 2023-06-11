@@ -1,8 +1,16 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "./Navigation.css";
-
 import { Link } from "react-router-dom";
+
 const TopNav = () => {
+
+  // change navbar color on scroll
+  window.addEventListener("scroll", function () {
+    const nav = document.querySelector(".Nav");
+    console.log(nav);
+    nav.classList.toggle("Sticky", window.scrollY > 0);
+  });
+
   return (
     <div className="TopNavContainer">
       <div className="StackDiv">
@@ -21,7 +29,7 @@ const TopNav = () => {
           </h1>
           <button className="CallUs">Call us today! 08076710000</button>
         </div>
-        
+
         <div className="BottomStyle">
           <Navbar variant="dark" expand="lg" className="Nav">
             <Container>
