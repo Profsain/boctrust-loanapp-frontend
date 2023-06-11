@@ -1,6 +1,7 @@
-import { FaCoins, FaCommentsDollar, FaChartLine } from "react-icons/fa";
+import { FaCoins, FaChartLine } from "react-icons/fa";
 
 import FeaturesCard from "./FeaturesCard";
+import "../Home.css";
 
 const HomeCarousel = () => {
   const images = [
@@ -22,7 +23,6 @@ const HomeCarousel = () => {
       title: "Loans",
       description:
         "Our loan products help you cater to pressing needs. If you’re ready to upgrade your home decor or merely want to improve your lifestyle efficiency with a new laptop, look no further than the Boctrust Microfinance Bank retail asset Acquisition/Leases.",
-      icon: <FaCommentsDollar />,
     },
     {
       title: "Investment",
@@ -43,7 +43,7 @@ const HomeCarousel = () => {
     <div>
       <div
         id="carouselExampleControlsNoTouching"
-        className="carousel slide"
+        className="carousel slide CarouselContainer"
         data-bs-ride="carousel"
         style={carouselStyle}
       >
@@ -87,13 +87,12 @@ const HomeCarousel = () => {
           <span className="visually-hidden">Next</span>
         </button>
       </div>
-      <div className="container text-center" >
-        <div className="row align-items-center g-5 mx-5">
+
+      <div className="container text-center ">
+        <div className="row g-5 CardContainer">
           {features.map((feature, index) => (
-            <div key={index} className="col-sm-12 col-md-4">
-              <FeaturesCard
-                {...feature}
-              />
+            <div key={index} className="col-md-6 col-lg-4 ">
+              <FeaturesCard {...feature} />
             </div>
           ))}
         </div>

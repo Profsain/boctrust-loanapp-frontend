@@ -24,12 +24,13 @@ const BlogCard = ({
     blogTitle: {
       position: "relative",
       bottom: "0",
-      top: "13rem",
+      top: "14rem",
       backgroundColor: "#ecaa00",
       color: "#fff",
       padding: "0.5rem 1rem",
       borderRadius: "28px",
       textAlign: "center",
+      fontSize: "1.2rem",
     },
   };
   return (

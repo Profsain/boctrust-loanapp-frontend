@@ -6,11 +6,11 @@ const OurValue = () => {
       color: "#fff",
       padding: "50px 0",
     },
-    box: {
-      width: "300px",
+    value: {
+      paddingLeft: "2rem"
     },
     text: {
-      fontSize: "16px",
+      fontSize: "1.2rem",
       fontWeight: "bold",
       lineHeight: "1.5",
       textAlign: "left",
@@ -21,10 +21,10 @@ const OurValue = () => {
   return (
     <div style={styles.container} className="container-fluid ">
       <Headline text="Our Values" color="#fff" />
-      <div className="container px-5">
-        <div className="row px-5 mx-5">
+      <div className="container">
+        <div className="row OurValue" style={styles.value}>
           <div className="col-md-6 col-sm-12 px-5">
-            <div style={styles.box}>
+            <div>
               <Headline
                 text="Innovation"
                 color="#fff"

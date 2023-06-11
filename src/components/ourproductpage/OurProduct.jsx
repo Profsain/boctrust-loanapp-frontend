@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 import data from "../../mockdatabase/products.json";
 import Headline from "../shared/Headline";
 import Header from "../shared/Header";
-import TopCard from "../aboutpage/TopCard";
+import TopCard from "../shared/TopCard";
 import ProductBtn from "../ourproductpage/ProductBtn";
 import "../ourproductpage/OurProduct.css";
 import ProductImage from "./ProductImage";
@@ -57,7 +57,7 @@ const OurProduct = () => {
           {/* left side container */}
           <div className="col-md-8 col-sm-12">
             {/* top row container */}
-            <div className="row" data-aos="fade-up">
+            <div className="row">
               <div className="col-md-6 col-sm-12">
                 <div className="ImgDescription">
                   <Headline

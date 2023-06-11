@@ -15,6 +15,15 @@ body {
   min-height: 100vh;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+}
+
 @media screen and (max-width: 600px) {
   .Welcome {
     display: none;
@@ -22,6 +31,23 @@ body {
 
   .CallUs {
     font-size: 8px;
+  }
+
+  /* Home page */
+  .OverviewContainer {
+    width: 80% !important;
+    margin: 0 auto;
+    padding: 0 !important;
+  }
+
+  /* footer section */
+  .FooterTop {
+    padding-left: 0px !important;
+    padding: 38px !important;
+  }
+
+  .Link {
+    display: none;
   }
 
   /* from product page */
@@ -32,6 +58,20 @@ body {
   .DetailsCard {
     width: 90%;
     margin: 0 auto;
+  }
+
+  /* Search Page */
+  .SearchContainer {
+    width: 90% !important;
+  }
+
+  /* carousel mobile  */
+  .CarouselContainer {
+    margin-top: 12px !important;
+  }
+
+  .CardContainer {
+    margin-top: 5px !important;
   }
 }
   

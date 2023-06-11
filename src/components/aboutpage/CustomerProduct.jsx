@@ -1,5 +1,5 @@
 import Headline from "../shared/Headline";
-import TopCard from "./TopCard";
+import TopCard from "../shared/TopCard";
 
 const CustomerProduct = () => {
   const styles = {
@@ -19,7 +19,14 @@ const CustomerProduct = () => {
         <div className="col-md-6 col-sm-12">
           <TopCard
             spacer="0 18px 68px 18px"
-            title={<Headline text="Our customer receives" />}
+            size={"1.3rem"}
+            title={
+              <Headline
+                align="left"
+                spacer="0 22px"
+                text="Our customer receives"
+              />
+            }
             text={
               <div style={styles.container}>
                 <p>Dedicated customer services on and offline</p>
@@ -45,7 +52,10 @@ const CustomerProduct = () => {
         <div className="col-md-6 col-sm-12">
           <TopCard
             spacer="0 18px 68px 18px"
-            title={<Headline text="Our Products" />}
+            size={"1.3rem"}
+            title={
+              <Headline align="left" spacer="0 22px" text="Our Products" />
+            }
             text={
               <div style={styles.container}>
                 <p>
