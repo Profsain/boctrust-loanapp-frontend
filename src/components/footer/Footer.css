@@ -3,7 +3,7 @@
     background-color: #272f35;
     padding: 60px; 
     letter-spacing: 1px;
-    padding-left: 198px !important;
+    /* padding-left: 198px !important; */
 }
 
 ul {
@@ -21,6 +21,10 @@ ul {
 .Link:hover {
     color: #999898;
     text-decoration: none;
+}
+
+.CompanyLinks {
+    padding-left: 160px;
 }
 
 .FooterTop h6 {

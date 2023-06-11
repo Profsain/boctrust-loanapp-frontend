@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="container-fluid">
       <div className="row FooterTop">
-        <div className="col-md-4 col-sm-12">
+        <div className="col-md-3 col-sm-12">
           <h6 className="FooterHeadline">Quick Links</h6>
           <ul>
             <li>
@@ -27,7 +27,7 @@ const Footer = () => {
             lower middle class, working class and the economically active poor.
           </p>
         </div>
-        <div className="col-md-4 col-sm-12 Link">
+        <div className="col-md-6 col-sm-12 Link CompanyLinks">
           <h6 className="FooterHeadline">Company Links</h6>
           <div className="row">
             <div className="col-md-6">
@@ -100,7 +100,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-4 col-sm-12">
+        <div className="col-md-3 col-sm-12">
           <h6 className="FooterHeadline">Contact Info</h6>
           <p>
             Address:
