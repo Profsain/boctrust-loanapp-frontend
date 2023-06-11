@@ -5,11 +5,9 @@ import "../Home.css";
 
 const HomeCarousel = () => {
   const images = [
-    "../images/1.png",
-    "../images/2.png",
-    "../images/3.png",
-    "../images/4.png",
-    "../images/5.png",
+    "../images/bocslide1.jpg",
+    "../images/bocslide2.jpg",
+    "../images/bocslide3.jpg",
   ];
 
   const features = [
@@ -33,7 +31,7 @@ const HomeCarousel = () => {
   ];
 
   const carouselStyle = {
-    top: "70px",
+    top: "170px",
     left: "0",
     width: "100%",
     marginTop: "-80px",
