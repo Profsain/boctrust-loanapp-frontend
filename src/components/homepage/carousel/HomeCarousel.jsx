@@ -5,9 +5,9 @@ import "../Home.css";
 
 const HomeCarousel = () => {
   const images = [
-    "../images/bocslide1.jpg",
-    "../images/bocslide2.jpg",
-    "../images/bocslide3.jpg",
+    "images/bocslide1.jpg",
+    "images/bocslide2.jpg",
+    "images/bocslide3.jpg",
   ];
 
   const features = [
