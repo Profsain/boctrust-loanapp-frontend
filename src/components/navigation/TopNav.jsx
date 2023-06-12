@@ -3,7 +3,6 @@ import "./Navigation.css";
 import { Link } from "react-router-dom";
 
 const TopNav = () => {
-
   // change navbar color on scroll
   window.addEventListener("scroll", function () {
     const nav = document.querySelector(".Nav");
@@ -30,9 +29,9 @@ const TopNav = () => {
         </div>
 
         <div className="BottomStyle">
+          {/* <DropNavbar /> */}
           <Navbar variant="dark" expand="lg" className="Nav">
             <Container>
-              {/* <Navbar.Brand href="/">Growing Together</Navbar.Brand> */}
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mx-auto">
@@ -40,8 +39,9 @@ const TopNav = () => {
                     Home
                   </Nav.Link>
 
+                  {/* about dropdown */}
                   <NavDropdown title="About" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/about">
+                    <NavDropdown.Item className="DropContainer" href="/about">
                       Company Overview
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
@@ -49,6 +49,25 @@ const TopNav = () => {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/career">Careers</NavDropdown.Item>
                     <NavDropdown.Divider />
+                  </NavDropdown>
+
+                  {/* our product dropdown */}
+                  <NavDropdown className="DropContainer" title="Our Products" id="basic-nav-dropdown">
+                    {/* savings */}
+                    <NavDropdown title="Savings" id="basic-nav-dropdown">
+                      <NavDropdown.Item href="/about">
+                        Company Overview
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="/board">
+                        Our Board
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="/career">
+                        Careers
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                    </NavDropdown>
                   </NavDropdown>
 
                   <Nav.Link href="/product" className="mx-4">

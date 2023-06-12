@@ -19,9 +19,11 @@
     transition: 0.5s;
 }
 
-.ImgDescription {
-    margin-top: -68px;
-}
+/* .ProductTitle {
+    position: relative;
+    bottom: 470px !important;
+    left: 400px;
+} */
 
 .DetailsCard {
     border-radius: 16px;

@@ -51,7 +51,7 @@ const OurProduct = () => {
 
   return (
     <>
-      <Header imgurl="public/images/ourproduct.png" />
+      <Header imgurl="images/bocproduct.jpg" />
       <div className="container">
         <div className="row">
           {/* left side container */}
@@ -59,7 +59,7 @@ const OurProduct = () => {
             {/* top row container */}
             <div className="row">
               <div className="col-md-6 col-sm-12">
-                <div className="ImgDescription">
+                <div className="ProductTitle">
                   <Headline
                     color="#593d0e"
                     spacer="0 0 68px 0"
