@@ -51,7 +51,7 @@ const OurProduct = () => {
 
   return (
     <>
-      <Header imgurl="images/bocproduct.jpg" />
+      <Header imgurl="images/bocproducts.jpg" />
       <div className="container">
         <div className="row">
           {/* left side container */}
