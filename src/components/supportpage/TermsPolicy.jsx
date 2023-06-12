@@ -4,14 +4,20 @@ import Divider from "./Divider";
 import "./Support.css";
 
 const TermsPolicy = () => {
-  const style = {
-    color: "#fff",
-    backgroundColor: "#ecaa00",
-    padding: "4rem",
-    };
-    
+  const styles = {
+    container: {
+      color: "#fff",
+      backgroundColor: "#ecaa00",
+      padding: "4rem",
+    },
+    link: {
+      color: "#fff",
+      textDecoration: "none",
+    },
+  };
+
   return (
-    <div className="container-fluid" style={style}>
+    <div className="container-fluid" style={styles.container}>
       <div className="container">
         <Headline text="Terms and Conditions" color="#fff" align="left" />
         <Divider />
