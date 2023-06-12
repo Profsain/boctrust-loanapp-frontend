@@ -68,7 +68,12 @@
     background-color: #094379 !important;
 }
 
-#basic-nav-dropdown {
+.DropBox {
     background-color: #145088 !important;
+}
+
+.DropItem {
+    position: relative;
+    left: 20px;
 }
 

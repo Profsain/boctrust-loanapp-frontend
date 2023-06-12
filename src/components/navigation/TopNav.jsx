@@ -29,7 +29,7 @@ const TopNav = () => {
         </div>
 
         <div className="BottomStyle">
-          {/* <DropNavbar /> */}
+          {/* navbar section start */}
           <Navbar variant="dark" expand="lg" className="Nav">
             <Container>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -52,27 +52,96 @@ const TopNav = () => {
                   </NavDropdown>
 
                   {/* our product dropdown */}
-                  <NavDropdown className="DropContainer" title="Our Products" id="basic-nav-dropdown">
-                    {/* savings */}
-                    <NavDropdown title="Savings" id="basic-nav-dropdown">
-                      <NavDropdown.Item href="/about">
-                        Company Overview
+                  <NavDropdown
+                    className="DropBox"
+                    title="Our Products"
+                    id="basic-nav-dropdown"
+                  >
+                    {/* savings dropdown start*/}
+                    <NavDropdown
+                      title="Savings"
+                      id="basic-nav-dropdown"
+                      className="DropBox"
+                    >
+                      <NavDropdown.Item href="/regular-savings">
+                        Regular Savings
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="/board">
-                        Our Board
+                      <NavDropdown.Item href="/target-savings">
+                        Target Savings
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item href="/career">
-                        Careers
+                      <NavDropdown.Item href="/ajo-plus-account">
+                        Ajo Plus Account
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                     </NavDropdown>
-                  </NavDropdown>
+                    {/* saving dropdown end */}
+                    
+                    {/* Investment dropdown start*/}
+                    <NavDropdown
+                      title="Investment"
+                      id="basic-nav-dropdown"
+                      className="DropBox"
+                    >
+                      <NavDropdown.Item href="/fixed-investment">
+                        Fixed Investment
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="/investment-note">
+                        Investment Note
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                    </NavDropdown>
+                    {/* investment dropdown end */}
+                    
+                    {/* loans dropdown start*/}
+                    <NavDropdown
+                      title="Loans"
+                      id="basic-nav-dropdown"
+                      className="DropBox"
+                    >
+                      <NavDropdown.Item href="/salary-advance">
+                        Salary Advance
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="/personal-loan">
+                        Personal Loan
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="/sme-loan">
+                        SME Loan
+                      </NavDropdown.Item>
+                      <NavDropdown.Item href="/asset-backed-financing">
+                        Asset Backed Financing
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                    </NavDropdown>
+                    {/* loans dropdown end */}
 
-                  <Nav.Link href="/product" className="mx-4">
-                    Our Product
-                  </Nav.Link>
+                    {/* advisory dropdown start*/}
+                    <NavDropdown
+                      title="Advisory Services"
+                      id="basic-nav-dropdown"
+                      className="DropBox"
+                    >
+                      <NavDropdown.Item href="/small-business-advisory">
+                        Small Business Advisory
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="/micro-insurance-advisory">
+                        Micro Insurance Advisory
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item href="/financial-advisory">
+                        Financial Advisory
+                      </NavDropdown.Item>
+                      <NavDropdown.Divider />
+                    </NavDropdown>
+                    {/* advisory dropdown end */}          
+                  </NavDropdown>
+                  
+                  {/* top level menu item */}
                   <Nav.Link href="/loan" className="mx-4">
                     Apply for Loan
                   </Nav.Link>
