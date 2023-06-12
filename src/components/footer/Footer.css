@@ -44,3 +44,13 @@ ul {
     color: #fff;
     letter-spacing: 1px;
 }
+
+.SocialContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.SocialMedia {
+    margin: 0px 10px;
+}

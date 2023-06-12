@@ -7,7 +7,6 @@ const TopNav = () => {
   // change navbar color on scroll
   window.addEventListener("scroll", function () {
     const nav = document.querySelector(".Nav");
-    console.log(nav);
     nav.classList.toggle("Sticky", window.scrollY > 0);
   });
 
