@@ -47,7 +47,7 @@ const TopNav = () => {
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/board">Our Board</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/career">Career</NavDropdown.Item>
+                    <NavDropdown.Item href="/career">Careers</NavDropdown.Item>
                     <NavDropdown.Divider />
                   </NavDropdown>
 

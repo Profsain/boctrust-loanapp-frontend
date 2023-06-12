@@ -15,10 +15,10 @@ const CustomerProduct = () => {
   };
   return (
     <div className="container">
-      <div className="row gx-5">
+      <div className="row gx-2">
         <div className="col-md-6 col-sm-12">
           <TopCard
-            spacer="0 18px 68px 18px"
+            spacer="0 18px 68px 68px"
             size={"1.3rem"}
             title={
               <Headline
@@ -51,7 +51,7 @@ const CustomerProduct = () => {
         </div>
         <div className="col-md-6 col-sm-12">
           <TopCard
-            spacer="0 18px 68px 18px"
+            spacer="0 68px 68px 18px"
             size={"1.3rem"}
             title={
               <Headline align="left" spacer="0 22px" text="Our Products" />

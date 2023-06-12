@@ -4,11 +4,11 @@ const Header = ({ imgurl }) => {
   const styles = {
     header: {
       width: "100%",
-      height: "400px",
+      height: "700px",
       backgroundImage: `url(${imgurl})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
-      marginTop: "62px",
+      marginTop: "80px",
     },
   };
 
