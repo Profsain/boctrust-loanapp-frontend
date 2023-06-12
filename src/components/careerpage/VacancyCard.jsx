@@ -3,7 +3,8 @@ import { Card, Button, Stack } from "react-bootstrap";
 import "./Career.css";
 
 const VacancyCard = ({
-  img = "https://shorturl.at/hptGT",
+  id,
+  img = "images/hiring.jpg",
   title,
   description,
   postdate,
@@ -12,7 +13,11 @@ const VacancyCard = ({
 }) => {
   return (
     <Card style={{ width: "22rem", padding: "6px", margin: "6px" }}>
-      <Card.Img variant="top" src={img} style={{ width: "100%", height: "250px"}}/>
+      <Card.Img
+        variant="top"
+        src={img}
+        style={{ width: "100%", height: "250px" }}
+      />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{description}</Card.Text>
@@ -27,6 +32,7 @@ const VacancyCard = ({
         </Stack>
 
         <Button
+          id={id}
           variant="primary my-3"
           style={{ backgroudColor: "#145088" }}
           onClick={func}
@@ -45,6 +51,7 @@ VacancyCard.propTypes = {
   img: PropTypes.string,
   postdate: PropTypes.string,
   title: PropTypes.string,
+  id: PropTypes.any,
 };
 
 export default VacancyCard;

@@ -8,7 +8,7 @@ const Header = ({ imgurl }) => {
       backgroundImage: `url(${imgurl})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
-      marginTop: "80px",
+      marginTop: "60px",
     },
   };
 
