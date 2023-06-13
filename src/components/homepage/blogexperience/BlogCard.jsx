@@ -1,15 +1,16 @@
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 
 const BlogCard = ({
   title = "Budget your way to success",
-  blogImg = "https://www.finance-monthly.com/Finance-Monthly/wp-content/uploads/2020/12/Young-African-man-surveying-his-investments.jpg",
+  blogImg,
 }) => {
   const shortTitle = title.substring(0, 40) + "...";
   //   styles
   const styles = {
     card: {
-      width: "18rem",
-      height: "20rem",
+      width: "28rem",
+      height: "30rem",
       margin: "1rem",
       padding: "1rem",
       borderRadius: "18px",
@@ -24,18 +25,19 @@ const BlogCard = ({
     blogTitle: {
       position: "relative",
       bottom: "0",
-      top: "14rem",
+      top: "24rem",
       backgroundColor: "#ecaa00",
       color: "#fff",
-      padding: "0.5rem 1rem",
+      padding: "0.5rem",
       borderRadius: "28px",
       textAlign: "center",
-      fontSize: "1.2rem",
+      fontSize: "1.5rem",
+      textDecoration: "none",
     },
   };
   return (
     <div style={styles.card}>
-      <h4 style={styles.blogTitle}>{shortTitle}</h4>
+      <Link to="/blog" style={styles.blogTitle}>{shortTitle}</Link>
     </div>
   );
 };

@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import { LinkedIn } from "@mui/icons-material";
 import "./Footer.css";
 
 const Footer = () => {
@@ -116,6 +119,38 @@ const Footer = () => {
             Email:
             <br /> enquiry@boctrustmfb.co
           </p>
+          <div>
+            <p>Connect On Social Media</p>
+            <div className="SocialContainer">
+            <div className="SocialMedia">
+              <a
+                href="https://www.facebook.com/pages/Boctrust%20Microfinance%20Bank/1188460931185967/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FacebookIcon />
+              </a>
+            </div>
+            <div className="SocialMedia">
+              <a
+                href="https://www.twitter.com/boctrustmfb"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <TwitterIcon />
+              </a>
+            </div>
+            <div className="SocialMedia">
+              <a
+                href="https://www.linkedin.com/company/boctrustmfb/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <LinkedIn />
+              </a>
+              </div>
+              </div>
+          </div>
         </div>
       </div>
       <div className="FooterBottom row">

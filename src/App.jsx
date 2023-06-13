@@ -4,32 +4,61 @@ import Home from "./components/homepage/Home";
 import About from "./components/aboutpage/About";
 import OurBoardPage from "./components/aboutpage/OurBoardPage";
 import Contact from "./components/contactpage/Contact";
+import Blogs from "./components/blogpage/Blogs";
 import Blog from "./components/blogpage/Blog";
 import Loan from "./components/loanapplication/Loan";
-import OurProduct from "./components/ourproductpage/OurProduct";
 import Support from "./components/supportpage/Support";
 import Career from "./components/careerpage/Career";
 import ScrollToTop from "./components/ScrollToTop";
 import NotFound from "./components/NotFound";
 
+// our product
+import RegularSavings from "./components/ourproductpage/RegularSavings";
+import TargetSavings from "./components/ourproductpage/TargetSavings";
+import AjoPlusAccount from "./components/ourproductpage/AjoPlusAccount";
+import FixedDeposit from "./components/ourproductpage/FixedDeposit";
+import InvestmentNote from "./components/ourproductpage/InvestmentNote";
+import SalaryAdvance from "./components/ourproductpage/SalaryAdvance";
+import PersonalLoan from "./components/ourproductpage/PersonalLoan";
+import SmeLoan from "./components/ourproductpage/SmeLoan";
+import AssetBackedFinancing from "./components/ourproductpage/AssetBackedFinancing";
+import SmallBusinessAdvisory from "./components/ourproductpage/SmallBusinessAdvisory";
+import MicroInsuranceAdvisory from "./components/ourproductpage/MicroInsuranceAdvisory";
+import FinancialAdvisory from "./components/ourproductpage/FinancialAdvisory";
+
+
 // terms and conditions
 import LoanTerms from "./components/terms&condition/LoanTerms";
 import PrivacyPolicy from "./components/terms&condition/PrivacyPolicy";
 import TermsCondition from "./components/terms&condition/TermsCondition";
-import NavBar from "./components/navigation/Navbar";
+import TopNav from "./components/navigation/TopNav";
 
 function App() {
   return (
     <>
-      <NavBar />
+      <TopNav />
+      {/* <NavBar /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/board" element={<OurBoardPage />} />
-        <Route path="/product" element={<OurProduct />} />
+        <Route path="/regular-savings" element={<RegularSavings />} />
+        <Route path="/target-savings" element={<TargetSavings />} />
+        <Route path="/ajo-plus-account" element={<AjoPlusAccount />} />
+        <Route path="/fixed-investment" element={<FixedDeposit />} />
+        <Route path="/investment-note" element={<InvestmentNote />} />
+        <Route path="/salary-advance" element={<SalaryAdvance />} />
+        <Route path="/personal-loan" element={<PersonalLoan />} />
+        <Route path="/sme-loan" element={<SmeLoan />} />
+        <Route path="/asset-backed-financing" element={<AssetBackedFinancing />} />
+        <Route path="/small-business-advisory" element={<SmallBusinessAdvisory />} />
+        <Route path="/micro-insurance-advisory" element={<MicroInsuranceAdvisory />} />
+        <Route path="/financial-advisory" element={<FinancialAdvisory />} />
+
         <Route path="/loan" element={<Loan />} />
         <Route path="/support" element={<Support />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blog/:title" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/career" element={<Career />} />
 

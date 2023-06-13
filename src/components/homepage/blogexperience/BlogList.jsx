@@ -2,24 +2,6 @@ import BlogCard from "./BlogCard";
 import "./BlogExperience.css";
 
 const BlogList = () => {
-  const blogData = [
-    {
-      id: 1,
-      title: "Budget your way to success",
-      blogImg: "https://shorturl.at/cIJUY",
-    },
-    {
-      id: 2,
-      title: "How to save money",
-      blogImg: "https://shorturl.at/kZ124",
-    },
-    {
-      id: 3,
-      title: "How to invest in the stock market",
-      blogImg: "https://shorturl.at/inGR1",
-    },
-  ];
-
   return (
     <div className="container BlogContainer">
       <h3>Experience our Blog</h3>
@@ -27,11 +9,9 @@ const BlogList = () => {
 
       <div className="container">
         <div className="row text-center">
-          {blogData.map((blog) => (
-            <div className="col-md-6 col-lg-4" key={blog.id}>
-              <BlogCard title={blog.title} blogImg={blog.blogImg} />
-            </div>
-          ))}
+          <BlogCard title="Personal Finance Resources" blogImg="https://shorturl.at/cIJUY" />
+
+          <BlogCard title="SME Advisory Resources" blogImg="https://shorturl.at/inGR1" />
         </div>
       </div>
     </div>

@@ -40,3 +40,30 @@ li {
   font-size: 12px;
   font-weight: 600;
 }
+
+.ImgCard {
+  width: 60%;
+  height: 200px;
+  border-radius: 16px;
+}
+
+/* model box */
+.BtnApply {
+  background-color: #ecaa00;
+  border: none;
+}
+
+.BtnApply:hover {
+  background-color: #ce9300;
+  border: none;
+}
+
+.BtnClose {
+  background-color: gray;
+  border: none;
+}
+
+.BtnClose:hover {
+  background-color: #a3a3a3;
+  border: none;
+}

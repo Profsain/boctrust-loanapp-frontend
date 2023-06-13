@@ -88,7 +88,7 @@ const Contact = () => {
 
   return (
     <>
-      <Header imgurl="public/images/contactus.png" />
+      <Header imgurl="public/images/boccontact.png" />
       <div className="container-fluid">
         <div className="container" style={styles.top}>
           <Headline
@@ -198,7 +198,7 @@ const Contact = () => {
         <iframe
           width="100%"
           height="600"
-          src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=1st%20floor%2C%2026%20Moloney%20street%2C%20Onikan%20Lagos.+(Boctrust%20Microfinance%20Bank)&amp;ie=UTF8&amp;t=&amp;z=10&amp;iwloc=B&amp;output=embed"
+          src="https://maps.google.com/maps?width=700&amp;height=440&amp;hl=en&amp;q=1st%20floor%2C%2026%20Moloney%20street%2C%20Onikan%20Lagos.+(Boctrust%20Microfinance%20Bank)&amp;ie=UTF8&amp;t=&amp;z=17&amp;iwloc=B&amp;output=embed"
         ></iframe>
       </div>
     </>

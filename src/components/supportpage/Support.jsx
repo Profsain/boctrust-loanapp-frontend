@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import data from "../../mockdatabase/faqs.json";
-import Accordion from "react-bootstrap/Accordion";
+import { Accordion, Button, Form } from "react-bootstrap";
 import Header from "../shared/Header";
 import Headline from "../shared/Headline";
 import SearchBox from "../shared/SearchBox";
@@ -67,9 +67,15 @@ const Support = () => {
     setFirstFaqs(currentFaqs);
   };
 
+  // hide and show inquiry form
+  const handleInquiry = () => {
+    const inquiryForm = document.querySelector(".InquiryForm");
+    inquiryForm.classList.toggle("ShowInquiryForm");
+  };
+  
   return (
     <>
-      <Header imgurl="public/images/support.png" />
+      <Header imgurl="images/bocsupport.png" />
       <div className="container-fluid" style={styles.container}>
         <SearchBox
           headlineTxt="How can we help you today?"
@@ -100,7 +106,39 @@ const Support = () => {
           <Divider />
           {/* faqs */}
           {firstFaqs.length === 0 ? (
-            <p>No results found</p>
+            <div className="NoResult">
+              <h3 className="text-center">No results found</h3>
+              <Button
+                variant="outline-warning"
+                onClick={handleInquiry}
+              >
+                Send as Inquiry
+              </Button>
+
+              <div className="InquiryForm">
+                <h4>Inquiry Form</h4>
+                <Form>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control type="email" placeholder="Enter email" required/>
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="formBasicSubject">
+                    <Form.Label>Subject</Form.Label>
+                    <Form.Control type="text" placeholder="Enter subject" required />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="formBasicMessage">
+                    <Form.Label>Message</Form.Label>
+                    <Form.Control as="textarea" rows={8} required/>
+                  </Form.Group>
+
+                  <Button variant="primary" type="submit">
+                    Submit
+                  </Button>
+                </Form>
+              </div>
+            </div>
           ) : (
             <div>
               {firstFaqs.map(({ id, question, answer }) => (

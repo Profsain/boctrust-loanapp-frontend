@@ -1,7 +1,8 @@
 
 import PropTypes from "prop-types"
 const ProductImage = ({ url, altText }) => {
-    const style = {
+  const style = {
+        marginTop: "-60px",
         width: "100%",
         height: "auto",
         borderRadius: "18px",

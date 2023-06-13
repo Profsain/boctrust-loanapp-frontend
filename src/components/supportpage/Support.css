@@ -28,7 +28,31 @@
     cursor: pointer;
 }
 
-.Tlink:hover {
-    color: #d1d1d1 !important;
+.Tlink a {
+    color: #fff !important;
+    text-decoration: none !important;
+}
 
+.Tlink a:hover {
+    color: #dedede !important;
+    font-size: 1.2rem !important;
+    transition: ease-in-out 0.3s;
+}
+
+.NoResult {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.InquiryForm {
+    display: none;
+    width: 100% !important;
+    margin: 0 auto;
+    padding: 60px;
+}
+
+.ShowInquiryForm {
+    display: block !important;
 }

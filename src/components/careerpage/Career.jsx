@@ -13,6 +13,7 @@ import TopCard from "../shared/TopCard";
 import "./Career.css";
 import SearchBox from "../shared/SearchBox";
 import VacancyCard from "./VacancyCard";
+import BoxModel from "./BoxModel";
 
 const Career = () => {
   const [key, setKey] = useState("joinus");
@@ -34,9 +35,9 @@ const Career = () => {
 
   const [vacancies, setVacancies] = useState([]);
   useEffect(() => {
-    setVacancies(jobsData.jobs)
-  }, [jobsData])
-  
+    setVacancies(jobsData.jobs);
+  }, [jobsData]);
+
   // search function
   const handleJobSearch = (e) => {
     const keyword = e.target.value;
@@ -50,9 +51,25 @@ const Career = () => {
     }
   };
 
+  // open box model
+  const [modalShow, setModalShow] = useState(false);
+  const [singleVacancy, setSingleVacancy] = useState({});
+
+  // filter single vacancy using id
+  const getVacancy = (id) => {
+    const singleJob = vacancies.filter((vacancy) => vacancy.id === id);
+    setSingleVacancy(singleJob[0]);
+  };
+
+  const openModal = (e) => {
+    const jobId = parseInt(e.target.id);
+    getVacancy(jobId);
+    setModalShow(true);
+  };
+
   return (
     <>
-      <Header imgurl="public/images/career.png" />
+      <Header imgurl="public/images/boccareer.jpg" />
       <div className="container-fluid">
         <div className="container TopContainer">
           <Headline spacer="48px 0" text="Welcome to BoctrustMFB Careers" />
@@ -117,7 +134,8 @@ const Career = () => {
                           progress.
                         </p>
                         <img
-                          src="https://shorturl.at/jsX01"
+                          className="ImgCard"
+                          src="https://shorturl.at/sLVW2"
                           alt="boctrust social impact"
                         />
                       </div>
@@ -140,6 +158,7 @@ const Career = () => {
                           growth, skill enhancement, and advancement.
                         </p>
                         <img
+                          className="ImgCard"
                           src="https://shorturl.at/opqP0"
                           alt="boctrust staff growth"
                         />
@@ -163,6 +182,7 @@ const Career = () => {
                           a difference in the lives of our clients.
                         </p>
                         <img
+                          className="ImgCard"
                           src="https://shorturl.at/bhrvC"
                           alt="boctrust teamwork"
                         />
@@ -191,7 +211,8 @@ const Career = () => {
                     {/* why join us right section */}
                     <div className="col-md-6 col-sm-12 p-4">
                       <img
-                        src="src/assets/boctruststaff8.jpg"
+                        className="ImgCard"
+                        src="https://shorturl.at/fnuEQ"
                         alt="boctrust mfb"
                         data-aos="fade-up"
                       />
@@ -215,7 +236,8 @@ const Career = () => {
                           services.
                         </p>
                         <img
-                          src="https://shorturl.at/eqF23"
+                          className="ImgCard"
+                          src="https://shorturl.at/otCPT"
                           alt="boctrust technology"
                         />
                       </div>
@@ -237,7 +259,8 @@ const Career = () => {
                           will be recognized and appropriately rewarded.
                         </p>
                         <img
-                          src="https://shorturl.at/bptAL"
+                          className="ImgCard"
+                          src="https://shorturl.at/lpw25"
                           alt="boctrust technology"
                         />
                       </div>
@@ -509,21 +532,29 @@ const Career = () => {
                       </div>
                     )}
                     <Row xs={1} md={2} className="VacancyRow">
-                      {vacancies?.map(({ id, image, jobtitle, description, dateposted,deadline}) => (
-                        <VacancyCard
-                          data-aos="fade-up"
-                          key={id}
-                          img={image}
-                          title={jobtitle}
-                          // shorten description to 200 characters
-                          description={
-                            description.substring(0, 100) + "..."
-                          }
-                          postdate={dateposted}
-                          deadline={deadline}
-                          func={() => console.log("View Details")}
-                        />
-                      ))}
+                      {vacancies?.map(
+                        ({
+                          id,
+                          image,
+                          jobtitle,
+                          description,
+                          dateposted,
+                          deadline,
+                        }) => (
+                          <VacancyCard
+                            data-aos="fade-up"
+                            key={id}
+                            id={id}
+                            img={image}
+                            title={jobtitle}
+                            // shorten description to 200 characters
+                            description={description.substring(0, 100) + "..."}
+                            postdate={dateposted}
+                            deadline={deadline}
+                            func={openModal}
+                          />
+                        )
+                      )}
                     </Row>
                   </div>
                 </div>
@@ -532,6 +563,7 @@ const Career = () => {
           </div>
         </div>
       </div>
+      <BoxModel vacancy={singleVacancy} show={modalShow} onHide={() => setModalShow(false)} />
     </>
   );
 };

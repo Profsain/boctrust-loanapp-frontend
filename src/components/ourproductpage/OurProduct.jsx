@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { useState, useEffect } from "react";
 // animation library
 import AOS from "aos";
@@ -11,18 +12,30 @@ import "../ourproductpage/OurProduct.css";
 import ProductImage from "./ProductImage";
 import ProductListCard from "./ProductListCard";
 
-const OurProduct = () => {
+const OurProduct = ({productTitle, headerImg}) => {
   // data from json file
   const products = data.products;
-  const savingsData = data.products.filter(
-    (product) => product.category === "savings"
+  
+  // filter using productTitle
+  const currentProduct = data.products.filter(
+    (product) =>
+      product.productName.toLowerCase() === productTitle.toLowerCase()
   );
+
+  const { image, productName, description, benefits, features } = currentProduct[0];
+
   // component state
-  const [image, setImage] = useState(savingsData[0].image);
-  const [productName, setProductName] = useState(savingsData[0].productName);
-  const [description, setDescription] = useState(savingsData[0].description);
-  const [benefits, setBenefits] = useState(savingsData[0].benefits);
-  const [features, setFeatures] = useState(savingsData[0].features);
+  const [img, setImg] = useState(image);
+  const [name, setName] = useState(productName);
+  const [desc, setDesc] = useState(description);
+  const [benefit, setBenefit] = useState(benefits);
+  const [feature, setFeature] = useState(features);
+
+  // const [image, setImage] = useState(savingsData[0].image);
+  // const [productName, setProductName] = useState(savingsData[0].productName);
+  // const [description, setDescription] = useState(savingsData[0].description);
+  // const [benefits, setBenefits] = useState(savingsData[0].benefits);
+  // const [features, setFeatures] = useState(savingsData[0].features);
 
   // create object of products, key is category and value is array of products
   const productsByCategory = products.reduce((acc, product) => {
@@ -32,15 +45,15 @@ const OurProduct = () => {
     acc[product.category].push(product);
     return acc;
   }, {});
-  
+
   // function to handle button click and change image, description, benefits and features
   const changeProduct = (id) => {
     const product = products.find((product) => product.id === id);
-    setImage(product.image);
-    setProductName(product.productName);
-    setDescription(product.description);
-    setBenefits(product.benefits);
-    setFeatures(product.features);
+    setImg(product.image);
+    setName(product.productName);
+    setDesc(product.description);
+    setBenefit(product.benefits);
+    setFeature(product.features);
   };
 
   useEffect(() => {
@@ -51,7 +64,7 @@ const OurProduct = () => {
 
   return (
     <>
-      <Header imgurl="public/images/ourproduct.png" />
+      <Header imgurl={headerImg} />
       <div className="container">
         <div className="row">
           {/* left side container */}
@@ -59,21 +72,21 @@ const OurProduct = () => {
             {/* top row container */}
             <div className="row">
               <div className="col-md-6 col-sm-12">
-                <div className="ImgDescription">
+                <div className="ProductTitle">
                   <Headline
                     color="#593d0e"
-                    spacer="0 0 68px 0"
-                    text={productName}
+                    spacer="18px 0 78px 0"
+                    text={name}
                   />
                 </div>
-                <ProductImage url={image} altText={productName} />
+                <ProductImage url={img} altText={name} />
               </div>
               <div className="col-md-6 col-sm-12">
                 <TopCard
                   size="18px"
                   align="left"
                   spacer={"28px 0"}
-                  text={description}
+                  text={desc}
                 />
               </div>
             </div>
@@ -88,7 +101,7 @@ const OurProduct = () => {
                   align="left"
                   text="Benefits"
                 />
-                {benefits.map((benefit) => (
+                {benefit.map((benefit) => (
                   <ProductListCard key={benefit} li={benefit} />
                 ))}
               </div>
@@ -100,7 +113,7 @@ const OurProduct = () => {
                   align="left"
                   text="Features"
                 />
-                {features.map((feature) => (
+                {feature.map((feature) => (
                   <ProductListCard key={feature} li={feature} />
                 ))}
               </div>
@@ -135,5 +148,12 @@ const OurProduct = () => {
     </>
   );
 };
+
+OurProduct.propTypes = {
+  headerImg: PropTypes.string,
+  productTitle: PropTypes.shape({
+    toLowerCase: PropTypes.func
+  })
+}
 
 export default OurProduct;
