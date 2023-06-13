@@ -8,7 +8,10 @@ import "./Blogs.css";
 
 const Blogs = () => {
   const blogs = blogdata.blogs;
-
+  // open blog in new tab on click
+  const openBlog = (title) => {
+    window.open(`/blog/${title.replaceAll(" ", "-")}`, "_blank");
+  };
   return (
     <>
       <div className="container-fluid">
@@ -19,6 +22,7 @@ const Blogs = () => {
               <Row xs={1} md={2} className="gap-4 px-4">
                 {blogs.map((blog) => (
                   <BlogCard
+                    func={() => openBlog(blog.title)}
                     key={blog.id}
                     title={blog.title}
                     //  shorten description
