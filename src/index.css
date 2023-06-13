@@ -68,6 +68,7 @@ p {
   /* carousel mobile  */
   .CarouselContainer {
     margin-top: 12px !important;
+    top: 80px !important;
   }
 
   .CardContainer {

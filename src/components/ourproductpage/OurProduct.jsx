@@ -23,8 +23,6 @@ const OurProduct = ({productTitle, headerImg}) => {
   );
 
   const { image, productName, description, benefits, features } = currentProduct[0];
-  console.log(currentProduct);
- 
 
   // component state
   const [img, setImg] = useState(image);
