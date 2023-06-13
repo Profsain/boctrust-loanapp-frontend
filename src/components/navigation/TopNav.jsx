@@ -148,8 +148,8 @@ const TopNav = () => {
                   <Nav.Link href="/support" className="mx-4">
                     Support
                   </Nav.Link>
-                  <Nav.Link href="/blog" className="mx-4">
-                    Blog
+                  <Nav.Link href="/blogs" className="mx-4">
+                    Blogs
                   </Nav.Link>
                   <Nav.Link href="/contact">Contact</Nav.Link>
                 </Nav>

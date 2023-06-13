@@ -5,11 +5,12 @@ import Headline from "../shared/Headline";
 const BlogCard = ({
   title,
   content,
+  width= "28rem",
   img = "https://shorturl.at/aV135",
   func,
 }) => {
   return (
-    <Card style={{ width: "34rem" }}>
+    <Card style={{ width: width }}>
       <Card.Img variant="top" src={img} style={{ padding: "12px", height: "300px" }} />
       <Card.Body>
         <Card.Title>
@@ -29,6 +30,7 @@ BlogCard.propTypes = {
   func: PropTypes.func,
   img: PropTypes.string,
   title: PropTypes.string,
+  width: PropTypes.string,
 };
 
 export default BlogCard;

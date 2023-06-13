@@ -4,6 +4,7 @@ import Home from "./components/homepage/Home";
 import About from "./components/aboutpage/About";
 import OurBoardPage from "./components/aboutpage/OurBoardPage";
 import Contact from "./components/contactpage/Contact";
+import Blogs from "./components/blogpage/Blogs";
 import Blog from "./components/blogpage/Blog";
 import Loan from "./components/loanapplication/Loan";
 import Support from "./components/supportpage/Support";
@@ -56,7 +57,8 @@ function App() {
 
         <Route path="/loan" element={<Loan />} />
         <Route path="/support" element={<Support />} />
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blog/:title" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/career" element={<Career />} />
 
