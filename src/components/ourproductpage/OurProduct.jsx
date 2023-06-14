@@ -30,13 +30,7 @@ const OurProduct = ({productTitle, headerImg}) => {
   const [desc, setDesc] = useState(description);
   const [benefit, setBenefit] = useState(benefits);
   const [feature, setFeature] = useState(features);
-
-  // const [image, setImage] = useState(savingsData[0].image);
-  // const [productName, setProductName] = useState(savingsData[0].productName);
-  // const [description, setDescription] = useState(savingsData[0].description);
-  // const [benefits, setBenefits] = useState(savingsData[0].benefits);
-  // const [features, setFeatures] = useState(savingsData[0].features);
-
+  
   // create object of products, key is category and value is array of products
   const productsByCategory = products.reduce((acc, product) => {
     if (!acc[product.category]) {
