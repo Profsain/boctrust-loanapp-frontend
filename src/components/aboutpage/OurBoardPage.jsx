@@ -8,7 +8,7 @@ const OurBoardPage = () => {
   };
   return (
     <>
-      <Header imgurl="public/images/bocboard.jpg" />
+      <Header imgurl="images/bocboard.jpg" />
 
       {/* our board accordion section */}
       <div
