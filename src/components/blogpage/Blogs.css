@@ -5,8 +5,8 @@
 
 /* single blog page */
 .SingleBlog {
-    position: relative;
-    top: 98px !important;
+    /* position: relative; */
+    margin-top: 98px !important;
     padding-bottom: 38px;
     background-color: #fff;
 }
