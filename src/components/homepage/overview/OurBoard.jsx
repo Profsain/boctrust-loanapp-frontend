@@ -257,26 +257,9 @@ const OurBoard = () => {
         <div className="VisionRight col-md-6 col-sm-12">
           <img
             className="TopImg"
-            src="src/assets/boctrust-staff1.avif"
+            src="images/boctrust-staff1.avif"
             alt="bocstrust-microfinance-staff"
           />
-          <div>
-            <img
-              className="CardImg"
-              src="src/assets/boctrust1.jpg"
-              alt="boctrust-img"
-            />
-            <img
-              className="CardImg"
-              src="src/assets/boctrustmeet.avif"
-              alt="boctrust-img"
-            />
-            <img
-              className="CardImg"
-              src="src/assets/boctrustcustomer.avif"
-              alt="boctrust-img"
-            />
-          </div>
         </div>
       </div>
     </div>

@@ -41,26 +41,9 @@ const WhoWeAre = () => {
         <div className="VisionRight col-md-6 col-sm-12">
           <img
             className="TopImg"
-            src="src/assets/boctrust-staff1.avif"
+            src="images/boctrust-staff1.avif"
             alt="bocstrust-microfinance-staff"
           />
-          <div className="row text-center">
-            <img
-              className="CardImg col-md-4 col-sm-6"
-              src="src/assets/boctrust1.jpg"
-              alt="boctrust-img"
-            />
-            <img
-              className="CardImg col-md-4 col-sm-6"
-              src="src/assets/boctrustmeet.avif"
-              alt="boctrust-img"
-            />
-            <img
-              className="CardImg col-md-4 col-sm-6"
-              src="src/assets/boctrustcustomer.avif"
-              alt="boctrust-img"
-            />
-          </div>
         </div>
       </div>
     </div>
