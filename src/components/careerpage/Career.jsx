@@ -69,7 +69,7 @@ const Career = () => {
 
   return (
     <>
-      <Header imgurl="public/images/boccareer.jpg" />
+      <Header imgurl="images/boccareer.jpg" />
       <div className="container-fluid">
         <div className="container TopContainer">
           <Headline spacer="48px 0" text="Welcome to BoctrustMFB Careers" />

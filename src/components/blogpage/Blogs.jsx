@@ -15,7 +15,7 @@ const Blogs = () => {
   return (
     <>
       <div className="container-fluid">
-        <Headline spacer="118px 0 0 30px" text="Boctrust Blog" align="left" />
+        <Headline spacer="118px 0 0 30px" text="Blog" align="left" />
         <div className="row">
           <div className="col-md-9 col-sm-12">
             <div className="container my-5 ">

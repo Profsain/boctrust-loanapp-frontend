@@ -32,7 +32,6 @@ const Overview = () => {
           variant="p"
           sx={{
             fontSize: "24px",
-            // padding: "0 38px",
             marginBottom: "38px",
             lineHeight: "38px",
           }}

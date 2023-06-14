@@ -25,19 +25,19 @@ const ExploreBoctrust = () => {
       </div>
       <div className="row">
         <div className="col-sm-6 col-md-3 ExCard" data-aos="fade-right">
-          <img src="src/assets/Vector.png" alt="safe-banking" />
+          <img src="images/Vector.png" alt="safe-banking" />
           <h5>Safe & Secure</h5>
         </div>
         <div className="col-sm-6 col-md-3 ExCard" data-aos="fade-right">
-          <img src="src/assets/online.png" alt="safe-banking" />
+          <img src="images/online.png" alt="safe-banking" />
           <h5>Online Banking</h5>
         </div>
         <div className="col-sm-6 col-md-3 ExCard" data-aos="fade-right">
-          <img src="src/assets/easy.png" alt="easy-access" />
+          <img src="images/easy.png" alt="easy-access" />
           <h5>Easy to access</h5>
         </div>
         <div className="col-sm-6 col-md-3 ExCard" data-aos="fade-right">
-          <img src="src/assets/banking.png" alt="interest-icon" />
+          <img src="images/banking.png" alt="interest-icon" />
           <h5>Affordable interest rates</h5>
         </div>
       </div>
