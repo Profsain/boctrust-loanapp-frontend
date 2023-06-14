@@ -117,7 +117,7 @@ const Footer = () => {
           </p>
           <p>
             Email:
-            <br /> enquiry@boctrustmfb.co
+            <br /> enquiry@boctrustmfb.com
           </p>
           <div>
             <p>Connect On Social Media</p>

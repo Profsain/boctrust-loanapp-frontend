@@ -17,7 +17,7 @@ const TopNav = () => {
             <div>
               <Link to="/">
                 <img
-                  src="../images/boctrustlogo.png"
+                  src="../images/boclogo.jpeg"
                   alt="Boctrust Microfinance Bank Logo"
                   width="150px"
                 />
@@ -28,8 +28,9 @@ const TopNav = () => {
             </h1>
             <button className="CallUs">Call us today! 08076710000</button>
           </div>
-          <div>welcome</div>
+          {/* <div>welcome</div> */}
         </div>
+
         <div className="BottomStyle">
           {/* navbar section start */}
           <Navbar variant="dark" expand="lg" className="Nav">
@@ -55,9 +56,10 @@ const TopNav = () => {
 
                   {/* our product dropdown */}
                   <NavDropdown
-                    className="DropBox"
+                    className="DropBox mx-4"
                     title="Our Products"
                     id="basic-nav-dropdown"
+                    
                   >
                     {/* savings dropdown start*/}
                     <NavDropdown
