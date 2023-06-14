@@ -1,4 +1,4 @@
-import { FaCoins, FaChartLine } from "react-icons/fa";
+import { FaCoins, FaChartLine, FaAtlas } from "react-icons/fa";
 
 import FeaturesCard from "./FeaturesCard";
 import "../Home.css";
@@ -19,9 +19,11 @@ const HomeCarousel = () => {
     },
     {
       title: "Loans",
+      icon: <FaAtlas />,
       description:
         "Our loan products help you cater to pressing needs. If you’re ready to upgrade your home decor or merely want to improve your lifestyle efficiency with a new laptop, look no further than the Boctrust Microfinance Bank retail asset Acquisition/Leases.",
     },
+
     {
       title: "Investment",
       description:

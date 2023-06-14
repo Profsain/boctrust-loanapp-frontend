@@ -88,7 +88,7 @@ const Contact = () => {
 
   return (
     <>
-      <Header imgurl="public/images/boccontact.png" />
+      <Header imgurl="images/boccontact.png" />
       <div className="container-fluid">
         <div className="container" style={styles.top}>
           <Headline
