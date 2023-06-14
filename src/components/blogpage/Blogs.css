@@ -9,8 +9,8 @@
     top: 98px !important;
     padding-bottom: 38px;
     background-color: #fff;
-    overflow: hidden;
 }
+
 .BlogDetails {
     display: flex;
     flex-direction: column;
