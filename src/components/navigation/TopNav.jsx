@@ -12,22 +12,24 @@ const TopNav = () => {
   return (
     <div className="TopNavContainer">
       <div className="StackDiv">
-        <div className="Topnav">
-          <div>
-            <Link to="/">
-              <img
-                src="../images/boctrustlogo.png"
-                alt="Boctrust Microfinance Bank Logo"
-                width="150px"
-              />
-            </Link>
+        <div>
+          <div className="Topnav">
+            <div>
+              <Link to="/">
+                <img
+                  src="../images/boctrustlogo.png"
+                  alt="Boctrust Microfinance Bank Logo"
+                  width="150px"
+                />
+              </Link>
+            </div>
+            <h1 className="Welcome">
+              Welcome to BOCTRUST Microfinance Bank Limited
+            </h1>
+            <button className="CallUs">Call us today! 08076710000</button>
           </div>
-          <h1 className="Welcome">
-            Welcome to BOCTRUST Microfinance Bank Limited
-          </h1>
-          <button className="CallUs">Call us today! 08076710000</button>
+          <div>welcome</div>
         </div>
-
         <div className="BottomStyle">
           {/* navbar section start */}
           <Navbar variant="dark" expand="lg" className="Nav">
@@ -77,7 +79,7 @@ const TopNav = () => {
                       <NavDropdown.Divider />
                     </NavDropdown>
                     {/* saving dropdown end */}
-                    
+
                     {/* Investment dropdown start*/}
                     <NavDropdown
                       title="Investment"
@@ -94,7 +96,7 @@ const TopNav = () => {
                       <NavDropdown.Divider />
                     </NavDropdown>
                     {/* investment dropdown end */}
-                    
+
                     {/* loans dropdown start*/}
                     <NavDropdown
                       title="Loans"
@@ -138,9 +140,9 @@ const TopNav = () => {
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                     </NavDropdown>
-                    {/* advisory dropdown end */}          
+                    {/* advisory dropdown end */}
                   </NavDropdown>
-                  
+
                   {/* top level menu item */}
                   <Nav.Link href="/loan" className="mx-4">
                     Apply for Loan
