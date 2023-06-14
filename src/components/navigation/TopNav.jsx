@@ -56,7 +56,7 @@ const TopNav = () => {
 
                   {/* our product dropdown */}
                   <NavDropdown
-                    className="DropBox mx-4"
+                    className="DropBox mx-4 pl-2-4"
                     title="Our Products"
                     id="basic-nav-dropdown"
                     
@@ -89,11 +89,11 @@ const TopNav = () => {
                       className="DropBox"
                     >
                       <NavDropdown.Item href="/fixed-investment">
-                        Fixed Investment
+                        Fixed Deposit
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item href="/investment-note">
-                        Investment Note
+                        Investment Notes
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                     </NavDropdown>
