@@ -1,6 +1,6 @@
 import { FaCoins, FaChartLine, FaAtlas } from "react-icons/fa";
 
-import FeaturesCard from "./FeaturesCard";
+import FeaturesCard from "../../shared/FeaturesCard";
 import "../Home.css";
 
 const HomeCarousel = () => {

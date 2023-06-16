@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 
-const FeaturesCard = ({ title, description, icon }) => {
+const FeaturesCard = ({ title, description, imgsrc, icon, bgcolor = "#fff", width = "18rem" }) => {
   const styles = {
     cardStyle: {
-      width: "18rem",
+      width: { width },
+      backgroundColor: bgcolor,
       textAlign: "center",
       fontFamily: "sans-serif",
       border: "none",
@@ -29,7 +30,7 @@ const FeaturesCard = ({ title, description, icon }) => {
   return (
     <div className="card" style={styles.cardStyle}>
       <div className="card-body">
-        <div style={styles.iconBox}>{icon || <img style={styles.img} src="public/images/loan.png"/>}</div>
+        <div style={styles.iconBox}>{icon || <img style={styles.img} src={imgsrc } />}</div>
 
         <h3>{title}</h3>
         <p className="card-text">{description}</p>
@@ -39,9 +40,12 @@ const FeaturesCard = ({ title, description, icon }) => {
 };
 
 FeaturesCard.propTypes = {
-  description: PropTypes.any,
+  description: PropTypes.string,
   icon: PropTypes.any,
-  title: PropTypes.any,
+  title: PropTypes.string,
+  width: PropTypes.string,
+  bgcolor: PropTypes.string,
+  imgsrc: PropTypes.string,
 };
 
 export default FeaturesCard;
