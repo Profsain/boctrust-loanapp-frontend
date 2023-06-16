@@ -61,7 +61,7 @@ const EmailSection = () => {
           text="Quick & easy loan for anyone!"
         />
         <div>
-          <input style={styles.emailtext} type="text" placeholder="Enter your email address" />
+          <input style={styles.emailtext} type="email" placeholder="Enter your email address" />
           <button style={styles.btn}>Apply Now</button>
         </div>
       </div>

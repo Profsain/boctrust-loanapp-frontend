@@ -1,8 +1,10 @@
+import {useState} from "react";
 import { Row, Col } from "react-bootstrap";
 import { GrLinkPrevious, GrLinkNext } from "react-icons/gr";
 import Headline from "../../shared/Headline";
 import TestimonialCard from "./TestimonialCard";
 import "../Loan.css";
+import testimonials from "../../../mockdatabase/testimonials.json";
 
 const Testimonial = () => {
   const styles = {
@@ -27,8 +29,27 @@ const Testimonial = () => {
       marginRight: "28px",
       cursor: "pointer",
     },
-
   };
+  // handler testimonial data
+  // render 3 testimonial cards and another 3 testimonial cards on click of next button and prev button respectively
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const handleNext = () => { 
+    setCurrentIndex((prevIndex) =>
+      prevIndex + 3 < testimonials.length ? prevIndex + 3 : prevIndex
+    );
+  }
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex - 3 >= 0 ? prevIndex - 3 : prevIndex
+    );
+  }
+
+
+  
+
+
   return (
     <div className="container-fluid" style={styles.container}>
       <Headline
@@ -39,23 +60,26 @@ const Testimonial = () => {
       />
 
       <Row>
-        <Col xs={12} md="4">
-          <TestimonialCard />
-        </Col>
-        <Col xs={12} md="4">
-          <TestimonialCard />
-        </Col>
-        <Col xs={12} md="4">
-          <TestimonialCard />
-        </Col>
+        {testimonials
+          .slice(currentIndex, currentIndex + 3)
+          .map((testimonial) => (
+            <Col xs={12} md="4" key={testimonial.id}>
+              <TestimonialCard
+                img={testimonial.image}
+                name={testimonial.name}
+                text={testimonial.text.slice(0, 140) + "....."}
+                career={testimonial.career}
+              />
+            </Col>
+          ))}
       </Row>
 
       {/* next and prev button */}
       <div style={styles.nextPrev}>
-        <button className="NextPrevBtn">
+        <button onClick={handlePrev} className="NextPrevBtn">
           <GrLinkPrevious />
         </button>
-        <button className="NextPrevBtn">
+        <button onClick={handleNext} className="NextPrevBtn">
           <GrLinkNext />
         </button>
       </div>

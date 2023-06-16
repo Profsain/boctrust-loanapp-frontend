@@ -1,6 +1,7 @@
+import PropTypes from "prop-types"
 import Headline from "../../shared/Headline";
 
-const TestimonialCard = () => {
+const TestimonialCard = ({ img = "images/avater.jpg", name, text, career }) => {
   const styles = {
     cardStyle: {
       width: "350px",
@@ -25,23 +26,29 @@ const TestimonialCard = () => {
       justifyContent: "space-around",
       alignItems: "center",
     },
-  }
+  };
 
   return (
     <div style={styles.cardStyle}>
       <p>
-        “After so many years of doing my petyy trading without much success, a
-        friend introduced me to Boctru...” <span style={{color: "#145088"}}>read more</span>
+        “{text}” <span style={{ color: "#145088" }}>read more</span>
       </p>
       <div style={styles.profile}>
-        <img src="images/avater.jpg" alt="" style={styles.img} />
+        <img src={img} alt={name} style={styles.img} />
         <div>
-          <Headline spacer="0" fontSize="22px" text="John Doe" />
-          <p>Businessman</p>
+          <Headline spacer="0" fontSize="22px" text={name} />
+          <p>{career}</p>
         </div>
       </div>
     </div>
   );
+};
+
+TestimonialCard.propTypes = {
+  career: PropTypes.string,
+  img: PropTypes.string,
+  name: PropTypes.string,
+  text: PropTypes.string,
 }
 
-export default TestimonialCard
+export default TestimonialCard;
