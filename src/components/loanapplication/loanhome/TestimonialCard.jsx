@@ -5,8 +5,10 @@ const TestimonialCard = ({ img = "images/avater.jpg", name, text, career }) => {
   const styles = {
     cardStyle: {
       width: "350px",
+      minWidth: "300px",
       minHeight: "300px",
       padding: "38px",
+      margin: "8px",
       borderRadius: "8px",
       backgroundColor: "#fff",
       fontSize: "1.2rem",
@@ -29,11 +31,11 @@ const TestimonialCard = ({ img = "images/avater.jpg", name, text, career }) => {
   };
 
   return (
-    <div style={styles.cardStyle}>
+    <div style={styles.cardStyle} className="TestimonialCard">
       <p>
         “{text}” <span style={{ color: "#145088" }}>read more</span>
       </p>
-      <div style={styles.profile}>
+      <div style={styles.profile} className="ProfileCard">
         <img src={img} alt={name} style={styles.img} />
         <div>
           <Headline spacer="0" fontSize="22px" text={name} />

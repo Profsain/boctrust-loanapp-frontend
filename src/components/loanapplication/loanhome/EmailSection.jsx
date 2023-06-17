@@ -1,7 +1,8 @@
+import PropTypes from "prop-types"
 import Headline from "../../shared/Headline";
 
 
-const EmailSection = () => {
+const EmailSection = ({handleBtn}) => {
     const styles = {
         container: {
             position: "relative",
@@ -53,20 +54,24 @@ const EmailSection = () => {
 
   return (
     <div style={styles.container}>
-      <div style={styles.emailcard}>
+      <div style={styles.emailcard} className="EmailCard">
         <Headline
-          fontSize="3rem"
+          fontSize="2.2rem"
           color="#fff"
           spacer="28px 0 48px 0"
           text="Quick & easy loan for anyone!"
         />
         <div>
           <input style={styles.emailtext} type="email" placeholder="Enter your email address" />
-          <button style={styles.btn}>Apply Now</button>
+          <button onClick={handleBtn} style={styles.btn}>Apply Now</button>
         </div>
       </div>
     </div>
   );
+}
+
+EmailSection.propTypes = {
+  handleBtn: PropTypes.string
 }
 
 export default EmailSection

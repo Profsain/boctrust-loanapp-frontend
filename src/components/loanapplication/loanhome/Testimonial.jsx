@@ -46,14 +46,10 @@ const Testimonial = () => {
     );
   }
 
-
-  
-
-
   return (
-    <div className="container-fluid" style={styles.container}>
+    <div className="container-fluid Testimonial" style={styles.container}>
       <Headline
-        fontSize="3rem"
+        fontSize="2rem"
         color="#fff"
         spacer="28px 0 48px 0"
         text="What our customers say about us"
@@ -63,7 +59,12 @@ const Testimonial = () => {
         {testimonials
           .slice(currentIndex, currentIndex + 3)
           .map((testimonial) => (
-            <Col xs={12} md="4" key={testimonial.id}>
+            <Col
+              xs={12}
+              md="4"
+              key={testimonial.id}
+              
+            >
               <TestimonialCard
                 img={testimonial.image}
                 name={testimonial.name}

@@ -74,6 +74,72 @@ p {
   .CardContainer {
     margin-top: 5px !important;
   }
+
+  /* loan form mobile */
+  .TopSection {
+    width: 100%;
+    top: 28px;
+    left: 0;
+    padding: 12px;
+  }
+
+  .TopText {
+    width: 100%;
+  }
+
+  .HeroCard {
+    width: 100%;
+  }
+
+  .NairaIcon {
+    top: 34px;
+    right: 110px;
+  }
+
+  .ActionBtn {
+    width: 90%;
+    padding-bottom: 18px;
+  }
+
+  .CtaText {
+    padding: 18px;
+    font-size: 2rem;
+  }
+
+  .BocTrustMsg {
+    padding: 12px;
+  }
+
+  .Testimonial {
+    padding: 22px !important;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+
+  }
+
+  .TestimonialCard {
+    margin-bottom: 16px !important;
+  }
+
+  .ProfileCard {
+    flex-direction: column !important;
+    text-align: center;
+  }
+
+  .EmailCard {
+    width: 90% !important;
+    height: 500px !important;
+    padding: 0 18px !important;
+    text-align: center;
+  }
+
+  .EmailCard input {
+    width: 100%;
+    margin-bottom: 32px;
+    font-size: 18px !important;
+  }
 }
   
 
