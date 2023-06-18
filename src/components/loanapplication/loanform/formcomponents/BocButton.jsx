@@ -2,9 +2,11 @@
 
 import PropTypes from "prop-types"
 const BocButton = ({
-  bgcolor = "#ecaa00",
+  bgcolor = "#ecaa00 !important",
   color = "#fff",
   btnclassName,
+  type,
+  disable,
   children,
 }) => {
   const style = {
@@ -17,7 +19,12 @@ const BocButton = ({
     borderRadius: "26px",
   };
   return (
-    <button style={style} className={btnclassName}>
+    <button
+      style={style}
+      className={btnclassName}
+      type={type}
+      disabled={disable}
+    >
       {children}
     </button>
   );
