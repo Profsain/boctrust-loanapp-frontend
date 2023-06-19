@@ -9,7 +9,14 @@ const TextInput = ({ label, ...props }) => {
   return (
     <div>
       <label htmlFor={props.id || props.name}>{label}</label>
-      <input className="TextInput" {...field} {...props} />
+      <input
+        className="TextInput"
+        {...field}
+        {...props}
+        value={field.value || ""}
+        onChange={field.onChange}
+        onBlur={field.onBlur}
+      />
       {meta.touched && meta.error ? (
         <div className="Error">{meta.error}</div>
       ) : null}

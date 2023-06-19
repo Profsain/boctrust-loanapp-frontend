@@ -48,6 +48,7 @@ label {
     font-size: 2rem;
     font-weight: 900 !important;
 }
+
 .LoanCal h4 > span {
     font-size: 1.3rem;
     color: #145088;
@@ -67,6 +68,29 @@ label {
     height: 20px;
 }
 
+.InputRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Space {
+    width: 28px;
+}
+
+.UploadFile {
+    /* width: 300px !important; */
+    background-color: #145088;
+    color: #fff;
+    text-align: left !important;
+    
+}
+
+.UploadFile::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
 .ButtonContainer {
     display: flex;
     flex-direction: row;
@@ -74,7 +98,6 @@ label {
     align-items: center;
     padding: 28px 0;
     margin: 0 auto;
-    /* text-align: center; */
 }
 
 .BtnAction {

@@ -13,7 +13,7 @@ import EmailSection from "./EmailSection";
 import LoanForm from "../loanform/LoanForm";
 
 const LoanHome = () => {
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
   const [startObject, setStartObject] = useState();
 
   // handle email apply button
