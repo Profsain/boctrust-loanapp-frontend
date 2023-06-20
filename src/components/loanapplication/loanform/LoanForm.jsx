@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 // formik and yup for form data management
 import { Formik, Form, Field } from "formik";
@@ -29,21 +29,35 @@ const LoanForm = ({ data }) => {
   // calculate interest rate
   useEffect(() => {
     // calculator loan amount
-    const loanCal = calculatorfunc(currentLoanAmount, noofmonth * 30, 6);
+    const loanCal = calculatorfunc(
+      parseInt(currentLoanAmount),
+      noofmonth * 30,
+      6
+    );
     setInterestResult(loanCal);
   }, [currentLoanAmount, noofmonth]);
-  const loanTotal = currentLoanAmount + interestResult;
+  const loanTotal = parseInt(currentLoanAmount) + interestResult;
   const monthlyPay = (loanTotal / parseInt(noofmonth)).toFixed();
 
   // state and lgas
   const ngState = NaijaStates.states();
   const lgas = lga.lgas;
-
   // handle select state
   const handleSelectState = (e) => {
     setState(e.target.value);
     setLga(NaijaStates.lgas(e.target.value));
   };
+
+  // BVN Varification
+  const [isBvnVarified, setIsBvnVarified] = useState(false);
+  const [bvnMessage, setBvnMessage] = useState("");
+
+  // handle bvn varification
+  const ref = useRef(null);
+  const handleBvnVarification = () => {
+    setIsBvnVarified(true);
+    setBvnMessage("BVN Varified");
+  }
 
   // handle form submit/move to next step
   const handleSubmit = (values, { setSubmitting }) => {
@@ -59,8 +73,14 @@ const LoanForm = ({ data }) => {
       setStep(2);
       setStepImg("images/step2.png");
     } else if (step === 2) {
-      setStep(3);
-      setStepImg("images/step3.png");
+      if (careertype.toLowerCase() === "government employee") {
+          console.log(careertype)
+        setStep(3);
+        setStepImg("images/step3.png");
+      } else {
+        setStep(4);
+        setStepImg("images/step4.png");
+      }
     } else if (step === 3) {
       setStep(4);
       setStepImg("images/step4.png");
@@ -300,7 +320,7 @@ const LoanForm = ({ data }) => {
                         <div className="ButtonContainer">
                           <button
                             type="button"
-                            // disabled={isSubmitting}
+                            disabled={isSubmitting}
                             onClick={handleNext}
                             className="BtnAction BtnSecondary"
                           >
@@ -318,280 +338,310 @@ const LoanForm = ({ data }) => {
                             color="#000"
                             text="Start your application process"
                           />
-
-                          <TextInput
-                            label="Please enter your BVN to proceed"
-                            name="bvnnumber"
-                            type="text"
-                          />
-
-                          <Headline
-                            spacer="12px 0"
-                            color="#000"
-                            text="Customer Details"
-                          />
-                          {/* dropdown list */}
-                          <SelectField label="Title" name="title">
-                            <option value=""></option>
-                            <option value="Mr">Mr</option>
-                            <option value="Mrs">Mrs</option>
-                            <option value="Miss">Miss</option>
-                            <option value="Dr">Dr</option>
-                          </SelectField>
-
-                          {/* Input row sectioin */}
-                          <div className="InputRow">
-                            <TextInput
-                              label="First Name"
-                              name="firstname"
-                              type="text"
-                            />
-                            <div className="Space"></div>
-                            <TextInput
-                              label="Last Name"
-                              name="lastname"
-                              type="text"
-                            />
-                          </div>
-
-                          <TextInput
-                            label="Phone Number"
-                            name="phonenumber"
-                            type="tel"
-                          />
-
-                          {/* Input row sectioin */}
-                          <div className="InputRow">
-                            <TextInput
-                              label="Date of Birth"
-                              name="dob"
-                              type="date"
-                            />
-                            <div className="Space"></div>
-                            <TextInput
-                              label="Email"
-                              name="email"
-                              type="email"
-                            />
-                          </div>
-
-                          {/* Input row sectioin */}
-                          <div className="InputRow">
-                            <SelectField
-                              label="Marital Status"
-                              name="maritalstatus"
-                            >
-                              <option value=""></option>
-                              <option value="single">Single</option>
-                              <option value="married">Married</option>
-                              <option value="divorced">Divorced</option>
-                              <option value="widowed">Widowed</option>
-                            </SelectField>
-                            <div className="Space"></div>
-                            <SelectField
-                              label="No of Dependents"
-                              name="noofdependent"
-                            >
-                              <option value=""></option>
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
-                              <option value="6">6</option>
-                              <option value="7">7</option>
-                              <option value="more than 7">More than 7</option>
-                            </SelectField>
-                          </div>
-
-                          {/* Input row sectioin */}
-                          <div className="InputRow">
-                            <SelectField
-                              label="Highest Level of Education"
-                              name="educationlevel"
-                            >
-                              <option value=""></option>
-                              <option value="primary">Primary</option>
-                              <option value="secondary">Secondary</option>
-                              <option value="tertiary">Tertiary</option>
-                              <option value="post graduate">
-                                Post Graduate
-                              </option>
-                            </SelectField>
-                            <div className="Space"></div>
-                            <SelectField
-                              label="How did you hear about us"
-                              name="howdidyouhearaboutus"
-                            >
-                              <option value=""></option>
-                              <option value="facebook">Facebook</option>
-                              <option value="instagram">Instagram</option>
-                              <option value="twitter">Twitter</option>
-                              <option value="linkedin">Linkedin</option>
-                              <option value="google">Google</option>
-                              <option value="friend">Friend</option>
-                              <option value="colleague">Colleague</option>
-                              <option value="agent">Buctrust Agent</option>
-                              <option value="other">Other</option>
-                            </SelectField>
-                          </div>
-
-                          {/* Input row sectioin */}
-                          <div className="InputRow">
-                            <SelectField
-                              label="State of Resident"
-                              name="stateofresident"
-                              value={state}
-                              onChange={handleSelectState}
-                            >
-                              <option value=""></option>
-                              {ngState.map((state) => (
-                                <option key={state} value={state}>
-                                  {state}
-                                </option>
-                              ))}
-                            </SelectField>
-                            <div className="Space"></div>
-                            <TextInput
-                              label="House Address"
-                              name="houseaddress"
-                              type="text"
-                            />
-                          </div>
-
-                          {/* Input row sectioin */}
-                          <div className="InputRow">
-                            <SelectField label="LGA of Resident" name="lga">
-                              <option value=""></option>
-                              {lgas?.map((lga) => (
-                                <option key={lga} value={lga}>
-                                  {lga}
-                                </option>
-                              ))}
-                            </SelectField>
-                            <div className="Space"></div>
-                            <SelectField
-                              label="State of Origin"
-                              name="stateoforigin"
-                            >
-                              <option value=""></option>
-                              {ngState.map((state) => (
-                                <option key={state} value={state}>
-                                  {state}
-                                </option>
-                              ))}
-                            </SelectField>
-                          </div>
-
-                          {/* Input row sectioin */}
-                          <div className="InputRow">
-                            <TextInput
-                              label="IPPIS Number"
-                              name="ippis"
-                              type="text"
-                            />
-                            <div className="Space"></div>
-                            <TextInput
-                              label="Service Number"
-                              name="servicenumber"
-                              type="text"
-                            />
-                          </div>
-
-                          {/* Staff ID card upload */}
-                          <div className="FileUploadBox ">
-                            <Headline
-                              color="#000"
-                              fontSize="22px"
-                              text="Staff ID Card"
-                            />
-                            <input
-                              type="file"
-                              name="staffidcard"
-                              accept="image/png, .svg, .jpg, .jpeg, .pdf"
-                              className="UploadFile"
-                            />
-                            <hr />
-                          </div>
-                          {/* Next off kin information */}
-                          <div className="NextOfKin">
-                            <Headline
-                              fontSize="24px"
-                              spacer="48px 0 0 0"
-                              align="left"
-                              color="#000"
-                              text="Next of Kin Information"
-                            />
-                            {/* Input row sectioin */}
-                            <div className="InputRow">
+                          {!isBvnVarified ? (
+                            <div id="BvnVarification">
                               <TextInput
-                                label="First Name"
-                                name="nkinfirstname"
+                                label="Please enter your BVN to proceed"
+                                name="bvnnumber"
                                 type="text"
                               />
-                              <div className="Space"></div>
-                              <TextInput
-                                label="Last Name"
-                                name="nkinlastname"
-                                type="text"
-                              />
+
+                              <button
+                                className="BtnAction BtnPrimary"
+                                type="button"
+                                onClick={handleBvnVarification}
+                              >
+                                Varify BVN
+                              </button>
                             </div>
+                          ) : (
+                            <div>
+                              {/* customer details section */}
+                              <Headline
+                                spacer="12px 0"
+                                color="#000"
+                                text="Customer Details"
+                              />
+                              <p className="BvnMsg">{bvnMessage}</p>
+                              {/* dropdown list */}
+                              <SelectField label="Title" name="title">
+                                <option value=""></option>
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Dr">Dr</option>
+                              </SelectField>
 
-                            {/* Input row sectioin */}
-                            <div className="InputRow">
+                              {/* Input row sectioin */}
+                              <div className="InputRow">
+                                <TextInput
+                                  label="First Name"
+                                  name="firstname"
+                                  type="text"
+                                />
+                                <div className="Space"></div>
+                                <TextInput
+                                  label="Last Name"
+                                  name="lastname"
+                                  type="text"
+                                />
+                              </div>
+
                               <TextInput
                                 label="Phone Number"
-                                name="nkinphonenumber"
+                                name="phonenumber"
                                 type="tel"
                               />
-                              <div className="Space"></div>
-                              <TextInput
-                                label="Residential Address"
-                                name="nkinresidentialaddress"
-                                type="text"
-                              />
-                            </div>
-                            {/* select relationship */}
-                            <SelectField
-                              label="Select Relationship"
-                              name="nkrelationship"
-                            >
-                              <option value=""></option>
-                              <option value="father">Father</option>
-                              <option value="mother">Mother</option>
-                              <option value="brother">Brother</option>
-                              <option value="sister">Sister</option>
-                              <option value="husband">Husband</option>
-                              <option value="wife">Wife</option>
-                              <option value="son">Son</option>
-                              <option value="daughter">Daughter</option>
-                              <option value="uncle">Uncle</option>
-                              <option value="aunt">Aunt</option>
-                              <option value="nephew">Nephew</option>
-                              <option value="niece">Niece</option>
-                              <option value="cousin">Cousin</option>
-                              <option value="other">other</option>
-                            </SelectField>
-                          </div>
-                        </div>
 
-                        <div className="ButtonContainer">
-                          <button
-                            type="button"
-                            onClick={handlePrevious}
-                            className="BtnAction BtnPrimary"
-                          >
-                            Previous
-                          </button>
-                          {/* next form page btn */}
-                          <button
-                            type="button"
-                            onClick={handleNext}
-                            disabled={isSubmitting}
-                            className="BtnAction BtnSecondary"
-                          >
-                            Next
-                          </button>
+                              {/* Input row sectioin */}
+                              <div className="InputRow">
+                                <TextInput
+                                  label="Date of Birth"
+                                  name="dob"
+                                  type="date"
+                                />
+                                <div className="Space"></div>
+                                <TextInput
+                                  label="Email"
+                                  name="email"
+                                  type="email"
+                                />
+                              </div>
+
+                              {/* Input row sectioin */}
+                              <div className="InputRow">
+                                <SelectField
+                                  label="Marital Status"
+                                  name="maritalstatus"
+                                >
+                                  <option value=""></option>
+                                  <option value="single">Single</option>
+                                  <option value="married">Married</option>
+                                  <option value="divorced">Divorced</option>
+                                  <option value="widowed">Widowed</option>
+                                </SelectField>
+                                <div className="Space"></div>
+                                <SelectField
+                                  label="No of Dependents"
+                                  name="noofdependent"
+                                >
+                                  <option value=""></option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                                  <option value="6">6</option>
+                                  <option value="7">7</option>
+                                  <option value="more than 7">
+                                    More than 7
+                                  </option>
+                                </SelectField>
+                              </div>
+
+                              {/* Input row sectioin */}
+                              <div className="InputRow">
+                                <SelectField
+                                  label="Highest Level of Education"
+                                  name="educationlevel"
+                                >
+                                  <option value=""></option>
+                                  <option value="primary">Primary</option>
+                                  <option value="secondary">Secondary</option>
+                                  <option value="tertiary">Tertiary</option>
+                                  <option value="post graduate">
+                                    Post Graduate
+                                  </option>
+                                </SelectField>
+                                <div className="Space"></div>
+                                <SelectField
+                                  label="How did you hear about us"
+                                  name="howdidyouhearaboutus"
+                                >
+                                  <option value=""></option>
+                                  <option value="facebook">Facebook</option>
+                                  <option value="instagram">Instagram</option>
+                                  <option value="twitter">Twitter</option>
+                                  <option value="linkedin">Linkedin</option>
+                                  <option value="google">Google</option>
+                                  <option value="friend">Friend</option>
+                                  <option value="colleague">Colleague</option>
+                                  <option value="agent">Buctrust Agent</option>
+                                  <option value="other">Other</option>
+                                </SelectField>
+                              </div>
+
+                              {/* Input row sectioin */}
+                              <div className="InputRow">
+                                <SelectField
+                                  label="State of Resident"
+                                  name="stateofresident"
+                                  value={state}
+                                  onChange={handleSelectState}
+                                >
+                                  <option value=""></option>
+                                  {ngState.map((state) => (
+                                    <option key={state} value={state}>
+                                      {state}
+                                    </option>
+                                  ))}
+                                </SelectField>
+                                <div className="Space"></div>
+                                <TextInput
+                                  label="House Address"
+                                  name="houseaddress"
+                                  type="text"
+                                />
+                              </div>
+
+                              {/* Input row sectioin */}
+                              <div className="InputRow">
+                                <SelectField label="LGA of Resident" name="lga">
+                                  <option value=""></option>
+                                  {lgas?.map((lga) => (
+                                    <option key={lga} value={lga}>
+                                      {lga}
+                                    </option>
+                                  ))}
+                                </SelectField>
+                                <div className="Space"></div>
+                                <SelectField
+                                  label="State of Origin"
+                                  name="stateoforigin"
+                                >
+                                  <option value=""></option>
+                                  {ngState.map((state) => (
+                                    <option key={state} value={state}>
+                                      {state}
+                                    </option>
+                                  ))}
+                                </SelectField>
+                              </div>
+
+                              {/* Staff ID card upload */}
+                              <div className="FileUploadBox ">
+                                {careertype.toLowerCase() ===
+                                "government employee" ? (
+                                  <div>
+                                    {/* Input row sectioin */}
+                                    <div className="InputRow">
+                                      <TextInput
+                                        label="IPPIS Number"
+                                        name="ippis"
+                                        type="text"
+                                      />
+                                      <div className="Space"></div>
+                                      <TextInput
+                                        label="Service Number"
+                                        name="servicenumber"
+                                        type="text"
+                                      />
+                                    </div>
+                                    <Headline
+                                      color="#000"
+                                      fontSize="22px"
+                                      text="Upload Staff ID Card"
+                                    />
+                                  </div>
+                                ) : (
+                                  <div>
+                                    <Headline
+                                      color="#000"
+                                      fontSize="22px"
+                                      text="Upload Valid ID Card"
+                                    />
+                                  </div>
+                                )}
+
+                                <input
+                                  type="file"
+                                  name="valididcard"
+                                  accept="image/png, .svg, .jpg, .jpeg, .pdf"
+                                  className="UploadFile"
+                                />
+                                <hr />
+                              </div>
+                              {/* Next off kin information */}
+                              <div className="NextOfKin">
+                                <Headline
+                                  fontSize="24px"
+                                  spacer="48px 0 0 0"
+                                  align="left"
+                                  color="#000"
+                                  text="Next of Kin Information"
+                                />
+                                {/* Input row sectioin */}
+                                <div className="InputRow">
+                                  <TextInput
+                                    label="First Name"
+                                    name="nkinfirstname"
+                                    type="text"
+                                  />
+                                  <div className="Space"></div>
+                                  <TextInput
+                                    label="Last Name"
+                                    name="nkinlastname"
+                                    type="text"
+                                  />
+                                </div>
+
+                                {/* Input row sectioin */}
+                                <div className="InputRow">
+                                  <TextInput
+                                    label="Phone Number"
+                                    name="nkinphonenumber"
+                                    type="tel"
+                                  />
+                                  <div className="Space"></div>
+                                  <TextInput
+                                    label="Residential Address"
+                                    name="nkinresidentialaddress"
+                                    type="text"
+                                  />
+                                </div>
+                                {/* select relationship */}
+                                <SelectField
+                                  label="Select Relationship"
+                                  name="nkrelationship"
+                                >
+                                  <option value=""></option>
+                                  <option value="father">Father</option>
+                                  <option value="mother">Mother</option>
+                                  <option value="brother">Brother</option>
+                                  <option value="sister">Sister</option>
+                                  <option value="husband">Husband</option>
+                                  <option value="wife">Wife</option>
+                                  <option value="son">Son</option>
+                                  <option value="daughter">Daughter</option>
+                                  <option value="uncle">Uncle</option>
+                                  <option value="aunt">Aunt</option>
+                                  <option value="nephew">Nephew</option>
+                                  <option value="niece">Niece</option>
+                                  <option value="cousin">Cousin</option>
+                                  <option value="other">other</option>
+                                </SelectField>
+                              </div>
+
+                              <div className="ButtonContainer">
+                                <button
+                                  type="button"
+                                  onClick={handlePrevious}
+                                  className="BtnAction BtnPrimary"
+                                >
+                                  Previous
+                                </button>
+                                {/* next form page btn */}
+                                <button
+                                  type="submit"
+                                  onClick={handleNext}
+                                  disabled={isSubmitting}
+                                  className="BtnAction BtnSecondary"
+                                >
+                                  Next
+                                </button>
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </>
                     )}

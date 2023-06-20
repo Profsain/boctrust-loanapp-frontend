@@ -14,7 +14,7 @@ const TextInput = ({ label, ...props }) => {
         {...field}
         {...props}
         value={field.value || ""}
-        onChange= {field.onChange}
+        onChange={field.onChange}
         onBlur={field.onBlur}
       />
       {meta.touched && meta.error ? (

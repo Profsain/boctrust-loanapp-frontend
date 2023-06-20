@@ -12,7 +12,7 @@ const validationSchema = Yup.object({
   loanpurpose: Yup.array()
     .min(1, "Please select at least one purpose")
     .required("Required"),
-  bvnnumber: Yup.number().required("Required"),
+  bvnnumber: Yup.string().required("Required").matches(/^[0-9]+$/, "Must be only digits").min(11, 'Must be exactly 11 digits').max(11, 'Must be exactly 11 digits'),
   firstname: Yup.string().required("Required"),
   lastname: Yup.string().required("Required"),
   phonenumber: Yup.number().required("Required"),
@@ -28,7 +28,7 @@ const validationSchema = Yup.object({
   stateoforigin: Yup.string().required("Required"),
   ippis: Yup.string().required("Required"),
   servicenumber: Yup.string().required("Required"),
-  staffidcard: Yup.mixed().required("Required"),
+  valididcard: Yup.mixed().required("Required"),
 
   nkinfirstname: Yup.string().required("Required"),
   nkinlastname: Yup.string().required("Required"),
