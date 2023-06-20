@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Box, Slider } from "@mui/material";
+import interestRate from "../../shared/calculatorfunc";
 import "./Calculator.css";
 
 const Calculator = () => {
@@ -8,16 +9,11 @@ const Calculator = () => {
   const [result, setResult] = useState(0);
 
   // calculate interest rate
-  const interestRate = (amount, days, rate) => {
-    const month = days / 30;
-    const rateValue = rate / 100;
-    const interest = amount * rateValue * month;
-    return interest;
-  };
   useEffect(() => {
     const rate = interestRate(amount, days, 8);
     setResult(rate);
   }, [amount, days]);
+  
   return (
     <div className="Calculator">
       <h3>Let&apos;s calculate your needed loan</h3>

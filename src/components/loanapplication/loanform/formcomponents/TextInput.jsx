@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { useField } from "formik";
 
 const TextInput = ({ label, ...props }) => {
@@ -14,7 +14,7 @@ const TextInput = ({ label, ...props }) => {
         {...field}
         {...props}
         value={field.value || ""}
-        onChange={field.onChange}
+        onChange= {field.onChange}
         onBlur={field.onBlur}
       />
       {meta.touched && meta.error ? (
@@ -25,9 +25,9 @@ const TextInput = ({ label, ...props }) => {
 };
 
 TextInput.propTypes = {
-    label: PropTypes.any,
-    id: PropTypes.any,
-    name: PropTypes.string
-}
+  label: PropTypes.any,
+  id: PropTypes.any,
+  name: PropTypes.string,
+};
 
 export default TextInput;

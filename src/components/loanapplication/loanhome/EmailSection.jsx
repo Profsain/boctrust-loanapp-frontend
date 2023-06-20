@@ -71,7 +71,7 @@ const EmailSection = ({handleBtn}) => {
 }
 
 EmailSection.propTypes = {
-  handleBtn: PropTypes.string
+  handleBtn: PropTypes.func
 }
 
 export default EmailSection

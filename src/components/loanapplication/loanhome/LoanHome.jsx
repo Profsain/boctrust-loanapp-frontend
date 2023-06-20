@@ -44,9 +44,18 @@ const LoanHome = () => {
             </div>
             <div>
               <Formik
-                initialValues={{ loanamount: "", careertype: "" }}
+                initialValues={{
+                  loanamount: "",
+                  careertype: "",
+                }}
                 validationSchema={Yup.object({
-                  loanamount: Yup.string().required("Required"),
+                  loanamount: Yup.number()
+                    .min(10000, "Please enter amount from 10000 upto 2000000 ")
+                    .max(
+                      2000000,
+                      "Please enter amount from 10000 upto 2000000 "
+                    )
+                    .required("Required"),
                   careertype: Yup.string().required("Required"),
                 })}
                 onSubmit={(values, { setSubmitting }) => {
@@ -77,8 +86,11 @@ const LoanHome = () => {
                       {...formik.getFieldProps("careertype")}
                     >
                       <option value="default">Select one</option>
-                      <option value="Business Owner">Business Owner</option>
-                      <option value="Employee">Government Employee</option>
+                      <option value="business owner">Business Owner</option>
+                      <option value="government employee">
+                        Government Employee
+                      </option>
+                      <option value="private employee">Private Employee</option>
                     </select>
                     {formik.touched.careertype && formik.errors.careertype ? (
                       <p className="ErrorMsg">{formik.errors.careertype}</p>
@@ -107,7 +119,7 @@ const LoanHome = () => {
           <Testimonial />
 
           {/* Email list section */}
-          <EmailSection handleBtn={handleApplyBtn}/>
+          <EmailSection handleBtn={handleApplyBtn} />
         </div>
       )}
     </>
