@@ -69,12 +69,12 @@ const LoanForm = ({ data }) => {
 
   // handle next step, check validation schema and move to next step
   const handleNext = () => {
+    // check that all fields are filled before moving to next step
     if (step === 1) {
       setStep(2);
       setStepImg("images/step2.png");
     } else if (step === 2) {
       if (careertype.toLowerCase() === "government employee") {
-          console.log(careertype)
         setStep(3);
         setStepImg("images/step3.png");
       } else {
@@ -84,6 +84,9 @@ const LoanForm = ({ data }) => {
     } else if (step === 3) {
       setStep(4);
       setStepImg("images/step4.png");
+    } else if (step === 4) {
+      setStep(5);
+      setStepImg("images/step5.png");
     }
   };
 
@@ -157,6 +160,7 @@ const LoanForm = ({ data }) => {
                 }}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
+                innerRef={ref}
               >
                 {({ isSubmitting }) => (
                   <Form>
@@ -654,6 +658,7 @@ const LoanForm = ({ data }) => {
                             color="#000"
                             text="Employer Details"
                           />
+                          {/* to be change to dropdown list and input field */}
                           <TextInput
                             label="Employer Name"
                             name="employername"
@@ -669,7 +674,7 @@ const LoanForm = ({ data }) => {
                           <TextInput
                             label="Employment Start Date"
                             name="employmentstartdate"
-                            type="text"
+                            type="date"
                           />
 
                           <TextInput
@@ -690,20 +695,22 @@ const LoanForm = ({ data }) => {
                             type="text"
                           />
 
-                          {/* pay slip upload */}
-                          <div className="FileUploadBox ">
-                            <Headline
-                              color="#000"
-                              fontSize="22px"
-                              text="Upload Pay Slip"
-                            />
-                            <input
-                              type="file"
-                              name="uploadpayslip"
-                              accept="image/png, .svg, .jpg, .jpeg, .pdf"
-                              className="UploadFile"
-                            />
-                          </div>
+                          {/* pay slip upload private employee*/}
+                          {careertype.toLowerCase() === "private employee" ? (
+                            <div className="FileUploadBox ">
+                              <Headline
+                                color="#000"
+                                fontSize="22px"
+                                text="Upload Pay Slip"
+                              />
+                              <input
+                                type="file"
+                                name="uploadpayslip"
+                                accept="image/png, .svg, .jpg, .jpeg, .pdf"
+                                className="UploadFile"
+                              />
+                            </div>
+                          ) : null}
                         </div>
 
                         <div className="ButtonContainer">
@@ -727,6 +734,280 @@ const LoanForm = ({ data }) => {
                       </>
                     )}
                     {step === 4 && (
+                      <>
+                        <div id="Step3">
+                          <Headline
+                            spacer="12px 0"
+                            color="#000"
+                            text="Financial Information"
+                          />
+                          <div>
+                            <Headline
+                              align="left"
+                              fontSize="22px"
+                              spacer="12px 0"
+                              color="#000"
+                              text="Financial Information"
+                            />
+
+                            {/* Input row sectioin */}
+                            <div className="InputRow">
+                              <TextInput
+                                label="Bank Name"
+                                name="salarybankname"
+                                type="text"
+                              />
+                              <div className="Space"></div>
+                              <TextInput
+                                label="Account Number"
+                                name="salaryaccountnumber"
+                                type="text"
+                              />
+                            </div>
+                          </div>
+
+                          <div id="Disbursement">
+                            <Headline
+                              align="left"
+                              fontSize="22px"
+                              spacer="12px 0"
+                              color="#000"
+                              text="Disbursement Account Details"
+                            />
+                            <div className="CheckboxContainer">
+                              <label className="CheckboxGroup">
+                                <Field
+                                  type="checkbox"
+                                  name="sameassalaryaccount"
+                                />
+                                Same as Salary Account
+                              </label>
+                            </div>
+
+                            {/* Input row sectioin */}
+                            <div className="InputRow">
+                              <TextInput
+                                label="Bank Name"
+                                name="disbursementbankname"
+                                type="text"
+                              />
+                              <div className="Space"></div>
+                              <TextInput
+                                label="Account Number"
+                                name="disbursementaccountnumber"
+                                type="text"
+                              />
+                            </div>
+                          </div>
+
+                          <div id="ExistingLoan">
+                            <Headline
+                              align="left"
+                              fontSize="20px"
+                              spacer="12px 0"
+                              color="#000"
+                              text="Do you have any existing loan?"
+                            />
+                            <div className="RadioRow">
+                              <div className="RadioField">
+                                <label>
+                                  <Field
+                                    type="radio"
+                                    name="hasloan"
+                                    value="yes"
+                                  />
+                                </label>
+                                Yes
+                              </div>
+                              <div className="RadioField">
+                                <label>
+                                  <Field
+                                    type="radio"
+                                    name="hasloan"
+                                    value="no"
+                                  />
+                                </label>
+                                No
+                              </div>
+                            </div>
+                          </div>
+
+                          <div id="BuyBackLoan">
+                            <Headline
+                              align="left"
+                              fontSize="20px"
+                              spacer="28px 0 12px 0"
+                              color="#000"
+                              text="Is this a Buy Over Loan?"
+                            />
+                            <div className="RadioRow">
+                              <div className="RadioField">
+                                <label>
+                                  <Field
+                                    type="radio"
+                                    name="buyoverloan"
+                                    value="yes"
+                                  />
+                                </label>
+                                Yes
+                              </div>
+                              <div className="RadioField">
+                                <label>
+                                  <Field
+                                    type="radio"
+                                    name="buyoverloan"
+                                    value="no"
+                                  />
+                                </label>
+                                No
+                              </div>
+                            </div>
+                            {/* Input row sectioin */}
+                            <div className="InputRow">
+                              <TextInput
+                                label="Beneficiary Name"
+                                name="beneficiaryname"
+                                type="text"
+                              />
+                              <div className="Space"></div>
+                              <TextInput
+                                label="Bank Name"
+                                name="beneficiarybank"
+                                type="text"
+                              />
+                            </div>
+                            <div className="InputRow">
+                              <TextInput
+                                label="Account Number"
+                                name="beneficiaryaccountnumber"
+                                type="text"
+                              />
+                              <div className="Space"></div>
+                              <TextInput
+                                label="Liquidation Balance"
+                                name="liquidationbalance"
+                                type="text"
+                              />
+                            </div>
+                          </div>
+
+                          <div id="Repayment">
+                            <Headline
+                              align="left"
+                              text="Method of Loan Repayement"
+                            />
+
+                            <div id="DeductionFrom">
+                              <Headline
+                                fontSize="16px"
+                                color="#000"
+                                align="left"
+                                text="1.0 Loan against income/earnings"
+                              />
+                              {careertype.toLowerCase() ===
+                              "government employee" ? (
+                                <div>
+                                  <div>
+                                    <label>
+                                      <Field
+                                        type="checkbox"
+                                        name="deductions"
+                                        value="remita"
+                                      />
+                                    </label>
+                                    Deduction from salary via Remita (Government
+                                    employee)
+                                  </div>
+                                  <div>
+                                    <label>
+                                      <Field
+                                        type="checkbox"
+                                        name="deductions"
+                                        value="ippis"
+                                      />
+                                    </label>
+                                    Deduction from source via IPPIS (Government
+                                    employee)
+                                  </div>
+                                </div>
+                              ) : (
+                                <div>
+                                  <label>
+                                    <Field
+                                      type="checkbox"
+                                      name="deductions"
+                                      value="cheque"
+                                    />
+                                  </label>
+                                  Post-dated cheque or standing order (private
+                                  employee or business owner)
+                                </div>
+                              )}
+                            </div>
+
+                            <div id="DeductionFrom">
+                              <Headline
+                                fontSize="16px"
+                                color="#000"
+                                align="left"
+                                text="2.0 Guarantee"
+                              />
+                              <div>
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="guarantee"
+                                    value="guranteeofemployer"
+                                  />
+                                </label>
+                                Gurantee of Employer
+                              </div>
+                              <div>
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="gurantee"
+                                    value="individualguarantee"
+                                  />
+                                </label>
+                                Individual Gurantee
+                              </div>
+                              <div>
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="deductions"
+                                    value="cheque"
+                                  />
+                                </label>
+                                Post-dated cheque or standing order (private
+                                employee or business owner)
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="ButtonContainer">
+                          <button
+                            type="button"
+                            onClick={handlePrevious}
+                            className="BtnAction BtnPrimary"
+                          >
+                            Previous
+                          </button>
+                          {/* next form page btn */}
+                          <button
+                            type="button"
+                            onClick={handleNext}
+                            disabled={isSubmitting}
+                            className="BtnAction BtnSecondary"
+                          >
+                            Next
+                          </button>
+                        </div>
+                      </>
+                    )}
+                    {step === 5 && (
                       <>
                         {/* Render fields for login details */}
                         {/* Add validation schema for login details */}

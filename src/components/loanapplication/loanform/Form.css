@@ -104,6 +104,28 @@ label {
     width: 28px;
 }
 
+.RadioRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.RadioField {
+    margin-right: 28px;
+    margin-top: -38px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.RadioField label {
+    margin-right: 8px;
+}
+
+#DeductionFrom div > label {
+    margin-right: 12px;
+    margin-top: -18px;
+}
+
 .UploadFile {
     /* width: 300px !important; */
     background-color: #145088;
