@@ -52,7 +52,7 @@ const validationSchema = Yup.object({
   sameassalaryaccount: Yup.string().required("Required"),
   disbursmentbankname: Yup.string().required("Required"),
   disbursmentaccountnumber: Yup.number().required("Required"),
-  hasloan: Yup.string().required("Required"),
+  hasloan: Yup.boolean().required("Required"),
   buyoverloan: Yup.string().required("Required"),
   beneficiaryname: Yup.string().required("Required"),
   beneficiarybank: Yup.string().required("Required"),
@@ -60,6 +60,17 @@ const validationSchema = Yup.object({
   liquidationbank: Yup.string().required("Required"),
   deductions: Yup.string().required("Required"),
   guarantee: Yup.string().required("Required"),
+
+  // terms and conditions
+  acceptterms: Yup.boolean().required("Required"),
+  acceptpolicy: Yup.boolean().required("Required"),
+  sharemyremita: Yup.boolean().required("Required"),
+  agreefullname: Yup.string().required("Required"),
+  agreedate: Yup.date().required("Required"),
+  signature: Yup.mixed().required("Required"),
+  photocapture: Yup.mixed().required("Required"),
+  haveagent: Yup.boolean().required("Required"),
+  agentname: Yup.string().required("Required"),
 });
 // end of validationSchema
 

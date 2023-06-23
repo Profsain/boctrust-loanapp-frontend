@@ -27,7 +27,7 @@ const LoanForm = ({ data }) => {
   const [state, setState] = useState([]);
   const [lga, setLga] = useState([]);
   const [captureImg, setCaptureImg] = useState(null);
-  console.log('captureImg source', captureImg)
+  console.log("captureImg source", captureImg);
 
   // calculate interest rate
   useEffect(() => {
@@ -39,6 +39,7 @@ const LoanForm = ({ data }) => {
     );
     setInterestResult(loanCal);
   }, [currentLoanAmount, noofmonth]);
+
   const loanTotal = parseInt(currentLoanAmount) + interestResult;
   const monthlyPay = (loanTotal / parseInt(noofmonth)).toFixed();
 
@@ -72,6 +73,9 @@ const LoanForm = ({ data }) => {
 
   // handle next step, check validation schema and move to next step
   const handleNext = () => {
+    // const imgCapture = ref.initialValues.captureImg
+    // console.log('Initial photoshot', imgCapture)
+    console.log('field value', ref.current.values)
     // check that all fields are filled before moving to next step
     if (step === 1) {
       setStep(2);
@@ -90,6 +94,11 @@ const LoanForm = ({ data }) => {
     } else if (step === 4) {
       setStep(5);
       setStepImg("images/step5.png");
+    } else if (step === 5) {
+      setStep(6);
+      setStepImg("images/step5.png");
+      const stepImg = document.querySelector(".Step");
+      stepImg.style.display = "none";
     }
   };
 
@@ -147,15 +156,6 @@ const LoanForm = ({ data }) => {
                   nkinphonenumber: "",
                   nkinrelationship: "",
                   nkinresidentialaddress: "",
-                  // nextofkin: {
-                  //   nkinfirstname: "",
-                  //   nkinlastname: "",
-                  //   nkinphonenumber: "",
-                  //   nkinrelationship: "",
-                  //   nkinresidentialaddress: "",
-                  // },
-
-                  // employer details
                   employername: "",
                   employeraddress: "",
                   employmentstartdate: "",
@@ -170,7 +170,7 @@ const LoanForm = ({ data }) => {
                   sameassalaryaccount: "",
                   disbursementbankname: "",
                   disbursementaccountnumber: "",
-                  hasloan: "",
+                  hasloan: false,
                   buyoverloan: "",
                   beneficiaryname: "",
                   beneficiarybank: "",
@@ -178,6 +178,17 @@ const LoanForm = ({ data }) => {
                   liquidationbalance: "",
                   deductions: "",
                   guarantee: "",
+
+                  // agree & sign
+                  acceptterms: false,
+                  acceptpolicy: false,
+                  sharemyremita: false,
+                  agreefullname: "",
+                  agreedate: "",
+                  signature: "",
+                  photocapture: { captureImg },
+                  haveagent: false,
+                  agentname: "",
                 }}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
@@ -207,7 +218,7 @@ const LoanForm = ({ data }) => {
                             <label htmlFor="loanamount">
                               How much you want to borrow
                             </label>
-                            <input
+                            <Field
                               type="text"
                               name="loanamount"
                               className="TextInput"
@@ -345,7 +356,7 @@ const LoanForm = ({ data }) => {
                         <div className="ButtonContainer">
                           <button
                             type="button"
-                            disabled={isSubmitting}
+                            // disabled={isSubmitting}
                             onClick={handleNext}
                             className="BtnAction BtnSecondary"
                           >
@@ -510,7 +521,8 @@ const LoanForm = ({ data }) => {
                                       {state}
                                     </option>
                                   ))}
-                                </SelectField>
+                                  </SelectField>
+                                  
                                 <div className="Space"></div>
                                 <TextInput
                                   label="House Address"
@@ -544,7 +556,7 @@ const LoanForm = ({ data }) => {
                               </div>
 
                               {/* Staff ID card upload */}
-                              <div className="FileUploadBox ">
+                              <div>
                                 {careertype.toLowerCase() ===
                                 "government employee" ? (
                                   <div>
@@ -562,28 +574,36 @@ const LoanForm = ({ data }) => {
                                         type="text"
                                       />
                                     </div>
-                                    <Headline
-                                      color="#000"
-                                      fontSize="22px"
-                                      text="Upload Staff ID Card"
-                                    />
+                                    <div className="FileUploadBox ">
+                                      <Headline
+                                        color="#000"
+                                        fontSize="22px"
+                                        text="Upload Staff ID Card"
+                                      />
+                                      <input
+                                        type="file"
+                                        name="valididcard"
+                                        accept="image/png, .svg, .jpg, .jpeg, .pdf"
+                                        className="UploadFile"
+                                      />
+                                    </div>
                                   </div>
                                 ) : (
-                                  <div>
+                                  <div className="FileUploadBox ">
                                     <Headline
                                       color="#000"
                                       fontSize="22px"
                                       text="Upload Valid ID Card"
                                     />
+
+                                    <input
+                                      type="file"
+                                      name="valididcard"
+                                      accept="image/png, .svg, .jpg, .jpeg, .pdf"
+                                      className="UploadFile"
+                                    />
                                   </div>
                                 )}
-
-                                <input
-                                  type="file"
-                                  name="valididcard"
-                                  accept="image/png, .svg, .jpg, .jpeg, .pdf"
-                                  className="UploadFile"
-                                />
                                 <hr />
                               </div>
                               {/* Next off kin information */}
@@ -757,7 +777,7 @@ const LoanForm = ({ data }) => {
 
                     {step === 4 && (
                       <>
-                        <div id="Step3">
+                        <div id="Step4">
                           <Headline
                             spacer="12px 0"
                             color="#000"
@@ -1039,11 +1059,7 @@ const LoanForm = ({ data }) => {
                             <div className="DeductionFrom">
                               <div>
                                 <label>
-                                  <Field
-                                    type="checkbox"
-                                    name="acceptterms"
-                                    value={true}
-                                  />
+                                  <Field type="checkbox" name="acceptterms" />
                                 </label>
                                 I have read and understand and accept the{" "}
                                 <a href="/terms" target="_blank">
@@ -1053,11 +1069,7 @@ const LoanForm = ({ data }) => {
                               </div>
                               <div>
                                 <label>
-                                  <Field
-                                    type="checkbox"
-                                    name="acceptpolicy"
-                                    value={true}
-                                  />
+                                  <Field type="checkbox" name="acceptpolicy" />
                                 </label>
                                 I accept the{" "}
                                 <a href="/privacy">Privacy Policy</a>
@@ -1071,7 +1083,6 @@ const LoanForm = ({ data }) => {
                                     <Field
                                       type="checkbox"
                                       name="sharemyremita"
-                                      value={true}
                                     />
                                   </label>
                                   I agree to share my Remita data on this
@@ -1094,6 +1105,29 @@ const LoanForm = ({ data }) => {
                                 type="date"
                               />
                             </div>
+
+                            {/* have boctrust agent */}
+                            <div className="DeductionFrom">
+                              <div>
+                                <label>
+                                  <Field type="checkbox" name="haveagent" />
+                                </label>
+                                Do you have a Buctrust Agent?
+                              </div>
+                              <TextInput
+                                label="Agent Full Name"
+                                name="agentname"
+                                type="text"
+                              />
+                              {/* {haveagent ? (
+                                <TextInput
+                                  label="Agent Full Name"
+                                  name="agentname"
+                                  type="text"
+                                />
+                              ) : null} */}
+                            </div>
+                            <hr />
                           </div>
 
                           {/* signature upload */}
@@ -1116,35 +1150,72 @@ const LoanForm = ({ data }) => {
                           </div>
 
                           {/* selfi photoshot */}
-                          <div>
+                          <div className="SelfiCon">
                             <Headline
                               color="#000"
-                              align="left"
                               text="Confirm your Identity"
                             />
                             <div id="CapturePhoto">
-                              <PhotoCapture func={ setCaptureImg } />
+                              <PhotoCapture func={setCaptureImg} />
                             </div>
+                            <Headline
+                              fontSize="16px"
+                              text="Your identification document will help us to validate your identity."
+                            />
+                          </div>
+                          <div className="ButtonContainer">
+                            <button
+                              type="submit"
+                              onClick={handlePrevious}
+                              className="BtnAction BtnPrimary"
+                            >
+                              Previous
+                            </button>
+                            {/* next form page btn */}
+                            <button
+                              type="button"
+                              onClick={handleNext}
+                              disabled={isSubmitting}
+                              className="BtnAction BtnSecondary"
+                            >
+                              Review
+                            </button>
                           </div>
                         </div>
+                      </>
+                    )}
 
-                        <div className="ButtonContainer">
-                          <button
-                            type="button"
-                            onClick={handlePrevious}
-                            className="BtnAction BtnPrimary"
-                          >
-                            Previous
-                          </button>
-                          {/* next form page btn */}
-                          <button
-                            type="button"
-                            onClick={handleNext}
-                            disabled={isSubmitting}
-                            className="BtnAction BtnSecondary"
-                          >
-                            Review 
-                          </button>
+                    {step === 6 && (
+                      <>
+                        <div id="Step6">
+                          <Headline
+                            spacer="12px 0"
+                            color="#000"
+                            text="Confirm Your Loan Application Data & Create Account"
+                          />
+
+                          <div>
+                            <img src={captureImg} alt="" />
+                          </div>
+
+                          <div className="ButtonContainer">
+                            <button
+                              type="button"
+                              onClick={handlePrevious}
+                              className="BtnAction BtnPrimary"
+                            >
+                              Edit Application
+                            </button>
+                            {/* next form page btn */}
+                            <button
+                              type="button"
+                              onClick={handleNext}
+                              disabled={isSubmitting}
+                              className="BtnAction BtnSecondary"
+                            >
+                              Proceed
+                            </button>
+                          </div>
                         </div>
                       </>
                     )}

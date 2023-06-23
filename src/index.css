@@ -140,6 +140,39 @@ p {
     margin-bottom: 32px;
     font-size: 18px !important;
   }
+
+  /* loan form mobile */
+  .FormContainer {
+    padding: 38px 18px !important;
+    margin-top: 68px;
+  }
+
+  .Step {
+    padding: 28px 18px ;
+  }
+
+  .FormInputBox {
+    padding: 12px;
+  }
+
+  .InputRow  {
+    flex-direction: column;
+  }
+
+  .Lga {
+    width: 100% !important;
+  }
+
+  .Signature, .FileUploadBox {
+    flex-direction: column;
+  }
+/* 
+  .SelfiCon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } */
 }
   
 

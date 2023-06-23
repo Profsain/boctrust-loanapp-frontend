@@ -143,6 +143,8 @@ label {
 .Signature, .FileUploadBox {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+
 }
 
 .ButtonContainer {
@@ -180,4 +182,12 @@ label {
 
 .BtnSecondary:hover {
     background-color: #d49900;
+}
+
+.SelfiCon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 0;
 }
