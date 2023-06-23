@@ -121,21 +121,28 @@ label {
     margin-right: 8px;
 }
 
-#DeductionFrom div > label {
+.DeductionFrom label {
     margin-right: 12px;
     margin-top: -18px;
 }
 
 .UploadFile {
-    /* width: 300px !important; */
     background-color: #145088;
     color: #fff;
-    text-align: left !important;
-    
+    padding: 18px 48px;
+    width: 270px;
+    margin-left: 28px;
 }
 
 .UploadFile::-webkit-file-upload-button {
-    visibility: hidden;
+    display: none;
+}
+
+
+
+.Signature, .FileUploadBox {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .ButtonContainer {

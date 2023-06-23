@@ -30,11 +30,36 @@ const validationSchema = Yup.object({
   servicenumber: Yup.string().required("Required"),
   valididcard: Yup.mixed().required("Required"),
 
+  // next of kin
   nkinfirstname: Yup.string().required("Required"),
   nkinlastname: Yup.string().required("Required"),
   nkinphonenumber: Yup.number().required("Required"),
   nkinrelationship: Yup.string().required("Required"),
   nkinresidentialaddress: Yup.string().required("Required"),
+
+  // employment
+  employername: Yup.string().required("Required"),
+  employeraddress: Yup.string().required("Required"),
+  employmentstartdate: Yup.date().required("Required"),
+  netmonthlyincome: Yup.number().required("Required"),
+  totalannualincome: Yup.number().required("Required"),
+  officialemail: Yup.string().email("Invalid email format").required("Required"),
+  uploadpayslip: Yup.mixed().required("Required"),
+
+  // bank details and disbursement
+  salarybankname: Yup.string().required("Required"),
+  salaryaccountnumber: Yup.number().required("Required"),
+  sameassalaryaccount: Yup.string().required("Required"),
+  disbursmentbankname: Yup.string().required("Required"),
+  disbursmentaccountnumber: Yup.number().required("Required"),
+  hasloan: Yup.string().required("Required"),
+  buyoverloan: Yup.string().required("Required"),
+  beneficiaryname: Yup.string().required("Required"),
+  beneficiarybank: Yup.string().required("Required"),
+  beneficiaryaccountnumber: Yup.number().required("Required"),
+  liquidationbank: Yup.string().required("Required"),
+  deductions: Yup.string().required("Required"),
+  guarantee: Yup.string().required("Required"),
 });
 // end of validationSchema
 

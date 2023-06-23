@@ -57,7 +57,7 @@ const LoanForm = ({ data }) => {
   const handleBvnVarification = () => {
     setIsBvnVarified(true);
     setBvnMessage("BVN Varified");
-  }
+  };
 
   // handle form submit/move to next step
   const handleSubmit = (values, { setSubmitting }) => {
@@ -101,6 +101,9 @@ const LoanForm = ({ data }) => {
     } else if (step === 4) {
       setStep(3);
       setStepImg("images/step3.png");
+    } else if (step === 5) {
+      setStep(4);
+      setStepImg("images/step4.png");
     }
   };
 
@@ -157,6 +160,21 @@ const LoanForm = ({ data }) => {
                   totalannualincome: "",
                   officialemail: "",
                   uploadpayslip: "",
+
+                  // financial information
+                  salaraybankname: "",
+                  salaryaccountnumber: "",
+                  sameassalaryaccount: "",
+                  disbursementbankname: "",
+                  disbursementaccountnumber: "",
+                  hasloan: "",
+                  buyoverloan: "",
+                  beneficiaryname: "",
+                  beneficiarybank: "",
+                  beneficiaryaccountnumber: "",
+                  liquidationbalance: "",
+                  deductions: "",
+                  guarantee: "",
                 }}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
@@ -733,6 +751,7 @@ const LoanForm = ({ data }) => {
                         </div>
                       </>
                     )}
+
                     {step === 4 && (
                       <>
                         <div id="Step3">
@@ -897,7 +916,7 @@ const LoanForm = ({ data }) => {
                               text="Method of Loan Repayement"
                             />
 
-                            <div id="DeductionFrom">
+                            <div className="DeductionFrom">
                               <Headline
                                 fontSize="16px"
                                 color="#000"
@@ -945,7 +964,7 @@ const LoanForm = ({ data }) => {
                               )}
                             </div>
 
-                            <div id="DeductionFrom">
+                            <div className="DeductionFrom">
                               <Headline
                                 fontSize="16px"
                                 color="#000"
@@ -972,17 +991,6 @@ const LoanForm = ({ data }) => {
                                 </label>
                                 Individual Gurantee
                               </div>
-                              <div>
-                                <label>
-                                  <Field
-                                    type="checkbox"
-                                    name="deductions"
-                                    value="cheque"
-                                  />
-                                </label>
-                                Post-dated cheque or standing order (private
-                                employee or business owner)
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -1007,11 +1015,127 @@ const LoanForm = ({ data }) => {
                         </div>
                       </>
                     )}
+
                     {step === 5 && (
                       <>
-                        {/* Render fields for login details */}
-                        {/* Add validation schema for login details */}
-                        {/* Submit button to submit the form */}
+                        <div id="Step3">
+                          <Headline
+                            spacer="12px 0"
+                            color="#000"
+                            text="Agree, Sign and Submit"
+                          />
+                          <div>
+                            <Headline
+                              align="left"
+                              fontSize="20px"
+                              spacer="12px 0"
+                              color="#000"
+                              text="Declaration & Agreement"
+                            />
+
+                            <div className="DeductionFrom">
+                              <div>
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="acceptterms"
+                                    value={true}
+                                  />
+                                </label>
+                                I have read and understand and accept the{" "}
+                                <a href="/terms" target="_blank">
+                                  terms and condition
+                                </a>{" "}
+                                of this service.
+                              </div>
+                              <div>
+                                <label>
+                                  <Field
+                                    type="checkbox"
+                                    name="acceptpolicy"
+                                    value={true}
+                                  />
+                                </label>
+                                I accept the{" "}
+                                <a href="/privacy">Privacy Policy</a>
+                              </div>
+                            </div>
+                            <div className="DeductionFrom">
+                              {careertype.toLowerCase() ===
+                              "government employee" ? (
+                                <div>
+                                  <label>
+                                    <Field
+                                      type="checkbox"
+                                      name="sharemyremita"
+                                      value={true}
+                                    />
+                                  </label>
+                                  I agree to share my Remita data on this
+                                  platform
+                                </div>
+                              ) : null}
+                            </div>
+
+                            {/* Input row sectioin */}
+                            <div className="InputRow">
+                              <TextInput
+                                label="Full Name"
+                                name="agreefullname"
+                                type="text"
+                              />
+                              <div className="Space"></div>
+                              <TextInput
+                                label="Date"
+                                name="agreedate"
+                                type="date"
+                              />
+                            </div>
+                          </div>
+
+                          {/* signature upload */}
+                          <div className="Signature">
+                            <div>
+                              <Headline
+                                spacer="14px 28px"
+                                fontSize="22px"
+                                text="Upload Signature (Sign on white paper)"
+                              />
+                            </div>
+                            <div>
+                              <Field
+                                type="file"
+                                name="signature"
+                                accept="image/png, .svg, .jpg, .jpeg, .pdf"
+                                className="UploadFile"
+                              />
+                            </div>
+                          </div>
+
+                          {/* selfi photoshot */}
+                          <div>
+                            <Headline color="#000" align="left" text="Confirm your Identity"/>
+                          </div>
+                        </div>
+
+                        <div className="ButtonContainer">
+                          <button
+                            type="button"
+                            onClick={handlePrevious}
+                            className="BtnAction BtnPrimary"
+                          >
+                            Previous
+                          </button>
+                          {/* next form page btn */}
+                          <button
+                            type="button"
+                            onClick={handleNext}
+                            disabled={isSubmitting}
+                            className="BtnAction BtnSecondary"
+                          >
+                            Next
+                          </button>
+                        </div>
                       </>
                     )}
                   </Form>
