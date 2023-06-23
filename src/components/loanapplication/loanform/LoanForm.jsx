@@ -10,6 +10,7 @@ import Headline from "../../shared/Headline";
 import TextInput from "./formcomponents/TextInput";
 import SelectField from "./formcomponents/SelectField";
 import "./Form.css";
+import PhotoCapture from "./photocapture/PhotoCapture";
 
 // loan form component
 const LoanForm = ({ data }) => {
@@ -25,6 +26,8 @@ const LoanForm = ({ data }) => {
   const [stepImg, setStepImg] = useState("images/step1.png");
   const [state, setState] = useState([]);
   const [lga, setLga] = useState([]);
+  const [captureImg, setCaptureImg] = useState(null);
+  console.log('captureImg source', captureImg)
 
   // calculate interest rate
   useEffect(() => {
@@ -1018,7 +1021,7 @@ const LoanForm = ({ data }) => {
 
                     {step === 5 && (
                       <>
-                        <div id="Step3">
+                        <div id="Step5">
                           <Headline
                             spacer="12px 0"
                             color="#000"
@@ -1114,7 +1117,14 @@ const LoanForm = ({ data }) => {
 
                           {/* selfi photoshot */}
                           <div>
-                            <Headline color="#000" align="left" text="Confirm your Identity"/>
+                            <Headline
+                              color="#000"
+                              align="left"
+                              text="Confirm your Identity"
+                            />
+                            <div id="CapturePhoto">
+                              <PhotoCapture func={ setCaptureImg } />
+                            </div>
                           </div>
                         </div>
 
@@ -1133,7 +1143,7 @@ const LoanForm = ({ data }) => {
                             disabled={isSubmitting}
                             className="BtnAction BtnSecondary"
                           >
-                            Next
+                            Review 
                           </button>
                         </div>
                       </>
