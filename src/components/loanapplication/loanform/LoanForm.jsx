@@ -11,6 +11,7 @@ import TextInput from "./formcomponents/TextInput";
 import SelectField from "./formcomponents/SelectField";
 import "./Form.css";
 import PhotoCapture from "./photocapture/PhotoCapture";
+import ConfirmData from "./ConfirmData";
 
 // loan form component
 const LoanForm = ({ data }) => {
@@ -73,10 +74,6 @@ const LoanForm = ({ data }) => {
 
   // handle next step, check validation schema and move to next step
   const handleNext = () => {
-    // const imgCapture = ref.initialValues.captureImg
-    // console.log('Initial photoshot', imgCapture)
-    console.log('field value', ref.current.values)
-    // check that all fields are filled before moving to next step
     if (step === 1) {
       setStep(2);
       setStepImg("images/step2.png");
@@ -97,8 +94,6 @@ const LoanForm = ({ data }) => {
     } else if (step === 5) {
       setStep(6);
       setStepImg("images/step5.png");
-      const stepImg = document.querySelector(".Step");
-      stepImg.style.display = "none";
     }
   };
 
@@ -189,6 +184,9 @@ const LoanForm = ({ data }) => {
                   photocapture: { captureImg },
                   haveagent: false,
                   agentname: "",
+                  username: "",
+                  password: "",
+                  confirmpassword: "",
                 }}
                 validationSchema={validationSchema}
                 onSubmit={handleSubmit}
@@ -1191,21 +1189,21 @@ const LoanForm = ({ data }) => {
                           <Headline
                             spacer="12px 0"
                             color="#000"
-                            text="Confirm Your Loan Application Data & Create Account"
+                            text="Confirm Your Loan Application Data"
                           />
 
                           <div>
-                            <img src={captureImg} alt="" />
+                            <ConfirmData />
                           </div>
 
                           <div className="ButtonContainer">
-                            <button
+                            {/* <button
                               type="button"
                               onClick={handlePrevious}
                               className="BtnAction BtnPrimary"
                             >
                               Edit Application
-                            </button>
+                            </button> */}
                             {/* next form page btn */}
                             <button
                               type="button"

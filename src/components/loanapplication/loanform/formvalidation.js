@@ -57,7 +57,7 @@ const validationSchema = Yup.object({
   beneficiaryname: Yup.string().required("Required"),
   beneficiarybank: Yup.string().required("Required"),
   beneficiaryaccountnumber: Yup.number().required("Required"),
-  liquidationbank: Yup.string().required("Required"),
+  liquidationbalance: Yup.string().required("Required"),
   deductions: Yup.string().required("Required"),
   guarantee: Yup.string().required("Required"),
 
