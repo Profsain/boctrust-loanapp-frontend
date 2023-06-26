@@ -187,7 +187,7 @@ const LoanForm = ({ data }) => {
               agreedate: "",
               signature: "",
               photocapture: "",
-              haveagent: false,
+              haveagent: "",
               agentname: "",
               username: "",
               password: "",
@@ -880,7 +880,7 @@ const LoanForm = ({ data }) => {
                                   <Headline
                                     align="left"
                                     fontSize="20px"
-                                    spacer="12px 0"
+                                    spacer="28px 0 12px 0"
                                     color="#000"
                                     text="Do you have any existing loan?"
                                   />
@@ -907,37 +907,41 @@ const LoanForm = ({ data }) => {
                                     </div>
                                   </div>
                                 </div>
-                                {values.hasloan === "yes" ? (
-                                  <div id="BuyBackLoan">
-                                    <Headline
-                                      align="left"
-                                      fontSize="20px"
-                                      spacer="28px 0 12px 0"
-                                      color="#000"
-                                      text="Is this a Buy Over Loan?"
-                                    />
-                                    <div className="RadioRow">
-                                      <div className="RadioField">
-                                        <label>
-                                          <Field
-                                            type="radio"
-                                            name="buyoverloan"
-                                            value="yes"
-                                          />
-                                        </label>
-                                        Yes
-                                      </div>
-                                      <div className="RadioField">
-                                        <label>
-                                          <Field
-                                            type="radio"
-                                            name="buyoverloan"
-                                            value="no"
-                                          />
-                                        </label>
-                                        No
-                                      </div>
+
+                                <div>
+                                  <Headline
+                                    align="left"
+                                    fontSize="22px"
+                                    spacer="28px 0 12px 0"
+                                    color="#000"
+                                    text="Is this a Buy Over Loan?"
+                                  />
+                                  <div className="RadioRow">
+                                    <div className="RadioField">
+                                      <label>
+                                        <Field
+                                          type="radio"
+                                          name="buyoverloan"
+                                          value="yes"
+                                        />
+                                      </label>
+                                      Yes
                                     </div>
+                                    <div className="RadioField">
+                                      <label>
+                                        <Field
+                                          type="radio"
+                                          name="buyoverloan"
+                                          value="no"
+                                        />
+                                      </label>
+                                      No
+                                    </div>
+                                  </div>
+                                </div>
+
+                                {values.buyoverloan === "yes" ? (
+                                  <div id="BuyBackLoan">
                                     {/* Input row sectioin */}
                                     <div className="InputRow">
                                       <TextInput
@@ -970,10 +974,11 @@ const LoanForm = ({ data }) => {
 
                                 <div id="Repayment">
                                   <Headline
+                                    fontSize="22px"
+                                    color="#000"
                                     align="left"
-                                    text="Method of Loan Repayement"
+                                    text="Method of Loan Repayment"
                                   />
-
                                   <div className="DeductionFrom">
                                     <Headline
                                       fontSize="16px"
@@ -1148,19 +1153,39 @@ const LoanForm = ({ data }) => {
                                   </div>
 
                                   {/* have boctrust agent */}
-                                  <div className="DeductionFrom">
-                                    <div>
-                                      <label>
-                                        <Field
-                                          type="checkbox"
-                                          name="haveagent"
-                                        />
-                                      </label>
-                                      Do you have a Buctrust Agent?
+                                  <div >
+                                    <Headline
+                                      align="left"
+                                      fontSize="20px"
+                                      spacer="12px 0"
+                                      color="#000"
+                                      text="Do you have a loan Officer?"
+                                    />
+                                    <div className="RadioRow">
+                                      <div className="RadioField">
+                                        <label>
+                                          <Field
+                                            type="radio"
+                                            name="haveagent"
+                                            value="yes"
+                                          />
+                                        </label>
+                                        Yes
+                                      </div>
+                                      <div className="RadioField">
+                                        <label>
+                                          <Field
+                                            type="radio"
+                                            name="haveagent"
+                                            value="no"
+                                          />
+                                        </label>
+                                        No
+                                      </div>
                                     </div>
-                                    {values.haveagent && (
+                                    {values.haveagent === "yes" && (
                                       <TextInput
-                                        label="Agent Full Name"
+                                        label="Loan Officer Full Name"
                                         name="agentname"
                                         type="text"
                                       />
@@ -1230,7 +1255,7 @@ const LoanForm = ({ data }) => {
                                 <Headline
                                   spacer="12px 0"
                                   color="#000"
-                                  text="Confirm Your Loan Application Data"
+                                  text="Review your Application Details to Proceed"
                                 />
 
                                 <div>

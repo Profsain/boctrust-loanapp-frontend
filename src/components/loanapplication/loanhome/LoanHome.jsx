@@ -86,11 +86,11 @@ const LoanHome = () => {
                       {...formik.getFieldProps("careertype")}
                     >
                       <option value="default">Select one</option>
-                      <option value="business owner">Business Owner</option>
                       <option value="government employee">
                         Government Employee
                       </option>
                       <option value="private employee">Private Employee</option>
+                      <option value="business owner">Business Owner</option>
                     </select>
                     {formik.touched.careertype && formik.errors.careertype ? (
                       <p className="ErrorMsg">{formik.errors.careertype}</p>
