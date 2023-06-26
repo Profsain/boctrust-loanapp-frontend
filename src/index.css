@@ -166,13 +166,11 @@ p {
   .Signature, .FileUploadBox {
     flex-direction: column;
   }
-/* 
-  .SelfiCon {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  } */
+
+  /* create account mobile */
+  .SignUpContainer {
+    padding: 22px 0;
+  }
 }
   
 

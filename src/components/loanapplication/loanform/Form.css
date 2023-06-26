@@ -2,7 +2,7 @@
     background-image: url("images/formbg1.png");
     background-size: cover;
     background-repeat: no-repeat;
-    /* padding: 200px 150px; */
+    padding: 200px 150px;
 }
 
 .Step {
@@ -198,7 +198,6 @@ label {
 }
 
 .SignUpContainer {
-    /* width: 100% !important; */
     background-image: url("images/signupbg.png");
     background-position: center;
     background-repeat: no-repeat;
@@ -210,4 +209,13 @@ label {
     padding: 2rem;
     border-radius: 18px;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.RecaptchaBox {
+   margin-top: 2rem;
+}
+
+.RecaptchaBadge {
+  background-color: #145088;
+  /* padding: 8px */
 }

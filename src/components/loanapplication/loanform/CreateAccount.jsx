@@ -5,6 +5,7 @@ import Headline from "../../shared/Headline";
 import "./Form.css";
 
 const CreateAccount = () => {
+
   const { values, setFieldValue } = useFormikContext();
   const handleInputChange = (fieldName, event) => {
     // Update the field value as the user types
@@ -32,22 +33,22 @@ const CreateAccount = () => {
             <ConfirmField
               placeholderText="Password"
               fieldName="password"
-              type="text"
+              type="password"
               values={values}
               func={handleInputChange}
             />
             <ConfirmField
               placeholderText="Confirm Password"
               fieldName="confirmpassword"
-              type="text"
+              type="password"
               values={values}
               func={handleInputChange}
             />
           </div>
-          <div className="col-sm-12 col-md-4">
-            <div>
+          <div className="col-sm-12 col-md-4 RecaptchaBox">
+            <div className="RecaptchaBadge ">
               <ReCAPTCHA
-                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                sitekey="6Lfm1MgmAAAAAJVycYHLFujgGixm-JkyY2gv-r9o"
                 onChange={handleRecaptcha}
               />
             </div>

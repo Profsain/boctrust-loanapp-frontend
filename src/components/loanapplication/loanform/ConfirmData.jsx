@@ -5,12 +5,10 @@ import "./Form.css";
 
 const ConfirmData = () => {
   const { values, setFieldValue } = useFormikContext();
-  console.log("All my values", values);
 
   const handleInputChange = (fieldName, event) => {
     // Update the field value as the user types
     setFieldValue(fieldName, event.target.value);
-    console.log("values after change", values.fieldName);
   };
 
   return (
