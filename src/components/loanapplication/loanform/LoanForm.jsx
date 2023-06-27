@@ -28,8 +28,6 @@ const LoanForm = ({ data }) => {
   const [stepImg, setStepImg] = useState("images/step1.png");
   const [state, setState] = useState([]);
   const [lga, setLga] = useState([]);
-  const [captureImg, setCaptureImg] = useState(null);
-  const [sameAccount, setSameAccount] = useState(false)
 
   // calculate interest rate
   useEffect(() => {
