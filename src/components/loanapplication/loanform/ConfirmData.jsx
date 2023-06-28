@@ -349,7 +349,7 @@ const ConfirmData = () => {
           )}
 
           {/* buyover loan details */}
-          {values.buyoverloan ? (
+          {values.buyoverloan === "yes" ? (
             <div>
               <Headline
                 spacer="28px 0 -18px 0"

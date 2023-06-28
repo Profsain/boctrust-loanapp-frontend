@@ -11,7 +11,7 @@ const EmailSection = ({handleBtn}) => {
             justifyContent: "center",
             alignItems: "center",
             placeContent: "center",
-            minHeight: "925px",
+            minHeight: "725px",
             backgroundImage: "url(images/loanimage.png)",
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",

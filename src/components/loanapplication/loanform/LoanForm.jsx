@@ -25,6 +25,7 @@ const LoanForm = ({ data }) => {
   const [interestResult, setInterestResult] = useState(0);
 
   const [step, setStep] = useState(1);
+   const [showForm, setShowForm] = useState(true);
   const [stepImg, setStepImg] = useState("images/step1.png");
   const [state, setState] = useState("");
   const [lga, setLga] = useState([]);
@@ -40,6 +41,11 @@ const LoanForm = ({ data }) => {
     );
     setInterestResult(loanCal);
   }, [currentLoanAmount, noofmonth]);
+
+  // scroll to the top of the page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [step, showForm]);
 
   const loanTotal = parseInt(currentLoanAmount) + interestResult;
   const monthlyPay = (loanTotal / parseInt(noofmonth)).toFixed();
@@ -73,7 +79,6 @@ const LoanForm = ({ data }) => {
   };
 
   // handle proceed to account creation
-  const [showForm, setShowForm] = useState(true);
   const handleProceed = () => {
     const formContainer = document.querySelector(".FormContainer");
     formContainer.style.padding = "12px"

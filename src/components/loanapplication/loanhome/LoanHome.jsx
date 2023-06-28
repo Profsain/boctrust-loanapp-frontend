@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // formik and yup for form handling and validation
 import { Formik } from "formik";
 import * as Yup from "yup";
+// animation library
+import AOS from "aos";
+import "aos/dist/aos.css";
 import Button from "react-bootstrap/Button";
 import "../Loan.css";
 import Header from "../../shared/Header";
@@ -16,11 +19,17 @@ const LoanHome = () => {
   const [isOpened, setIsOpened] = useState(false);
   const [startObject, setStartObject] = useState();
 
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+  }, []);
+
   // handle email apply button
   const handleApplyBtn = () => {
-    setIsOpened(true)
-    setStartObject({})
-  }
+    setIsOpened(true);
+    setStartObject({});
+  };
 
   return (
     <>
@@ -34,7 +43,7 @@ const LoanHome = () => {
               <Headline
                 align="left"
                 color="#fff"
-                fontSize="3rem"
+                fontSize="2.5rem"
                 text="Quick & easy loans for anyone"
               />
               <p>
@@ -67,7 +76,11 @@ const LoanHome = () => {
               >
                 {(formik) => (
                   <form onSubmit={formik.handleSubmit} className="HeroCard">
-                    <Headline spacer="8px 0" text="How much do you need?" />
+                    <Headline
+                      fontSize="1.5rem"
+                      spacer="0"
+                      text="How much do you need?"
+                    />
                     <img src="images/naira.png" alt="" className="NairaIcon" />
                     <input
                       className="Field"
@@ -79,7 +92,11 @@ const LoanHome = () => {
                       <p className="ErrorMsg">{formik.errors.loanamount}</p>
                     ) : null}
 
-                    <Headline text=" Business Owner or Employee?" />
+                    <Headline
+                      fontSize="1.5rem"
+                      spacer="18px 0"
+                      text=" Business Owner or Employee?"
+                    />
                     <select
                       className="Field"
                       id="careertype"
@@ -110,16 +127,24 @@ const LoanHome = () => {
           </div>
 
           {/* loan step section */}
-          <LoanStep />
+          <div data-aos="fade-up">
+            <LoanStep />
+          </div>
 
           {/* Boctrust about section */}
-          <BocTrustMsg />
+          <div data-aos="fade-up">
+            <BocTrustMsg />
+          </div>
 
           {/* testimonial section */}
-          <Testimonial />
+          <div data-aos="fade-up">
+            <Testimonial />
+          </div>
 
           {/* Email list section */}
-          <EmailSection handleBtn={handleApplyBtn} />
+          <div data-aos="fade-up">
+            <EmailSection handleBtn={handleApplyBtn} />
+          </div>
         </div>
       )}
     </>
