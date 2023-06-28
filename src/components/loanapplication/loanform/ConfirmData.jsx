@@ -88,7 +88,7 @@ const ConfirmData = () => {
           <div className="InputRow">
             <ConfirmField
               labelName="No of Dependents"
-              fieldName="noofdependents"
+              fieldName="noofdependent"
               type="text"
               values={values}
               func={handleInputChange}
@@ -294,75 +294,105 @@ const ConfirmData = () => {
           </div>
 
           {/* disbursement details */}
-          <div>
-            <Headline
-              spacer="28px 0 -18px 0"
-              align="left"
-              fontSize="18px"
-              text="Disbursement Account"
-            />
-            <div className="InputRow">
-              <ConfirmField
-                labelName="Bank Name"
-                fieldName="disbursementbankname"
-                type="text"
-                values={values}
-                func={handleInputChange}
+          {values.sameasaboveaccount ? (
+            <div>
+              <Headline
+                spacer="28px 0 -18px 0"
+                align="left"
+                fontSize="18px"
+                text="Disbursement Account"
               />
-              <div className="Space"></div>
-              <ConfirmField
-                labelName="Account Number"
-                fieldName="disbursementaccountnumber"
-                type="text"
-                values={values}
-                func={handleInputChange}
-              />
+              <div className="InputRow">
+                <ConfirmField
+                  labelName="Bank Name"
+                  fieldName="salarybankname"
+                  type="text"
+                  values={values}
+                  func={handleInputChange}
+                />
+                <div className="Space"></div>
+                <ConfirmField
+                  labelName="Account Number"
+                  fieldName="salaryaccountnumber"
+                  type="text"
+                  values={values}
+                  func={handleInputChange}
+                />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div>
+              <Headline
+                spacer="28px 0 -18px 0"
+                align="left"
+                fontSize="18px"
+                text="Disbursement Account"
+              />
+              <div className="InputRow">
+                <ConfirmField
+                  labelName="Bank Name"
+                  fieldName="disbursementbankname"
+                  type="text"
+                  values={values}
+                  func={handleInputChange}
+                />
+                <div className="Space"></div>
+                <ConfirmField
+                  labelName="Account Number"
+                  fieldName="disbursementaccountnumber"
+                  type="text"
+                  values={values}
+                  func={handleInputChange}
+                />
+              </div>
+            </div>
+          )}
 
           {/* buyover loan details */}
-          <div>
-            <Headline
-              spacer="28px 0 -18px 0"
-              align="left"
-              fontSize="18px"
-              text="Buyover Loan Details"
-            />
-            <div className="InputRow">
-              <ConfirmField
-                labelName="BeneficiaryName"
-                fieldName="beneficiaryname"
-                type="text"
-                values={values}
-                func={handleInputChange}
+          {values.buyoverloan ? (
+            <div>
+              <Headline
+                spacer="28px 0 -18px 0"
+                align="left"
+                fontSize="18px"
+                text="Buyover Loan Details"
               />
-              <div className="Space"></div>
-              <ConfirmField
-                labelName="Bank Number"
-                fieldName="beneficiarybank"
-                type="text"
-                values={values}
-                func={handleInputChange}
-              />
+              <div className="InputRow">
+                <ConfirmField
+                  labelName="BeneficiaryName"
+                  fieldName="beneficiaryname"
+                  type="text"
+                  values={values}
+                  func={handleInputChange}
+                />
+                <div className="Space"></div>
+                <ConfirmField
+                  labelName="Bank Number"
+                  fieldName="beneficiarybank"
+                  type="text"
+                  values={values}
+                  func={handleInputChange}
+                />
+              </div>
+              <div className="InputRow">
+                <ConfirmField
+                  labelName="Account Number"
+                  fieldName="beneficiaryaccountnumber"
+                  type="text"
+                  values={values}
+                  func={handleInputChange}
+                />
+                <div className="Space"></div>
+                <ConfirmField
+                  labelName="Liquidation Balance"
+                  fieldName="liquidationbalance"
+                  type="text"
+                  values={values}
+                  func={handleInputChange}
+                />
+              </div>
             </div>
-            <div className="InputRow">
-              <ConfirmField
-                labelName="Account Number"
-                fieldName="beneficiaryaccountnumber"
-                type="text"
-                values={values}
-                func={handleInputChange}
-              />
-              <div className="Space"></div>
-              <ConfirmField
-                labelName="Liquidation Balance"
-                fieldName="liquidationbalance"
-                type="text"
-                values={values}
-                func={handleInputChange}
-              />
-            </div>
-          </div>
+          ) : null}
         </div>
       </div>
     </>

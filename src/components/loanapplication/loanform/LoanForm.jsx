@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 // formik and yup for form data management
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field} from "formik";
 import validationSchema from "./formvalidation";
 // state and lga
 import NaijaStates from "naija-state-local-government";
@@ -26,8 +26,9 @@ const LoanForm = ({ data }) => {
 
   const [step, setStep] = useState(1);
   const [stepImg, setStepImg] = useState("images/step1.png");
-  const [state, setState] = useState([]);
+  const [state, setState] = useState("");
   const [lga, setLga] = useState([]);
+  const [captureImg, setCaptureImg] = useState("")
 
   // calculate interest rate
   useEffect(() => {
@@ -63,6 +64,7 @@ const LoanForm = ({ data }) => {
     setBvnMessage("BVN Varified");
   };
 
+  console.log(ref.current)
   // handle form submit/move to next step
   const handleSubmit = (values, { setSubmitting }) => {
     // handle form submition to backend here
@@ -139,7 +141,7 @@ const LoanForm = ({ data }) => {
               phonenumber: "",
               dob: "",
               maritalstatus: "",
-              noofdependant: "",
+              noofdependent: "",
               educationlevel: "",
               howdidyouhearaboutus: "",
               houseaddress: "",
@@ -184,7 +186,7 @@ const LoanForm = ({ data }) => {
               agreefullname: "",
               agreedate: "",
               signature: "",
-              photocapture: "",
+              photocapture: { captureImg },
               haveagent: "",
               agentname: "",
               username: "",
@@ -1151,7 +1153,7 @@ const LoanForm = ({ data }) => {
                                   </div>
 
                                   {/* have boctrust agent */}
-                                  <div >
+                                  <div>
                                     <Headline
                                       align="left"
                                       fontSize="20px"

@@ -1,5 +1,5 @@
 .FormContainer {
-    background-image: url("src/assets/images/formbg1.png");
+    background-image: url("../../../assets/images/formbg1.png");
     background-size: cover;
     background-repeat: no-repeat;
     padding: 200px 150px;
@@ -198,7 +198,7 @@ label {
 }
 
 .SignUpContainer {
-    background-image: url("images/signupbg.png");
+    background-image: url("../../../assets/images/signupbg.png");
     background-position: center;
     background-repeat: no-repeat;
     padding: 10rem;

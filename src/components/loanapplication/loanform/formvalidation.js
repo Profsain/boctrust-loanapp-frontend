@@ -51,7 +51,7 @@ const validationSchema = Yup.object({
   salaryaccountnumber: Yup.string().required("Required").matches(/^[0-9]+$/, "Must be only digits").min(10, 'Must be exactly 10 digits').max(10, 'Must be exactly 10 digits'),
   sameasaboveaccount: Yup.boolean().required("Required"),
   disbursmentbankname: Yup.string().required("Required"),
-  disbursmentaccountnumber: Yup.number().required("Required").min(10, 'Must be exactly 10 digits').max(10, 'Must be exactly 10 digits'),
+  disbursmentaccountnumber: Yup.string().required("Required").matches(/^[0-9]+$/, "Must be only digits").min(10, 'Must be exactly 10 digits').max(10, 'Must be exactly 10 digits'),
   hasloan: Yup.string().required("Required"),
   buyoverloan: Yup.string().required("Required"),
   beneficiaryname: Yup.string().required("Required"),
