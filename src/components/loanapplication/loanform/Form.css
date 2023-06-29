@@ -177,6 +177,10 @@ label {
     cursor: pointer;
 }
 
+.BtnCreate {
+    margin: 0;
+}
+
 .BtnPrimary {
      background-color: #145088;
 }

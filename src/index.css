@@ -100,8 +100,9 @@ p {
     top: 108px !important;
   }
 
-  .ActionBtn, .BtnAction {
-    margin: 0 auto !important;
+  .ActionBtn {
+    margin-bottom: 14px !important;
+    margin-top: 18px;
     padding-bottom: 18px;
   }
 

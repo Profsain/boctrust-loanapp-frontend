@@ -58,8 +58,7 @@ const CreateAccount = () => {
                 type="button"
                 // onClick={handleNext}
                 // disabled={isSubmitting}
-                className="BtnAction BtnSecondary"
-                style={{ fontSize: "22px", width: "100%" }}
+                className="BtnAction BtnSecondary BtnCreate"
               >
                 Create Account
               </button>
