@@ -19,6 +19,7 @@ const ConfirmField = ({
         value={value}
         placeholder={placeholderText}
         onChange={(e) => func(fieldName, e)}
+        className="TextInput"
       />
     </div>
   );

@@ -21,18 +21,6 @@ const PhotoCapture = ({ func }) => {
     setImgSrc(null);
   }, []);
 
-  // submit capture function
-  const submit = useCallback(() => {
-    // hide retake button
-    // show submit button
-    const retakeBtn = document.querySelector(".RetakeBtn");
-    retakeBtn.style.display = "none";
-    const saveBtn = document.querySelector(".SaveBtn");
-    saveBtn.style.display = "none";
-    const captureMsg = document.querySelector(".CaptureMsg");
-    captureMsg.innerHTML = "Photos saved successfully!";
-  }, []);
-
   // handle take photos container
   const takePhotos = useCallback(() => {
     const container = document.querySelector(".Container");
@@ -66,10 +54,6 @@ const PhotoCapture = ({ func }) => {
               <button className="CapBtn RetakeBtn" onClick={retake}>
                 Retake
               </button>
-              <button className="CapBtn SaveBtn" onClick={submit}>
-                Save
-              </button>
-              <p className="CaptureMsg"></p>
             </div>
           ) : (
             <div className="BtnCont">

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 // formik and yup for form data management
-import { Formik, Form, Field} from "formik";
+import { Formik, Form, Field } from "formik";
 import validationSchema from "./formvalidation";
 // state and lga
 import NaijaStates from "naija-state-local-government";
@@ -25,11 +25,11 @@ const LoanForm = ({ data }) => {
   const [interestResult, setInterestResult] = useState(0);
 
   const [step, setStep] = useState(1);
-   const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState(true);
   const [stepImg, setStepImg] = useState("images/step1.png");
   const [state, setState] = useState("");
   const [lga, setLga] = useState([]);
-  const [captureImg, setCaptureImg] = useState("")
+  const [captureImg, setCaptureImg] = useState("");
 
   // calculate interest rate
   useEffect(() => {
@@ -61,16 +61,14 @@ const LoanForm = ({ data }) => {
 
   // BVN Varification
   const [isBvnVarified, setIsBvnVarified] = useState(false);
-  const [bvnMessage, setBvnMessage] = useState("");
 
   // handle bvn varification
   const ref = useRef(null);
   const handleBvnVarification = () => {
     setIsBvnVarified(true);
-    setBvnMessage("BVN Varified");
   };
 
-  console.log(ref.current)
+  console.log(ref.current);
   // handle form submit/move to next step
   const handleSubmit = (values, { setSubmitting }) => {
     // handle form submition to backend here
@@ -81,8 +79,8 @@ const LoanForm = ({ data }) => {
   // handle proceed to account creation
   const handleProceed = () => {
     const formContainer = document.querySelector(".FormContainer");
-    formContainer.style.padding = "12px"
-    setShowForm(false)
+    formContainer.style.padding = "12px";
+    setShowForm(false);
   };
 
   // handle next step, check validation schema and move to next step
@@ -138,6 +136,8 @@ const LoanForm = ({ data }) => {
               careertype: careertype,
               numberofmonth: "",
               loanpurpose: [],
+              other: false,
+              otherpurpose: "",
               bvnnumber: "",
               title: "",
               firstname: "",
@@ -156,6 +156,7 @@ const LoanForm = ({ data }) => {
               ippis: "",
               servicenumber: "",
               staffidcard: "",
+              idcardnotinclude: false,
               nkinfirstname: "",
               nkinlastname: "",
               nkinphonenumber: "",
@@ -176,6 +177,8 @@ const LoanForm = ({ data }) => {
               disbursementbankname: "",
               disbursementaccountnumber: "",
               hasloan: "",
+              currentmonthlyplanrepaymentamount: "",
+              estimatedmonthlylivingexpense: "",
               buyoverloan: "",
               beneficiaryname: "",
               beneficiarybank: "",
@@ -210,6 +213,7 @@ const LoanForm = ({ data }) => {
                       {/* left loan form section */}
                       <div className="col-sm-12 col-md-8 FormInputBox">
                         <Form>
+                          {/* loan first step section */}
                           {step === 1 && (
                             <>
                               <div id="Step1">
@@ -291,8 +295,12 @@ const LoanForm = ({ data }) => {
                                       <img src="images/naira.png" alt="" />
                                     </span>
                                     {loanTotal || loanamount} <span> for </span>
-                                    {noofmonth || 0}
-                                    <span> months</span>
+                                    {noofmonth}
+                                    {noofmonth > 1 ? (
+                                      <span> months</span>
+                                    ) : (
+                                      <span> month</span>
+                                    )}
                                   </h4>
                                   <Headline
                                     fontSize="22px"
@@ -359,14 +367,19 @@ const LoanForm = ({ data }) => {
                                       Personal
                                     </label>
                                     <label className="CheckboxGroup">
-                                      <Field
-                                        type="checkbox"
-                                        name="loanpurpose"
-                                        value="other"
-                                      />
+                                      <Field type="checkbox" name="other" />
                                       Other
                                     </label>
                                   </div>
+                                  {values.other && (
+                                    <div>
+                                      <TextInput
+                                        label="Please specify"
+                                        name="otherpurpose"
+                                        type="text"
+                                      />
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                               <div className="ButtonContainer">
@@ -382,6 +395,7 @@ const LoanForm = ({ data }) => {
                             </>
                           )}
 
+                          {/* customer details section */}
                           {step === 2 && (
                             <>
                               <div id="Step2">
@@ -397,14 +411,15 @@ const LoanForm = ({ data }) => {
                                       name="bvnnumber"
                                       type="text"
                                     />
-
-                                    <button
-                                      className="BtnAction BtnPrimary"
-                                      type="button"
-                                      onClick={handleBvnVarification}
-                                    >
-                                      Varify BVN
-                                    </button>
+                                    <div className="ButtonContainer">
+                                      <button
+                                        className="BtnAction BtnPrimary"
+                                        type="button"
+                                        onClick={handleBvnVarification}
+                                      >
+                                        Verify your BVN
+                                      </button>
+                                    </div>
                                   </div>
                                 ) : (
                                   <div>
@@ -414,7 +429,6 @@ const LoanForm = ({ data }) => {
                                       color="#000"
                                       text="Customer Details"
                                     />
-                                    <p className="BvnMsg">{bvnMessage}</p>
                                     {/* dropdown list */}
                                     <SelectField label="Title" name="title">
                                       <option value=""></option>
@@ -595,7 +609,6 @@ const LoanForm = ({ data }) => {
                                       {careertype.toLowerCase() ===
                                       "government employee" ? (
                                         <div>
-                                          {/* Input row sectioin */}
                                           <div className="InputRow">
                                             <TextInput
                                               label="IPPIS Number"
@@ -609,18 +622,32 @@ const LoanForm = ({ data }) => {
                                               type="text"
                                             />
                                           </div>
+
+                                          {/* Input row sectioin */}
                                           <div className="FileUploadBox ">
                                             <Headline
                                               color="#000"
                                               fontSize="22px"
                                               text="Upload Staff ID Card"
                                             />
-                                            <input
-                                              type="file"
-                                              name="valididcard"
-                                              accept="image/png, .svg, .jpg, .jpeg, .pdf"
-                                              className="UploadFile"
-                                            />
+                                            <div>
+                                              <input
+                                                type="file"
+                                                name="valididcard"
+                                                accept="image/png, .svg, .jpg, .jpeg, .pdf"
+                                                className="UploadFile"
+                                              />
+                                            </div>
+                                          </div>
+                                          <div className="CheckboxGroup">
+                                            <label className="CheckInput">
+                                              <Field
+                                                type="checkbox"
+                                                name="idcardnotinclude"
+                                              />
+                                              My work ID card does not include
+                                              my picture and signature
+                                            </label>
                                           </div>
                                         </div>
                                       ) : (
@@ -813,6 +840,7 @@ const LoanForm = ({ data }) => {
                             </>
                           )}
 
+                          {/* financial information */}
                           {step === 4 && (
                             <>
                               <div id="Step4">
@@ -825,9 +853,9 @@ const LoanForm = ({ data }) => {
                                   <Headline
                                     align="left"
                                     fontSize="22px"
-                                    spacer="12px 0"
+                                    spacer="35px 0 -16px 0"
                                     color="#000"
-                                    text="Financial Information"
+                                    text="Salary Account Details"
                                   />
 
                                   {/* Input row sectioin */}
@@ -850,7 +878,7 @@ const LoanForm = ({ data }) => {
                                   <Headline
                                     align="left"
                                     fontSize="22px"
-                                    spacer="12px 0"
+                                    spacer="35px 0 -16px 0"
                                     color="#000"
                                     text="Disbursement Account Details"
                                   />
@@ -911,6 +939,36 @@ const LoanForm = ({ data }) => {
                                       No
                                     </div>
                                   </div>
+                                  {values.hasloan === "yes" && (
+                                    <div className="InputRow">
+                                      <div>
+                                        <img
+                                          src="images/naira.png"
+                                          alt=""
+                                          className="NairaI FinNaira"
+                                        />
+                                        <TextInput
+                                          label="Current monthly plan repayment amount"
+                                          name="currentmonthlyplanrepaymentamount"
+                                          type="text"
+                                        />
+                                      </div>
+                                      <div className="Space"></div>
+                                      <div>
+                                        <img
+                                          src="images/naira.png"
+                                          alt=""
+                                          className="NairaI
+                                          FinNaira FinNaira2"
+                                        />
+                                        <TextInput
+                                          label="Estimated monthly living expense"
+                                          name="estimatedmonthlylivingexpense"
+                                          type="text"
+                                        />
+                                      </div>
+                                    </div>
+                                  )}
                                 </div>
 
                                 <div>
@@ -1084,6 +1142,7 @@ const LoanForm = ({ data }) => {
                             </>
                           )}
 
+                          {/* agree and sign */}
                           {step === 5 && (
                             <>
                               <div id="Step5">
@@ -1127,7 +1186,7 @@ const LoanForm = ({ data }) => {
                                     </div>
                                   </div>
                                   <div className="DeductionFrom">
-                                    {careertype.toLowerCase() ===
+                                    {/* {careertype.toLowerCase() ===
                                     "government employee" ? (
                                       <div>
                                         <label>
@@ -1139,7 +1198,7 @@ const LoanForm = ({ data }) => {
                                         I agree to share my Remita data on this
                                         platform
                                       </div>
-                                    ) : null}
+                                    ) : null} */}
                                   </div>
 
                                   {/* Input row sectioin */}
@@ -1190,7 +1249,7 @@ const LoanForm = ({ data }) => {
                                     </div>
                                     {values.haveagent === "yes" && (
                                       <TextInput
-                                        label="Loan Officer Full Name"
+                                        label="Loan Officer's Name"
                                         name="agentname"
                                         type="text"
                                       />
@@ -1234,7 +1293,7 @@ const LoanForm = ({ data }) => {
                                 </div>
                                 <div className="ButtonContainer">
                                   <button
-                                    type="submit"
+                                    type="button"
                                     onClick={handlePrevious}
                                     className="BtnAction BtnPrimary"
                                   >
@@ -1254,11 +1313,12 @@ const LoanForm = ({ data }) => {
                             </>
                           )}
 
+                          {/* review and proceed */}
                           {step === 6 && (
                             <>
                               <div id="Step6">
                                 <Headline
-                                  spacer="12px 0"
+                                  spacer="28px 0 48px 0"
                                   color="#000"
                                   text="Review your Application Details to Proceed"
                                 />

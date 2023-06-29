@@ -24,7 +24,6 @@
 }
 
 input, select, .LoanCal {
-    width: 100%;
     font-size: 1.5rem;
     padding: 8px 38px;
     margin: 12px 0;
@@ -33,6 +32,10 @@ input, select, .LoanCal {
     background-color: #fff;
 }
 
+.TextInput, .SelectInput {
+    width: 270px;
+     min-width: 100%;
+}
 .NairaI {
     position: relative;
     top: 108px;
@@ -44,6 +47,10 @@ input, select, .LoanCal {
     width: 30px !important;
     margin-bottom: 10px !important;
     padding-right: 4px;
+}
+
+.FinNaira {
+    top: 135px;
 }
 
 label {
@@ -96,11 +103,12 @@ label {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-content: center;
     align-items: center;
 }
 
 .Space {
-    width: 28px;
+    width: 78px !important;
 }
 
 .RadioRow {
@@ -128,13 +136,17 @@ label {
 .UploadFile {
     background-color: #145088;
     color: #fff;
-    padding: 18px 48px;
-    width: 270px;
+    padding: 26px 28px;
+    width: 170px !important;
+    min-width: 30% !important;
     margin-left: 28px;
+    font-size: 1.1rem;
+
 }
 
 .UploadFile::-webkit-file-upload-button {
     display: none;
+   
 }
 
 .Signature, .FileUploadBox {
@@ -154,11 +166,11 @@ label {
 }
 
 .BtnAction {
+    min-width: 160px !important;
     font-size: 1.5rem;
     font-weight: 600;
     padding: 8px 38px;
-    margin: 0 16px;
-    width: 14rem;
+    margin: 0 76px;
     color: #fff;
     border: none;
     border-radius: 26px;

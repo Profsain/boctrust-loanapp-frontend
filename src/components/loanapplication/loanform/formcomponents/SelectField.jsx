@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { useField } from "formik";
 
 const SelectField = ({ label, ...props }) => {
@@ -6,7 +6,7 @@ const SelectField = ({ label, ...props }) => {
   return (
     <div>
       <label htmlFor={props.id || props.name}>{label}</label>
-      <select {...field} {...props} />
+      <select {...field} {...props} className="SelectInput"/>
       {meta.touched && meta.error ? (
         <div className="error">{meta.error}</div>
       ) : null}
@@ -15,9 +15,9 @@ const SelectField = ({ label, ...props }) => {
 };
 
 SelectField.propTypes = {
-    label: PropTypes.any,
-    id: PropTypes.any,
-    name: PropTypes.string
-}
+  label: PropTypes.any,
+  id: PropTypes.any,
+  name: PropTypes.string,
+};
 
-export default SelectField
+export default SelectField;

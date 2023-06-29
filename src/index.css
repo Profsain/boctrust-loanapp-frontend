@@ -96,9 +96,17 @@ p {
     right: 110px;
   }
 
-  .ActionBtn {
-    width: 90%;
+  .FinNaira2 {
+    top: 108px !important;
+  }
+
+  .ActionBtn, .BtnAction {
+    margin: 0 auto !important;
     padding-bottom: 18px;
+  }
+
+  .BtnAction {
+    min-width: 100px !important;
   }
 
   .CtaText {
