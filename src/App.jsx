@@ -9,6 +9,7 @@ import Blog from "./components/blogpage/Blog";
 import Loan from "./components/loanapplication/Loan";
 import Support from "./components/supportpage/Support";
 import Career from "./components/careerpage/Career";
+import Dashboard from "./components/dashboard/Dashboard";
 import ScrollToTop from "./components/ScrollToTop";
 import NotFound from "./components/NotFound";
 
@@ -59,6 +60,7 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:title" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/career" element={<Career />} />
 
         {/* terms and conditions */}
