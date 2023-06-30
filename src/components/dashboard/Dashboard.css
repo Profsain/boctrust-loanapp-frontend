@@ -1,0 +1,86 @@
+.DashboardContainer {
+    margin-top: 7.8rem;
+    width: 100%;
+}
+
+.NavIcons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-top-right-radius: 36px;
+    background-color: #145098;
+    color: #fff;
+    height: 100vh;
+    width: 5rem;
+    padding: 2rem 0 8rem 0;
+    cursor: pointer;
+}
+
+.BLogo {
+    border-radius: 50%;
+    padding: 6px;
+    background-color: #fff;
+}
+
+.SBLogo img {
+    width: 28px;
+    height: 28px;
+}
+
+.SideMain {
+    width: 14rem;
+    padding-left: 18px;
+    padding-right: 18px;
+    align-items: flex-start !important;  
+      font-size: 1rem;
+    font-weight: 700;       
+    
+}
+
+.IconBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.IconBox p {
+    margin-top: 0.7rem;
+    margin-left: 8px;
+}
+
+.BrandCon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3rem;
+}
+
+.BrandCon p {
+    margin-top: 0.3rem;
+    margin-left: 8px;
+}
+
+.LgLogo {
+    border-radius: 50%;
+    padding: 8px;
+    background-color: #fff;
+}
+
+.LgLogo img {
+    width: 38px;
+    height: 38px;
+}
+
+.SideNavMain {
+    display: none;
+}
+
+.Show {
+    display: block;
+}
+
+.Hide {
+    display: none;
+}
