@@ -73,14 +73,34 @@
     height: 38px;
 }
 
-.SideNavMain {
-    display: none;
+.SideNavIcon {
+    width: 40px !important;
 }
 
-.Show {
-    display: block;
+/* figcard */
+.FigNum {
+    font-size: 1.8rem;
+    font-weight: 800;
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
 
-.Hide {
-    display: none;
+.TopCard {
+    margin: 48px 0;
+    padding: 0 78px 0 28px;
+}
+
+.YellowCard {
+    background: #ecaa00 !important;
+    padding: 14px !important;
+}
+
+#CardText {
+    justify-content: left;
+    font-size: 14px;
+}
+
+#CardText p {
+    margin: 0;
+    padding: 0;
 }

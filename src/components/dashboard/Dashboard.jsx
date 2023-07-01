@@ -2,57 +2,52 @@ import { useState } from "react";
 import SidebarIcons from "./SidebarIcons";
 import "./Dashboard.css";
 import SidebarMain from "./SidebarMain";
+import TopNavber from "./topnavbar/TopNavber";
+import DashboardHome from "./dashboardcomponents/DashboardHome";
 
 const Dashboard = () => {
-  // hide and show sidebar on hover
-  const showSidebar = () => {
-    const sidebarMain = document.querySelector(".SideNavMain");
-    sidebarMain.style.display = "block";
-    const sidebarIcon = document.querySelector(".SideNavIcon");
-    sidebarIcon.style.display = "none";
+  const [showSidebar, setShowSidebar] = useState(false);
+
+  const handleMouseOver = () => {
+    setShowSidebar(true);
+    // const sidebarIcons = document.querySelector(".SideNavIcon");
+    // sidebarIcons.style.display = "none";
   };
 
-  const hideSidebar = () => {
-    const sidebarMain = document.querySelector(".SideNavMain");
-    sidebarMain.style.display = "none";
-    const sidebarIcon = document.querySelector(".SideNavIcon");
-    sidebarIcon.style.display = "block";
+  const handleMouseOut = () => {
+    setShowSidebar(false);
   };
 
-  const sidebar = document.querySelector(".SideNavIcon");
-  sidebar.addEventListener("mouseover", showSidebar);
-  
-  const sidebarMain = document.querySelector(".SideNavMain");
-  sidebarMain.addEventListener("mouseout", hideSidebar);
+  const handleMenuItemClick = (e) => {
+    console.log(e.target.id)
+    setShowSidebar(false);
+  };
 
   return (
     <div className="DashboardContainer">
       <div className="row">
-        <div className="col-3">
-          {/* {!show ? (
-            <div className="SideNavIcon">
-              {" "}
+        <div className="col-2 SideNavContainer">
+          {!showSidebar ? (
+            <div className="SideNavIcon" onMouseOver={handleMouseOver}>
               <SidebarIcons />
             </div>
           ) : (
-            <div className="SideNavMain">
-              <SidebarMain />
+            <div className="SideNavMain" onMouseOut={handleMouseOut}>
+              <SidebarMain onMenuItemClick={handleMenuItemClick} />
             </div>
-          )} */}
-
-          <div className="row">
-            <div className="col-3 SideNavIcon">
-              <SidebarIcons />
-            </div>
-            <div className="col-9 SideNavMain ">
-              <SidebarMain />
-            </div>
+          )}
+        </div>
+        <div className="col-10">
+          <div className="TopNavber">
+            <TopNavber />
+            <DashboardHome />
           </div>
         </div>
-        <div className="col-9"></div>
       </div>
     </div>
   );
 };
 
 export default Dashboard;
+
+
