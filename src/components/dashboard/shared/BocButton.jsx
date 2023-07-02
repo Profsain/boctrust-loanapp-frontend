@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-const BocButton = ({bgcolor = "#f64f4f", bradius, cursor, children }) => {
+const BocButton = ({width, bgcolor = "#f64f4f", bradius, cursor, children }) => {
   const style = {
     backgroundColor: bgcolor,
     color: "#fff",
@@ -9,6 +9,7 @@ const BocButton = ({bgcolor = "#f64f4f", bradius, cursor, children }) => {
     fontSize: "1rem",
     fontWeight: "500",
     cursor: cursor,
+    width: width,
   };
 
   return <button style={style}>{children}</button>;
@@ -19,6 +20,7 @@ BocButton.propTypes = {
   bradius: PropTypes.string,
   children: PropTypes.string,
   cursor: PropTypes.string,
+  width: PropTypes.string,
 }
 
 export default BocButton;

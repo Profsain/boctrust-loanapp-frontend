@@ -92,7 +92,7 @@ const Dashboard = () => {
                 <SidebarIcons />
               </div>
             ) : (
-              <div className="SideNavMain" onMouseOut={handleMouseOut}>
+              <div className="SideNavMain" onMouseLeave={handleMouseOut}>
                 <SidebarMain onMenuItemClick={handleMenuItemClick} />
               </div>
             )}

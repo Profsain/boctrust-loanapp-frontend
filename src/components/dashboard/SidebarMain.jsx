@@ -12,7 +12,11 @@ const SidebarMain = ({onMenuItemClick}) => {
       </div>
 
       <div className="IconBox" onClick={onMenuItemClick}>
-        <img src="src/assets/images/ddashboard.png" alt="dashboard" />
+        <img
+          onClick={onMenuItemClick}
+          src="src/assets/images/ddashboard.png"
+          alt="dashboard"
+        />
         <p id="dashboard">Dashboard</p>
       </div>
 
