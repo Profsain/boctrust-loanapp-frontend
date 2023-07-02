@@ -33,7 +33,7 @@ const WithdrawMoney= () => {
 
   return (
     <div className="TransContainer">
-      <DashboardHeadline>Transfer Other Bank</DashboardHeadline>
+      <DashboardHeadline>Withdraw to Bank Account</DashboardHeadline>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -53,11 +53,7 @@ const WithdrawMoney= () => {
 
             <div className="FieldGroup">
               <label htmlFor="withdrawBankName">Bank Name</label>
-              <Field
-                as="select"
-                name="withdrawBankName"
-                className="Select"
-              >
+              <Field as="select" name="withdrawBankName" className="Select">
                 <option value="" label="Select Bank name" />
                 {debitAccountOptions.map((option) => (
                   <option
@@ -73,11 +69,7 @@ const WithdrawMoney= () => {
           <div className="SingleRow">
             <div className="FieldGroup">
               <label htmlFor="withdrawAmount">Amount</label>
-              <Field
-                type="text"
-                name="withdrawAmount"
-                className="Input"
-              />
+              <Field type="text" name="withdrawAmount" className="Input" />
               <ErrorMessage name="withdrawAmount" component="div" />
             </div>
           </div>
