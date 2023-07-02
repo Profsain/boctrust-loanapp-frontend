@@ -20,6 +20,10 @@
     width: 100%;
 }
 
+.SingleRow {
+    margin-left: 1.4rem;
+}
+
 .Select, .Input {
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
