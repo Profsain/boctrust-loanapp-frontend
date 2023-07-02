@@ -5,7 +5,7 @@ import SidebarMain from "./SidebarMain";
 import TopNavber from "./topnavbar/TopNavber";
 import DashboardHome from "./dashboardcomponents/DashboardHome";
 import MyLoan from "./dashboardcomponents/MyLoan";
-import TransferMoney from "./dashboardcomponents/TransferMoney";
+import TransferMoney from "./dashboardcomponents//transferdashboard/TransferMoney";
 import WithdrawMoney from "./dashboardcomponents/WithdrawMoney";
 import MyProfile from "./dashboardcomponents/MyProfile";
 import Report from "./dashboardcomponents/Report";

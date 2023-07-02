@@ -1,0 +1,39 @@
+.TransContainer {
+    background-color: #f5f6f7;
+    padding: 0.2rem 1rem 3rem 1rem;
+    margin-top: 2rem;
+    margin-right: 3rem;
+    border-radius: 18px;
+}
+.FieldGroup {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 0 1rem;
+}
+
+.FieldRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.Select, .Input {
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    color: #495057;
+    display: block;
+    font-size: 1.3rem;
+    height: calc(1.5em + 0.75rem + 2px);
+    line-height: 2.5;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 460px;
+}
+
+.BtnContainer {
+    text-align: center;
+    margin-top: 2rem;
+}
