@@ -1,7 +1,7 @@
 .DashboardContainer {
     margin-top: 7.8rem;
-    width: 100%;
 }
+
 
 .NavIcons {
     display: flex;
@@ -11,9 +11,10 @@
     border-top-right-radius: 36px;
     background-color: #145098;
     color: #fff;
-    height: 100vh;
     width: 5rem;
-    padding: 2rem 0 8rem 0;
+    margin-left: -12px;
+    padding-top: 2rem;
+    padding-bottom: 52rem;
     cursor: pointer;
 }
 
@@ -28,12 +29,13 @@
     height: 28px;
 }
 
+
 .SideMain {
-    width: 14rem;
+    width: 13rem;
     padding-left: 18px;
     padding-right: 18px;
     align-items: flex-start !important;  
-      font-size: 1rem;
+    font-size: 1rem;
     font-weight: 700;       
     
 }
@@ -42,11 +44,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 1.5rem;
 }
 
 .IconBox p {
     margin-top: 0.7rem;
     margin-left: 8px;
+
+}
+
+.IconBox:hover {
+    background-color: #103e75;
+    border-radius: 8px;
+    padding: 6px 18px;
+    width: 100%;
+   
 }
 
 .BrandCon {
