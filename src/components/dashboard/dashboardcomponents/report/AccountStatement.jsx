@@ -6,87 +6,140 @@ import BocButton from "../../shared/BocButton";
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
-  debitAccount: Yup.string().required("Debit Account is required"),
-  createAccount: Yup.string().required("Create Account is required"),
-  amount: Yup.number()
-    .typeError("Amount must be a number")
-    .required("Amount is required"),
-  note: Yup.string().required("Note is required"),
+  startDate: Yup.string().required("Start date is required"),
+  endDate: Yup.string().required("End date is required"),
+  accountNumber: Yup.string().required("Account number is required"),
 });
 
 const debitAccountOptions = [
-  { value: "account1", label: "Account 1" },
-  { value: "account2", label: "Account 2" },
+  { value: "account1", label: "0249584744" },
+  { value: "account2", label: "9854092312" },
   // Add more options as needed
 ];
 
 const initialValues = {
-  debitAccount: "",
-  createAccount: "",
-  amount: "",
-  note: "",
+  startDate: "",
+  endDate: "",
+  accountNumber: "",
 };
 
 const AccountStatement = () => {
+  const styles = {
+    container: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      margin: "2rem 0",
+    },
+    input: {
+      width: "300px",
+    },
+  };
   const handleSubmit = (values) => {
     // Handle form submission logic here
     console.log(values);
   };
 
   return (
-    <div className="TransContainer">
-      <DashboardHeadline>Account Statement</DashboardHeadline>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <div className="FieldRow">
-            <div className="FieldGroup">
-              <label htmlFor="createAccount">Create Account</label>
-              <Field
-                type="text"
-                name="createAccount"
-                id="createAccount"
-                className="Input"
-              />
-              <ErrorMessage name="createAccount" component="div" />
+    <>
+      <div className="TransContainer">
+        <DashboardHeadline>Account Statement</DashboardHeadline>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <div className="FieldRow">
+              <div className="FieldGroup">
+                <label htmlFor="createAccount">Start Date</label>
+                <Field
+                  type="date"
+                  name="startDate"
+                  className="Input"
+                  style={styles.input}
+                />
+                <ErrorMessage name="startDate" component="div" />
+              </div>
+              <div className="FieldGroup">
+                <label htmlFor="createAccount">End Date</label>
+                <Field
+                  type="date"
+                  name="endDate"
+                  className="Input"
+                  style={styles.input}
+                />
+                <ErrorMessage name="endDate" component="div" />
+              </div>
+              <div className="FieldGroup">
+                <label htmlFor="debitAccount">Account Number</label>
+                <Field
+                  as="select"
+                  name="accountNumber"
+                  className="Select"
+                  style={styles.input}
+                >
+                  <option value="" label="Select one" />
+                  {debitAccountOptions.map((option) => (
+                    <option
+                      key={option.value}
+                      value={option.value}
+                      label={option.label}
+                    />
+                  ))}
+                </Field>
+                <ErrorMessage name="accountNumber" component="div" />
+              </div>
             </div>
-            <div className="FieldGroup">
-              <label htmlFor="debitAccount">Debit Account</label>
-              <Field
-                as="select"
-                name="debitAccount"
-                id="debitAccount"
-                className="Select"
+            <div className="BtnContainer">
+              <BocButton
+                fontSize="1.6rem"
+                type="submit"
+                width="25%"
+                bgcolor="#ecaa00"
+                bradius="25px"
               >
-                <option value="" label="Select an account" />
-                {debitAccountOptions.map((option) => (
-                  <option
-                    key={option.value}
-                    value={option.value}
-                    label={option.label}
-                  />
-                ))}
-              </Field>
-              <ErrorMessage name="debitAccount" component="div" />
+                FILTER
+              </BocButton>
             </div>
-          </div>
-          <div className="BtnContainer">
-            <BocButton
-              fontSize="1.6rem"
-              type="submit"
-              width="25%"
-              bgcolor="#ecaa00"
-              bradius="25px"
-            >
-              FILTER
-            </BocButton>
-          </div>
-        </Form>
-      </Formik>
-    </div>
+          </Form>
+        </Formik>
+      </div>
+      <div style={styles.container}>
+        <BocButton
+          bgcolor="#636363"
+          bradius="22px"
+          width="120px"
+          margin="0 12px"
+        >
+          Copy
+        </BocButton>
+        <BocButton
+          bgcolor="#636363"
+          bradius="22px"
+          width="120px"
+          margin="0 12px"
+        >
+          Excel
+        </BocButton>
+        <BocButton
+          bgcolor="#636363"
+          bradius="22px"
+          width="120px"
+          margin="0 12px"
+        >
+          PDF
+        </BocButton>
+        <BocButton
+          bgcolor="#636363"
+          bradius="22px"
+          width="120px"
+          margin="0 12px"
+        >
+          Print
+        </BocButton>
+      </div>
+    </>
   );
 };
 
