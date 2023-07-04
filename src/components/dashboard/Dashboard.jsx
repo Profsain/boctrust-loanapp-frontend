@@ -7,16 +7,14 @@ import DashboardHome from "./dashboardcomponents/DashboardHome";
 import MyLoan from "./dashboardcomponents/MyLoan";
 import TransferMoney from "./dashboardcomponents//transferdashboard/TransferMoney";
 import WithdrawMoney from "./dashboardcomponents/WithdrawMoney";
-import MyProfile from "./dashboardcomponents/MyProfile";
-import Report from "./dashboardcomponents/Report";
+import MyProfile from "./dashboardcomponents/myprofile/MyProfile";
+import Report from "./dashboardcomponents/report/Report";
 import AccountTransaction from "./dashboardcomponents/AccountTransaction";
 
 const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [currentComponent, setCurrentComponent] = useState("dashboard");
   const [currentTitle, setCurrentTitle] = useState("Dashboard");
-
-  console.log(currentComponent);
 
   const handleMouseOver = () => {
     setShowSidebar(true);
@@ -29,6 +27,7 @@ const Dashboard = () => {
   };
 
   const handleMenuItemClick = (e) => {
+    e.preventDefault();
     const id = e.target.id;
     setCurrentComponent(id);
     switch (id) {
@@ -51,7 +50,7 @@ const Dashboard = () => {
         setCurrentTitle("My Profile");
         break;
       case "report":
-        setCurrentTitle("Report");
+        setCurrentTitle("Account Report");
         break;
       default:
         setCurrentTitle("Dashboard");

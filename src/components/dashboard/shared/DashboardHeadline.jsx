@@ -1,7 +1,7 @@
 
 
 import PropTypes from "prop-types"
-const DashboardHeadline = ({mspacer = "2rem 0 1rem 0", bgcolor = "#636363", children}) => {
+const DashboardHeadline = ({height, mspacer = "2rem 0 1rem 0", bgcolor = "#636363", children}) => {
     const style = {
         fontSize: '1.6rem',
         fontWeight: 'bold',
@@ -9,6 +9,7 @@ const DashboardHeadline = ({mspacer = "2rem 0 1rem 0", bgcolor = "#636363", chil
         textAlign: 'center',
         margin: mspacer,
         padding: '0.7rem',
+        height: height,
         borderRadius: '2rem',
         backgroundColor: bgcolor,
     }
@@ -21,6 +22,7 @@ DashboardHeadline.propTypes = {
     children: PropTypes.any,
     bgcolor: PropTypes.string,
     mspacer: PropTypes.string,
+    height: PropTypes.string,
 }
 
 export default DashboardHeadline

@@ -11,7 +11,7 @@ const AccountOverviewTable = () => {
   return (
     <div>
       <DashboardHeadline>Account Overview</DashboardHeadline>
-      <Table hover responsive="sm">
+      <Table borderless hover responsive="sm">
         <thead>
           <tr style={style}>
             <th>Account Number</th>

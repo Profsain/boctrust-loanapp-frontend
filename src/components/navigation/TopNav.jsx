@@ -43,10 +43,7 @@ const TopNav = () => {
                   </Nav.Link>
 
                   {/* about dropdown */}
-                  <NavDropdown
-                    title="About"
-                    id="basic-nav-dropdown"
-                  >
+                  <NavDropdown title="About" id="basic-nav-dropdown">
                     <div className="DropSpace"></div>
                     <NavDropdown.Item className="DropItem" href="/about">
                       Company Overview
@@ -88,7 +85,7 @@ const TopNav = () => {
                       <NavDropdown.Divider />
                     </NavDropdown>
                     {/* saving dropdown end */}
-                      
+
                     {/* Investment dropdown start*/}
                     <NavDropdown
                       title="Investment"
@@ -162,8 +159,12 @@ const TopNav = () => {
                   <Nav.Link href="/blogs" className="mx-4">
                     Blogs
                   </Nav.Link>
-                  <Nav.Link href="/contact">Contact</Nav.Link>
-                  <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+                  <Nav.Link href="/contact" className="mx-4">
+                    Contact
+                  </Nav.Link>
+                  <Nav.Link href="/dashboard" className="mx-4">
+                    Dashboard
+                  </Nav.Link>
                 </Nav>
               </Navbar.Collapse>
             </Container>

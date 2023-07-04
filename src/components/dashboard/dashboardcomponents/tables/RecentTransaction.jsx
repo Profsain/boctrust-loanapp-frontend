@@ -17,7 +17,7 @@ const RecentTransaction = () => {
   return (
     <div>
       <DashboardHeadline>Recent Transaction</DashboardHeadline>
-      <Table hover responsive="sm">
+      <Table borderless hover responsive="sm">
         <thead>
           <tr style={styles.th}>
             <th>Date</th>

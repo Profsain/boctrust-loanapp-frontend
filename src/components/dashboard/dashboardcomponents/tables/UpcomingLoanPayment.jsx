@@ -12,7 +12,7 @@ const UpcomingLoanPayment = () => {
   return (
     <div>
       <DashboardHeadline>Upcoming Loan Payment</DashboardHeadline>
-      <Table hover responsive="sm">
+      <Table borderless hover responsive="sm">
         <thead>
           <tr style={style}>
             <th>Loan ID</th>
