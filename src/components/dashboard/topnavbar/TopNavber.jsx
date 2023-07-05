@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import "./TopNavbar.css";
 
-const TopNavber = ({ title }) => {
+const TopNavber = ({ title, user="Femi Akinwade" }) => {
   return (
     <div className="Inline">
       <div>
@@ -10,7 +10,7 @@ const TopNavber = ({ title }) => {
       <div className="Inline Profile">
         <img src="src/assets/images/notificationicon.png" alt="alert" />
         <div className="Inline UserCard">
-          <p>Femi Akinwade</p>
+          <p>{user}</p>
           <img src="src/assets/images/smallavater.png" alt="user" />
         </div>
       </div>
@@ -20,6 +20,7 @@ const TopNavber = ({ title }) => {
 
 TopNavber.propTypes = {
   title: PropTypes.string,
+  user: PropTypes.string,
 };
 
 export default TopNavber;

@@ -10,6 +10,7 @@ import Loan from "./components/loanapplication/Loan";
 import Support from "./components/supportpage/Support";
 import Career from "./components/careerpage/Career";
 import Dashboard from "./components/dashboard/Dashboard";
+import AdminDashboard from "./components/dashboard/admindashboard/dashboardhome/AdminDashboard";
 import ScrollToTop from "./components/ScrollToTop";
 import NotFound from "./components/NotFound";
 
@@ -26,7 +27,6 @@ import AssetBackedFinancing from "./components/ourproductpage/AssetBackedFinanci
 import SmallBusinessAdvisory from "./components/ourproductpage/SmallBusinessAdvisory";
 import MicroInsuranceAdvisory from "./components/ourproductpage/MicroInsuranceAdvisory";
 import FinancialAdvisory from "./components/ourproductpage/FinancialAdvisory";
-
 
 // terms and conditions
 import LoanTerms from "./components/terms&condition/LoanTerms";
@@ -61,6 +61,7 @@ function App() {
         <Route path="/blog/:title" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/career" element={<Career />} />
 
         {/* terms and conditions */}
