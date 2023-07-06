@@ -13,12 +13,12 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       <div id="dashboard" className="IconBox" onClick={onMenuItemClick}>
         <img
-          id="admindashboard"
+          id="dashboard"
           onClick={onMenuItemClick}
           src="src/assets/images/ddashboard.png"
-          alt="admindashboard"
+          alt="dashboard"
         />
-        <p id="admindashboard" onClick={onMenuItemClick}>
+        <p id="dashboard" onClick={onMenuItemClick}>
           Dashboard
         </p>
       </div>
