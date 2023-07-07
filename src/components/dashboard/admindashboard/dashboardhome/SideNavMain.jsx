@@ -1,7 +1,14 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import "../../Dashboard.css";
 
 const SideNavMain = ({ onMenuItemClick }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openSubItem = () => {
+    setIsOpen(true);
+  };
+
   return (
     <div className="NavIcons SideMain">
       <div className="BrandCon">
@@ -23,18 +30,29 @@ const SideNavMain = ({ onMenuItemClick }) => {
         </p>
       </div>
 
-      <div id="customer" className="IconBox" onClick={onMenuItemClick}>
-        <img
-          id="customer"
-          onClick={onMenuItemClick}
-          src="src/assets/images/dprofile.png"
-          alt="customer"
-        />
-        <p id="customer" onClick={onMenuItemClick}>
-          Customer
-        </p>
+      {/* Menu with sub item */}
+      <div onMouseOver={openSubItem}>
+        <div id="customer" className="IconBox" onClick={onMenuItemClick}>
+          <img
+            id="customer"
+            onClick={onMenuItemClick}
+            src="src/assets/images/dprofile.png"
+            alt="customer"
+          />
+          <p id="customer" onClick={onMenuItemClick}>
+            Customer
+          </p>
+        </div>
+        {isOpen ? (
+          <div className="SubItem">
+            <ul>
+              <li id="addcustomer" onClick={onMenuItemClick}>Add Customer</li>
+              <li id="customerrequest" onClick={onMenuItemClick}>Customer Request</li>
+            </ul>
+          </div>
+        ) : null}
       </div>
-      
+
       <div id="myloan" className="IconBox" onClick={onMenuItemClick}>
         <img
           id="myloan"

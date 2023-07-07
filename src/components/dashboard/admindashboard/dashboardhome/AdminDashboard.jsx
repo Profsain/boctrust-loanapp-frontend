@@ -6,6 +6,8 @@ import SideNavMain from "./SideNavMain";
 import AccountDashboard from "../account/AccountDashboard";
 import CreditBureauDashboard from "../creditbureau/CreditBureauDashboard";
 import CustomersDashboard from "../customers/CustomersDashboard";
+import AddCustomer from "../customers/AddCustomer";
+import CustomersRequest from "../customers/CustomersRequest"
 import HomeDashboard from "./HomeDashboard";
 import MdasEmployers from "../employers/MdasEmployers";
 import KycCheck from "../kyc/KycCheck";
@@ -26,8 +28,7 @@ const AdminDashboard = () => {
 
   const handleMouseOver = () => {
     setShowSidebar(true);
-    // const sidebarIcons = document.querySelector(".SideNavIcon");
-    // sidebarIcons.style.display = "none";
+    
   };
 
   const handleMouseOut = () => {
@@ -44,6 +45,12 @@ const AdminDashboard = () => {
         break;
       case "customer":
         setCurrentTitle("Customer List");
+        break;
+      case "addcustomer":
+        setCurrentTitle("Add New Customer");
+        break;
+      case "customerrequest":
+        setCurrentTitle("Customers Request");
         break;
       case "myloan":
         setCurrentTitle("Loan Dashboard");
@@ -101,6 +108,10 @@ const AdminDashboard = () => {
         return <HomeDashboard />;
       case "customer":
         return <CustomersDashboard />;
+      case "addcustomer":
+        return <AddCustomer />;
+      case "customerrequest":
+        return <CustomersRequest />;
       case "myloan":
         return <LoanDashboard />;
       case "repayment":
