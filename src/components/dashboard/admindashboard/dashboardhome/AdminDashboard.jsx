@@ -12,6 +12,7 @@ import HomeDashboard from "./HomeDashboard";
 import MdasEmployers from "../employers/MdasEmployers";
 import KycCheck from "../kyc/KycCheck";
 import LoanDashboard from "../loan/LoanDashboard";
+import LoanProducts from "../loan/LoanProducts";
 import RemitaDashboard from "../remita/RemitaDashboard";
 import RepaymentDashboard from "../repayment/RepaymentDashboard";
 import ReportDashboard from "../report/ReportDashboard";
@@ -54,6 +55,9 @@ const AdminDashboard = () => {
         break;
       case "myloan":
         setCurrentTitle("Loan Dashboard");
+        break;
+      case "loanproducts":
+        setCurrentTitle("Loan Products");
         break;
       case "transfer":
         setCurrentTitle("Transfer Money");
@@ -114,6 +118,8 @@ const AdminDashboard = () => {
         return <CustomersRequest />;
       case "myloan":
         return <LoanDashboard />;
+      case "loanproducts":
+        return <LoanProducts />;
       case "repayment":
         return <RepaymentDashboard />;
       case "accounts":

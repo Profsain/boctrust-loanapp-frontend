@@ -4,6 +4,7 @@ import "../../Dashboard.css";
 
 const SideNavMain = ({ onMenuItemClick }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoanOpen, setIsLoanOpen] = useState(false);
 
   const openSubItem = () => {
     setIsOpen(true);
@@ -12,6 +13,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const closeSubItem = () => {
     setIsOpen(false);
   };
+
+  const openSubLoan = () => setIsLoanOpen(true);
+  const closeSubLoan = () => setIsLoanOpen(false);
 
   return (
     <div className="NavIcons SideMain">
@@ -50,23 +54,51 @@ const SideNavMain = ({ onMenuItemClick }) => {
         {isOpen ? (
           <div className="SubItem">
             <ul>
-              <li id="addcustomer" onClick={onMenuItemClick}>Add Customer</li>
-              <li id="customerrequest" onClick={onMenuItemClick}>Customer Request</li>
+              <li id="addcustomer" onClick={onMenuItemClick}>
+                Add Customer
+              </li>
+              <li id="customerrequest" onClick={onMenuItemClick}>
+                Customer Request
+              </li>
             </ul>
           </div>
         ) : null}
       </div>
 
-      <div id="myloan" className="IconBox" onClick={onMenuItemClick}>
-        <img
-          id="myloan"
-          onClick={onMenuItemClick}
-          src="src/assets/images/dmyloan.png"
-          alt="loan"
-        />
-        <p id="myloan" onClick={onMenuItemClick}>
-          My Loan
-        </p>
+      <div onMouseOver={openSubLoan} onMouseLeave={closeSubLoan}>
+        <div id="myloan" className="IconBox" onClick={onMenuItemClick}>
+          <img
+            id="myloan"
+            onClick={onMenuItemClick}
+            src="src/assets/images/dmyloan.png"
+            alt="loan"
+          />
+          <p id="myloan" onClick={onMenuItemClick}>
+            My Loan
+          </p>
+        </div>
+        {isLoanOpen ? (
+          <div className="SubItem">
+            <ul>
+              <li id="allloan" onClick={onMenuItemClick}>
+                All Loans
+              </li>
+              <li id="paddingloan" onClick={onMenuItemClick}>
+                Padding Loan
+              </li>
+              <li id="activeloan" onClick={onMenuItemClick}>
+                
+                Active Loan
+              </li>
+              <li id="loancalculator" onClick={onMenuItemClick}>
+                Loan Calculator
+              </li>
+              <li id="loanproducts" onClick={onMenuItemClick}>
+                Loan Products
+              </li>
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       <div id="repayment" className="IconBox" onClick={onMenuItemClick}>
