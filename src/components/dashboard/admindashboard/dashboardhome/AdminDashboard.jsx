@@ -65,7 +65,7 @@ const AdminDashboard = () => {
       case "repayment":
         setCurrentTitle("Repayments");
         break;
-      case "Accounts":
+      case "accounts":
         setCurrentTitle("Accounts");
         break;
       case "withdraw":

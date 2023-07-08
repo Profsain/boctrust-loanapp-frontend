@@ -133,7 +133,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           alt="withdrawer"
         />
         <p id="withdraw" onClick={onMenuItemClick}>
-          Withdraw Money
+          Withdraw Requests
         </p>
       </div>
 
