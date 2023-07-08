@@ -9,6 +9,10 @@ const SideNavMain = ({ onMenuItemClick }) => {
     setIsOpen(true);
   };
 
+  const closeSubItem = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="NavIcons SideMain">
       <div className="BrandCon">
@@ -31,7 +35,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       {/* Menu with sub item */}
-      <div onMouseOver={openSubItem}>
+      <div onMouseOver={openSubItem} onMouseLeave={closeSubItem}>
         <div id="customer" className="IconBox" onClick={onMenuItemClick}>
           <img
             id="customer"

@@ -137,3 +137,18 @@
     padding: 0 12px;
     padding-right: 38px;
 }
+
+#PrevBtn {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+#NextBtn {
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+#PrevBtn:hover, #NextBtn:hover {
+    background-color: #094379 !important;
+    transform: scale(1.1);
+}

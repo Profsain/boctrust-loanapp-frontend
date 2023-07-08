@@ -2,6 +2,8 @@ import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import "./Customer.css";
 import CustomersList from "./CustomersList";
+import NextPreBtn from "../../shared/NextPreBtn";
+
 const CustomersDashboard = () => {
   return (
     <div className="MainBox">
@@ -21,15 +23,17 @@ const CustomersDashboard = () => {
             </div>
             <div className="FormGroup">
               <input name="search" placeholder="Search" />
-              <img  src="src/assets/images/search.png" alt="search-icon" />
+              <img src="src/assets/images/search.png" alt="search-icon" />
             </div>
           </div>
         </DashboardHeadline>
-          </div>
-          <div>
-              {/* customers list  */}
-              <CustomersList />
-          </div>
+      </div>
+      <div>
+        {/* customers list  */}
+        <CustomersList />
+        {/* next and previous button  */}
+        <NextPreBtn />
+      </div>
     </div>
   );
 };

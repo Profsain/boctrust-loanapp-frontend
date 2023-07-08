@@ -2,6 +2,8 @@ import Table from "react-bootstrap/Table";
 import "../../Dashboard.css";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import BocButton from "../../shared/BocButton";
+import NextPreBtn from "../../shared/NextPreBtn";
+
 const AllLoans = () => {
   const styles = {
     table: {
@@ -281,6 +283,7 @@ const AllLoans = () => {
           </tbody>
         </Table>
       </div>
+      <NextPreBtn />
     </div>
   );
 };

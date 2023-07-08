@@ -1,18 +1,20 @@
 import Table from "react-bootstrap/Table";
 import "../../Dashboard.css";
 import DashboardHeadline from "../../shared/DashboardHeadline";
-import BocButton from "../../shared/BocButton"
+import BocButton from "../../shared/BocButton";
+import NextPreBtn from "../../shared/NextPreBtn";
 const CustomersRequest = () => {
   const styles = {
-    table: {
-      // margin: "0 2rem 0 3rem",
+    constainer: {
+      margin: "0 4rem 0 0",
     },
     head: {
       color: "#fff",
-      fontSize: "1.2rem",
+      fontSize: "1rem",
     },
     booked: {
       color: "#145098",
+      fontSize: "1rem",
     },
     completed: {
       color: "#5cc51c",
@@ -25,10 +27,10 @@ const CustomersRequest = () => {
     },
   };
   return (
-    <div>
+    <div style={styles.constainer}>
       <DashboardHeadline
         height="52px"
-        mspacer="2rem 0 -2.95rem -1rem"
+        mspacer="2rem 0 -2.5rem -1rem"
         bgcolor="#145098"
       ></DashboardHeadline>
       <div style={styles.table}>
@@ -300,6 +302,7 @@ const CustomersRequest = () => {
           </tbody>
         </Table>
       </div>
+      <NextPreBtn />
     </div>
   );
 };
