@@ -13,6 +13,11 @@ const DetailsCard = ({title, text}) => {
         text: {
             backgroundColor: "#fff",
             padding: "0.7rem",
+            fontSize: "1rem",
+            color: "#145098",
+            borderRadius: "5px",
+            fontWeight: "bold",
+
         }
     }
   return (

@@ -10,7 +10,6 @@ const SidebarMain = ({ onMenuItemClick }) => {
         </div>
         <p>App User</p>
       </div>
-
       <div id="dashboard" className="IconBox" onClick={onMenuItemClick}>
         <img id="dashboard"
           onClick={onMenuItemClick}
