@@ -5,6 +5,7 @@ import SidebarMain from "./SidebarMain";
 import TopNavber from "./topnavbar/TopNavber";
 import DashboardHome from "./dashboardcomponents/DashboardHome";
 import MyLoan from "./dashboardcomponents/MyLoan";
+import ApplyLoan from "./dashboardcomponents/ApplyLoan";
 import TransferMoney from "./dashboardcomponents//transferdashboard/TransferMoney";
 import WithdrawMoney from "./dashboardcomponents/WithdrawMoney";
 import MyProfile from "./dashboardcomponents/myprofile/MyProfile";
@@ -33,6 +34,9 @@ const CustomerDashboard = () => {
         setCurrentTitle("Dashboard");
         break;
       case "myloan":
+        setCurrentTitle("My Loan");
+        break;
+      case "applyloan":
         setCurrentTitle("My Loan");
         break;
       case "transfer":
@@ -64,6 +68,8 @@ const CustomerDashboard = () => {
         return <DashboardHome />;
       case "myloan":
         return <MyLoan />;
+      case "applyloan":
+        return <ApplyLoan />;
       case "transfer":
         return <TransferMoney />;
       case "withdraw":

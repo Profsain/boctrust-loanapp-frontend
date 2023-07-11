@@ -7,15 +7,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     border-top-right-radius: 36px;
     background-color: #145098;
     color: #fff;
     width: 5rem;
     margin-left: -12px;
     padding-top: 2rem;
-    padding-bottom: 52rem;
+    padding-bottom: 9rem;
     cursor: pointer;
+}
+
+.FixSideNav {
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    overflow-y: auto;
 }
 
 .BLogo {
@@ -32,8 +39,7 @@
 
 .SideMain {
     width: 13rem;
-    padding-left: 18px;
-    padding-right: 18px;
+    padding: 16px 18px 3rem 18px;
     align-items: flex-start !important;  
     font-size: 1rem;
     font-weight: 700;       
@@ -44,7 +50,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1.5rem;
+    margin-top: 1.1rem;
 }
 
 .IconBox img {
@@ -61,7 +67,6 @@
 .IconBox:hover {
     background-color: #103e75;
     border-radius: 8px;
-    padding: 6px 18px;
     width: 100%;
    
 }
