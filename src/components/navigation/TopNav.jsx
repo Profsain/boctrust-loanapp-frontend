@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/reducers/userSlice";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "./Navigation.css";
 import { Link } from "react-router-dom";
@@ -8,6 +10,15 @@ const TopNav = () => {
     const nav = document.querySelector(".Nav");
     nav.classList.toggle("Sticky", window.scrollY > 0);
   });
+
+  // handle logout
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  // get current user
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   return (
     <div className="TopNavContainer">
@@ -162,9 +173,15 @@ const TopNav = () => {
                   <Nav.Link href="/contact" className="mx-4">
                     Contact
                   </Nav.Link>
-                  <Nav.Link href="/dashboard" className="mx-4">
-                    Dashboard
-                  </Nav.Link>
+                  {currentUser ? (
+                    <Nav.Link href="/dashboard" onClick={handleLogout} className="mx-4">
+                      Logout
+                    </Nav.Link>
+                  ) : (
+                    <Nav.Link href="/dashboard" className="mx-4">
+                      Dashboard
+                    </Nav.Link>
+                  )}
                 </Nav>
               </Navbar.Collapse>
             </Container>

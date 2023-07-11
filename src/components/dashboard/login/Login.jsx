@@ -1,10 +1,14 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
+import { login } from "../../../redux/reducers/userSlice";
+// src\redux\reducers\userSlice.js
 import { Form, Button } from "react-bootstrap";
 import HeadLine from "../../shared/HeadLine";
 import "./Login.css";
 
-const Login = ({ setLogin, setCurrentUser }) => {
+const Login = ({ setLogin}) => {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -45,8 +49,7 @@ const Login = ({ setLogin, setCurrentUser }) => {
       (user) => user.username === username && user.password === password
     );
     if (user) {
-        console.log("user:", user)
-        return user;
+      return user;
     } else {
       setErrorMessage("Invalid username or password");
     }
@@ -58,14 +61,14 @@ const Login = ({ setLogin, setCurrentUser }) => {
     const { username, password } = formData;
     const user = checkUser(username, password);
     if (user.username === "admin") {
-      setCurrentUser("admin");
+      dispatch(login({ username: "admin", role: "admin" }));
     } else if (user.username === "customer1") {
-      setCurrentUser("customer1");
+      dispatch(login({ username: "customer1", role: "customer" }));
     } else {
-      setCurrentUser("customer2");
+      dispatch(login({ username: "customer2", role: "customer" }));
     }
-      setLogin(true);
-      
+    setLogin(true);
+
     //   clear fields
     setFormData({
       username: "",
@@ -112,7 +115,6 @@ const Login = ({ setLogin, setCurrentUser }) => {
 
 Login.propTypes = {
   setLogin: PropTypes.func,
-  setCurrentUser: PropTypes.func,
 };
 
 export default Login;
