@@ -2,7 +2,6 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/reducers/userSlice";
-// src\redux\reducers\userSlice.js
 import { Form, Button } from "react-bootstrap";
 import HeadLine from "../../shared/HeadLine";
 import "./Login.css";
@@ -78,13 +77,13 @@ const Login = ({ setLogin}) => {
 
   return (
     <div className="LogContainer">
-      <div>
+      <div >
         <HeadLine text="Login to your Dashboard" />
         <p className="Error">{errorMessage}</p>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3">
+          <Form.Group className="my-4">
             <Form.Control
-              className="Input"
+           
               type="text"
               placeholder="Enter username"
               name="username"

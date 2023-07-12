@@ -7,11 +7,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     border-top-right-radius: 36px;
     background-color: #145098;
     color: #fff;
-    width: 5rem;
+    width: 4rem;
     margin-left: -12px;
     padding-top: 2rem;
     padding-bottom: 9rem;
@@ -20,7 +20,7 @@
 
 .FixSideNav {
     position: fixed;
-    height: 100vh;
+    height: 100vh !important;
     left: 0;
     overflow-y: auto;
 }
@@ -32,8 +32,8 @@
 }
 
 .SBLogo img {
-    width: 28px;
-    height: 28px;
+    width: 23px;
+    height: 20px;
 }
 
 
