@@ -11,7 +11,7 @@ const TopCardSec = () => {
             <img
               width="28px"
               height="28px"
-              src="src/assets/images/whitenaira.png"
+              src="images/whitenaira.png"
               alt="naira"
             />
             <h5 className="FigNum">1,329,00</h5>
@@ -23,7 +23,7 @@ const TopCardSec = () => {
             <img
               width="28px"
               height="28px"
-              src="src/assets/images/whitenaira.png"
+              src="images/whitenaira.png"
               alt="naira"
             />
             <h5 className="FigNum">5,342,234</h5>
@@ -35,7 +35,7 @@ const TopCardSec = () => {
             <img
               width="28px"
               height="28px"
-              src="src/assets/images/whitenaira.png"
+              src="images/whitenaira.png"
               alt="naira"
             />
             <h5 className="FigNum">20,312</h5>
@@ -50,7 +50,7 @@ const TopCardSec = () => {
                   <img
                     width="18px"
                     height="18px"
-                    src="src/assets/images/whitenaira.png"
+                    src="images/whitenaira.png"
                     alt="naira"
                   />
                 </span>

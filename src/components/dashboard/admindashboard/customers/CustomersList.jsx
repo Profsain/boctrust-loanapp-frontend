@@ -47,11 +47,7 @@ const CustomersList = () => {
           <tbody>
             <tr>
               <td>
-                <img
-                  className="CustomerImg"
-                  src="src/assets/images/c1.png"
-                  alt=""
-                />
+                <img className="CustomerImg" src="images/c1.png" alt="" />
               </td>
               <td>7460615677</td>
               <td>Kola</td>
@@ -69,11 +65,7 @@ const CustomersList = () => {
             </tr>
             <tr>
               <td>
-                <img
-                  className="CustomerImg"
-                  src="src/assets/images/c2.png"
-                  alt=""
-                />
+                <img className="CustomerImg" src="images/c2.png" alt="" />
               </td>
               <td>7460615644</td>
               <td>Uche</td>
@@ -91,11 +83,7 @@ const CustomersList = () => {
             </tr>
             <tr>
               <td>
-                <img
-                  className="CustomerImg"
-                  src="src/assets/images/c3.png"
-                  alt=""
-                />
+                <img className="CustomerImg" src="images/c3.png" alt="" />
               </td>
               <td>7460615677</td>
               <td>Folashade</td>
@@ -113,11 +101,7 @@ const CustomersList = () => {
             </tr>
             <tr>
               <td>
-                <img
-                  className="CustomerImg"
-                  src="src/assets/images/c4.png"
-                  alt=""
-                />
+                <img className="CustomerImg" src="images/c4.png" alt="" />
               </td>
               <td>7460615677</td>
               <td>Monday</td>
@@ -135,11 +119,7 @@ const CustomersList = () => {
             </tr>
             <tr>
               <td>
-                <img
-                  className="CustomerImg"
-                  src="src/assets/images/c5.png"
-                  alt=""
-                />
+                <img className="CustomerImg" src="images/c5.png" alt="" />
               </td>
               <td>7460615677</td>
               <td>Saheed</td>
@@ -157,11 +137,7 @@ const CustomersList = () => {
             </tr>
             <tr>
               <td>
-                <img
-                  className="CustomerImg"
-                  src="src/assets/images/c6.png"
-                  alt=""
-                />
+                <img className="CustomerImg" src="images/c6.png" alt="" />
               </td>
               <td>7460615677</td>
               <td>Zainab</td>
@@ -177,7 +153,6 @@ const CustomersList = () => {
                 </select>
               </td>
             </tr>
-           
           </tbody>
         </Table>
       </div>

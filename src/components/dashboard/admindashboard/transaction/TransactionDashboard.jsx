@@ -24,7 +24,7 @@ const TransactionDashboard = () => {
             </div>
             <div className="FormGroup">
               <input name="search" placeholder="Search" />
-              <img src="src/assets/images/search.png" alt="search-icon" />
+              <img src="images/search.png" alt="search-icon" />
             </div>
           </div>
         </DashboardHeadline>
