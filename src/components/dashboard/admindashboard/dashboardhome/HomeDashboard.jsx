@@ -13,7 +13,7 @@ const HomeDashboard = () => {
           <h4 className="Title">5,345</h4>
           <img
             className="CardIcon"
-            src="src/assets/images/eyes.png"
+            src="images/eyes.png"
             alt="icon"
           />
           <p>Total Customers</p>
@@ -23,7 +23,7 @@ const HomeDashboard = () => {
           <h4 className="Title">500</h4>
           <img
             className="CardIcon"
-            src="src/assets/images/eyes.png"
+            src="images/eyes.png"
             alt="icon"
           />
           <p>Withdrawer Request</p>
@@ -35,37 +35,37 @@ const HomeDashboard = () => {
           <Headline spacer="0 0 0.6rem 0" align="left" text="Loans" />
           <div className="InlineCard">
             <LoansCard
-              img="src/assets/images/star.png"
+              img="images/star.png"
               title="New"
               stat="0"
               bgcolor="#f6ab60"
             />
             <LoansCard
-              img="src/assets/images/thumbup.png"
+              img="images/thumbup.png"
               title="Approved"
               stat="0"
               bgcolor="#32c6c7"
             />
             <LoansCard
-              img="src/assets/images/active.png"
+              img="images/active.png"
               title="Active"
               stat="0"
               bgcolor="#2bb294"
             />
             <LoansCard
-              img="src/assets/images/padding.png"
+              img="images/padding.png"
               title="Pending"
               stat="0"
               bgcolor="#ea5767"
             />
             <LoansCard
-              img="src/assets/images/settled.png"
+              img="images/settled.png"
               title="Settled"
               stat="0"
               bgcolor="#2585c3"
             />
             <LoansCard
-              img="src/assets/images/thumbdown.png"
+              img="images/thumbdown.png"
               title="Declined"
               stat="0"
               bgcolor="#262626"

@@ -32,11 +32,11 @@ const NextPreBtn = () => {
     <div style={styles.container}>
       <div style={styles.btnBox}>
         <button style={styles.btn} id="PrevBtn">
-          <img style={styles.img} src="src/assets/images/arrowleft.png" alt="prev" />{" "}
+          <img style={styles.img} src="images/arrowleft.png" alt="prev" />{" "}
         </button>
         <p>1</p>
         <button style={styles.btn} id="NextBtn">
-          <img style={styles.img} src="src/assets/images/arrowright.png" alt="next" />
+          <img style={styles.img} src="images/arrowright.png" alt="next" />
         </button>
       </div>
     </div>

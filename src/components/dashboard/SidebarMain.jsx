@@ -11,7 +11,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
       <div className="NavIcons SideMain">
         <div className="BrandCon">
           <div className=" LgLogo">
-            <img src="src/assets/images/dlogo.png" alt="boctrust-logo" />
+            <img src="images/dlogo.png" alt="boctrust-logo" />
           </div>
           <p>App User</p>
         </div>
@@ -19,7 +19,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
           <img
             id="dashboard"
             onClick={onMenuItemClick}
-            src="src/assets/images/ddashboard.png"
+            src="images/ddashboard.png"
             alt="dashboard"
           />
           <p id="dashboard" onClick={onMenuItemClick}>
@@ -31,7 +31,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
           <img
             id="myloan"
             onClick={onMenuItemClick}
-            src="src/assets/images/dmyloan.png"
+            src="images/dmyloan.png"
             alt="loan"
           />
           <p id="myloan" onClick={onMenuItemClick}>
@@ -42,7 +42,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
           <img
             id="applyloan"
             onClick={onMenuItemClick}
-            src="src/assets/images/dmyloan.png"
+            src="images/dmyloan.png"
             alt="loan"
           />
           <p id="applyloan" onClick={onMenuItemClick}>
@@ -55,7 +55,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
             <img
               id="transfer"
               onClick={onMenuItemClick}
-              src="src/assets/images/dtransfer.png"
+              src="images/dtransfer.png"
               alt="transfer"
             />
             <p id="transfer" onClick={onMenuItemClick}>
@@ -77,7 +77,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
           <img
             id="transaction"
             onClick={onMenuItemClick}
-            src="src/assets/images/daccount.png"
+            src="images/daccount.png"
             alt="account"
           />
           <p id="transaction" onClick={onMenuItemClick}>
@@ -89,7 +89,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
           <img
             id="profile"
             onClick={onMenuItemClick}
-            src="src/assets/images/dprofile.png"
+            src="images/dprofile.png"
             alt="profile"
           />
           <p id="profile" onClick={onMenuItemClick}>
@@ -101,7 +101,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
           <img
             id="report"
             onClick={onMenuItemClick}
-            src="src/assets/images/dreport.png"
+            src="images/dreport.png"
             alt="report"
           />
           <p id="report" onClick={onMenuItemClick}>

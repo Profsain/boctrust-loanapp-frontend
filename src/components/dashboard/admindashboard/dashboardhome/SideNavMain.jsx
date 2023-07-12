@@ -21,7 +21,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
     <div className="NavIcons SideMain FixSideNav">
       <div className="BrandCon">
         <div className=" LgLogo">
-          <img src="src/assets/images/dlogo.png" alt="boctrust-logo" />
+          <img src="images/dlogo.png" alt="boctrust-logo" />
         </div>
         <p>Admin User</p>
       </div>
@@ -30,7 +30,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="dashboard"
           onClick={onMenuItemClick}
-          src="src/assets/images/ddashboard.png"
+          src="images/ddashboard.png"
           alt="dashboard"
         />
         <p id="dashboard" onClick={onMenuItemClick}>
@@ -44,7 +44,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           <img
             id="customer"
             onClick={onMenuItemClick}
-            src="src/assets/images/dprofile.png"
+            src="images/dprofile.png"
             alt="customer"
           />
           <p id="customer" onClick={onMenuItemClick}>
@@ -70,7 +70,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           <img
             id="myloan"
             onClick={onMenuItemClick}
-            src="src/assets/images/dmyloan.png"
+            src="images/dmyloan.png"
             alt="loan"
           />
           <p id="myloan" onClick={onMenuItemClick}>
@@ -104,7 +104,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="repayment"
           onClick={onMenuItemClick}
-          src="src/assets/images/dtransfer.png"
+          src="images/dtransfer.png"
           alt="repayment"
         />
         <p id="repayment" onClick={onMenuItemClick}>
@@ -116,7 +116,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="accounts"
           onClick={onMenuItemClick}
-          src="src/assets/images/daccount.png"
+          src="images/daccount.png"
           alt="accounts"
         />
         <p id="accounts" onClick={onMenuItemClick}>
@@ -128,7 +128,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="withdraw"
           onClick={onMenuItemClick}
-          src="src/assets/images/dwithdraw.png"
+          src="images/dwithdraw.png"
           alt="withdrawer"
         />
         <p id="withdraw" onClick={onMenuItemClick}>
@@ -140,7 +140,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="transaction"
           onClick={onMenuItemClick}
-          src="src/assets/images/daccount.png"
+          src="images/daccount.png"
           alt="transaction"
         />
         <p id="transaction" onClick={onMenuItemClick}>
@@ -152,7 +152,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="remita"
           onClick={onMenuItemClick}
-          src="src/assets/images/dremita.png"
+          src="images/dremita.png"
           alt="remita"
         />
         <p id="remita" onClick={onMenuItemClick}>
@@ -164,7 +164,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="creditbureau"
           onClick={onMenuItemClick}
-          src="src/assets/images/dreport.png"
+          src="images/dreport.png"
           alt="creditbureau"
         />
         <p id="creditbureau" onClick={onMenuItemClick}>
@@ -176,7 +176,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="mdas"
           onClick={onMenuItemClick}
-          src="src/assets/images/dmda.png"
+          src="images/dmda.png"
           alt="mdas"
         />
         <p id="mdas" onClick={onMenuItemClick}>
@@ -188,7 +188,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="kyc"
           onClick={onMenuItemClick}
-          src="src/assets/images/dkyc.png"
+          src="images/dkyc.png"
           alt="kyc"
         />
         <p id="kyc" onClick={onMenuItemClick}>
@@ -200,7 +200,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="webmanager"
           onClick={onMenuItemClick}
-          src="src/assets/images/dwebsite.png"
+          src="images/dwebsite.png"
           alt="webmanager"
         />
         <p id="webmanager" onClick={onMenuItemClick}>
@@ -212,7 +212,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="withdrawmethod"
           onClick={onMenuItemClick}
-          src="src/assets/images/dwithdrawmethod.png"
+          src="images/dwithdrawmethod.png"
           alt="withdrawmethod"
         />
         <p id="withdrawmethod" onClick={onMenuItemClick}>
@@ -224,7 +224,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="usermanager"
           onClick={onMenuItemClick}
-          src="src/assets/images/dusermanage.png"
+          src="images/dusermanage.png"
           alt="usermanager"
         />
         <p id="usermanager" onClick={onMenuItemClick}>
@@ -236,7 +236,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
         <img
           id="report"
           onClick={onMenuItemClick}
-          src="src/assets/images/dreport.png"
+          src="images/dreport.png"
           alt="report"
         />
         <p id="report" onClick={onMenuItemClick}>
