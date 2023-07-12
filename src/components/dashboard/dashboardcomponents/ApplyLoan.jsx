@@ -14,7 +14,7 @@ const validationSchema = Yup.object().shape({
   note: Yup.string().required("Note is required"),
 });
 
-const debitAccountOptions = [
+const loanProductOptions = [
   { value: "car loan", label: "Car Loan" },
   { value: "salary advance", label: "Salary Advance" },
   // Add more options as needed
@@ -52,7 +52,7 @@ const ApplyLoan = () => {
                 className="Select"
               >
                 <option value="" label="Select a product" />
-                {debitAccountOptions.map((option) => (
+                {loanProductOptions.map((option) => (
                   <option
                     key={option.value}
                     value={option.value}

@@ -18,7 +18,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const closeSubLoan = () => setIsLoanOpen(false);
 
   return (
-    <div className="NavIcons SideMain">
+    <div className="NavIcons SideMain FixSideNav">
       <div className="BrandCon">
         <div className=" LgLogo">
           <img src="src/assets/images/dlogo.png" alt="boctrust-logo" />
@@ -87,7 +87,6 @@ const SideNavMain = ({ onMenuItemClick }) => {
                 Padding Loan
               </li>
               <li id="activeloan" onClick={onMenuItemClick}>
-                
                 Active Loan
               </li>
               <li id="loancalculator" onClick={onMenuItemClick}>

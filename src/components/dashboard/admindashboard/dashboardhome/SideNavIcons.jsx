@@ -2,7 +2,7 @@ import "../../Dashboard.css";
 
 const SideNavIcons = () => {
   return (
-    <div>
+    <div className="FixSideNav">
       <div className="NavIcons">
         <div className="BLogo SBLogo">
           <img src="src/assets/images/dlogo.png" alt="boctrust-logo" />
