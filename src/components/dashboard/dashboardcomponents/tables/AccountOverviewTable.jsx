@@ -5,7 +5,7 @@ const AccountOverviewTable = () => {
   const style = {
       color: "#145098",
       fontWeight: "bold",
-        fontSize: "1.2rem",
+      fontSize: "1.2rem",
   };
 
   return (

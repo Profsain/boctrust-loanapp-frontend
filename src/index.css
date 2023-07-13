@@ -190,5 +190,16 @@ p {
     display: none;
   }
 
+  .DashboardContainer {
+    padding: 0 !important;
+  }
+  .Inline {
+    display: none;
+  }
+
+  .CardSpace {
+    height: 18px;
+  }
+
 }
 

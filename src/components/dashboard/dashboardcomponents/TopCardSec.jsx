@@ -1,12 +1,12 @@
 import { Row, Col } from "react-bootstrap";
 import FigCard from "../shared/FigCard";
-import "../Dashboard.css"
+import "../Dashboard.css";
 
 const TopCardSec = () => {
   return (
     <div className="TopCard">
       <Row>
-        <Col xs={6} md={3}>
+        <Col xs={12} md={3}>
           <FigCard>
             <img
               width="28px"
@@ -18,7 +18,8 @@ const TopCardSec = () => {
             <p>Balance</p>
           </FigCard>
         </Col>
-        <Col xs={6} md={3}>
+
+        <Col xs={12} md={3}>
           <FigCard>
             <img
               width="28px"
@@ -30,7 +31,8 @@ const TopCardSec = () => {
             <p>Total Balance</p>
           </FigCard>
         </Col>
-        <Col xs={6} md={3}>
+
+        <Col xs={12} md={3}>
           <FigCard>
             <img
               width="28px"
@@ -42,7 +44,8 @@ const TopCardSec = () => {
             <p>Upcoming Payments</p>
           </FigCard>
         </Col>
-        <Col xs={6} md={3}>
+
+        <Col xs={12} md={3}>
           <FigCard classname="YellowCard">
             <div id="CardText">
               <h5>

@@ -2,6 +2,10 @@
     margin-top: 9.8rem;
 }
 
+.DashboardHome {
+    padding-right: 5rem;
+}
+
 .NavIcons {
     display: flex;
     flex-direction: column;

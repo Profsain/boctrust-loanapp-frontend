@@ -5,14 +5,11 @@ import RecentTransaction from "./tables/RecentTransaction";
 import UpcomingLoanPayment from "./tables/UpcomingLoanPayment";
 
 const DashboardHome = () => {
-  const style = {
-    paddingRight: "5rem",
-  }
 
   return (
-    <div>
+    <div className="DashboardHome">
       <TopCardSec />
-      <div style={style}>
+      <div>
         <AccountOverviewTable />
         <UpcomingLoanPayment />
         <RecentTransaction />
