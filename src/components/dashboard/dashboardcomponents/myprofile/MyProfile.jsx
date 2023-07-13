@@ -20,7 +20,7 @@ const MyProfile = () => {
     <div style={styles.container}>
       <div>
         <img
-          src="src/assets/images/profileavaterlg.png"
+          src="images/profileavaterlg.png"
           alt="profile-image"
           style={styles.img}
         />
