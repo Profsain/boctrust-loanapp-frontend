@@ -129,7 +129,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
         {isReportOpen ? (
           <div className="SubItem">
             <ul>
-              <li id="accountstatement" onClick={onMenuItemClick}>
+              <li id="report" onClick={onMenuItemClick}>
                 Account Statement
               </li>
               <li id="transactionreport" onClick={onMenuItemClick}>

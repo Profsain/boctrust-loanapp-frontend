@@ -12,6 +12,8 @@ import TransferMoney from "./dashboardcomponents/transferdashboard/TransferMoney
 import WithdrawMoney from "./dashboardcomponents/withdrawer/WithdrawMoney";
 import MyProfile from "./dashboardcomponents/myprofile/MyProfile";
 import Report from "./dashboardcomponents/report/Report";
+import TransactionReport from "./dashboardcomponents/report/TransactionReport";
+import AccountBalance from "./dashboardcomponents/report/AccountBalance";
 import AccountTransaction from "./dashboardcomponents/account/AccountTransaction";
 
 const CustomerDashboard = () => {
@@ -62,6 +64,12 @@ const CustomerDashboard = () => {
       case "report":
         setCurrentTitle("Account Report");
         break;
+      case "transactionreport":
+        setCurrentTitle("Transaction Report");
+        break;
+      case "accountbalance":
+        setCurrentTitle("Account Balances");
+        break;
       default:
         setCurrentTitle("Dashboard");
         break;
@@ -92,6 +100,10 @@ const CustomerDashboard = () => {
         return <MyProfile />;
       case "report":
         return <Report />;
+      case "transactionreport":
+        return <TransactionReport />;
+      case "accountbalance":
+        return <AccountBalance />;
       default:
         return null;
     }
