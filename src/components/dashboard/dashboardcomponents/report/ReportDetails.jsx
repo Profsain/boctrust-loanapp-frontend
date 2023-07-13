@@ -5,7 +5,7 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 const ReportDetails = () => {
   const styles = {
     table: {
-      margin: "0 2.9rem 6rem 0rem",
+      margin: "0 1rem 6rem 0rem",
     },
     head: {
       color: "#fff",

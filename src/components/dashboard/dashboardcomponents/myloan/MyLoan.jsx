@@ -44,8 +44,50 @@ const MyLoan = () => {
             <td>N22300</td>
             <td>22-04-2023</td>
             <td>
-              <BocButton width="100px" cursor="pointer" bgcolor="#ecaa00">
-                Padding
+              <BocButton width="120px" cursor="pointer" bgcolor="#ecaa00">
+                Booked
+              </BocButton>
+            </td>
+          </tr>
+          <tr>
+            <td>1012</td>
+            <td>Car Loan</td>
+            <td>N2,200000</td>
+            <td>N280000</td>
+            <td>N0.00</td>
+            <td>N223000</td>
+            <td>18-05-2023</td>
+            <td>
+              <BocButton width="120px" cursor="pointer" bgcolor="#ecaa66">
+                With Credit
+              </BocButton>
+            </td>
+          </tr>
+          <tr>
+            <td>1013</td>
+            <td>SME Loan</td>
+            <td>N2000000</td>
+            <td>N290000</td>
+            <td>N0.00</td>
+            <td>N90300</td>
+            <td>20-03-2023</td>
+            <td>
+              <BocButton width="120px" cursor="pointer" bgcolor="#7dd50e">
+                Completed
+              </BocButton>
+            </td>
+          </tr>
+          <tr>
+            <td>1023</td>
+            <td>Salary Advance</td>
+            <td>N50000</td>
+            <td>N28000</td>
+            <td>N0.00</td>
+            <td>N23000</td>
+            <td>05-02-2023</td>
+            <td>
+              <BocButton width="120px" cursor="pointer" bgcolor="#7dd50e">
+                Completed
               </BocButton>
             </td>
           </tr>
@@ -58,8 +100,50 @@ const MyLoan = () => {
             <td>N22300</td>
             <td>22-04-2023</td>
             <td>
-              <BocButton width="100px" cursor="pointer" bgcolor="#ecaa00">
-                Padding
+              <BocButton width="120px" cursor="pointer" bgcolor="#145098">
+                With COO
+              </BocButton>
+            </td>
+          </tr>
+          <tr>
+            <td>1010</td>
+            <td>Car Loan</td>
+            <td>N220000</td>
+            <td>N280000</td>
+            <td>N0.00</td>
+            <td>N22300</td>
+            <td>22-04-2023</td>
+            <td>
+              <BocButton width="120px" cursor="pointer" bgcolor="#f64f4f">
+                With Operation
+              </BocButton>
+            </td>
+          </tr>
+          <tr>
+            <td>1010</td>
+            <td>Personal Loan</td>
+            <td>N230000</td>
+            <td>N280000</td>
+            <td>N0.00</td>
+            <td>N22300</td>
+            <td>22-07-2023</td>
+            <td>
+              <BocButton width="120px" cursor="pointer" bgcolor="#ecaa00">
+                Booked
+              </BocButton>
+            </td>
+          </tr>
+          <tr>
+            <td>1010</td>
+            <td>Car Loan</td>
+            <td>N220000</td>
+            <td>N280000</td>
+            <td>N0.00</td>
+            <td>N22300</td>
+            <td>22-04-2023</td>
+            <td>
+              <BocButton width="120px" cursor="pointer" bgcolor="#7dd50e">
+                Completed
               </BocButton>
             </td>
           </tr>
@@ -72,92 +156,8 @@ const MyLoan = () => {
             <td>N22300</td>
             <td>22-04-2023</td>
             <td>
-              <BocButton width="100px" cursor="pointer" bgcolor="#7dd50e">
-                Paid
-              </BocButton>
-            </td>
-          </tr>
-          <tr>
-            <td>1010</td>
-            <td>Personal Loan</td>
-            <td>N220000</td>
-            <td>N280000</td>
-            <td>N0.00</td>
-            <td>N22300</td>
-            <td>22-04-2023</td>
-            <td>
-              <BocButton width="100px" cursor="pointer" bgcolor="#7dd50e">
-                Paid
-              </BocButton>
-            </td>
-          </tr>
-          <tr>
-            <td>1010</td>
-            <td>Personal Loan</td>
-            <td>N220000</td>
-            <td>N280000</td>
-            <td>N0.00</td>
-            <td>N22300</td>
-            <td>22-04-2023</td>
-            <td>
-              <BocButton width="100px" cursor="pointer" bgcolor="#7dd50e">
-                Paid
-              </BocButton>
-            </td>
-          </tr>
-          <tr>
-            <td>1010</td>
-            <td>Personal Loan</td>
-            <td>N220000</td>
-            <td>N280000</td>
-            <td>N0.00</td>
-            <td>N22300</td>
-            <td>22-04-2023</td>
-            <td>
-              <BocButton width="100px" cursor="pointer" bgcolor="#f64f4f">
-                Canceled
-              </BocButton>
-            </td>
-          </tr>
-          <tr>
-            <td>1010</td>
-            <td>Personal Loan</td>
-            <td>N220000</td>
-            <td>N280000</td>
-            <td>N0.00</td>
-            <td>N22300</td>
-            <td>22-04-2023</td>
-            <td>
-              <BocButton width="100px" cursor="pointer" bgcolor="#ecaa00">
-                Padding
-              </BocButton>
-            </td>
-          </tr>
-          <tr>
-            <td>1010</td>
-            <td>Personal Loan</td>
-            <td>N220000</td>
-            <td>N280000</td>
-            <td>N0.00</td>
-            <td>N22300</td>
-            <td>22-04-2023</td>
-            <td>
-              <BocButton width="100px" cursor="pointer" bgcolor="#7dd50e">
-                Paid
-              </BocButton>
-            </td>
-          </tr>
-          <tr>
-            <td>1010</td>
-            <td>Personal Loan</td>
-            <td>N220000</td>
-            <td>N280000</td>
-            <td>N0.00</td>
-            <td>N22300</td>
-            <td>22-04-2023</td>
-            <td>
-              <BocButton width="100px" cursor="pointer" bgcolor="#ecaa00">
-                Padding
+              <BocButton width="120px" cursor="pointer" bgcolor="#ecaa00">
+                Booked
               </BocButton>
             </td>
           </tr>
