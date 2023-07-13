@@ -5,7 +5,7 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 const ReportDetails = () => {
   const styles = {
     table: {
-      margin: "0 1rem 6rem 0rem",
+      margin: "0 1rem 4rem 0rem",
     },
     head: {
       color: "#fff",
@@ -28,7 +28,7 @@ const ReportDetails = () => {
     <div>
       <DashboardHeadline
         height="46px"
-        mspacer="2rem 5rem -2.55rem -2rem"
+        mspacer="2rem 4rem -2.55rem -2rem"
         bgcolor="#145098"
       ></DashboardHeadline>
       <div style={styles.table}>

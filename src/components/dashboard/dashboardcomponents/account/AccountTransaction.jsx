@@ -29,7 +29,7 @@ const AccountTransaction = () => {
     <div>
       <DashboardHeadline
         height="46px"
-        mspacer="2rem 5rem -2.55rem -2rem"
+        mspacer="2rem 4rem -2.55rem -1.5rem"
         bgcolor="#145098"
       ></DashboardHeadline>
       <div style={styles.table}>

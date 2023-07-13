@@ -16,7 +16,7 @@ const TransactionReportSection = () => {
 
   return (
     <div>
-      <DashboardHeadline>Recent Transaction</DashboardHeadline>
+      <DashboardHeadline mspacer="0 3rem 0 0">Recent Transaction</DashboardHeadline>
       <Table borderless hover responsive="sm">
         <thead>
           <tr style={styles.th}>

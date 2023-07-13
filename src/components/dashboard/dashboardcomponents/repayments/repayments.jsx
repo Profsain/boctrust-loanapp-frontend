@@ -5,7 +5,8 @@ import Table from "react-bootstrap/Table";
 const LoanPayment = () => {
     const styles = {
       container: {
-        paddingBottom: "8rem",
+        paddingBottom: "3rem",
+        marginRight: "4rem",
       },
     head: {
       color: "#145098",
@@ -15,7 +16,7 @@ const LoanPayment = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className="RepaymentCon">
       <DashboardHeadline>Upcoming Loan Payment</DashboardHeadline>
       <Table borderless hover responsive="sm">
         <thead>
