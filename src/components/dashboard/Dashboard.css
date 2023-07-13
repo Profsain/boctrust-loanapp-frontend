@@ -1,7 +1,6 @@
 .DashboardContainer {
-    margin-top: 7.8rem;
+    margin-top: 9.8rem;
 }
-
 
 .NavIcons {
     display: flex;
@@ -16,6 +15,10 @@
     padding-top: 2rem;
     padding-bottom: 9rem;
     cursor: pointer;
+}
+
+.MobileNav {
+    display: none;
 }
 
 .FixSideNav {
@@ -38,10 +41,10 @@
 
 
 .SideMain {
-    width: 13rem;
-    padding: 16px 18px 3rem 18px;
+    width: 12.5rem;
+    padding: 16px 18px 18rem 18px;
     align-items: flex-start !important;  
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 700;       
     
 }
@@ -50,7 +53,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 1.1rem;
 }
 
 .IconBox img {

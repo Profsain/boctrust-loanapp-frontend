@@ -1,8 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import DashboardHeadline from "../shared/DashboardHeadline";
-import "../dashboardcomponents/transferdashboard/Transfer.css";
-import BocButton from "../shared/BocButton";
+import DashboardHeadline from "../../shared/DashboardHeadline";
+import "../../dashboardcomponents/transferdashboard/Transfer.css";
+import BocButton from "../../shared/BocButton";
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
@@ -25,7 +25,7 @@ const initialValues = {
   withdrawAmount: "",
 };
 
-const WithdrawMoney= () => {
+const WithdrawMoney = () => {
   const handleSubmit = (values) => {
     // Handle form submission logic here
     console.log(values);

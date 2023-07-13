@@ -179,7 +179,7 @@ const TopNav = () => {
                     </Nav.Link>
                   ) : (
                     <Nav.Link href="/dashboard" className="mx-4">
-                      Dashboard
+                      Login
                     </Nav.Link>
                   )}
                 </Nav>

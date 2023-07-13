@@ -6,7 +6,7 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="container-fluid">
+    <footer className="container-fluid Footer">
       <div className="row FooterTop">
         <div className="col-md-3 col-sm-12">
           <h6 className="FooterHeadline">Quick Links</h6>

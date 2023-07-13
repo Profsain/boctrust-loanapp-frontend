@@ -1,7 +1,7 @@
 import Table from "react-bootstrap/Table";
-import BocButton from "../shared/BocButton";
-import "../Dashboard.css";
-import DashboardHeadline from "../shared/DashboardHeadline";
+import BocButton from "../../shared/BocButton";
+import "../../Dashboard.css";
+import DashboardHeadline from "../../shared/DashboardHeadline";
 
 const AccountTransaction = () => {
   const styles = {

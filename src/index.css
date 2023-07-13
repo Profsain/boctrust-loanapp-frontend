@@ -180,9 +180,15 @@ p {
   .SignUpContainer {
     padding: 22px 0;
   }
+
+  /* dashboar section */
+  .MobileNav {
+    display: block;
+  }
+
+  .DesktopNav {
+    display: none;
+  }
+
 }
-  
-/* .LogContainer {
-  width: 60%;
-} */
 

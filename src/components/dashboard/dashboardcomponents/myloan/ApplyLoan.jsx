@@ -1,8 +1,8 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import DashboardHeadline from "../shared/DashboardHeadline";
-import "./transferdashboard/Transfer.css";
-import BocButton from "../shared/BocButton";
+import DashboardHeadline from "../../shared/DashboardHeadline";
+import "../transferdashboard/Transfer.css";
+import BocButton from "../../shared/BocButton";
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({

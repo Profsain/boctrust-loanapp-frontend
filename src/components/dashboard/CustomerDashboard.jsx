@@ -4,13 +4,15 @@ import "./Dashboard.css";
 import SidebarMain from "./SidebarMain";
 import TopNavber from "./topnavbar/TopNavber";
 import DashboardHome from "./dashboardcomponents/DashboardHome";
-import MyLoan from "./dashboardcomponents/MyLoan";
-import ApplyLoan from "./dashboardcomponents/ApplyLoan";
-import TransferMoney from "./dashboardcomponents//transferdashboard/TransferMoney";
-import WithdrawMoney from "./dashboardcomponents/WithdrawMoney";
+import MyLoan from "./dashboardcomponents/myloan/MyLoan";
+import ApplyLoan from "./dashboardcomponents/myloan/ApplyLoan";
+import LoanCalculator from "./dashboardcomponents/myloan/LoanCalculator";
+import LoanPayment from "./dashboardcomponents/repayments/repayments";
+import TransferMoney from "./dashboardcomponents/transferdashboard/TransferMoney";
+import WithdrawMoney from "./dashboardcomponents/withdrawer/WithdrawMoney";
 import MyProfile from "./dashboardcomponents/myprofile/MyProfile";
 import Report from "./dashboardcomponents/report/Report";
-import AccountTransaction from "./dashboardcomponents/AccountTransaction";
+import AccountTransaction from "./dashboardcomponents/account/AccountTransaction";
 
 const CustomerDashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -38,6 +40,12 @@ const CustomerDashboard = () => {
         break;
       case "applyloan":
         setCurrentTitle("My Loan");
+        break;
+      case "loancalculator":
+        setCurrentTitle("My Loan");
+        break;
+      case "loanrepayment":
+        setCurrentTitle("Loan Repayment");
         break;
       case "transfer":
         setCurrentTitle("Transfer Money");
@@ -70,6 +78,10 @@ const CustomerDashboard = () => {
         return <MyLoan />;
       case "applyloan":
         return <ApplyLoan />;
+      case "loancalculator":
+        return <LoanCalculator />;
+      case "loanrepayment":
+        return <LoanPayment />;
       case "transfer":
         return <TransferMoney />;
       case "withdraw":
@@ -90,15 +102,22 @@ const CustomerDashboard = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-2 SideNavContainer">
-            {!showSidebar ? (
-              <div className="SideNavIcon" onMouseOver={handleMouseOver}>
-                <SidebarIcons />
-              </div>
-            ) : (
-              <div className="SideNavMain" onMouseLeave={handleMouseOut}>
-                <SidebarMain onMenuItemClick={handleMenuItemClick} />
-              </div>
-            )}
+            {/* desktop navbar  */}
+            <div className="DesktopNav">
+              <SidebarMain onMenuItemClick={handleMenuItemClick} />
+            </div>
+            {/* mobile navbar  */}
+            <div className="MobileNav">
+              {!showSidebar ? (
+                <div className="SideNavIcon" onMouseOver={handleMouseOver}>
+                  <SidebarIcons />
+                </div>
+              ) : (
+                <div className="SideNavMain" onMouseLeave={handleMouseOut}>
+                  <SidebarMain onMenuItemClick={handleMenuItemClick} />
+                </div>
+              )}
+            </div>
           </div>
           <div className="col-10">
             <div className="TopNavber">

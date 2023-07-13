@@ -1,7 +1,7 @@
 import Table from "react-bootstrap/Table";
-import BocButton from "../shared/BocButton";
-import "../Dashboard.css"
-import DashboardHeadline from "../shared/DashboardHeadline";
+import BocButton from "../../shared/BocButton";
+import "../../Dashboard.css";
+import DashboardHeadline from "../../shared/DashboardHeadline";
 
 const MyLoan = () => {
   const styles = {
@@ -16,18 +16,6 @@ const MyLoan = () => {
 
   return (
     <div>
-      {/* <DashboardHeadline mspacer="2rem 5rem 1rem -2rem" bgcolor="#145098">
-        <div className="CustomTableHead">
-          <h6>Loan ID</h6>
-          <h6>Loan Product</h6>
-          <h6>Applied Amount</h6>
-          <h6>Total Payable</h6>
-          <h6>Amount Paid</h6>
-          <h6>Due Amount</h6>
-          <h6>Release Date</h6>
-          <h6>Status</h6>
-        </div>
-      </DashboardHeadline> */}
       <DashboardHeadline
         height="46px"
         mspacer="2rem 2rem -2.55rem -2rem"
