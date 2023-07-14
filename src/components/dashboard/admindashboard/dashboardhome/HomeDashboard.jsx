@@ -36,40 +36,35 @@ const HomeDashboard = () => {
           <div className="InlineCard">
             <LoansCard
               img="images/star.png"
-              title="New"
+              title="Booked"
+              stat="0"
+              bgcolor="#ecaa00"
+            />
+            <LoansCard
+              img="images/star.png"
+              title="With Credit"
               stat="0"
               bgcolor="#f6ab60"
             />
             <LoansCard
               img="images/thumbup.png"
-              title="Approved"
+              title="With COO"
               stat="0"
               bgcolor="#32c6c7"
             />
             <LoansCard
               img="images/active.png"
-              title="Active"
+              title="Completed"
               stat="0"
               bgcolor="#2bb294"
             />
             <LoansCard
               img="images/padding.png"
-              title="Pending"
+              title="With Operations"
               stat="0"
               bgcolor="#ea5767"
             />
-            <LoansCard
-              img="images/settled.png"
-              title="Settled"
-              stat="0"
-              bgcolor="#2585c3"
-            />
-            <LoansCard
-              img="images/thumbdown.png"
-              title="Declined"
-              stat="0"
-              bgcolor="#262626"
-            />
+          
           </div>
         </div>
 
@@ -107,7 +102,7 @@ const HomeDashboard = () => {
           </div>
         </div>
         <div className="LoansStat">
-          <Headline spacer="1.5rem 0 0.6rem 0" align="left" text="Release" />
+          <Headline spacer="1.5rem 0 0.6rem 0" align="left" text="Disbursement" />
           <div className="InlineCard">
             <StatCard
               day="Today"

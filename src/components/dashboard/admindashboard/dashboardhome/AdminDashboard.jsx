@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../Dashboard.css";
 import TopNavber from "../../topnavbar/TopNavber";
 import SideNavIcons from "./SideNavIcons";
@@ -27,9 +27,13 @@ const AdminDashboard = () => {
   const [currentComponent, setCurrentComponent] = useState("dashboard");
   const [currentTitle, setCurrentTitle] = useState("Dashboard");
 
+  // scroll to the top of the page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentComponent]);
+
   const handleMouseOver = () => {
     setShowSidebar(true);
-    
   };
 
   const handleMouseOut = () => {
@@ -154,15 +158,20 @@ const AdminDashboard = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-2 SideNavContainer">
-            {!showSidebar ? (
-              <div className="SideNavIcon" onMouseOver={handleMouseOver}>
-                <SideNavIcons />
-              </div>
-            ) : (
-              <div className="SideNavMain" onMouseLeave={handleMouseOut}>
-                <SideNavMain onMenuItemClick={handleMenuItemClick} />
-              </div>
-            )}
+            {/* desktop navbar */}
+            <SideNavMain onMenuItemClick={handleMenuItemClick} />
+            {/* mobile navbar */}
+            <div className="MobileNav">
+              {!showSidebar ? (
+                <div className="SideNavIcon" onMouseOver={handleMouseOver}>
+                  <SideNavIcons />
+                </div>
+              ) : (
+                <div className="SideNavMain" onMouseLeave={handleMouseOut}>
+                  <SideNavMain onMenuItemClick={handleMenuItemClick} />
+                </div>
+              )}
+            </div>
           </div>
           <div className="col-10">
             <div className="TopNavber">

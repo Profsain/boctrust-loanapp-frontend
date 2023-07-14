@@ -74,7 +74,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
             alt="loan"
           />
           <p id="myloan" onClick={onMenuItemClick}>
-            My Loan
+            My Loans
           </p>
         </div>
         {isLoanOpen ? (
@@ -83,8 +83,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
               <li id="allloan" onClick={onMenuItemClick}>
                 All Loans
               </li>
-              <li id="paddingloan" onClick={onMenuItemClick}>
-                Padding Loan
+              <li id="pendingloan" onClick={onMenuItemClick}>
+                Pending Loan
               </li>
               <li id="activeloan" onClick={onMenuItemClick}>
                 Active Loan
@@ -132,7 +132,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           alt="withdrawer"
         />
         <p id="withdraw" onClick={onMenuItemClick}>
-          Withdraw Requests
+          Withdrawer Requests
         </p>
       </div>
 

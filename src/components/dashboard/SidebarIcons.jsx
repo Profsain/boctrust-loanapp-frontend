@@ -2,8 +2,8 @@ import "./Dashboard.css";
 
 const SidebarIcons = () => {
   return (
-    <div className="FixSideNav">
-      <div className="NavIcons">
+    <div className="FixSideNav ">
+      <div className="NavIcons .MobileNav">
         <div className="BLogo SBLogo">
           <img src="images/dlogo.png" alt="boctrust-logo" />
         </div>

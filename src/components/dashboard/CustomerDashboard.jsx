@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SidebarIcons from "./SidebarIcons";
 import "./Dashboard.css";
 import SidebarMain from "./SidebarMain";
@@ -108,6 +108,11 @@ const CustomerDashboard = () => {
         return null;
     }
   };
+
+  // scroll to the top of the page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentComponent]);
 
   return (
     <div className="DashboardContainer">
