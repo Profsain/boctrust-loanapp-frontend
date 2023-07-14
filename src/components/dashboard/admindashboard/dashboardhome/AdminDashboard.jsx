@@ -9,6 +9,7 @@ import CustomersDashboard from "../customers/CustomersDashboard";
 import AddCustomer from "../customers/AddCustomer";
 import CustomersRequest from "../customers/CustomersRequest"
 import HomeDashboard from "./HomeDashboard";
+import Branches from "../branches/Branches";
 import MdasEmployers from "../employers/MdasEmployers";
 import KycCheck from "../kyc/KycCheck";
 import LoanDashboard from "../loan/LoanDashboard";
@@ -47,6 +48,9 @@ const AdminDashboard = () => {
     switch (id) {
       case "dashboard":
         setCurrentTitle("Dashboard");
+        break;
+      case "branches":
+        setCurrentTitle("Branches");
         break;
       case "customer":
         setCurrentTitle("Customer List");
@@ -114,6 +118,8 @@ const AdminDashboard = () => {
     switch (currentComponent) {
       case "dashboard":
         return <HomeDashboard />;
+      case "branches":
+        return <Branches />;
       case "customer":
         return <CustomersDashboard />;
       case "addcustomer":

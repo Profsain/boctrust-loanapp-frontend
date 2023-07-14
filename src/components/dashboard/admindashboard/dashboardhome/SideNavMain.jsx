@@ -37,6 +37,17 @@ const SideNavMain = ({ onMenuItemClick }) => {
           Dashboard
         </p>
       </div>
+      <div id="branches" className="IconBox" onClick={onMenuItemClick}>
+        <img
+          id="branches"
+          onClick={onMenuItemClick}
+          src="images/dmda.png"
+          alt="branches"
+        />
+        <p id="branches" onClick={onMenuItemClick}>
+          Branches
+        </p>
+      </div>
 
       {/* Menu with sub item */}
       <div onMouseOver={openSubItem} onMouseLeave={closeSubItem}>
