@@ -4,6 +4,9 @@ import Table from "react-bootstrap/Table";
 
 const RecentTransaction = () => {
   const styles = {
+    table: {
+      marginLeft: "2rem",
+    },
     th: {
       color: "#145098",
       fontWeight: "bold",
@@ -17,7 +20,7 @@ const RecentTransaction = () => {
   return (
     <div>
       <DashboardHeadline>Recent Transaction</DashboardHeadline>
-      <Table borderless hover responsive="sm">
+      <Table borderless hover responsive="sm" style={styles.table}>
         <thead>
           <tr style={styles.th}>
             <th>Date</th>

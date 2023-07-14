@@ -2,18 +2,19 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 import Table from "react-bootstrap/Table";
 
 const AccountOverviewTable = () => {
-  const style = {
-      color: "#145098",
-      fontWeight: "bold",
-      fontSize: "1.2rem",
+  const styles = {
+    table: {
+      marginLeft: "2rem",
+    },
+    head: { color: "#145098", fontWeight: "bold", fontSize: "1.2rem" },
   };
 
   return (
     <div>
       <DashboardHeadline>Account Overview</DashboardHeadline>
-      <Table borderless hover responsive="sm">
+      <Table borderless hover responsive="sm" style={styles.table}>
         <thead>
-          <tr style={style}>
+          <tr style={styles.head}>
             <th>Account Number</th>
             <th>Account Type</th>
             <th>Balance</th>

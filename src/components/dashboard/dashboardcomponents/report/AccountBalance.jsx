@@ -25,10 +25,10 @@ const initialValues = {
 };
 
 const AccountBalance = () => {
-    const styles = {
-        main: {
-            margin: "0 4rem 0 0",
-        },
+  const styles = {
+    main: {
+      margin: "0 4rem 0 0",
+    },
     container: {
       display: "flex",
       justifyContent: "center",
@@ -37,6 +37,10 @@ const AccountBalance = () => {
     },
     input: {
       width: "300px",
+    },
+    table: {
+      marginLeft: "3rem",
+      color: "#145098",
     },
     th: {
       color: "#145098",
@@ -152,7 +156,7 @@ const AccountBalance = () => {
       {/* balance table  */}
       <div style={styles.main}>
         <DashboardHeadline bgcolor="#ecaa00"></DashboardHeadline>
-        <Table borderless hover responsive="sm">
+        <Table borderless hover responsive="sm" style={styles.table}>
           <thead>
             <tr style={styles.th}>
               <th>Date</th>

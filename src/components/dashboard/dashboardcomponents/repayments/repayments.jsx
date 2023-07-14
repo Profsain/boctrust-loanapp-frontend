@@ -8,6 +8,9 @@ const LoanPayment = () => {
         paddingBottom: "3rem",
         marginRight: "4rem",
       },
+      table: {
+        marginLeft: "2rem",
+      },
     head: {
       color: "#145098",
       fontWeight: "bold",
@@ -18,7 +21,7 @@ const LoanPayment = () => {
   return (
     <div style={styles.container} className="RepaymentCon">
       <DashboardHeadline>Upcoming Loan Payment</DashboardHeadline>
-      <Table borderless hover responsive="sm">
+      <Table borderless hover responsive="sm" style={styles.table}>
         <thead>
           <tr style={styles.head}>
             <th>Loan ID</th>

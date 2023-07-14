@@ -3,18 +3,19 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 import Table from "react-bootstrap/Table";
 
 const UpcomingLoanPayment = () => {
-  const style = {
-    color: "#145098",
-    fontWeight: "bold",
-    fontSize: "1.2rem",
+  const styles = {
+    table: {
+      marginLeft: "2rem",
+    },
+    head: { color: "#145098", fontWeight: "bold", fontSize: "1.2rem" },
   };
 
   return (
     <div>
       <DashboardHeadline>Upcoming Loan Payment</DashboardHeadline>
-      <Table borderless hover responsive="sm">
+      <Table borderless hover responsive="sm" style={styles.table}>
         <thead>
-          <tr style={style}>
+          <tr style={styles.head}>
             <th>Loan ID</th>
             <th>Next Payment Date</th>
             <th>Status</th>

@@ -9,8 +9,8 @@ const MyLoan = () => {
       color: "#fff",
       fontSize: "1rem",
     },
-    body: {
-      marginRight: "3rem",
+    table: {
+      marginLeft: "-1rem",
     },
   };
 
@@ -21,7 +21,7 @@ const MyLoan = () => {
         mspacer="2rem 2rem -2.55rem -2rem"
         bgcolor="#145098"
       ></DashboardHeadline>
-      <Table borderless hover responsive="sm" sty>
+      <Table borderless hover responsive="sm" style={styles.table} >
         <thead style={styles.head}>
           <tr>
             <th>Loan ID</th>
@@ -34,7 +34,7 @@ const MyLoan = () => {
             <th>Status</th>
           </tr>
         </thead>
-        <tbody style={styles.body}>
+        <tbody>
           <tr>
             <td>1010</td>
             <td>Personal Loan</td>
