@@ -179,7 +179,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           alt="creditbureau"
         />
         <p id="creditbureau" onClick={onMenuItemClick}>
-          Credit Bureau Check
+          Credit Check
         </p>
       </div>
 
