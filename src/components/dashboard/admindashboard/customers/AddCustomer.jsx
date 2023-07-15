@@ -21,7 +21,7 @@ const AddCustomer = () => {
 
   return (
     <div className="TransContainer">
-      <DashboardHeadline>New Customer Form</DashboardHeadline>
+      <DashboardHeadline>New Customer Form </DashboardHeadline>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}

@@ -65,6 +65,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
         {isOpen ? (
           <div className="SubItem">
             <ul>
+              <li id="customer" onClick={onMenuItemClick}>
+                All Customer
+              </li>
               <li id="addcustomer" onClick={onMenuItemClick}>
                 Add Customer
               </li>
