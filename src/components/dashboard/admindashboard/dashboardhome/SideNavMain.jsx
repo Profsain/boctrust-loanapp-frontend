@@ -94,13 +94,13 @@ const SideNavMain = ({ onMenuItemClick }) => {
         {isLoanOpen ? (
           <div className="SubItem">
             <ul>
-              <li id="allloan" onClick={onMenuItemClick}>
+              <li id="myloan" onClick={onMenuItemClick}>
                 All Loans
               </li>
-              <li id="pendingloan" onClick={onMenuItemClick}>
+              <li id="pendingloans" onClick={onMenuItemClick}>
                 Pending Loan
               </li>
-              <li id="activeloan" onClick={onMenuItemClick}>
+              <li id="activeloans" onClick={onMenuItemClick}>
                 Active Loan
               </li>
               <li id="loancalculator" onClick={onMenuItemClick}>

@@ -13,6 +13,9 @@ import Branches from "../branches/Branches";
 import MdasEmployers from "../employers/MdasEmployers";
 import KycCheck from "../kyc/KycCheck";
 import LoanDashboard from "../loan/LoanDashboard";
+import PendingLoans from "../loan/PendingLoans";
+import ActiveLoans from "../loan/ActiveLoans";
+import LoanCalculator from "../loan/LoanCalculator";
 import LoanProducts from "../loan/LoanProducts";
 import RemitaDashboard from "../remita/RemitaDashboard";
 import RepaymentDashboard from "../repayment/RepaymentDashboard";
@@ -63,6 +66,15 @@ const AdminDashboard = () => {
         break;
       case "myloan":
         setCurrentTitle("Loan Dashboard");
+        break;
+      case "pendingloans":
+        setCurrentTitle("Pending Loans");
+        break;
+      case "activeloans":
+        setCurrentTitle("Active Loans");
+        break;
+      case "loancalculator":
+        setCurrentTitle("Loan Calculator");
         break;
       case "loanproducts":
         setCurrentTitle("Loan Products");
@@ -128,6 +140,12 @@ const AdminDashboard = () => {
         return <CustomersRequest />;
       case "myloan":
         return <LoanDashboard />;
+      case "pendingloans":
+        return <PendingLoans />;
+      case "activeloans":
+        return <ActiveLoans />;
+      case "loancalculator":
+        return <LoanCalculator />;
       case "loanproducts":
         return <LoanProducts />;
       case "repayment":
