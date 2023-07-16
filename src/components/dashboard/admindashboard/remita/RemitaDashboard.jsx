@@ -31,7 +31,7 @@ const RemitaDashboard = () => {
     }
   };
   return (
-    <div style={styles.container}>
+    <div className="DetailSection">
       <div>
         <Headline text="View by:" />
         <div style={styles.btnBox}>
