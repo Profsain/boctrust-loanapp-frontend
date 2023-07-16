@@ -64,7 +64,7 @@ const CheckSalaryHistory = () => {
                 <th>Account Number</th>
                 <th>BVN</th>
                 <th>Do Check</th>
-                <th>Action</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
