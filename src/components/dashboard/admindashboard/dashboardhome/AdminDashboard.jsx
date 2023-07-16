@@ -4,6 +4,7 @@ import TopNavber from "../../topnavbar/TopNavber";
 import SideNavIcons from "./SideNavIcons";
 import SideNavMain from "./SideNavMain";
 import AccountDashboard from "../account/AccountDashboard";
+import AccountTypes from "../account/AccountTypes";
 import CreditBureauDashboard from "../creditbureau/CreditBureauDashboard";
 import CustomersDashboard from "../customers/CustomersDashboard";
 import AddCustomer from "../customers/AddCustomer";
@@ -88,6 +89,9 @@ const AdminDashboard = () => {
       case "accounts":
         setCurrentTitle("Accounts");
         break;
+      case "accounttypes":
+        setCurrentTitle("Account Types");
+        break;
       case "withdraw":
         setCurrentTitle("Withdraw Requests");
         break;
@@ -152,6 +156,8 @@ const AdminDashboard = () => {
         return <RepaymentDashboard />;
       case "accounts":
         return <AccountDashboard />;
+      case "accounttypes":
+        return <AccountTypes />;
       case "withdraw":
         return <WithdrawRequestDashboard />;
       case "transaction":

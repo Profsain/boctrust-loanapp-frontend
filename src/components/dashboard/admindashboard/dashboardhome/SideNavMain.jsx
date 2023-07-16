@@ -5,6 +5,7 @@ import "../../Dashboard.css";
 const SideNavMain = ({ onMenuItemClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoanOpen, setIsLoanOpen] = useState(false);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
 
   const openSubItem = () => {
     setIsOpen(true);
@@ -16,6 +17,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
   const openSubLoan = () => setIsLoanOpen(true);
   const closeSubLoan = () => setIsLoanOpen(false);
+  const openSubAccount = () => setIsAccountOpen(true);
+  const closeSubAccount = () => setIsAccountOpen(false);
 
   return (
     <div className="NavIcons SideMain FixSideNav">
@@ -126,16 +129,30 @@ const SideNavMain = ({ onMenuItemClick }) => {
         </p>
       </div>
 
-      <div id="accounts" className="IconBox" onClick={onMenuItemClick}>
-        <img
-          id="accounts"
-          onClick={onMenuItemClick}
-          src="images/daccount.png"
-          alt="accounts"
-        />
-        <p id="accounts" onClick={onMenuItemClick}>
-          Accounts
-        </p>
+      <div onMouseOver={openSubAccount} onMouseLeave={closeSubAccount}>
+        <div id="accounts" className="IconBox" onClick={onMenuItemClick}>
+          <img
+            id="accounts"
+            onClick={onMenuItemClick}
+            src="images/daccount.png"
+            alt="accounts"
+          />
+          <p id="accounts" onClick={onMenuItemClick}>
+            Accounts
+          </p>
+        </div>
+        {isAccountOpen ? (
+          <div className="SubItem">
+            <ul>
+              <li id="accounts" onClick={onMenuItemClick}>
+                All Accounts
+              </li>
+              <li id="accounttypes" onClick={onMenuItemClick}>
+                Account Types
+              </li>
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       <div id="withdraw" className="IconBox" onClick={onMenuItemClick}>
