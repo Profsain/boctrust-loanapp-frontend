@@ -19,6 +19,10 @@ import ActiveLoans from "../loan/ActiveLoans";
 import LoanCalculator from "../loan/LoanCalculator";
 import LoanProducts from "../loan/LoanProducts";
 import RemitaDashboard from "../remita/RemitaDashboard";
+import CheckSalaryHistory from "../remita/CheckSalaryHistory";
+import CollectionNotifications from "../remita/CollectionNotifications";
+import MandateHistory from "../remita/MandateHistory";
+import StopCollection from "../remita/StopCollection";
 import RepaymentDashboard from "../repayment/RepaymentDashboard";
 import ReportDashboard from "../report/ReportDashboard";
 import TransactionDashboard from "../transaction/TransactionDashboard";
@@ -99,7 +103,19 @@ const AdminDashboard = () => {
         setCurrentTitle("Transaction History");
         break;
       case "remita":
-        setCurrentTitle("Remita Dashboard");
+        setCurrentTitle("Loan Disbursements");
+        break;
+      case "checksalaryhistory":
+        setCurrentTitle("Check Salary History");
+        break;
+      case "collectionnotifications":
+        setCurrentTitle("Collection Notification");
+        break;
+      case "mandatehistory":
+        setCurrentTitle("Mandate History");
+        break;
+      case "stopcollections":
+        setCurrentTitle("Stop Collections Dashboard");
         break;
       case "creditbureau":
         setCurrentTitle("Credit Bureau Check");
@@ -164,6 +180,14 @@ const AdminDashboard = () => {
         return <TransactionDashboard />;
       case "remita":
         return <RemitaDashboard />;
+      case "checksalaryhistory":
+        return <CheckSalaryHistory />;
+      case "collectionnotifications":
+        return <CollectionNotifications />;
+      case "mandatehistory":
+        return <MandateHistory />;
+      case "stopcollections":
+        return <StopCollection />;
       case "creditbureau":
         return <CreditBureauDashboard />;
       case "mdas":

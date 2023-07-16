@@ -6,19 +6,19 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoanOpen, setIsLoanOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [isRemitaOpen, setIsRemitaOpen] = useState(false);
 
-  const openSubItem = () => {
-    setIsOpen(true);
-  };
-
-  const closeSubItem = () => {
-    setIsOpen(false);
-  };
+  const openSubItem = () => setIsOpen(true);
+  const closeSubItem = () => setIsOpen(false);
 
   const openSubLoan = () => setIsLoanOpen(true);
   const closeSubLoan = () => setIsLoanOpen(false);
+
   const openSubAccount = () => setIsAccountOpen(true);
   const closeSubAccount = () => setIsAccountOpen(false);
+
+  const openSubRemita = () => setIsRemitaOpen(true);
+  const closeSubRemita = () => setIsRemitaOpen(false);
 
   return (
     <div className="NavIcons SideMain FixSideNav">
@@ -179,16 +179,39 @@ const SideNavMain = ({ onMenuItemClick }) => {
         </p>
       </div>
 
-      <div id="remita" className="IconBox" onClick={onMenuItemClick}>
-        <img
-          id="remita"
-          onClick={onMenuItemClick}
-          src="images/dremita.png"
-          alt="remita"
-        />
-        <p id="remita" onClick={onMenuItemClick}>
-          Remita Collections
-        </p>
+      <div onMouseOver={openSubRemita} onMouseLeave={closeSubRemita}>
+        <div id="remita" className="IconBox" onClick={onMenuItemClick}>
+          <img
+            id="remita"
+            onClick={onMenuItemClick}
+            src="images/dremita.png"
+            alt="remita"
+          />
+          <p id="remita" onClick={onMenuItemClick}>
+            Remita Collections
+          </p>
+        </div>
+        {isRemitaOpen ? (
+          <div className="SubItem">
+            <ul>
+              <li id="remita" onClick={onMenuItemClick}>
+                Loan Disbursements
+              </li>
+              <li id="checksalaryhistory" onClick={onMenuItemClick}>
+                Check Salary History
+              </li>
+              <li id="collectionnotifications" onClick={onMenuItemClick}>
+                Collection Notification
+              </li>
+              <li id="mandatehistory" onClick={onMenuItemClick}>
+                Mandate History
+              </li>
+              <li id="stopcollections" onClick={onMenuItemClick}>
+                Stop Collections
+              </li>
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       <div id="creditbureau" className="IconBox" onClick={onMenuItemClick}>

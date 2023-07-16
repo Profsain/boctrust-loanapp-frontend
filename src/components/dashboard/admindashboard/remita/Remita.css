@@ -1,0 +1,24 @@
+.DetailsCon {
+    background-color: #f2f2f7;
+    padding: 4rem;
+}
+.RowSection {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    /* align-items: center; */
+}
+
+.RowCard {
+    padding: 8px;
+    font-weight: 900;
+    font-size: 1.3rem;
+    
+}
+
+.RowText span {
+    
+    background-color: #fff;
+    padding: 0 38px;
+    width: 200px !important;
+}

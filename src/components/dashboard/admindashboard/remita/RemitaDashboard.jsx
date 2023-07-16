@@ -1,7 +1,8 @@
 import DashboardHeadline from "../../shared/DashboardHeadline";
+import DetailsCard from "./DetailsCard";
 import Headline from "../../../shared/Headline";
 import BocButton from "../../shared/BocButton";
-import DetailsCard from "./DetailsCard";
+
 const RemitaDashboard = () => {
   const styles = {
     container: {
@@ -31,18 +32,22 @@ const RemitaDashboard = () => {
   };
   return (
     <div style={styles.container}>
-      <Headline text="View by:" />
-      <div style={styles.btnBox}>
-        <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
-          Disbursement Today
-        </BocButton>
-        <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
-          Date Range
-        </BocButton>
-        <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
-          Specific User
-        </BocButton>
+      <div>
+        <Headline text="View by:" />
+        <div style={styles.btnBox}>
+          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+            Disbursement Today
+          </BocButton>
+          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+            Date Range
+          </BocButton>
+          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+            Specific User
+          </BocButton>
+        </div>
       </div>
+
+      {/* details section */}
       <div style={styles.view}>
         <DashboardHeadline mspacer="2rem 0 5rem 0">
           View your Remita Loan Disbursement Notifications
