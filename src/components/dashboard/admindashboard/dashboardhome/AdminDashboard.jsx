@@ -11,7 +11,7 @@ import AddCustomer from "../customers/AddCustomer";
 import CustomersRequest from "../customers/CustomersRequest"
 import HomeDashboard from "./HomeDashboard";
 import Branches from "../branches/Branches";
-import MdasEmployers from "../employers/MdasEmployers";
+import MdasEmployers from "../employersmanager/MdasEmployers";
 import KycCheck from "../kyc/KycCheck";
 import LoanDashboard from "../loan/LoanDashboard";
 import PendingLoans from "../loan/PendingLoans";

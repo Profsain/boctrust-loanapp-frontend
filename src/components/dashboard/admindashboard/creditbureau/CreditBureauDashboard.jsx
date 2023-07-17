@@ -1,7 +1,11 @@
+import CreditCheckForm from "./CreditCheckForm";
 const CreditBureauDashboard = () => {
   return (
     <div>
-      <h1>Credit Bureau Dashboard</h1>
+      {/* search bar  */}
+
+      {/* credit check form  */}
+      <CreditCheckForm />
     </div>
   );
 };

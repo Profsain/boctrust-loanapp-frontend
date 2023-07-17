@@ -41,3 +41,14 @@
     text-align: center;
     margin-top: 2rem;
 }
+
+.CreditSearch {
+    height: 1.9rem;
+    width: 90%;
+}
+
+.SearchIcon {
+    position: relative;
+    right: 2rem;
+    bottom: 0.2rem;
+}

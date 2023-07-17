@@ -234,7 +234,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           alt="mdas"
         />
         <p id="mdas" onClick={onMenuItemClick}>
-          MDAs/Employer
+          Employer Manager
         </p>
       </div>
 
