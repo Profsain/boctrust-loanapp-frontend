@@ -12,6 +12,8 @@ import CustomersRequest from "../customers/CustomersRequest"
 import HomeDashboard from "./HomeDashboard";
 import Branches from "../branches/Branches";
 import MdasEmployers from "../employersmanager/MdasEmployers";
+import AddEmployer from "../employersmanager/AddEmployer";
+import MandateRules from "../employersmanager/MandateRules";
 import KycCheck from "../kyc/KycCheck";
 import LoanDashboard from "../loan/LoanDashboard";
 import PendingLoans from "../loan/PendingLoans";
@@ -121,7 +123,13 @@ const AdminDashboard = () => {
         setCurrentTitle("Credit Bureau Check");
         break;
       case "mdas":
-        setCurrentTitle("MDAs/Employers");
+        setCurrentTitle("Employers/MDAs Manager");
+        break;
+      case "addemployer":
+        setCurrentTitle("Employers/MDAs Manager");
+        break;
+      case "mandaterules":
+        setCurrentTitle("Employers/MDAs Manager");
         break;
       case "kyc":
         setCurrentTitle("KYC Manager");
@@ -192,6 +200,10 @@ const AdminDashboard = () => {
         return <CreditBureauDashboard />;
       case "mdas":
         return <MdasEmployers />;
+      case "addemployer":
+        return <AddEmployer />;
+      case "mandaterules":
+        return <MandateRules />;
       case "kyc":
         return <KycCheck />;
       case "webmanager":

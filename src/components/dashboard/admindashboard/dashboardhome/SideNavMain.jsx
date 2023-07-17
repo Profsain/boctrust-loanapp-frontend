@@ -7,6 +7,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const [isLoanOpen, setIsLoanOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [isRemitaOpen, setIsRemitaOpen] = useState(false);
+  const [isEmployerOpen, setIsEmployerOpen] = useState(false);
 
   const openSubItem = () => setIsOpen(true);
   const closeSubItem = () => setIsOpen(false);
@@ -19,6 +20,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
   const openSubRemita = () => setIsRemitaOpen(true);
   const closeSubRemita = () => setIsRemitaOpen(false);
+
+  const openSubEmployer = () => setIsEmployerOpen(true);
+  const closeSubEmployer = () => setIsEmployerOpen(false);
 
   return (
     <div className="NavIcons SideMain FixSideNav">
@@ -226,16 +230,33 @@ const SideNavMain = ({ onMenuItemClick }) => {
         </p>
       </div>
 
-      <div id="mdas" className="IconBox" onClick={onMenuItemClick}>
-        <img
-          id="mdas"
-          onClick={onMenuItemClick}
-          src="images/dmda.png"
-          alt="mdas"
-        />
-        <p id="mdas" onClick={onMenuItemClick}>
-          Employer Manager
-        </p>
+      <div onMouseOver={openSubEmployer} onMouseLeave={closeSubEmployer}>
+        <div id="mdas" className="IconBox" onClick={onMenuItemClick}>
+          <img
+            id="mdas"
+            onClick={onMenuItemClick}
+            src="images/dmda.png"
+            alt="mdas"
+          />
+          <p id="mdas" onClick={onMenuItemClick}>
+            Employer Manager
+          </p>
+        </div>
+        {isEmployerOpen ? (
+          <div className="SubItem">
+            <ul>
+              <li id="mdas" onClick={onMenuItemClick}>
+                All Employers
+              </li>
+              <li id="addemployer" onClick={onMenuItemClick}>
+                Add Employer
+              </li>
+              <li id="mandaterules" onClick={onMenuItemClick}>
+                Mandate Rules
+              </li>
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       <div id="kyc" className="IconBox" onClick={onMenuItemClick}>
