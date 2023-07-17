@@ -1,0 +1,51 @@
+.Section {
+    margin: 0.8rem 4rem 2rem 1.9rem;
+}
+.OfficialIdCard {
+    width: 500px;
+    padding-left: 3rem;
+
+}
+
+.FaceCapture {
+    height: 270px;
+    width: 290px;
+    margin-left: 7rem;
+}
+
+.TimeStamp {
+    position: relative;
+    left: 10rem;
+    bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    height: 60px;
+    background-color: #145098;
+    color: #fff;
+    padding: 8px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+.Time {
+    margin-top: -12px;
+}
+
+.MatchCon {
+    margin-left: 4rem;
+}
+
+.Match {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.Match p {
+    margin-right: 1rem;
+}
+label {
+    margin: 1rem;
+    margin-top: -2.5rem;
+}

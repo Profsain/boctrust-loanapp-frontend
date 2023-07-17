@@ -108,7 +108,10 @@ const MdasEmployers = () => {
               <tr>
                 <td>E001</td>
                 <td>Nigerian Airforce</td>
-                <td>365 Days Eligibility (<span style={styles.completed}>Stacked</span>)</td>
+                <td>
+                  365 Days Eligibility (
+                  <span style={styles.completed}>Stacked</span>)
+                </td>
                 <td>04-03-2023</td>
                 <td>
                   <BocButton
@@ -122,6 +125,7 @@ const MdasEmployers = () => {
                   </BocButton>
                 </td>
               </tr>
+
               <tr>
                 <td>E004</td>
                 <td>Nigeria Custom</td>

@@ -41,10 +41,11 @@ const CreditCheckForm = () => {
       <DashboardHeadline
         bgcolor="#145098"
         mspacer="1rem 4rem 0 1rem"
+        padding="0.3rem 0 0 1rem"
         height="70px"
       >
         <div>
-          <input type="text" className="CreditSearch" />
+          <input placeholder="Search" type="text" className="CreditSearch" />
           <img
             src="images/search.png"
             alt="search-icon"
