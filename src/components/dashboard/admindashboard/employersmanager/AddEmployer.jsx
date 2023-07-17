@@ -89,11 +89,11 @@ const AddEmployer = () => {
                 <label htmlFor="mandateIssued">Mandate Issued</label>
                 <div className="Input">
                   <label className="MandateLabel">
-                    <Field type="radio" name="mandateIssued" value="Yes" />
+                    <Field type="radio" name="mandateIssued" value="Yes" className="Gap"/>
                     Yes
                   </label>
                   <label className="MandateLabel">
-                    <Field type="radio" name="mandateIssued" value="No" />
+                    <Field type="radio" name="mandateIssued" value="No" className="Gap"/>
                     No
                   </label>
 
