@@ -30,7 +30,7 @@ const WithdrawRequestDashboard = () => {
         </DashboardHeadline>
       </div>
       <div>
-        {/* customers list  */}
+        {/* request list  */}
         <WithdrawRequestList  />
         {/* next and previous button  */}
         <NextPreBtn />

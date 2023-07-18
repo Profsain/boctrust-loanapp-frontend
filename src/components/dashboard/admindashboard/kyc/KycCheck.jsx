@@ -143,7 +143,7 @@ const KycCheck = () => {
               <Headline fontSize="16px" align="left" text="Admin Review" />
               <div className="Match">
                 <p>Is there a Match?</p>
-                <div>
+                <div className="Radio">
                   <input type="radio" id="yes" name="choice" value="yes" />
                   <label htmlFor="yes">Yes</label>
 

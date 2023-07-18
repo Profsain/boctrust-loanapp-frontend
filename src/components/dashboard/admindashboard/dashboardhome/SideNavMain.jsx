@@ -8,6 +8,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [isRemitaOpen, setIsRemitaOpen] = useState(false);
   const [isEmployerOpen, setIsEmployerOpen] = useState(false);
+  const [isWebManagerOpen, setIsWebManagerOpen] = useState(false);
 
   const openSubItem = () => setIsOpen(true);
   const closeSubItem = () => setIsOpen(false);
@@ -23,6 +24,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
   const openSubEmployer = () => setIsEmployerOpen(true);
   const closeSubEmployer = () => setIsEmployerOpen(false);
+
+  const openSubWebManager = () => setIsWebManagerOpen(true);
+  const closeSubWebManager = () => setIsWebManagerOpen(false);
 
   return (
     <div className="NavIcons SideMain FixSideNav">
@@ -271,16 +275,31 @@ const SideNavMain = ({ onMenuItemClick }) => {
         </p>
       </div>
 
-      <div id="webmanager" className="IconBox" onClick={onMenuItemClick}>
-        <img
-          id="webmanager"
-          onClick={onMenuItemClick}
-          src="images/dwebsite.png"
-          alt="webmanager"
-        />
-        <p id="webmanager" onClick={onMenuItemClick}>
-          Website Manage
-        </p>
+      <div onMouseOver={openSubWebManager} onMouseLeave={closeSubWebManager}>
+        <div id="webmanager" className="IconBox" onClick={onMenuItemClick}>
+          <img
+            id="webmanager"
+            onClick={onMenuItemClick}
+            src="images/dwebsite.png"
+            alt="webmanager"
+          />
+          <p id="webmanager" onClick={onMenuItemClick}>
+            Website Manager
+          </p>
+        </div>
+
+        {isWebManagerOpen ? (
+          <div className="SubItem">
+            <ul>
+              <li id="webmanager" onClick={onMenuItemClick}>
+                Blogs
+              </li>
+              <li id="addemployer" onClick={onMenuItemClick}>
+                Wiki/FAQ
+              </li>
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       <div id="withdrawmethod" className="IconBox" onClick={onMenuItemClick}>

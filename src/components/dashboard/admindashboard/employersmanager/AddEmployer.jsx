@@ -27,21 +27,6 @@ const AddEmployer = () => {
 
   return (
     <div>
-      {/* <DashboardHeadline
-        bgcolor="#145098"
-        mspacer="1rem 4rem 0 1rem"
-        height="70px"
-      >
-        <div>
-          <input type="text" className="CreditSearch" />
-          <img
-            src="images/search.png"
-            alt="search-icon"
-            className="SearchIcon"
-          />
-        </div>
-      </DashboardHeadline> */}
-
       <div className="TransContainer">
         <DashboardHeadline>Add New Employer</DashboardHeadline>
         <Formik
@@ -89,14 +74,23 @@ const AddEmployer = () => {
                 <label htmlFor="mandateIssued">Mandate Issued</label>
                 <div className="Input">
                   <label className="MandateLabel">
-                    <Field type="radio" name="mandateIssued" value="Yes" className="Gap"/>
+                    <Field
+                      type="radio"
+                      name="mandateIssued"
+                      value="Yes"
+                      className="Gap"
+                    />
                     Yes
                   </label>
                   <label className="MandateLabel">
-                    <Field type="radio" name="mandateIssued" value="No" className="Gap"/>
+                    <Field
+                      type="radio"
+                      name="mandateIssued"
+                      value="No"
+                      className="Gap"
+                    />
                     No
                   </label>
-
                 </div>
 
                 <ErrorMessage name="mandateIssued" component="div" />
