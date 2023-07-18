@@ -294,7 +294,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
               <li id="webmanager" onClick={onMenuItemClick}>
                 Blogs
               </li>
-              <li id="addemployer" onClick={onMenuItemClick}>
+              <li id="addwiki" onClick={onMenuItemClick}>
                 Wiki/FAQ
               </li>
             </ul>

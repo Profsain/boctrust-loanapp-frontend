@@ -32,6 +32,7 @@ import UserManagerDashboard from "../usersmanager/UserManagerDashboard";
 import WebsiteManagerDashboard from "../website/WebsiteManagerDashboard";
 import WithdrawRequestDashboard from "../withdraw/WithdrawRequestDashboard";
 import WithdrawMethodDashboard from "../withdrawmethod/WithdrawMethodDashboard";
+import AddWiki from "../website/AddWiki";
 
 const AdminDashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -137,6 +138,9 @@ const AdminDashboard = () => {
       case "webmanager":
         setCurrentTitle("Website Manager");
         break;
+      case "addwiki":
+        setCurrentTitle("Add New FAQs/Wiki");
+        break;
       case "withdrawmethod":
         setCurrentTitle("Withdraw Methods");
         break;
@@ -208,6 +212,8 @@ const AdminDashboard = () => {
         return <KycCheck />;
       case "webmanager":
         return <WebsiteManagerDashboard />;
+      case "addwiki":
+        return <AddWiki />;
       case "usermanager":
         return <UserManagerDashboard />;
       case "withdrawmethod":
