@@ -66,3 +66,14 @@ input:active {
     padding-left: 18px;
     border-left: 1px solid #fff;
 }
+
+.BtnRow {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+#MethodLogo {
+    width: 90%;
+}

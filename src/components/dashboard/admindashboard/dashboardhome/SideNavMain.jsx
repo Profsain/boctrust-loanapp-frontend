@@ -310,7 +310,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           alt="withdrawmethod"
         />
         <p id="withdrawmethod" onClick={onMenuItemClick}>
-          Withdraw Methods
+          Withdrawer Methods
         </p>
       </div>
 

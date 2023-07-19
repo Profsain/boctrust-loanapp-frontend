@@ -100,7 +100,7 @@ const AdminDashboard = () => {
         setCurrentTitle("Account Types");
         break;
       case "withdraw":
-        setCurrentTitle("Withdraw Requests");
+        setCurrentTitle("Withdrawer Requests");
         break;
       case "transaction":
         setCurrentTitle("Transaction History");
@@ -142,7 +142,7 @@ const AdminDashboard = () => {
         setCurrentTitle("Add New FAQs/Wiki");
         break;
       case "withdrawmethod":
-        setCurrentTitle("Withdraw Methods");
+        setCurrentTitle("Withdrawer Methods");
         break;
       case "usermanager":
         setCurrentTitle("User Manager");

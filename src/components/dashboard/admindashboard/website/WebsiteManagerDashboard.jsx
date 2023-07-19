@@ -17,7 +17,7 @@ const WebsiteManagerDashboard = () => {
         <div className="BlogSection">
           <div className="AddBtn">
             <BocButton func={handleAddNew} bgcolor="#ecaa00" bradius="22px">
-              <span>+</span> Add New
+              <span>+</span> Add New Blog
             </BocButton>
           </div>
           {/* top search bar */}
