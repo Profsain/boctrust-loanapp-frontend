@@ -29,6 +29,8 @@ import RepaymentDashboard from "../repayment/RepaymentDashboard";
 import ReportDashboard from "../report/ReportDashboard";
 import TransactionDashboard from "../transaction/TransactionDashboard";
 import UserManagerDashboard from "../usersmanager/UserManagerDashboard";
+import UserControls from "../usersmanager/UserControls";
+import AccessControls from "../usersmanager/AccessControls";
 import WebsiteManagerDashboard from "../website/WebsiteManagerDashboard";
 import WithdrawRequestDashboard from "../withdraw/WithdrawRequestDashboard";
 import WithdrawMethodDashboard from "../withdrawmethod/WithdrawMethodDashboard";
@@ -147,6 +149,12 @@ const AdminDashboard = () => {
       case "usermanager":
         setCurrentTitle("User Manager");
         break;
+      case "userroles":
+        setCurrentTitle("User Roles");
+        break;
+      case "accesscontrols":
+        setCurrentTitle("Access Controls");
+        break;
       case "report":
         setCurrentTitle("Account Report");
         break;
@@ -216,6 +224,10 @@ const AdminDashboard = () => {
         return <AddWiki />;
       case "usermanager":
         return <UserManagerDashboard />;
+      case "userroles":
+        return <UserControls />;
+      case "accesscontrols":
+        return <AccessControls />;
       case "withdrawmethod":
         return <WithdrawMethodDashboard />;
       case "report":

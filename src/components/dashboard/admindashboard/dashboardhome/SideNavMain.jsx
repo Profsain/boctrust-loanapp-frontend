@@ -9,6 +9,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const [isRemitaOpen, setIsRemitaOpen] = useState(false);
   const [isEmployerOpen, setIsEmployerOpen] = useState(false);
   const [isWebManagerOpen, setIsWebManagerOpen] = useState(false);
+  const [isUserManagerOpen, setIsUserManagerOpen] = useState(false);
 
   const openSubItem = () => setIsOpen(true);
   const closeSubItem = () => setIsOpen(false);
@@ -27,6 +28,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
   const openSubWebManager = () => setIsWebManagerOpen(true);
   const closeSubWebManager = () => setIsWebManagerOpen(false);
+
+  const openSubUserManager = () => setIsUserManagerOpen(true);
+  const closeSubUserManager = () => setIsUserManagerOpen(false);
 
   return (
     <div className="NavIcons SideMain FixSideNav">
@@ -314,16 +318,34 @@ const SideNavMain = ({ onMenuItemClick }) => {
         </p>
       </div>
 
-      <div id="usermanager" className="IconBox" onClick={onMenuItemClick}>
-        <img
-          id="usermanager"
-          onClick={onMenuItemClick}
-          src="images/dusermanage.png"
-          alt="usermanager"
-        />
-        <p id="usermanager" onClick={onMenuItemClick}>
-          User Manager
-        </p>
+      <div onMouseOver={openSubUserManager} onMouseLeave={closeSubUserManager}>
+        <div id="usermanager" className="IconBox" onClick={onMenuItemClick}>
+          <img
+            id="usermanager"
+            onClick={onMenuItemClick}
+            src="images/dusermanage.png"
+            alt="usermanager"
+          />
+          <p id="usermanager" onClick={onMenuItemClick}>
+            User Manager
+          </p>
+        </div>
+
+        {isUserManagerOpen ? (
+          <div className="SubItem">
+            <ul>
+              <li id="usermanager" onClick={onMenuItemClick}>
+                All Users
+              </li>
+              <li id="userroles" onClick={onMenuItemClick}>
+                User Roles
+              </li>
+              <li id="accesscontrols" onClick={onMenuItemClick}>
+                Access Controls
+              </li>
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       <div id="report" className="IconBox" onClick={onMenuItemClick}>

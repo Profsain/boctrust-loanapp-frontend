@@ -36,7 +36,7 @@ const WithdrawMethodDashboard = () => {
             </DashboardHeadline>
           </div>
           <div>
-            {/* blogs list  */}
+            {/* methods list  */}
             <WithdrawerMethodList />
             {/* next and previous button  */}
             <NextPreBtn />
