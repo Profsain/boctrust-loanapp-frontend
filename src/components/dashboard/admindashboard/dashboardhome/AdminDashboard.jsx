@@ -26,7 +26,13 @@ import CollectionNotifications from "../remita/CollectionNotifications";
 import MandateHistory from "../remita/MandateHistory";
 import StopCollection from "../remita/StopCollection";
 import RepaymentDashboard from "../repayment/RepaymentDashboard";
-import ReportDashboard from "../report/ReportDashboard";
+import AccountStatement from "../report/accountstatement/AccountStatement";
+import AccountBalance from "../report/accountbalance/AccountBalance";
+import LoanReport from "../report/loanreport/LoanReport";
+import LoanDueReport from "../report/loanduereport/LoanDueReport";
+import TransactionReport from "../report/transactionreport/TransactionReport";
+import ExpenseReport from "../report/expensereport/ExpenseReport";
+import RevenueReport from "../report/revenuereport/RevenueReport";
 import TransactionDashboard from "../transaction/TransactionDashboard";
 import UserManagerDashboard from "../usersmanager/UserManagerDashboard";
 import UserControls from "../usersmanager/UserControls";
@@ -156,7 +162,25 @@ const AdminDashboard = () => {
         setCurrentTitle("Access Controls");
         break;
       case "report":
-        setCurrentTitle("Account Report");
+        setCurrentTitle("Account Statement");
+        break;
+      case "accountbalance":
+        setCurrentTitle("Account Balance");
+        break;
+      case "loanreporting":
+        setCurrentTitle("Loan Report");
+        break;
+      case "loanduereport":
+        setCurrentTitle("Loan Due Report");
+        break;
+      case "transactionreport":
+        setCurrentTitle("Transaction Report");
+        break;
+      case "expensereport":
+        setCurrentTitle("Expense Report");
+        break;
+      case "revenuereport":
+        setCurrentTitle("Revenue Report");
         break;
       default:
         setCurrentTitle("Dashboard");
@@ -231,7 +255,19 @@ const AdminDashboard = () => {
       case "withdrawmethod":
         return <WithdrawMethodDashboard />;
       case "report":
-        return <ReportDashboard />;
+        return <AccountStatement />;
+      case "accountbalance":
+        return <AccountBalance/>;
+      case "loanreporting":
+        return <LoanReport />;
+      case "loanduereport":
+        return <LoanDueReport />;
+      case "transactionreport":
+        return <TransactionReport />;
+      case "expensereport":
+        return <ExpenseReport />;
+      case "revenuereport":
+        return <RevenueReport />;
       default:
         return null;
     }
