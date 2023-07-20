@@ -137,16 +137,6 @@ const AddNewUser = ({ func }) => {
               </Field>
               <ErrorMessage name="userType" component="div" />
             </div>
-            {/* <div className="FieldGroup">
-              <label htmlFor="password">Password</label>
-              <Field
-                type="password"
-                name="password"
-                id="password"
-                className="Input"
-              />
-              <ErrorMessage name="password" component="div" />
-            </div> */}
           </div>
 
           <div className="BtnRow">
