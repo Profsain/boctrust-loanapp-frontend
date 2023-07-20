@@ -4,6 +4,7 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../customers/Customer.css";
 import NextPreBtn from "../../shared/NextPreBtn";
 import UsersList from "./UsersList";
+import AddNewUser from "./AddNewUser";
 
 const UserManagerDashboard = () => {
   const [showAddNew, setShowAddNew] = useState(false);
@@ -41,7 +42,7 @@ const UserManagerDashboard = () => {
           </div>
         </div>
       ) : (
-        <h1>add new role</h1>
+        <AddNewUser func={setShowAddNew} />
       )}
     </div>
   );

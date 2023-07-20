@@ -9,7 +9,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const [isRemitaOpen, setIsRemitaOpen] = useState(false);
   const [isEmployerOpen, setIsEmployerOpen] = useState(false);
   const [isWebManagerOpen, setIsWebManagerOpen] = useState(false);
-  const [isUserManagerOpen, setIsUserManagerOpen] = useState(false);
+  // const [isUseranagerOpen, setIsUserManagerOpen] = useState(false);
+  const [isReportsOpen, setIsReportsOpen] = useState(false);
 
   const openSubItem = () => setIsOpen(true);
   const closeSubItem = () => setIsOpen(false);
@@ -29,8 +30,11 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const openSubWebManager = () => setIsWebManagerOpen(true);
   const closeSubWebManager = () => setIsWebManagerOpen(false);
 
-  const openSubUserManager = () => setIsUserManagerOpen(true);
-  const closeSubUserManager = () => setIsUserManagerOpen(false);
+  // const openSubUserManager = () => setIsUserManagerOpen(true);
+  // const closeSubUserManager = () => setIsUserManagerOpen(false);
+
+  const openSubReports = () => setIsReportsOpen(true);
+  const closeSubReports = () => setIsReportsOpen(false);
 
   return (
     <div className="NavIcons SideMain FixSideNav">
@@ -318,7 +322,19 @@ const SideNavMain = ({ onMenuItemClick }) => {
         </p>
       </div>
 
-      <div onMouseOver={openSubUserManager} onMouseLeave={closeSubUserManager}>
+      <div id="usermanager" className="IconBox" onClick={onMenuItemClick}>
+        <img
+          id="usermanager"
+          onClick={onMenuItemClick}
+          src="images/dusermanage.png"
+          alt="usermanager"
+        />
+        <p id="usermanager" onClick={onMenuItemClick}>
+          User Manager
+        </p>
+      </div>
+
+      {/* <div onMouseOver={openSubUserManager} onMouseLeave={closeSubUserManager}>
         <div id="usermanager" className="IconBox" onClick={onMenuItemClick}>
           <img
             id="usermanager"
@@ -346,18 +362,41 @@ const SideNavMain = ({ onMenuItemClick }) => {
             </ul>
           </div>
         ) : null}
-      </div>
+      </div> */}
 
-      <div id="report" className="IconBox" onClick={onMenuItemClick}>
-        <img
-          id="report"
-          onClick={onMenuItemClick}
-          src="images/dreport.png"
-          alt="report"
-        />
-        <p id="report" onClick={onMenuItemClick}>
-          Report
-        </p>
+      <div onMouseOver={openSubReports} onMouseLeave={closeSubReports}>
+        <div className="IconBox">
+          <img src="images/dreport.png" alt="report" />
+          <p>Reports</p>
+        </div>
+
+        {isReportsOpen ? (
+          <div className="SubItem">
+            <ul>
+              <li id="report" onClick={onMenuItemClick}>
+                Account Statement
+              </li>
+              <li id="accountbalance" onClick={onMenuItemClick}>
+                Account Balance
+              </li>
+              <li id="loanreporting" onClick={onMenuItemClick}>
+                Loan Report
+              </li>
+              <li id="loanduereport" onClick={onMenuItemClick}>
+                Loan Due Report
+              </li>
+              <li id="transactionreport" onClick={onMenuItemClick}>
+                Transaction Report
+              </li>
+              <li id="expensereport" onClick={onMenuItemClick}>
+                Expense Report
+              </li>
+              <li id="revenuereport" onClick={onMenuItemClick}>
+                Revenue Report
+              </li>
+            </ul>
+          </div>
+        ) : null}
       </div>
     </div>
   );

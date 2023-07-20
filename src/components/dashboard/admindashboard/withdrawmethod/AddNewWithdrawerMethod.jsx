@@ -43,7 +43,7 @@ const AddNewWithdrawerMethod = ({ func }) => {
             </div>
 
             <div className="FieldGroup">
-              <label htmlFor="logo">Answer</label>
+              <label htmlFor="logo">Logo</label>
               <Field type="file" name="logo" id="MethodLogo" />
               <ErrorMessage name="logo" component="div" />
             </div>
