@@ -6,8 +6,8 @@ const TopCardSec = () => {
   return (
     <div className="TopCard">
       <Row>
-        <Col xs={12} md={3}>
-          <FigCard>
+        <Col xs={6} md={3}>
+          <FigCard classname="MobCard">
             <img
               width="28px"
               height="28px"
@@ -19,8 +19,8 @@ const TopCardSec = () => {
           </FigCard>
         </Col>
 
-        <Col xs={12} md={3}>
-          <FigCard>
+        <Col xs={6} md={3}>
+          <FigCard classname="MobCard">
             <img
               width="28px"
               height="28px"
@@ -32,8 +32,8 @@ const TopCardSec = () => {
           </FigCard>
         </Col>
 
-        <Col xs={12} md={3}>
-          <FigCard>
+        <Col xs={6} md={3}>
+          <FigCard classname="MobCard">
             <img
               width="28px"
               height="28px"
@@ -45,8 +45,8 @@ const TopCardSec = () => {
           </FigCard>
         </Col>
 
-        <Col xs={12} md={3}>
-          <FigCard classname="YellowCard">
+        <Col xs={6} md={3}>
+          <FigCard classname="YellowCard MobCard">
             <div id="CardText">
               <h5>
                 <span>

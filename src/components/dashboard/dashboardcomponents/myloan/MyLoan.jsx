@@ -15,13 +15,13 @@ const MyLoan = () => {
   };
 
   return (
-    <div>
+    <div className="MLoan">
       <DashboardHeadline
         height="46px"
         mspacer="2rem 2rem -2.55rem -2rem"
         bgcolor="#145098"
       ></DashboardHeadline>
-      <Table borderless hover responsive="sm" style={styles.table} >
+      <Table borderless hover responsive="sm" style={styles.table} className="DTable">
         <thead style={styles.head}>
           <tr>
             <th>Loan ID</th>

@@ -388,12 +388,12 @@ const SideNavMain = ({ onMenuItemClick }) => {
               <li id="transactionreport" onClick={onMenuItemClick}>
                 Transaction Report
               </li>
-              <li id="expensereport" onClick={onMenuItemClick}>
+              {/* <li id="expensereport" onClick={onMenuItemClick}>
                 Expense Report
               </li>
               <li id="revenuereport" onClick={onMenuItemClick}>
                 Revenue Report
-              </li>
+              </li> */}
             </ul>
           </div>
         ) : null}

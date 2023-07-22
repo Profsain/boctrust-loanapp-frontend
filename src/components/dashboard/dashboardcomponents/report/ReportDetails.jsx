@@ -25,14 +25,14 @@ const ReportDetails = () => {
     },
   };
   return (
-    <div>
+    <div className="SecCon">
       <DashboardHeadline
         height="46px"
         mspacer="2rem 4rem -2.55rem -2rem"
         bgcolor="#145098"
       ></DashboardHeadline>
       <div style={styles.table}>
-        <Table borderless hover responsive="sm">
+        <Table borderless hover responsive="sm" className="DTable">
           <thead style={styles.head}>
             <tr>
               <th>Date</th>

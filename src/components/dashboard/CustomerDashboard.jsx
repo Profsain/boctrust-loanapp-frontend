@@ -116,31 +116,32 @@ const CustomerDashboard = () => {
 
   return (
     <div className="DashboardContainer">
+      {/* mobile navbar  */}
+      <div className="MobileNav">
+        {!showSidebar ? (
+          <div className="SideNavIcon" onMouseOver={handleMouseOver}>
+            <SidebarIcons />
+          </div>
+        ) : (
+          <div className="SideNavMain" onMouseLeave={handleMouseOut}>
+            <SidebarMain onMenuItemClick={handleMenuItemClick} />
+          </div>
+        )}
+      </div>
+
       <div className="container-fluid">
         <div className="row">
-          <div className="col-2 SideNavContainer">
+          <div className="col-sm-12 col-md-2 SideNavContainer">
             {/* desktop navbar  */}
             <div className="DesktopNav">
               <SidebarMain onMenuItemClick={handleMenuItemClick} />
             </div>
-            {/* mobile navbar  */}
-            <div className="MobileNav">
-              {!showSidebar ? (
-                <div className="SideNavIcon" onMouseOver={handleMouseOver}>
-                  <SidebarIcons />
-                </div>
-              ) : (
-                <div className="SideNavMain" onMouseLeave={handleMouseOut}>
-                  <SidebarMain onMenuItemClick={handleMenuItemClick} />
-                </div>
-              )}
-            </div>
           </div>
-          <div className="col-10">
+          <div className="col-sm-12 col-md-10">
             <div className="TopNavber">
               <TopNavber title={currentTitle} />
-              {renderComponent()}
             </div>
+            {renderComponent()}
           </div>
         </div>
       </div>

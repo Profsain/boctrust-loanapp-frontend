@@ -34,7 +34,7 @@ const LoanCalculator = () => {
   };
 
   return (
-    <div className="TransContainer">
+    <div className="TransContainer SecCon">
       <DashboardHeadline>Loan Calcualator</DashboardHeadline>
       <Formik
         initialValues={initialValues}
@@ -84,7 +84,12 @@ const LoanCalculator = () => {
 
             <div className="FieldGroup">
               <label htmlFor="purpose">Purpose</label>
-              <Field type="text" name="purpose" id="purpose" className="Input" />
+              <Field
+                type="text"
+                name="purpose"
+                id="purpose"
+                className="Input"
+              />
               <ErrorMessage name="purpose" component="div" />
             </div>
           </div>
@@ -92,7 +97,7 @@ const LoanCalculator = () => {
             <BocButton
               fontSize="1.6rem"
               type="submit"
-              width="35%"
+              width="220px"
               bgcolor="#ecaa00"
               bradius="18px"
             >

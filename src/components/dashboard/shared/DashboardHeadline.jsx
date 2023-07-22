@@ -14,7 +14,7 @@ const DashboardHeadline = ({height, padding="0.7rem", mspacer = "2rem 0 1rem 0",
         backgroundColor: bgcolor,
     }
   return (
-      <div style={style}>{ children}</div>
+      <div style={style} className="DashHeader">{ children}</div>
   )
 }
 

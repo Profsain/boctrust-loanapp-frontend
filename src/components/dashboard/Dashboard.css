@@ -15,8 +15,8 @@
     border-top-right-radius: 36px;
     background-color: #145098;
     color: #fff;
-    width: 4rem;
-    margin-left: -12px;
+    width: 3rem;
+    margin-left: -5px;
     padding-top: 2rem;
     padding-bottom: 9rem;
     cursor: pointer;
@@ -40,8 +40,9 @@
 }
 
 .SBLogo img {
-    width: 23px;
-    height: 20px;
+    width: 22px;
+    height: 16px;
+
 }
 
 

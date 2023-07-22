@@ -19,7 +19,7 @@ const ProfileCard = ({ title, value }) => {
     },
   };
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className="ProfileCon">
       <p style={styles.text1}>{title}</p>
       <p style={styles.text2}>{value}</p>
     </div>

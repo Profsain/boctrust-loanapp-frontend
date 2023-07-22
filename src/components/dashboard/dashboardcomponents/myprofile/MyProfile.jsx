@@ -4,10 +4,9 @@ const MyProfile = () => {
   const styles = {
     container: {
       backgroundColor: "#f5f6f7",
-      padding: "4rem",
       borderRadius: "18px",
       marginTop: "2rem",
-      marginRight: "4rem",
+      paddingRight: "4rem",
     },
     img: {
       width: "90px",
@@ -17,7 +16,7 @@ const MyProfile = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className="PCon">
       <div>
         <img
           src="images/profileavaterlg.png"

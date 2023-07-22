@@ -29,7 +29,7 @@ const AccountStatement = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      margin: "2rem 0",
+      margin: "2rem 0 0 0.9rem",
     },
     input: {
       width: "300px",
@@ -42,7 +42,7 @@ const AccountStatement = () => {
 
   return (
     <>
-      <div className="TransContainer">
+      <div className="TransContainer SecCon">
         <DashboardHeadline>Account Statement</DashboardHeadline>
         <Formik
           initialValues={initialValues}
@@ -95,7 +95,7 @@ const AccountStatement = () => {
               <BocButton
                 fontSize="1.6rem"
                 type="submit"
-                width="25%"
+                width="220px"
                 bgcolor="#ecaa00"
                 bradius="25px"
               >
@@ -104,40 +104,40 @@ const AccountStatement = () => {
             </div>
           </Form>
         </Formik>
-      </div>
       <div style={styles.container}>
         <BocButton
           bgcolor="#636363"
           bradius="22px"
-          width="120px"
-          margin="0 12px"
+          width="90px"
+          margin="0 8px"
         >
           Copy
         </BocButton>
         <BocButton
           bgcolor="#636363"
           bradius="22px"
-          width="120px"
-          margin="0 12px"
+          width="90px"
+          margin="0 8px"
         >
           Excel
         </BocButton>
         <BocButton
           bgcolor="#636363"
           bradius="22px"
-          width="120px"
-          margin="0 12px"
+          width="90px"
+          margin="0 8px"
         >
           PDF
         </BocButton>
         <BocButton
           bgcolor="#636363"
           bradius="22px"
-          width="120px"
-          margin="0 12px"
+          width="90px"
+          margin="0 8px"
         >
           Print
         </BocButton>
+      </div>
       </div>
     </>
   );

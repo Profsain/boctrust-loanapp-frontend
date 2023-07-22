@@ -26,7 +26,7 @@ const AccountTransaction = () => {
     },
   };
   return (
-    <div>
+    <div className=" SecCon">
       <DashboardHeadline
         height="46px"
         mspacer="2rem 4rem -2.55rem -1.5rem"

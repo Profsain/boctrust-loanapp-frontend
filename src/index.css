@@ -192,6 +192,7 @@ p {
 
   .DashboardContainer {
     padding: 0 !important;
+    margin-top: 7rem !important;
   }
   .Inline {
     display: none;
@@ -201,5 +202,77 @@ p {
     height: 18px;
   }
 
+  /* add space to main dashboard component */
+  .DashboardHome {
+    padding-right: 0 !important;
+    margin-left: 2.9rem;
+  }
+
+  /* dashboard home card */
+  .TopCard {
+    padding: 0 !important;
+    margin-right: 18px;
+  }
+  .MobCard {
+    width: 150px !important;
+    height: 150px !important;
+    margin: 8px !important;
+    font-size: 13px !important;
+  }
+  .YellowCard {
+   height: 200px !important;
+  }
+
+  .MLoan {
+    padding-left: 4rem !important;
+  }
+
+  .DashHeader {
+    height: 66px !important;
+    margin: 2rem 0 -4rem -1.5rem !important;
+    font-size: 1.2rem !important;
+
+  }
+
+  .DTable {
+    margin: 8px !important;
+  }
+  .RTable {
+    margin-top: 4rem !important;
+  }
+
+  /* input field */
+  .SecCon {
+    padding: 0 0 0 4rem !important;
+  }
+  .ABCon {
+    display: none !important;
+  }
+  .FieldRow {
+    flex-direction: column;
+    padding: 4rem !important;
+    margin-bottom: -10rem !important;
+  }
+
+  .FieldGroup input, select {
+    width: 300px !important;
+  }
+  .BtnContainer {
+    margin-top: 8rem !important;
+  }
+
+  /* profile page */
+  .PCon {
+    padding: 0 1rem 0 3rem !important;
+    margin-right: 0 !important;
+  }
+  .ProfileCon {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .TReport {
+    padding-top: 4rem !important;
+  }
 }
 

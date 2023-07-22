@@ -4,7 +4,7 @@ import TransactionReportTop from "./TransactionReportTop"
 
 const TransactionReport = () => {
   return (
-      <div>
+      <div className="SecCon">
       <TransactionReportTop />
       <TransactionReportSection />
     </div>

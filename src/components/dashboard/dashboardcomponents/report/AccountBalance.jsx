@@ -26,9 +26,6 @@ const initialValues = {
 
 const AccountBalance = () => {
   const styles = {
-    main: {
-      margin: "0 4rem 0 0",
-    },
     container: {
       display: "flex",
       justifyContent: "center",
@@ -54,8 +51,8 @@ const AccountBalance = () => {
   };
 
   return (
-    <div>
-      <div className="TransContainer">
+    <div style={ styles.accountCon}  className="SecCon">
+      <div>
         <DashboardHeadline>Account Balance Report</DashboardHeadline>
         <Formik
           initialValues={initialValues}
@@ -108,7 +105,7 @@ const AccountBalance = () => {
               <BocButton
                 fontSize="1.6rem"
                 type="submit"
-                width="25%"
+                width="220px"
                 bgcolor="#ecaa00"
                 bradius="25px"
               >
@@ -122,41 +119,40 @@ const AccountBalance = () => {
         <BocButton
           bgcolor="#636363"
           bradius="22px"
-          width="120px"
-          margin="0 12px"
+          width="90px"
+          margin="0 8px"
         >
           Copy
         </BocButton>
         <BocButton
           bgcolor="#636363"
           bradius="22px"
-          width="120px"
-          margin="0 12px"
+          width="90px"
+          margin="0 8px"
         >
           Excel
         </BocButton>
         <BocButton
           bgcolor="#636363"
           bradius="22px"
-          width="120px"
-          margin="0 12px"
+          width="90px"
+          margin="0 8px"
         >
           PDF
         </BocButton>
         <BocButton
           bgcolor="#636363"
           bradius="22px"
-          width="120px"
-          margin="0 12px"
+          width="90px"
+          margin="0 8px"
         >
           Print
         </BocButton>
       </div>
 
       {/* balance table  */}
-      <div style={styles.main}>
-        <DashboardHeadline bgcolor="#ecaa00"></DashboardHeadline>
-        <Table borderless hover responsive="sm" style={styles.table}>
+      <div >
+        <Table borderless hover responsive="sm" style={styles.table} className="DTable">
           <thead>
             <tr style={styles.th}>
               <th>Date</th>

@@ -34,7 +34,7 @@ const ApplyLoan = () => {
   };
 
   return (
-    <div className="TransContainer">
+    <div className="TransContainer SecCon">
       <DashboardHeadline>Apply for New Loan</DashboardHeadline>
       <Formik
         initialValues={initialValues}
@@ -91,7 +91,6 @@ const ApplyLoan = () => {
             <BocButton
               fontSize="1.6rem"
               type="submit"
-              width="35%"
               bgcolor="#ecaa00"
               bradius="18px"
             >

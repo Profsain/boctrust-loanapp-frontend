@@ -19,9 +19,15 @@ const LoanPayment = () => {
   };
 
   return (
-    <div style={styles.container} className="RepaymentCon">
+    <div style={styles.container} className="RepaymentCon SecCon">
       <DashboardHeadline>Upcoming Loan Payment</DashboardHeadline>
-      <Table borderless hover responsive="sm" style={styles.table}>
+      <Table
+        borderless
+        hover
+        responsive="sm"
+        style={styles.table}
+        className="DTable RTable"
+      >
         <thead>
           <tr style={styles.head}>
             <th>Loan ID</th>
