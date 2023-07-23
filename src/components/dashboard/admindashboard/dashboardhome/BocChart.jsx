@@ -54,7 +54,7 @@ const data = [
 
 const BocChart = () => {
   return (
-    <div>
+    <div className="ChartBar">
       <AreaChart
         width={1000}
         height={400}

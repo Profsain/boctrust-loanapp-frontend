@@ -11,8 +11,6 @@ import BocButton from "../../shared/BocButton";
 //   // Add more options as needed
 // ];
 
-
-
 const AddCustomer = () => {
   const handleSubmit = (values) => {
     // Handle form submission logic here
@@ -70,7 +68,7 @@ const AddCustomer = () => {
             </div>
           </div>
 
-          <div className="FieldGroup" style={{ margin: "0 2rem" }}>
+          <div className="FieldGroup IAddress" style={{ margin: "0 2rem" }}>
             <label htmlFor="address">Customer Address</label>
             <Field
               type="text"
@@ -139,7 +137,7 @@ const AddCustomer = () => {
 
           <div className="FieldRow">
             <div
-              className="FieldGroup"
+              className="FieldGroup IUpload"
               style={{
                 paddingLeft: "3rem",
                 paddingRight: "2rem",
@@ -152,7 +150,7 @@ const AddCustomer = () => {
             </div>
 
             <div
-              className="FieldGroup"
+              className="FieldGroup IUpload"
               style={{ paddingRight: "6.6rem", width: "500px" }}
             >
               <label htmlFor="idCard">Upload ID Card</label>
@@ -209,9 +207,7 @@ const AddCustomer = () => {
 
           <div className="BtnContainer">
             <BocButton
-              fontSize="1.6rem"
               type="submit"
-              width="35%"
               bgcolor="#ecaa00"
               bradius="18px"
             >

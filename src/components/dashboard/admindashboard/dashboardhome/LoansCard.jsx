@@ -10,7 +10,7 @@ const LoansCard = ({img, title, stat, bgcolor}) => {
             padding: "0.9rem",
             backgroundColor: bgcolor,
             borderRadius: "10px",
-            margin: "0.5rem 0.5rem 0.5rem 0",
+            margin: "0.5rem 2rem 0.5rem 0",
             
         },
         text: {
@@ -21,7 +21,7 @@ const LoansCard = ({img, title, stat, bgcolor}) => {
         }
     }
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className="StatCard">
           <img src={img} alt="stat-icon" />
           <div>
               <p style={styles.text}>{ title}</p>

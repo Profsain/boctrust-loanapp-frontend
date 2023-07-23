@@ -20,12 +20,17 @@
     padding: 1rem 2rem ;
     background-color: #f5f6f7;
     border-radius: 1rem;
-    margin-right: 2rem;
+    margin-right: 4rem !important;
     margin-bottom: 2rem;
 }
 
 .InlineCard {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
+}
+
+.MStat {
+    display: flex;
+    justify-content: space-between;
 }

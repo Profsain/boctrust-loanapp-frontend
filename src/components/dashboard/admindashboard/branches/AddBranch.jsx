@@ -101,20 +101,17 @@ const AddBranch = ({ func }) => {
 
           <div className="BtnContainer">
             <BocButton
-              fontSize="1.6rem"
               type="submit"
-              width="35%"
+              width="220px"
               bgcolor="#ecaa00"
               bradius="18px"
             >
               Submit Application
             </BocButton>
-          </div>
-          <div className="BtnContainer">
             <BocButton
-              fontSize="1.6rem"
+              margin="1.5rem 0 0 0"
               type="submit"
-              width="35%"
+              width="220px"
               bgcolor="gray"
               bradius="18px"
               func={() => func(false)}
@@ -122,6 +119,17 @@ const AddBranch = ({ func }) => {
               Back to Branches
             </BocButton>
           </div>
+          {/* <div>
+            <BocButton
+              type="submit"
+              width="220px"
+              bgcolor="gray"
+              bradius="18px"
+              func={() => func(false)}
+            >
+              Back to Branches
+            </BocButton>
+          </div> */}
         </Form>
       </Formik>
     </div>

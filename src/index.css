@@ -274,5 +274,65 @@ p {
   .TReport {
     padding-top: 4rem !important;
   }
+
+  /* admin mobile */
+  .Stat {
+    width: 100% !important;
+    margin: 8px !important;
+    /* padding: 18px; */
+  }
+  .InlineCard {
+    flex-direction: column !important;
+  }
+  .StatCard {
+    width: 120px !important;
+    margin: 8px !important;
+
+  }
+  .StatCard p {
+    font-size: 0.7rem !important;
+  }
+  .ChartBar {
+    margin-top: 6rem !important;
+    display: none;
+  }
+
+  .TransContainer {
+    width: 100% !important;
+    background-color: #fff !important;
+   }
+
+   .MainBox {
+    margin: 0;
+   }
+   .SearchBar {
+    flex-direction: column !important;
+    padding-bottom: 0.7rem !important;
+   }
+   .ListSec {
+    margin-top: 11rem;
+   }
+   .SBox {
+    padding-left: 3.4rem;
+   }
+   .SBox input {
+    width: 85% !important;
+    margin-left: 1rem !important;
+   }
+   #action {
+    width: 90px !important;
+   }
+   .FieldRow {
+    margin-top: 0;
+   }
+   .IAddress {
+    margin: 4rem 0 -5rem -1rem !important;
+
+    width: 60% !important;
+   }
+   .IUpload {
+    padding: 0 0 0 6rem !important;
+    width: 100%;
+   }
 }
 

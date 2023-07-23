@@ -11,21 +11,13 @@ const HomeDashboard = () => {
       <div className="TopCard">
         <FigCard>
           <h4 className="Title">5,345</h4>
-          <img
-            className="CardIcon"
-            src="images/eyes.png"
-            alt="icon"
-          />
+          <img className="CardIcon" src="images/eyes.png" alt="icon" />
           <p>Total Customers</p>
         </FigCard>
         <div className="Spacer"></div>
         <FigCard>
           <h4 className="Title">500</h4>
-          <img
-            className="CardIcon"
-            src="images/eyes.png"
-            alt="icon"
-          />
+          <img className="CardIcon" src="images/eyes.png" alt="icon" />
           <p>Withdrawer Request</p>
         </FigCard>
       </div>
@@ -34,37 +26,40 @@ const HomeDashboard = () => {
         <div className="LoansStat">
           <Headline spacer="0 0 0.6rem 0" align="left" text="Loans" />
           <div className="InlineCard">
-            <LoansCard
-              img="images/star.png"
-              title="Booked"
-              stat="0"
-              bgcolor="#ecaa00"
-            />
-            <LoansCard
-              img="images/star.png"
-              title="With Credit"
-              stat="0"
-              bgcolor="#f6ab60"
-            />
-            <LoansCard
-              img="images/thumbup.png"
-              title="With COO"
-              stat="0"
-              bgcolor="#32c6c7"
-            />
-            <LoansCard
-              img="images/active.png"
-              title="Completed"
-              stat="0"
-              bgcolor="#2bb294"
-            />
+            <div className="MStat">
+              <LoansCard
+                img="images/star.png"
+                title="Booked"
+                stat="0"
+                bgcolor="#ecaa00"
+              />
+              <LoansCard
+                img="images/star.png"
+                title="With Credit"
+                stat="0"
+                bgcolor="#f6ab60"
+              />
+            </div>
+            <div className="MStat">
+              <LoansCard
+                img="images/thumbup.png"
+                title="With COO"
+                stat="0"
+                bgcolor="#32c6c7"
+              />
+              <LoansCard
+                img="images/active.png"
+                title="Completed"
+                stat="0"
+                bgcolor="#2bb294"
+              />
+            </div>
             <LoansCard
               img="images/padding.png"
               title="With Operations"
               stat="0"
               bgcolor="#ea5767"
             />
-          
           </div>
         </div>
 
@@ -102,7 +97,11 @@ const HomeDashboard = () => {
           </div>
         </div>
         <div className="LoansStat">
-          <Headline spacer="1.5rem 0 0.6rem 0" align="left" text="Disbursement" />
+          <Headline
+            spacer="1.5rem 0 0.6rem 0"
+            align="left"
+            text="Disbursement"
+          />
           <div className="InlineCard">
             <StatCard
               day="Today"

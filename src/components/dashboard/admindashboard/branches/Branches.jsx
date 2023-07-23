@@ -23,13 +23,13 @@ const Branches = () => {
 
           {/* top search bar */}
           <div className="Search">
-            <DashboardHeadline padding="0" height="70px" bgcolor="#d9d9d9">
+            <DashboardHeadline padding="0" bgcolor="#d9d9d9">
               <div className="SearchBar">
                 <div className="FormGroup">
                   <label htmlFor="show">Show</label>
                   <input name="showCount" type="number" step={10} min={10} />
                 </div>
-                <div className="FormGroup">
+                <div className="FormGroup SBox">
                   <input name="search" placeholder="Search" />
                   <img src="images/search.png" alt="search-icon" />
                 </div>
@@ -38,9 +38,12 @@ const Branches = () => {
           </div>
           <div>
             {/* branches list  */}
+            <div className="ListSec">
+
             <BranchesList />
             {/* next and previous button  */}
             <NextPreBtn />
+            </div>
           </div>
         </div>
       ) : (

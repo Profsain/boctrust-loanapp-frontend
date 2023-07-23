@@ -3,7 +3,7 @@ import "../Dashboard.css"
 const NextPreBtn = () => {
     const styles = {
         container: {
-            width: "100%",
+            // width: "100%",
             display: "flex",
             justifyContent: "flex-end",
         },
@@ -11,8 +11,7 @@ const NextPreBtn = () => {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            width: "15%",
-            fontSize: "19px",
+          fontSize: "19px",
         },
         btn: {
             padding: "5px 15px",
@@ -25,6 +24,9 @@ const NextPreBtn = () => {
         img: {
             width: "20px",
             height: "20px",
+      },
+      p: {
+        padding: "0 20px",
         }
 
     }
@@ -34,7 +36,7 @@ const NextPreBtn = () => {
         <button style={styles.btn} id="PrevBtn">
           <img style={styles.img} src="images/arrowleft.png" alt="prev" />{" "}
         </button>
-        <p>1</p>
+        <p style={styles.p}>1</p>
         <button style={styles.btn} id="NextBtn">
           <img style={styles.img} src="images/arrowright.png" alt="next" />
         </button>

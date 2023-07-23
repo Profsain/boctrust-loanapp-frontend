@@ -279,7 +279,10 @@ const AdminDashboard = () => {
         <div className="row">
           <div className="col-2 SideNavContainer">
             {/* desktop navbar */}
+            <div className="DesktopNav">
+
             <SideNavMain onMenuItemClick={handleMenuItemClick} />
+            </div>
             {/* mobile navbar */}
             <div className="MobileNav">
               {!showSidebar ? (
