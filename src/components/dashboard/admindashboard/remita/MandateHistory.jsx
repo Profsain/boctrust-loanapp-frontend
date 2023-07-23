@@ -24,21 +24,21 @@ const MandateHistory = () => {
     <div>
       <div>
         <Headline text="View by:" />
-        <div style={styles.btnBox}>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+        <div style={styles.btnBox} className="VBox">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Today&apos;s Mandate
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Date Range
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Specific User
           </BocButton>
         </div>
       </div>
 
       {/* table section */}
-      <div>
+      <div className="RBox">
         <DashboardHeadline
           height="62px"
           mspacer="2rem 0 -3.3rem -1rem"
@@ -130,7 +130,7 @@ const MandateHistory = () => {
         <DashboardHeadline mspacer="2rem 0 5rem 0">
           View Customer Mandate History
         </DashboardHeadline>
-        <div>
+        <div className="RBox">
           <DetailsCard title="Customer ID" text="10032" />
           <DetailsCard title="Authorized Code" text="NPF123" />
           <DetailsCard title="Customer Name" text="Akinwande Bola" />

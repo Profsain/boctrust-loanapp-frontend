@@ -327,15 +327,34 @@ p {
    }
    .IAddress {
     margin: 4rem 0 -5rem -1rem !important;
-
     width: 60% !important;
    }
    .IUpload {
     padding: 0 0 0 6rem !important;
     width: 100%;
    }
-   .CRequest {
+   .CRequest, .DCard {
     margin: 0 !important;
+   }
+
+   .VBox {
+    flex-direction: column !important;
+    margin-bottom: -4rem !important;
+   }
+   .RBox {
+    margin-top: 5rem !important;
+   }
+   .RTitle {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+   }
+   .RowSection {
+    flex-direction: column !important;
+    width: 100% !important;
+   }
+   .DetailsCon {
+    margin-top: 2rem !important;
+    padding: 6px !important;
    }
 }
 

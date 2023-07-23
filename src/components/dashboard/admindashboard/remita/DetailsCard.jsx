@@ -21,7 +21,7 @@ const DetailsCard = ({title, text}) => {
         }
     }
   return (
-      <div style={styles.container}>
+      <div style={styles.container} className="DCard">
           <p style={styles.title}>{ title}</p>
           <p style={styles.text}>{text}</p>
     </div>

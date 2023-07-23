@@ -6,14 +6,12 @@
     display: flex;
     justify-content: space-between;
     align-content: center;
-    /* align-items: center; */
 }
 
 .RowCard {
     padding: 8px;
     font-weight: 900;
     font-size: 1.3rem;
-    
 }
 
 .RowText span {

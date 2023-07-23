@@ -31,17 +31,17 @@ const RemitaDashboard = () => {
     }
   };
   return (
-    <div className="DetailSection">
+    <div className="DetailSection DCard" style={styles.container}>
       <div>
         <Headline text="View by:" />
-        <div style={styles.btnBox}>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+        <div style={styles.btnBox} className="VBox">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Disbursement Today
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Date Range
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Specific User
           </BocButton>
         </div>
@@ -49,10 +49,12 @@ const RemitaDashboard = () => {
 
       {/* details section */}
       <div style={styles.view}>
-        <DashboardHeadline mspacer="2rem 0 5rem 0">
-          View your Remita Loan Disbursement Notifications
+        <DashboardHeadline mspacer="-2rem 0 5rem 0">
+          <h4 className="RTitle">
+            View your Remita Loan Disbursement Notifications
+          </h4>
         </DashboardHeadline>
-        <div>
+        <div className="RBox">
           <DetailsCard title="Customer Name" text="Akinwande" />
           <DetailsCard title="Customer Account Number" text="7468868564" />
           <DetailsCard title="Income from employer" text="N250,000" />
@@ -65,7 +67,7 @@ const RemitaDashboard = () => {
           <DetailsCard title="Date of Collection" text="23-03-2023 .  17:25" />
           <DetailsCard title="Total Collection amount" text="N122,500" />
           <DetailsCard title="Number of Repayements" text="2" />
-          <div style={styles.ref}>
+          <div style={styles.ref} className="DCard">
             <p>Mandate Reference Generated</p>
             <div style={styles.inputBox}>
               <p>

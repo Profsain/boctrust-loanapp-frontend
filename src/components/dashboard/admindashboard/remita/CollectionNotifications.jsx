@@ -32,21 +32,21 @@ const CollectionNotifications = () => {
     <div>
       <div>
         <Headline text="View by:" />
-        <div style={styles.btnBox}>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+        <div style={styles.btnBox} className="VBox">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Collections Today
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Date Range
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Specific User
           </BocButton>
         </div>
       </div>
 
       {/* table section */}
-      <div>
+      <div className="RBox">
         <DashboardHeadline
           height="52px"
           mspacer="2rem 0 -2.55rem -1rem"
@@ -120,7 +120,6 @@ const CollectionNotifications = () => {
                 <td>01-03-2023</td>
                 <td>30-03-2023</td>
               </tr>
-
             </tbody>
           </Table>
         </div>

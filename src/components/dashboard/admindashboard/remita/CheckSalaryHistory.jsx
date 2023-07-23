@@ -35,21 +35,21 @@ const CheckSalaryHistory = () => {
     <div>
       <div>
         <Headline text="View by:" />
-        <div style={styles.btnBox}>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+        <div style={styles.btnBox} className="VBox">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Applicant Today
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Date Range
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Specific User
           </BocButton>
         </div>
       </div>
 
       {/* table section */}
-      <div>
+      <div className="RBox">
         <DashboardHeadline
           height="52px"
           mspacer="2rem 0 -2.55rem -1rem"
@@ -125,7 +125,7 @@ const CheckSalaryHistory = () => {
           <RowCard title="BVN" text="4343254676" />
           <RowCard title="First Payment Date" text="29-07-2023" />
         </div>
-        <DashboardHeadline></DashboardHeadline>
+        <hr />
         <div className="RowSection">
           <div id="PastSalary">
             <Headline
