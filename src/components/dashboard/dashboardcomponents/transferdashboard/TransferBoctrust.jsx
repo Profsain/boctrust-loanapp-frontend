@@ -34,7 +34,7 @@ const TransferBoctrust = () => {
   };
 
   return (
-    <div className="TransContainer">
+    <div className="TransContainer SecCon">
       <DashboardHeadline>Transfer to Boctrust Mfb Account</DashboardHeadline>
       <Formik
         initialValues={initialValues}
@@ -91,7 +91,7 @@ const TransferBoctrust = () => {
             <BocButton
               fontSize="1.6rem"
               type="submit"
-              width="35%"
+              width="220px"
               bgcolor="#ecaa00"
               bradius="18px"
             >
