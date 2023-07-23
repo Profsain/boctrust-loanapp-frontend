@@ -21,14 +21,14 @@ const AccountDashboard = () => {
               <label htmlFor="show">Show</label>
               <input name="showCount" type="number" step={10} min={10} />
             </div>
-            <div className="FormGroup">
+            <div className="FormGroup SBox">
               <input name="search" placeholder="Search" />
               <img src="images/search.png" alt="search-icon" />
             </div>
           </div>
         </DashboardHeadline>
       </div>
-      <div>
+      <div className="ListSec">
         {/* customers list  */}
         <AccountList />
         {/* next and previous button  */}

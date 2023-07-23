@@ -1,4 +1,4 @@
-import BocButton from "../../shared/BocButton";
+// import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../customers/Customer.css";
 import RepaymentList from "./RepaymentList";
@@ -7,11 +7,11 @@ import RepaymentList from "./RepaymentList";
 const LoanDashboard = () => {
   return (
     <div className="MainBox">
-      <div className="AddBtn">
+      {/* <div className="AddBtn">
         <BocButton bgcolor="#ecaa00" bradius="22px">
           <span>+</span> Add Repayment
         </BocButton>
-      </div>
+      </div> */}
 
       {/* top search bar */}
       <div className="Search">
@@ -21,15 +21,14 @@ const LoanDashboard = () => {
               <label htmlFor="show">Show</label>
               <input name="showCount" type="number" step={10} min={10} />
             </div>
-            <div className="FormGroup">
+            <div className="FormGroup SBox">
               <input name="search" placeholder="Search" />
               <img src="images/search.png" alt="search-icon" />
             </div>
           </div>
         </DashboardHeadline>
       </div>
-      <div>
-
+      <div className="ListSec">
         {/* repayment list  */}
         <RepaymentList />
       </div>

@@ -97,7 +97,7 @@ const LoanCalculator = () => {
             <BocButton
               fontSize="1.6rem"
               type="submit"
-              width="35%"
+              width="220px"
               bgcolor="#ecaa00"
               bradius="18px"
             >

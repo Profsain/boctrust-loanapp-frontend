@@ -42,7 +42,7 @@ const AccountTypes = () => {
               <label htmlFor="show">Show</label>
               <input name="showCount" type="number" step={10} min={10} />
             </div>
-            <div className="FormGroup">
+            <div className="FormGroup SBox">
               <input name="search" placeholder="Search" />
               <img src="images/search.png" alt="search-icon" />
             </div>
@@ -51,13 +51,13 @@ const AccountTypes = () => {
       </div>
       <div>
         {/* accounts list  */}
-        <div>
+        <div className="ListSec">
           <DashboardHeadline
             height="52px"
             mspacer="2rem 0 -2.95rem -1rem"
             bgcolor="#145098"
           ></DashboardHeadline>
-          <div style={styles.table}>
+          <div style={styles.table} >
             <Table borderless hover responsive="sm">
               <thead style={styles.head}>
                 <tr>

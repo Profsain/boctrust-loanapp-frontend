@@ -27,7 +27,7 @@ const CustomersRequest = () => {
     },
   };
   return (
-    <div style={styles.constainer}>
+    <div style={styles.constainer} className="CRequest">
       <DashboardHeadline
         height="52px"
         mspacer="2rem 0 -2.5rem -1rem"
