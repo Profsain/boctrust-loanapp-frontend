@@ -123,7 +123,7 @@ const MandateRules = () => {
             </div>
 
             <div className="FieldRow">
-              <div className="FieldGroup">
+              <div className="RadioCon">
                 <label htmlFor="mandateUse">Mandate Use</label>
                 <div className="Input">
                   <label className="MandateLabel">
@@ -148,7 +148,7 @@ const MandateRules = () => {
 
                 <ErrorMessage name="mandateUse" component="div" />
               </div>
-              <div className="FieldGroup">
+              <div className="RadioCon">
                 <label htmlFor="allowStacking">
                   Allow Remita Rule Stacking
                 </label>
@@ -230,7 +230,6 @@ const MandateRules = () => {
               <BocButton
                 fontSize="1.6rem"
                 type="submit"
-                width="35%"
                 bgcolor="#ecaa00"
                 bradius="18px"
               >

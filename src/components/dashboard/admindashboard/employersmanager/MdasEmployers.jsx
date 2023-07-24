@@ -31,7 +31,7 @@ const MdasEmployers = () => {
     },
   };
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className="DCard">
       {/* table section */}
       <div>
         <DashboardHeadline

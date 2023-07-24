@@ -356,5 +356,29 @@ p {
     margin-top: 2rem !important;
     padding: 6px !important;
    }
+   .RadioCon {
+    width: 200px !important;
+    margin-left: -6rem !important;
+   }
+
+   .KSection {
+    margin: 0 !important;
+   }
+   .OfficialIdCard, .FaceCapture {
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 1rem !important;
+    margin-top: 5rem !important;
+    margin-left: 0 !important;
+   }
+   .MatchCon {
+    margin-left: 0 !important;
+   }
+   .TimeStamp {
+    left: 0 !important;
+    margin-left: 0 !important;
+    width: 95% !important;
+   } 
+   
 }
 

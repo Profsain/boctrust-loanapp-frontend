@@ -1,4 +1,4 @@
-.Section {
+.KSection {
     margin: 0.8rem 4rem 2rem 1.9rem;
 }
 .OfficialIdCard {
@@ -15,11 +15,11 @@
 
 .TimeStamp {
     position: relative;
-    left: 10rem;
+    left: 7rem;
     bottom: 0.5rem;
     display: flex;
     justify-content: space-between;
-    width: 200px;
+    width: 290px;
     height: 60px;
     background-color: #145098;
     color: #fff;

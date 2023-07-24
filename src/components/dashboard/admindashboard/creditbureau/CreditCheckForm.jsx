@@ -54,7 +54,7 @@ const CreditCheckForm = () => {
         </div>
       </DashboardHeadline>
 
-      <div className="TransContainer">
+      <div className="TransContainer RBox">
         <DashboardHeadline>Perform a Credit Check</DashboardHeadline>
         <Formik
           initialValues={initialValues}
@@ -132,7 +132,6 @@ const CreditCheckForm = () => {
               <BocButton
                 fontSize="1.6rem"
                 type="submit"
-                width="35%"
                 bgcolor="#ecaa00"
                 bradius="18px"
               >

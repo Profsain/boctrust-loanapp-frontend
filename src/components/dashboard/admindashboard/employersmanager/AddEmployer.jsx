@@ -70,7 +70,7 @@ const AddEmployer = () => {
                 <ErrorMessage name="dateAdded" component="div" />
               </div>
 
-              <div className="FieldGroup">
+              <div className="RadioCon">
                 <label htmlFor="mandateIssued">Mandate Issued</label>
                 <div className="Input">
                   <label className="MandateLabel">
@@ -96,11 +96,11 @@ const AddEmployer = () => {
                 <ErrorMessage name="mandateIssued" component="div" />
               </div>
             </div>
+
             <div className="BtnContainer">
               <BocButton
                 fontSize="1.6rem"
                 type="submit"
-                width="35%"
                 bgcolor="#ecaa00"
                 bradius="18px"
               >

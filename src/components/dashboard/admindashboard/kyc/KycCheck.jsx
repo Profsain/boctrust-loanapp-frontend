@@ -49,21 +49,21 @@ const KycCheck = () => {
 
       <div>
         <Headline text="View by:" />
-        <div style={styles.btnBox}>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+        <div style={styles.btnBox} className="VBox">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Applicant Today
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Date Range
           </BocButton>
-          <BocButton margin="0 18px" bgcolor="#ecaa00" bradius="25px">
+          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Specific User
           </BocButton>
         </div>
       </div>
 
       {/* table section */}
-      <div className="Section">
+      <div className="Section RBox DCard">
         <DashboardHeadline
           height="52px"
           mspacer="2rem 0 -2.55rem -1rem"
@@ -129,7 +129,7 @@ const KycCheck = () => {
       </div>
 
       {/* kyc detail section */}
-      <div className="Section">
+      <div className="KSection">
         <Headline text="Check Customer KYC Details" />
         <div className="row">
           <div className="col-sm-12 col-md-6">
