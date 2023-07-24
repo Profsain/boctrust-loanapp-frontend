@@ -18,7 +18,7 @@ const HomeDashboard = () => {
         <FigCard>
           <h4 className="Title">500</h4>
           <img className="CardIcon" src="images/eyes.png" alt="icon" />
-          <p>Withdrawer Request</p>
+          <p>Total No Disbursed</p>
         </FigCard>
       </div>
 
@@ -28,10 +28,10 @@ const HomeDashboard = () => {
           <div className="InlineCard">
             <div className="MStat">
               <LoansCard
-                img="images/star.png"
-                title="Booked"
+                img="images/padding.png"
+                title="With Operations"
                 stat="0"
-                bgcolor="#ecaa00"
+                bgcolor="#ea5767"
               />
               <LoansCard
                 img="images/star.png"
@@ -48,18 +48,19 @@ const HomeDashboard = () => {
                 bgcolor="#32c6c7"
               />
               <LoansCard
-                img="images/active.png"
-                title="Completed"
+                img="images/star.png"
+                title="Booked"
                 stat="0"
-                bgcolor="#2bb294"
+                bgcolor="#ecaa00"
               />
             </div>
             <LoansCard
-              img="images/padding.png"
-              title="With Operations"
+              img="images/active.png"
+              title="Completed"
               stat="0"
-              bgcolor="#ea5767"
+              bgcolor="#2bb294"
             />
+            {/* add here */}
           </div>
         </div>
 

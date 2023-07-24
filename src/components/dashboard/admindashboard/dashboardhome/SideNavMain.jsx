@@ -179,7 +179,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           alt="withdrawer"
         />
         <p id="withdraw" onClick={onMenuItemClick}>
-          Withdrawer Requests
+          Disbursement
         </p>
       </div>
 
@@ -238,7 +238,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           alt="creditbureau"
         />
         <p id="creditbureau" onClick={onMenuItemClick}>
-          Credit Check
+          Credit Assessment
         </p>
       </div>
 
@@ -318,7 +318,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
           alt="withdrawmethod"
         />
         <p id="withdrawmethod" onClick={onMenuItemClick}>
-          Withdrawer Methods
+          Disbursement Methods
         </p>
       </div>
 
@@ -333,36 +333,6 @@ const SideNavMain = ({ onMenuItemClick }) => {
           User Manager
         </p>
       </div>
-
-      {/* <div onMouseOver={openSubUserManager} onMouseLeave={closeSubUserManager}>
-        <div id="usermanager" className="IconBox" onClick={onMenuItemClick}>
-          <img
-            id="usermanager"
-            onClick={onMenuItemClick}
-            src="images/dusermanage.png"
-            alt="usermanager"
-          />
-          <p id="usermanager" onClick={onMenuItemClick}>
-            User Manager
-          </p>
-        </div>
-
-        {isUserManagerOpen ? (
-          <div className="SubItem">
-            <ul>
-              <li id="usermanager" onClick={onMenuItemClick}>
-                All Users
-              </li>
-              <li id="userroles" onClick={onMenuItemClick}>
-                User Roles
-              </li>
-              <li id="accesscontrols" onClick={onMenuItemClick}>
-                Access Controls
-              </li>
-            </ul>
-          </div>
-        ) : null}
-      </div> */}
 
       <div onMouseOver={openSubReports} onMouseLeave={closeSubReports}>
         <div className="IconBox">

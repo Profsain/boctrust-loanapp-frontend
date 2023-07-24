@@ -108,7 +108,7 @@ const AdminDashboard = () => {
         setCurrentTitle("Account Types");
         break;
       case "withdraw":
-        setCurrentTitle("Withdrawer Requests");
+        setCurrentTitle("Disbursement Requests");
         break;
       case "transaction":
         setCurrentTitle("Transaction History");
@@ -129,7 +129,7 @@ const AdminDashboard = () => {
         setCurrentTitle("Stop Collections Dashboard");
         break;
       case "creditbureau":
-        setCurrentTitle("Credit Bureau Check");
+        setCurrentTitle("Credit Assessment");
         break;
       case "mdas":
         setCurrentTitle("Employers/MDAs Manager");
@@ -150,7 +150,7 @@ const AdminDashboard = () => {
         setCurrentTitle("Add New FAQs/Wiki");
         break;
       case "withdrawmethod":
-        setCurrentTitle("Withdrawer Methods");
+        setCurrentTitle("Disbursement Methods");
         break;
       case "usermanager":
         setCurrentTitle("User Manager");

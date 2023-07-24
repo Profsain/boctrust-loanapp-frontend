@@ -6,7 +6,7 @@ const LoansCard = ({img, title, stat, bgcolor}) => {
             alignItems: "center",
             justifyContent: "space-between",
             width: "170px",
-            height: "94px",
+            height: "100px",
             padding: "0.9rem",
             backgroundColor: bgcolor,
             borderRadius: "10px",

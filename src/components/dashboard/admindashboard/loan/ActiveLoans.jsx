@@ -75,7 +75,7 @@ const ActiveLoans = () => {
                   <td>7462329444</td>
                   <td>25-03-2023</td>
                   <td>N55,200</td>
-                  <td style={styles.approved}>Approved</td>
+                  <td style={styles.approved}>Booked</td>
                   <td>
                     <div>
                       <BocButton
@@ -114,7 +114,7 @@ const ActiveLoans = () => {
                   <td>7462329433</td>
                   <td>25-04-2023</td>
                   <td>N700,200</td>
-                  <td style={styles.approved}>Approved</td>
+                  <td style={styles.approved}>Completed</td>
                   <td>
                     <div>
                       <BocButton
@@ -153,7 +153,7 @@ const ActiveLoans = () => {
                   <td>7462329467</td>
                   <td>25-03-2023</td>
                   <td>N60,200</td>
-                  <td style={styles.approved}>Approved</td>
+                  <td style={styles.approved}>Completed</td>
                   <td>
                     <div>
                       <BocButton
@@ -192,7 +192,7 @@ const ActiveLoans = () => {
                   <td>7462329444</td>
                   <td>25-06-2023</td>
                   <td>N150,000</td>
-                  <td style={styles.approved}>Approved</td>
+                  <td style={styles.approved}>Booked</td>
                   <td>
                     <div>
                       <BocButton

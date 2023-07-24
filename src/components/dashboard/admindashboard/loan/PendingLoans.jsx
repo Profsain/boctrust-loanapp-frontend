@@ -8,7 +8,7 @@ const PaddingLoans = () => {
   const styles = {
     table: {
       //   margin: "0 2rem 0 3rem",
-      fontSize: "14px",
+      fontSize: "12px",
     },
     head: {
       color: "#fff",
@@ -52,7 +52,7 @@ const PaddingLoans = () => {
         <div className="ListSec">
           <DashboardHeadline
             height="52px"
-            mspacer="2rem 0 -2.55rem -1rem"
+            mspacer="2rem 0 -2.25rem -1rem"
             bgcolor="#145098"
           ></DashboardHeadline>
           <div style={styles.table}>
@@ -70,7 +70,6 @@ const PaddingLoans = () => {
                 </tr>
               </thead>
               <tbody>
-                
                 <tr>
                   <td>004</td>
                   <td>Travel Loan</td>
@@ -78,31 +77,32 @@ const PaddingLoans = () => {
                   <td>7462329467</td>
                   <td>25-03-2023</td>
                   <td>N60,200</td>
-                  <td style={styles.padding}>Padding</td>
+                  <td style={styles.padding}>With Operation</td>
                   <td>
                     <div>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
-                        margin="0 4px"
+                        fontSize="12px"
+                        width="80px"
+                        margin="4px"
                         bgcolor="#ecaa00"
                       >
                         Details
                       </BocButton>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
-                        width="90px"
-                        margin="0 4px"
+                        fontSize="12px"
+                        width="80px"
+                        margin="4px"
                         bgcolor="#7dd50e"
                       >
                         Approve
                       </BocButton>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
+                        fontSize="12px"
                         width="80px"
-                        margin="0 4px"
+                        margin="4px"
                         bgcolor="#f64f4f"
                       >
                         Reject
@@ -117,31 +117,32 @@ const PaddingLoans = () => {
                   <td>7462329444</td>
                   <td>25-06-2023</td>
                   <td>N150,000</td>
-                  <td style={styles.padding}>Padding</td>
+                  <td style={styles.padding}>With COO</td>
                   <td>
                     <div>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
-                        margin="0 4px"
+                        fontSize="12px"
+                        width="80px"
+                        margin="4px"
                         bgcolor="#ecaa00"
                       >
                         Details
                       </BocButton>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
-                        width="90px"
-                        margin="0 4px"
+                        fontSize="12px"
+                        width="80px"
+                        margin="4px"
                         bgcolor="#7dd50e"
                       >
                         Approve
                       </BocButton>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
+                        fontSize="12px"
                         width="80px"
-                        margin="0 4px"
+                        margin="4px"
                         bgcolor="#f64f4f"
                       >
                         Reject
@@ -156,31 +157,32 @@ const PaddingLoans = () => {
                   <td>7462329444</td>
                   <td>25-07-2023</td>
                   <td>N105,200</td>
-                  <td style={styles.padding}>Padding</td>
+                  <td style={styles.padding}>With Credit</td>
                   <td>
                     <div>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
-                        margin="0 4px"
+                        fontSize="12px"
+                        width="80px"
+                        margin="4px"
                         bgcolor="#ecaa00"
                       >
                         Details
                       </BocButton>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
-                        width="90px"
-                        margin="0 4px"
+                        fontSize="12px"
+                        width="80px"
+                        margin="4px"
                         bgcolor="#7dd50e"
                       >
                         Approve
                       </BocButton>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
+                        fontSize="12px"
                         width="80px"
-                        margin="0 4px"
+                        margin="4px"
                         bgcolor="#f64f4f"
                       >
                         Reject
@@ -195,31 +197,32 @@ const PaddingLoans = () => {
                   <td>7462329447</td>
                   <td>25-07-2023</td>
                   <td>N2,000,000</td>
-                  <td style={styles.padding}>Padding</td>
+                  <td style={styles.padding}>With Operation</td>
                   <td>
                     <div>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
-                        margin="0 4px"
+                        fontSize="12px"
+                        width="80px"
+                        margin="4px"
                         bgcolor="#ecaa00"
                       >
                         Details
                       </BocButton>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
-                        width="90px"
-                        margin="0 4px"
+                        fontSize="12px"
+                        width="80px"
+                        margin="4px"
                         bgcolor="#7dd50e"
                       >
                         Approve
                       </BocButton>
                       <BocButton
                         bradius="12px"
-                        fontSize="14px"
+                        fontSize="12px"
                         width="80px"
-                        margin="0 4px"
+                        margin="4px"
                         bgcolor="#f64f4f"
                       >
                         Reject

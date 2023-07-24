@@ -1,4 +1,3 @@
-import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import "./Customer.css";
 import CustomersList from "./CustomersList";
@@ -7,11 +6,6 @@ import NextPreBtn from "../../shared/NextPreBtn";
 const CustomersDashboard = () => {
   return (
     <div className="MainBox">
-      <div className="AddBtn">
-        <BocButton bgcolor="#ecaa00" bradius="22px">
-          <span>+</span> Add New
-        </BocButton>
-      </div>
 
       {/* top search bar */}
       <div className="Search">

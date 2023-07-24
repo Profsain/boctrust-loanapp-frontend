@@ -28,9 +28,10 @@ const LoanDashboard = () => {
         </DashboardHeadline>
       </div>
       <div>
-        <div className="ListSec"></div>
-        {/* Loans list  */}
-        <AllLoans />
+        <div className="ListSec">
+          {/* Loans list  */}
+          <AllLoans />
+        </div>
       </div>
     </div>
   );

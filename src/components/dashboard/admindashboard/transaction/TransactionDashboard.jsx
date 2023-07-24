@@ -1,19 +1,11 @@
-import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../customers/Customer.css";
 import NextPreBtn from "../../shared/NextPreBtn";
 import TransactionList from "./TransactionList";
 
-
 const TransactionDashboard = () => {
   return (
     <div className="MainBox">
-      <div className="AddBtn">
-        <BocButton bgcolor="#ecaa00" bradius="22px">
-          <span>+</span> Add New
-        </BocButton>
-      </div>
-
       {/* top search bar */}
       <div className="Search">
         <DashboardHeadline padding="0" height="70px" bgcolor="#d9d9d9">
