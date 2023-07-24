@@ -5,7 +5,7 @@ import DashboardHeadline from "../../../shared/DashboardHeadline";
 const AccountBalanceList = () => {
   const styles = {
     table: {
-      margin: "0 2rem 0 8rem",
+      // margin: "0 2rem 0 8rem",
     },
     head: {
       color: "#fff",

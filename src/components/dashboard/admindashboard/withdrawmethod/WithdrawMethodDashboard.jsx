@@ -28,7 +28,7 @@ const WithdrawMethodDashboard = () => {
                   <label htmlFor="show">Show</label>
                   <input name="showCount" type="number" step={10} min={10} />
                 </div>
-                <div className="FormGroup">
+                <div className="FormGroup SBox">
                   <input name="search" placeholder="Search" />
                   <img src="images/search.png" alt="search-icon" />
                 </div>

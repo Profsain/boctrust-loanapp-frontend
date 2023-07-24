@@ -301,7 +301,13 @@ p {
     width: 100% !important;
     background-color: #fff !important;
    }
+   .ReportCon {
+    margin-right: 0 !important;
+   }
+   .LDBox {
+    margin-top: 5rem !important;
 
+   }
    .MainBox {
     margin: 0;
    }
@@ -318,6 +324,9 @@ p {
    .SBox input {
     width: 85% !important;
     margin-left: 1rem !important;
+   }
+   .Content {
+    width: 300px !important;
    }
    #action {
     width: 90px !important;
@@ -379,6 +388,9 @@ p {
     margin-left: 0 !important;
     width: 95% !important;
    } 
-   
+   .FormatBtn {
+    flex-direction: column !important;
+    margin-bottom: 1rem;
+   }
 }
 

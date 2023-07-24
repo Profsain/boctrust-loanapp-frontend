@@ -10,8 +10,8 @@ const LoanDueReport = () => {
        margin: "0 2rem 0 2rem",
      },
      head: {
-       color: "#fff",
-       fontSize: "1.2rem",
+       color: "#145098",
+       fontSize: "1rem",
      },
      img: {
        width: "50px",
@@ -20,6 +20,10 @@ const LoanDueReport = () => {
      completed: {
        color: "#5cc51c",
      },
+     search: {
+       border: "1px solid #145098",
+       width: "300px",
+     }
    };
     
   return (
@@ -28,7 +32,7 @@ const LoanDueReport = () => {
         <DashboardHeadline>Loan Due Report</DashboardHeadline>
         {/* search form section */}
         <div className="FieldRow">
-          <input type="text" placeholder="Search" />
+          <input type="text" placeholder="Search" style={styles.search} />
           <BocButton
             margin="0"
             fontSize="1.6rem"
@@ -39,10 +43,11 @@ const LoanDueReport = () => {
             Submit
           </BocButton>
         </div>
-
-        {/* format section btn */}
-        <div className="FormatBtn">
-          <p>Output As:</p>
+      </div>
+      {/* format section btn */}
+      <div className="FormatBtn LDBox">
+        <p>Output As:</p>
+        <div>
           <BocButton bgcolor="gray">Copy</BocButton>
           <BocButton bgcolor="green">Excel</BocButton>
           <BocButton bgcolor="#145098">PDF</BocButton>
@@ -52,11 +57,11 @@ const LoanDueReport = () => {
       <div className="ReportCon">
         {/* report table  */}
         <div>
-          <DashboardHeadline
+          {/* <DashboardHeadline
             height="52px"
             mspacer="2rem 0 -2.7rem 0.2rem"
             bgcolor="#145098"
-          ></DashboardHeadline>
+          ></DashboardHeadline> */}
           <div style={styles.table}>
             <Table hover responsive="sm">
               <thead style={styles.head}>
@@ -102,7 +107,6 @@ const LoanDueReport = () => {
                   <td>30-07-2023</td>
                   <td style={styles.completed}>N50,000</td>
                 </tr>
-               
               </tbody>
             </Table>
           </div>

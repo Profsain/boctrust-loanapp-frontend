@@ -67,7 +67,7 @@ const AddNewBlog = ({func}) => {
               </div>
             </div>
 
-            <div>
+            <div className="FieldRow">
               <div className="FieldGroup">
                 <label htmlFor="category">Category</label>
                 <Field
@@ -97,20 +97,20 @@ const AddNewBlog = ({func}) => {
               <BocButton
                 fontSize="1.6rem"
                 type="submit"
-                width="35%"
                 bgcolor="#ecaa00"
                 bradius="18px"
+                width="220px"
+                margin="1rem 0"
               >
                 Add Blog
               </BocButton>
-            </div>
-            <div className="BtnContainer">
               <BocButton
                 fontSize="1.6rem"
                 type="button"
-                width="35%"
                 bgcolor="gray"
                 bradius="18px"
+                width="220px"
+                margin="1rem 0"
                 func={handleCancel}
               >
                 Cancel

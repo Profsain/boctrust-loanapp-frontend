@@ -1,6 +1,5 @@
 import Table from "react-bootstrap/Table";
 import "../../Dashboard.css";
-import DashboardHeadline from "../../shared/DashboardHeadline";
 
 const WikiList = () => {
   const styles = {
@@ -8,18 +7,14 @@ const WikiList = () => {
       // margin: "0 2rem 0 3rem",
     },
     head: {
-      color: "#fff",
+      color: "#145098",
       fontSize: "1.2rem",
+      backgroudColor: "#f9f9f9",
     },
     };
     
   return (
-    <div>
-      <DashboardHeadline
-        height="62px"
-        mspacer="2rem 0 -2.8rem -1rem"
-        bgcolor="#145098"
-      ></DashboardHeadline>
+    <div className="ListSec">
       <div style={styles.table}>
         <Table hover responsive="sm">
           <thead style={styles.head}>

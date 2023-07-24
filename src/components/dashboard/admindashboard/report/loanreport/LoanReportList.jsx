@@ -5,7 +5,7 @@ import DashboardHeadline from "../../../shared/DashboardHeadline";
 const LoanReportList = () => {
   const styles = {
     table: {
-      margin: "0 2rem 0 4rem",
+      // margin: "0 2rem 0 4rem",
     },
     head: {
       color: "#fff",

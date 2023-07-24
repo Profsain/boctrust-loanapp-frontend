@@ -9,7 +9,7 @@ const BlogsList = () => {
     },
     head: {
       color: "#fff",
-      fontSize: "1.2rem",
+      fontSize: "1rem",
     },
     booked: {
       color: "#145098",
@@ -25,10 +25,10 @@ const BlogsList = () => {
     },
   };
   return (
-    <div>
+    <div className="ListSec">
       <DashboardHeadline
         height="72px"
-        mspacer="2rem 0 -4.6rem -1rem"
+        mspacer="2rem 0 -4rem -1rem"
         bgcolor="#145098"
       ></DashboardHeadline>
       <div style={styles.table}>

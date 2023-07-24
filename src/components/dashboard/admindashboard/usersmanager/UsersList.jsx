@@ -21,7 +21,7 @@ const UsersList = () => {
   };
 
   return (
-    <div>
+    <div className="ListSec">
       <DashboardHeadline
         height="52px"
         mspacer="2rem 0 -2.7rem 0.2rem"

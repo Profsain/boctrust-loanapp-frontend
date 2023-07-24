@@ -22,13 +22,13 @@ const WithdrawerMethodList = () => {
     };
     
   return (
-    <div>
+    <div className="ListSec">
       <DashboardHeadline
         height="52px"
         mspacer="2rem 0 -2.7rem 0.2rem"
         bgcolor="#145098"
       ></DashboardHeadline>
-      <div style={styles.table}>
+      <div style={styles.table} className="DCard">
         <Table hover responsive="sm">
           <thead style={styles.head}>
             <tr>

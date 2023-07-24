@@ -147,10 +147,12 @@ const LoanReport = () => {
         {/* format section btn */}
         <div className="FormatBtn">
           <p>Output As:</p>
-          <BocButton bgcolor="gray">Copy</BocButton>
-          <BocButton bgcolor="green">Excel</BocButton>
-          <BocButton bgcolor="#145098">PDF</BocButton>
-          <BocButton>Print</BocButton>
+          <div>
+            <BocButton bgcolor="gray">Copy</BocButton>
+            <BocButton bgcolor="green">Excel</BocButton>
+            <BocButton bgcolor="#145098">PDF</BocButton>
+            <BocButton>Print</BocButton>
+          </div>
         </div>
       </div>
       <div className="ReportCon">
