@@ -27,7 +27,7 @@ const CheckSalaryHistory = () => {
     completed: {
       color: "#f64f4f",
     },
-    padding: {
+    pending: {
       color: "#ecaa00",
     },
   };

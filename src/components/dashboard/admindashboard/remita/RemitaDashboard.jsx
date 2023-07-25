@@ -1,7 +1,9 @@
+import { Table } from "react-bootstrap";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import DetailsCard from "./DetailsCard";
 import Headline from "../../../shared/Headline";
 import BocButton from "../../shared/BocButton";
+import NextPreBtn from "../../shared/NextPreBtn";
 
 const RemitaDashboard = () => {
   const styles = {
@@ -28,7 +30,20 @@ const RemitaDashboard = () => {
     },
     spanIn: {
       paddingRight: "1.5rem"
-    }
+    },
+    head: {
+      color: "#fff",
+      fontSize: "14px",
+    },
+    approved: {
+      color: "#5cc51c",
+    },
+    completed: {
+      color: "#f64f4f",
+    },
+    pending: {
+      color: "#ecaa00",
+    },
   };
   return (
     <div className="DetailSection DCard" style={styles.container}>
@@ -45,6 +60,57 @@ const RemitaDashboard = () => {
             Specific User
           </BocButton>
         </div>
+      </div>
+
+      {/* table section */}
+      <div className="RBox">
+        <DashboardHeadline
+          height="62px"
+          mspacer="2rem -1rem -3.5rem -1rem"
+          bgcolor="#145098"
+        ></DashboardHeadline>
+        <div style={styles.table}>
+          <Table borderless hover responsive="sm">
+            <thead style={styles.head}>
+              <tr>
+                <th>Customer Acct No</th>
+                <th>Name</th>
+                <th>Income from Employer</th>
+                <th>Loan Amount</th>
+                <th>Collection Amount</th>
+                <th>Date of Disbursement</th>
+                <th>Date of Collection </th>
+                <th>Booked Loan</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>7456161553</td>
+                <td>Cynthia Aremu</td>
+                <td>N230,000</td>
+                <td>N75,000</td>
+                <td>N80,500</td>
+                <td>03-03-2023</td>
+                <td>30-03-2023</td>
+                <td style={styles.approved}>Processed</td>
+                <td style={styles.completed}>View</td>
+              </tr>
+              <tr>
+                <td>7456161598</td>
+                <td>Ebuka Akim</td>
+                <td>N300,000</td>
+                <td>N750,000</td>
+                <td>N900,000</td>
+                <td>01-02-2023</td>
+                <td>30-03-2023</td>
+                <td style={styles.pending}>Pending</td>
+                <td style={styles.completed}>View</td>
+              </tr>
+            </tbody>
+          </Table>
+        </div>
+        <NextPreBtn />
       </div>
 
       {/* details section */}

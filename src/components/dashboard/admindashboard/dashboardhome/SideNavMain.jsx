@@ -196,26 +196,24 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div onMouseOver={openSubRemita} onMouseLeave={closeSubRemita}>
-        <div id="remita" className="IconBox" onClick={onMenuItemClick}>
+        <div className="IconBox" onClick={onMenuItemClick}>
           <img
-            id="remita"
             onClick={onMenuItemClick}
             src="images/dremita.png"
             alt="remita"
           />
-          <p id="remita" onClick={onMenuItemClick}>
-            Remita Collections
-          </p>
+          <p onClick={onMenuItemClick}>Remita Collections</p>
         </div>
         {isRemitaOpen ? (
           <div className="SubItem">
             <ul>
-              <li id="remita" onClick={onMenuItemClick}>
-                Loan Disbursements
-              </li>
               <li id="checksalaryhistory" onClick={onMenuItemClick}>
                 Check Salary History
               </li>
+              <li id="remita" onClick={onMenuItemClick}>
+                Loan Disbursements
+              </li>
+
               <li id="collectionnotifications" onClick={onMenuItemClick}>
                 Collection Notification
               </li>
