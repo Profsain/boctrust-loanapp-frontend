@@ -7,23 +7,24 @@ import BocButton from "../../shared/BocButton";
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
-  branchId: Yup.string().required("Branch ID is required"),
-  name: Yup.string().required("Branch name is required"),
-  contactEmail: Yup.string().required("Contact email is required"),
-  phoneNumber: Yup.string().required("Phone number is required"),
-  address: Yup.string().required("Address is required"),
+  productName: Yup.string().required("Product name is required"),
+  interestRate: Yup.string().required("Interest rate is required"),
+  interestType: Yup.string().required("Interest type is required"),
+  maxTerm: Yup.string().required("Max term is required"),
+  termPeriod: Yup.string().required("Term period is required"),
+  note: Yup.string().required("Note is required"),
 });
 
 const initialValues = {
-  branchId: "",
-  name: "",
-  contactEmail: "",
-  phoneNumber: "",
-  address: "",
+  productName: "",
+  interestRate: "",
+  interestType: "",
+  maxTerm: "",
+  termPeriod: "",
   note: "",
 };
 
-const AddBranch = ({ func }) => {
+const AddNewLoanProduct = ({ func }) => {
   const handleSubmit = (values) => {
     // Handle form submission logic here
     // set open add branch component to true
@@ -33,7 +34,7 @@ const AddBranch = ({ func }) => {
 
   return (
     <div className="TransContainer">
-      <DashboardHeadline>Apply for New Loan</DashboardHeadline>
+      <DashboardHeadline>New Loan Product</DashboardHeadline>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -42,55 +43,60 @@ const AddBranch = ({ func }) => {
         <Form>
           <div className="FieldRow">
             <div className="FieldGroup">
-              <label htmlFor="branchId">Branch ID</label>
+              <label htmlFor="productName">Product Name</label>
               <Field
                 type="text"
-                name="branchId"
-                id="branchId"
+                name="productName"
+                id="productName"
                 className="Input"
               />
-              <ErrorMessage name="branchId" component="div" />
+              <ErrorMessage name="productName" component="div" />
             </div>
             <div className="FieldGroup">
-              <label htmlFor="name">Branch Name</label>
-              <Field type="text" name="name" id="name" className="Input" />
-              <ErrorMessage name="name" component="div" />
+              <label htmlFor="interestRate">Interest Rate</label>
+              <Field
+                type="text"
+                name="interestRate"
+                id="interestRate"
+                className="Input"
+              />
+              <ErrorMessage name="interestRate" component="div" />
             </div>
           </div>
 
           <div className="FieldRow">
             <div className="FieldGroup">
-              <label htmlFor="contactEmail">Contact Email</label>
+              <label htmlFor="interestType">Interest Type</label>
               <Field
                 type="text"
-                name="contactEmail"
-                id="contactEmail"
+                name="interestType"
+                id="interestType"
                 className="Input"
               />
-              <ErrorMessage name="contactEmail" component="div" />
+              <ErrorMessage name="interestType" component="div" />
             </div>
 
             <div className="FieldGroup">
-              <label htmlFor="phoneNumber">Phone Number</label>
+              <label htmlFor="maxTerm">Max Term</label>
               <Field
                 type="text"
-                name="phoneNumber"
-                id="phoneNumber"
+                name="maxTerm"
+                id="maxTerm"
                 className="Input"
               />
-              <ErrorMessage name="phoneNumber" component="div" />
+              <ErrorMessage name="maxTerm" component="div" />
             </div>
           </div>
           <div className="FieldRow">
             <div className="FieldGroup">
-              <label htmlFor="address">Address</label>
+              <label htmlFor="termPeriod">Term Period</label>
               <Field
                 type="text"
-                name="address"
-                id="address"
+                name="termPeriod"
+                id="termPeriod"
                 className="Input"
               />
-              <ErrorMessage name="address" component="div" />
+              <ErrorMessage name="termPeriod" component="div" />
             </div>
             <div className="FieldGroup">
               <label htmlFor="note">Note</label>
@@ -125,8 +131,8 @@ const AddBranch = ({ func }) => {
   );
 };
 
-AddBranch.propTypes = {
+AddNewLoanProduct.propTypes = {
   func: PropTypes.func,
 };
 
-export default AddBranch;
+export default AddNewLoanProduct;
