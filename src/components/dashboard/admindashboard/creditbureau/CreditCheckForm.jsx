@@ -38,7 +38,7 @@ const CreditCheckForm = () => {
 
   return (
     <div>
-      <DashboardHeadline
+      {/* <DashboardHeadline
         bgcolor="#145098"
         mspacer="1rem 4rem 0 1rem"
         padding="0.3rem 0 0 1rem"
@@ -52,7 +52,7 @@ const CreditCheckForm = () => {
             className="SearchIcon"
           />
         </div>
-      </DashboardHeadline>
+      </DashboardHeadline> */}
 
       <div className="TransContainer RBox">
         <DashboardHeadline>Perform a Credit Check</DashboardHeadline>
