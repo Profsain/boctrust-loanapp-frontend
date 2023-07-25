@@ -42,6 +42,7 @@ import WithdrawRequestDashboard from "../withdraw/WithdrawRequestDashboard";
 import WithdrawMethodDashboard from "../withdrawmethod/WithdrawMethodDashboard";
 import AddWiki from "../website/AddWiki";
 import StatementRules from "../employersmanager/StatementRules";
+import AllWebsitePages from "../website/AllWebsitePages";
 
 const AdminDashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -148,6 +149,9 @@ const AdminDashboard = () => {
         setCurrentTitle("KYC Manager");
         break;
       case "webmanager":
+        setCurrentTitle("Blogs Manager ");
+        break;
+      case "website":
         setCurrentTitle("Website Manager");
         break;
       case "addwiki":
@@ -252,6 +256,8 @@ const AdminDashboard = () => {
         return <WebsiteManagerDashboard />;
       case "addwiki":
         return <AddWiki />;
+      case "website":
+        return <AllWebsitePages />;
       case "usermanager":
         return <UserManagerDashboard />;
       case "userroles":

@@ -278,14 +278,14 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div onMouseOver={openSubWebManager} onMouseLeave={closeSubWebManager}>
-        <div id="webmanager" className="IconBox" onClick={onMenuItemClick}>
+        <div className="IconBox" onClick={onMenuItemClick}>
           <img
-            id="webmanager"
+          
             onClick={onMenuItemClick}
             src="images/dwebsite.png"
             alt="webmanager"
           />
-          <p id="webmanager" onClick={onMenuItemClick}>
+          <p onClick={onMenuItemClick}>
             Website Manager
           </p>
         </div>
@@ -293,6 +293,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
         {isWebManagerOpen ? (
           <div className="SubItem">
             <ul>
+              <li id="website" onClick={onMenuItemClick}>
+                All Pages
+              </li>
               <li id="webmanager" onClick={onMenuItemClick}>
                 Blogs
               </li>
