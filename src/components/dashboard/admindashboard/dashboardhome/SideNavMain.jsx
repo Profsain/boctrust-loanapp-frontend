@@ -241,28 +241,24 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div onMouseOver={openSubEmployer} onMouseLeave={closeSubEmployer}>
-        <div id="mdas" className="IconBox" onClick={onMenuItemClick}>
-          <img
-            id="mdas"
-            onClick={onMenuItemClick}
-            src="images/dmda.png"
-            alt="mdas"
-          />
-          <p id="mdas" onClick={onMenuItemClick}>
-            Employer Manager
-          </p>
+        <div className="IconBox" onClick={onMenuItemClick}>
+          <img onClick={onMenuItemClick} src="images/dmda.png" alt="mdas" />
+          <p onClick={onMenuItemClick}>Employer Manager</p>
         </div>
         {isEmployerOpen ? (
           <div className="SubItem">
             <ul>
-              <li id="mdas" onClick={onMenuItemClick}>
-                All Employers
-              </li>
               <li id="addemployer" onClick={onMenuItemClick}>
                 Add Employer
               </li>
               <li id="mandaterules" onClick={onMenuItemClick}>
                 Mandate Rules
+              </li>
+              <li id="statementrules" onClick={onMenuItemClick}>
+                Statement Rules
+              </li>
+              <li id="mdas" onClick={onMenuItemClick}>
+                All Employers
               </li>
             </ul>
           </div>

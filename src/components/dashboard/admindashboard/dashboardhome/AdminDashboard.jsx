@@ -41,6 +41,7 @@ import WebsiteManagerDashboard from "../website/WebsiteManagerDashboard";
 import WithdrawRequestDashboard from "../withdraw/WithdrawRequestDashboard";
 import WithdrawMethodDashboard from "../withdrawmethod/WithdrawMethodDashboard";
 import AddWiki from "../website/AddWiki";
+import StatementRules from "../employersmanager/StatementRules";
 
 const AdminDashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -138,6 +139,9 @@ const AdminDashboard = () => {
         setCurrentTitle("Employers/MDAs Manager");
         break;
       case "mandaterules":
+        setCurrentTitle("Employers/MDAs Manager");
+        break;
+      case "statementrules":
         setCurrentTitle("Employers/MDAs Manager");
         break;
       case "kyc":
@@ -240,6 +244,8 @@ const AdminDashboard = () => {
         return <AddEmployer />;
       case "mandaterules":
         return <MandateRules />;
+      case "statementrules":
+        return <StatementRules />;
       case "kyc":
         return <KycCheck />;
       case "webmanager":
