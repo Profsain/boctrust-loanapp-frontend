@@ -7,23 +7,21 @@ import BocButton from "../../shared/BocButton";
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
-  branchId: Yup.string().required("Branch ID is required"),
-  name: Yup.string().required("Branch name is required"),
-  contactEmail: Yup.string().required("Contact email is required"),
-  phoneNumber: Yup.string().required("Phone number is required"),
-  address: Yup.string().required("Address is required"),
+  accountName: Yup.string().required("Account name is required"),
+    interestRate: Yup.string().required("Interest rate is required"),
+    interestMethod: Yup.string().required("Interest method is required"),
+    interestPeriod: Yup.string().required("Interest period is required"),
+  
 });
 
 const initialValues = {
-  branchId: "",
-  name: "",
-  contactEmail: "",
-  phoneNumber: "",
-  address: "",
-  note: "",
+  accountName: "",
+  interestRate: "",
+  interestMethod: "",
+  interestPeriod: "",
 };
 
-const AddBranch = ({ func }) => {
+const AddNewAccountType = ({ func }) => {
   const handleSubmit = (values) => {
     // Handle form submission logic here
     // set open add branch component to true
@@ -33,7 +31,7 @@ const AddBranch = ({ func }) => {
 
   return (
     <div className="TransContainer">
-      <DashboardHeadline>Add New Branch</DashboardHeadline>
+      <DashboardHeadline>Add New Account Type</DashboardHeadline>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -42,62 +40,51 @@ const AddBranch = ({ func }) => {
         <Form>
           <div className="FieldRow">
             <div className="FieldGroup">
-              <label htmlFor="branchId">Branch ID</label>
+              <label htmlFor="accountName">Account Name</label>
               <Field
                 type="text"
-                name="branchId"
-                id="branchId"
+                name="accountName"
+                id="accountName"
                 className="Input"
               />
-              <ErrorMessage name="branchId" component="div" />
+              <ErrorMessage name="accountName" component="div" />
             </div>
             <div className="FieldGroup">
-              <label htmlFor="name">Branch Name</label>
-              <Field type="text" name="name" id="name" className="Input" />
-              <ErrorMessage name="name" component="div" />
+              <label htmlFor="interestRate">Interest Rate</label>
+              <Field
+                type="text"
+                name="interestRate"
+                id="interestRate"
+                className="Input"
+              />
+              <ErrorMessage name="interestRate" component="div" />
             </div>
           </div>
 
           <div className="FieldRow">
             <div className="FieldGroup">
-              <label htmlFor="contactEmail">Contact Email</label>
+              <label htmlFor="interestMethod">Interest Method</label>
               <Field
                 type="text"
-                name="contactEmail"
-                id="contactEmail"
+                name="interestMethod"
+                id="interestMethod"
                 className="Input"
               />
-              <ErrorMessage name="contactEmail" component="div" />
+              <ErrorMessage name="interestMethod" component="div" />
             </div>
 
             <div className="FieldGroup">
-              <label htmlFor="phoneNumber">Phone Number</label>
+              <label htmlFor="interestPeriod">Interest Period</label>
               <Field
                 type="text"
-                name="phoneNumber"
-                id="phoneNumber"
+                name="interestPeriod"
+                id="interestPeriod"
                 className="Input"
               />
-              <ErrorMessage name="phoneNumber" component="div" />
+              <ErrorMessage name="interestPeriod" component="div" />
             </div>
           </div>
-          <div className="FieldRow">
-            <div className="FieldGroup">
-              <label htmlFor="address">Address</label>
-              <Field
-                type="text"
-                name="address"
-                id="address"
-                className="Input"
-              />
-              <ErrorMessage name="address" component="div" />
-            </div>
-            <div className="FieldGroup">
-              <label htmlFor="note">Note</label>
-              <Field type="text" name="note" id="note" className="Input" />
-              <ErrorMessage name="note" component="div" />
-            </div>
-          </div>
+         
 
           <div className="BtnContainer">
             <BocButton
@@ -106,7 +93,7 @@ const AddBranch = ({ func }) => {
               bgcolor="#ecaa00"
               bradius="18px"
             >
-              Add Branch
+              Submit
             </BocButton>
             <BocButton
               margin="1.5rem 0 0 0"
@@ -116,7 +103,7 @@ const AddBranch = ({ func }) => {
               bradius="18px"
               func={() => func(false)}
             >
-              Back to Branches
+                Cancel
             </BocButton>
           </div>
         </Form>
@@ -125,8 +112,8 @@ const AddBranch = ({ func }) => {
   );
 };
 
-AddBranch.propTypes = {
+AddNewAccountType.propTypes = {
   func: PropTypes.func,
 };
 
-export default AddBranch;
+export default AddNewAccountType;

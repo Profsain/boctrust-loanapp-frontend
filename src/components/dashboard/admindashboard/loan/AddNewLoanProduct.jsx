@@ -112,7 +112,7 @@ const AddNewLoanProduct = ({ func }) => {
               bgcolor="#ecaa00"
               bradius="18px"
             >
-              Submit Application
+              Submit
             </BocButton>
             <BocButton
               margin="1.5rem 0 0 0"
@@ -122,7 +122,7 @@ const AddNewLoanProduct = ({ func }) => {
               bradius="18px"
               func={() => func(false)}
             >
-              Back to Branches
+              Cancel
             </BocButton>
           </div>
         </Form>
