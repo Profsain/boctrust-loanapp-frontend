@@ -392,5 +392,11 @@ p {
     flex-direction: column !important;
     margin-bottom: 1rem;
    }
+   .Signature {
+    margin-left: 3.3rem !important;
+   }
+   .Capture, .ICard {
+    margin-top: -5rem !important;
+   }
 }
 

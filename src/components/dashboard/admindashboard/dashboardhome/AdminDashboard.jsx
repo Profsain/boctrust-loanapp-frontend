@@ -15,6 +15,10 @@ import MdasEmployers from "../employersmanager/MdasEmployers";
 import AddEmployer from "../employersmanager/AddEmployer";
 import MandateRules from "../employersmanager/MandateRules";
 import KycCheck from "../kyc/KycCheck";
+import GovernmentID from "../kyc/GovernmentID";
+import FacialCapture from "../kyc/FacialCapture";
+import ReviewSignature from "../kyc/ReviewSignature";
+import OtherDocuments from "../kyc/OtherDocuments";
 import LoanDashboard from "../loan/LoanDashboard";
 import PendingLoans from "../loan/PendingLoans";
 import ActiveLoans from "../loan/ActiveLoans";
@@ -146,7 +150,19 @@ const AdminDashboard = () => {
         setCurrentTitle("Employers/MDAs Manager");
         break;
       case "kyc":
-        setCurrentTitle("KYC Manager");
+        setCurrentTitle("Check Customer KYC Details");
+        break;
+      case "governmentid":
+        setCurrentTitle("Check Government ID card Details");
+        break;
+      case "facialcapture":
+        setCurrentTitle("Check Facial Capture Details");
+        break;
+      case "signature":
+        setCurrentTitle("Check Customer Admin Review and Signature");
+        break;
+      case "otherdocs":
+        setCurrentTitle("Check Customer Other Documents");
         break;
       case "webmanager":
         setCurrentTitle("Blogs Manager ");
@@ -252,6 +268,14 @@ const AdminDashboard = () => {
         return <StatementRules />;
       case "kyc":
         return <KycCheck />;
+      case "governmentid":
+        return <GovernmentID />;
+      case "facialcapture":
+        return <FacialCapture />;
+      case "signature":
+        return <ReviewSignature />;
+      case "otherdocs":
+        return <OtherDocuments />;
       case "webmanager":
         return <WebsiteManagerDashboard />;
       case "addwiki":
@@ -269,7 +293,7 @@ const AdminDashboard = () => {
       case "report":
         return <AccountStatement />;
       case "accountbalance":
-        return <AccountBalance/>;
+        return <AccountBalance />;
       case "loanreporting":
         return <LoanReport />;
       case "loanduereport":

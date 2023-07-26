@@ -9,7 +9,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const [isRemitaOpen, setIsRemitaOpen] = useState(false);
   const [isEmployerOpen, setIsEmployerOpen] = useState(false);
   const [isWebManagerOpen, setIsWebManagerOpen] = useState(false);
-  // const [isUseranagerOpen, setIsUserManagerOpen] = useState(false);
+  const [isKycOpen, setIsKycOpen] = useState(false);
   const [isReportsOpen, setIsReportsOpen] = useState(false);
 
   const openSubItem = () => setIsOpen(true);
@@ -30,8 +30,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const openSubWebManager = () => setIsWebManagerOpen(true);
   const closeSubWebManager = () => setIsWebManagerOpen(false);
 
-  // const openSubUserManager = () => setIsUserManagerOpen(true);
-  // const closeSubUserManager = () => setIsUserManagerOpen(false);
+  const openSubKyc = () => setIsKycOpen(true);
+  const closeSubKyc = () => setIsKycOpen(false);
 
   const openSubReports = () => setIsReportsOpen(true);
   const closeSubReports = () => setIsReportsOpen(false);
@@ -265,29 +265,50 @@ const SideNavMain = ({ onMenuItemClick }) => {
         ) : null}
       </div>
 
-      <div id="kyc" className="IconBox" onClick={onMenuItemClick}>
-        <img
-          id="kyc"
-          onClick={onMenuItemClick}
-          src="images/dkyc.png"
-          alt="kyc"
-        />
-        <p id="kyc" onClick={onMenuItemClick}>
-          KYC Review
-        </p>
+      <div onMouseOver={openSubKyc} onMouseLeave={closeSubKyc}>
+        <div className="IconBox" onClick={onMenuItemClick}>
+          <img
+          
+            onClick={onMenuItemClick}
+            src="images/dkyc.png"
+            alt="kyc"
+          />
+          <p onClick={onMenuItemClick}>
+            KYC Review
+          </p>
+        </div>
+
+        {isKycOpen ? (
+          <div className="SubItem">
+            <ul>
+              <li id="kyc" onClick={onMenuItemClick}>
+                Do KYC Review
+              </li>
+              <li id="governmentid" onClick={onMenuItemClick}>
+                Government IDs
+              </li>
+              <li id="facialcapture" onClick={onMenuItemClick}>
+                Facial Capture
+              </li>
+              <li id="signature" onClick={onMenuItemClick}>
+                Review & Signature
+              </li>
+              <li id="otherdocs" onClick={onMenuItemClick}>
+                Other Document 
+              </li>
+            </ul>
+          </div>
+        ) : null}
       </div>
 
       <div onMouseOver={openSubWebManager} onMouseLeave={closeSubWebManager}>
         <div className="IconBox" onClick={onMenuItemClick}>
           <img
-          
             onClick={onMenuItemClick}
             src="images/dwebsite.png"
             alt="webmanager"
           />
-          <p onClick={onMenuItemClick}>
-            Website Manager
-          </p>
+          <p onClick={onMenuItemClick}>Website Manager</p>
         </div>
 
         {isWebManagerOpen ? (

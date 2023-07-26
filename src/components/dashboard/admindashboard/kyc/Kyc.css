@@ -8,8 +8,7 @@
 }
 
 .FaceCapture {
-    height: 270px;
-    width: 290px;
+    width: 200px;
     margin-left: 7rem;
 }
 
@@ -19,7 +18,7 @@
     bottom: 0.5rem;
     display: flex;
     justify-content: space-between;
-    width: 290px;
+    width: 200px;
     height: 60px;
     background-color: #145098;
     color: #fff;
@@ -51,4 +50,15 @@
 
 .Radio {
     margin-top: -2.3rem;
+}
+
+.Capture {
+    margin-left: 3rem;
+}
+
+.Signature {
+    width: 200px;
+    margin-left: 10rem;
+    border: 1px solid #ccc;
+    padding: 28px;
 }
