@@ -35,7 +35,7 @@ const KycCheck = () => {
         <Headline text="View by:" />
         <div style={styles.btnBox} className="VBox">
           <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Applicant Today
+            Recent Application
           </BocButton>
           <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
             Date Range
@@ -99,7 +99,7 @@ const KycCheck = () => {
                 </td>
               </tr>
               <tr>
-                <td>C0013</td>
+                <td>C0018</td>
                 <td>Akin Tinibu</td>
                 <td style={styles.padding}>View Application</td>
                 <td>
