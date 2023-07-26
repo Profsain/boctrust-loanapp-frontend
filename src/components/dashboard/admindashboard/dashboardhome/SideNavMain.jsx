@@ -70,16 +70,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
 
       {/* Menu with sub item */}
       <div onMouseOver={openSubItem} onMouseLeave={closeSubItem}>
-        <div id="customer" className="IconBox" onClick={onMenuItemClick}>
-          <img
-            id="customer"
-            onClick={onMenuItemClick}
-            src="images/dprofile.png"
-            alt="customer"
-          />
-          <p id="customer" onClick={onMenuItemClick}>
-            Customer
-          </p>
+        <div className="IconBox">
+          <img src="images/dprofile.png" alt="customer" />
+          <p>Customer</p>
         </div>
         {isOpen ? (
           <div className="SubItem">
@@ -99,16 +92,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div onMouseOver={openSubLoan} onMouseLeave={closeSubLoan}>
-        <div id="myloan" className="IconBox" onClick={onMenuItemClick}>
-          <img
-            id="myloan"
-            onClick={onMenuItemClick}
-            src="images/dmyloan.png"
-            alt="loan"
-          />
-          <p id="myloan" onClick={onMenuItemClick}>
-            My Loans
-          </p>
+        <div className="IconBox">
+          <img src="images/dmyloan.png" alt="loan" />
+          <p>My Loans</p>
         </div>
         {isLoanOpen ? (
           <div className="SubItem">
@@ -146,16 +132,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div onMouseOver={openSubAccount} onMouseLeave={closeSubAccount}>
-        <div id="accounts" className="IconBox" onClick={onMenuItemClick}>
-          <img
-            id="accounts"
-            onClick={onMenuItemClick}
-            src="images/daccount.png"
-            alt="accounts"
-          />
-          <p id="accounts" onClick={onMenuItemClick}>
-            Accounts
-          </p>
+        <div className="IconBox">
+          <img src="images/daccount.png" alt="accounts" />
+          <p>Accounts</p>
         </div>
         {isAccountOpen ? (
           <div className="SubItem">
@@ -196,13 +175,13 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div onMouseOver={openSubRemita} onMouseLeave={closeSubRemita}>
-        <div className="IconBox" onClick={onMenuItemClick}>
+        <div className="IconBox">
           <img
-            onClick={onMenuItemClick}
+            
             src="images/dremita.png"
             alt="remita"
           />
-          <p onClick={onMenuItemClick}>Remita Collections</p>
+          <p>Remita Collections</p>
         </div>
         {isRemitaOpen ? (
           <div className="SubItem">
@@ -241,9 +220,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div onMouseOver={openSubEmployer} onMouseLeave={closeSubEmployer}>
-        <div className="IconBox" onClick={onMenuItemClick}>
-          <img onClick={onMenuItemClick} src="images/dmda.png" alt="mdas" />
-          <p onClick={onMenuItemClick}>Employer Manager</p>
+        <div className="IconBox">
+          <img src="images/dmda.png" alt="mdas" />
+          <p>Employer Manager</p>
         </div>
         {isEmployerOpen ? (
           <div className="SubItem">
@@ -266,16 +245,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div onMouseOver={openSubKyc} onMouseLeave={closeSubKyc}>
-        <div className="IconBox" onClick={onMenuItemClick}>
-          <img
-          
-            onClick={onMenuItemClick}
-            src="images/dkyc.png"
-            alt="kyc"
-          />
-          <p onClick={onMenuItemClick}>
-            KYC Review
-          </p>
+        <div className="IconBox">
+          <img src="images/dkyc.png" alt="kyc" />
+          <p>KYC Review</p>
         </div>
 
         {isKycOpen ? (
@@ -294,7 +266,7 @@ const SideNavMain = ({ onMenuItemClick }) => {
                 Review & Signature
               </li>
               <li id="otherdocs" onClick={onMenuItemClick}>
-                Other Document 
+                Other Document
               </li>
             </ul>
           </div>
@@ -302,13 +274,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
       </div>
 
       <div onMouseOver={openSubWebManager} onMouseLeave={closeSubWebManager}>
-        <div className="IconBox" onClick={onMenuItemClick}>
-          <img
-            onClick={onMenuItemClick}
-            src="images/dwebsite.png"
-            alt="webmanager"
-          />
-          <p onClick={onMenuItemClick}>Website Manager</p>
+        <div className="IconBox">
+          <img src="images/dwebsite.png" alt="webmanager" />
+          <p>Website Manager</p>
         </div>
 
         {isWebManagerOpen ? (
