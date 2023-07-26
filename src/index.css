@@ -351,7 +351,10 @@ p {
     margin-bottom: -4rem !important;
    }
    .RBox {
-    margin-top: 5rem !important;
+    margin-top: 6rem !important;
+   }
+   .PCont {
+    padding: 1rem !important
    }
    .RTitle {
     font-size: 1rem !important;

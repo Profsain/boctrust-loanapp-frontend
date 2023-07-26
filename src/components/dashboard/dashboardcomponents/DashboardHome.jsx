@@ -9,7 +9,7 @@ const DashboardHome = () => {
   return (
     <div className="DashboardHome">
       <TopCardSec />
-      <div>
+      <div className="PCont">
         <AccountOverviewTable />
         <UpcomingLoanPayment />
         <RecentTransaction />

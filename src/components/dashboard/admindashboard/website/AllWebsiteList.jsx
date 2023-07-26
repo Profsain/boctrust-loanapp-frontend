@@ -1,6 +1,6 @@
 import Table from "react-bootstrap/Table";
 import "../../Dashboard.css";
-import DashboardHeadline from "../../shared/DashboardHeadline";
+// import DashboardHeadline from "../../shared/DashboardHeadline";
 
 const AllWebsiteList = () => {
   const styles = {
@@ -8,7 +8,7 @@ const AllWebsiteList = () => {
       // margin: "0 2rem 0 3rem",
     },
     head: {
-      color: "#fff",
+      color: "#145098",
       fontSize: "1.2rem",
       },
       img: {
@@ -18,11 +18,11 @@ const AllWebsiteList = () => {
   };
   return (
     <div>
-      <DashboardHeadline
-        height="52px"
-        mspacer="2rem 0 -2.8rem -1rem"
+      {/* <DashboardHeadline
+        height="42px"
+        mspacer="2rem 0 -2.4rem -1rem"
         bgcolor="#145098"
-      ></DashboardHeadline>
+      ></DashboardHeadline> */}
       <div style={styles.table}>
         <Table hover responsive="sm">
           <thead style={styles.head}>

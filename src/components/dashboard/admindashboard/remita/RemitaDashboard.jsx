@@ -65,8 +65,8 @@ const RemitaDashboard = () => {
       {/* table section */}
       <div className="RBox">
         <DashboardHeadline
-          height="62px"
-          mspacer="2rem -1rem -3.5rem -1rem"
+          height="79px"
+          mspacer="3.9rem -1rem -3.9rem -1rem"
           bgcolor="#145098"
         ></DashboardHeadline>
         <div style={styles.table}>

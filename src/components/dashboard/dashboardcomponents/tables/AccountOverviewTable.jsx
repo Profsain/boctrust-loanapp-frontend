@@ -12,7 +12,7 @@ const AccountOverviewTable = () => {
   return (
     <div>
       <DashboardHeadline>Account Overview</DashboardHeadline>
-      <Table borderless hover responsive="sm" style={styles.table}>
+      <Table borderless hover responsive="sm" style={styles.table} className="RBox">
         <thead>
           <tr style={styles.head}>
             <th>Account Number</th>

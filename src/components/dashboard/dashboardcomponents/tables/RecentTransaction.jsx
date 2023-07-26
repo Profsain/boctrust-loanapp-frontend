@@ -20,7 +20,7 @@ const RecentTransaction = () => {
   return (
     <div>
       <DashboardHeadline>Recent Transaction</DashboardHeadline>
-      <Table borderless hover responsive="sm" style={styles.table}>
+      <Table borderless hover responsive="sm" style={styles.table} className="RBox">
         <thead>
           <tr style={styles.th}>
             <th>Date</th>
