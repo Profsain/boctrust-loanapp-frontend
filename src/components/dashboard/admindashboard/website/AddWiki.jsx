@@ -10,9 +10,9 @@ import WikiList from "./WikiList";
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
-    question: Yup.string().required("Question is required"),
-    answer: Yup.string().required("Answer is required"),
-    category: Yup.string().required("Category is required"),
+  question: Yup.string().required("Question is required"),
+  answer: Yup.string().required("Answer is required"),
+  category: Yup.string().required("Category is required"),
 });
 
 const initialValues = {
@@ -26,9 +26,22 @@ const AddWiki = () => {
   const handleAddNew = () => setShowAddNew(true);
   const handleClose = () => setShowAddNew(false);
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     // Handle form submission logic here
-    console.log(values);
+    try {
+      await fetch("http://localhost:3030/api/wikis", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+      setSubmitting(false);
+      resetForm(initialValues);
+      setShowAddNew(false);
+    } catch (error) {
+      throw Error(error);
+    }
   };
 
   return (
@@ -80,7 +93,11 @@ const AddWiki = () => {
                     id="question"
                     className="Input"
                   />
-                  <ErrorMessage name="question" component="div" />
+                  <ErrorMessage
+                    name="question"
+                    component="div"
+                    className="Error"
+                  />
                 </div>
 
                 <div className="FieldGroup">
@@ -88,11 +105,14 @@ const AddWiki = () => {
                   <Field
                     type="text"
                     name="answer"
-                    placeholder="Separate tags with comma"
                     id="answer"
                     className="Input"
                   />
-                  <ErrorMessage name="answer" component="div" />
+                  <ErrorMessage
+                    name="answer"
+                    component="div"
+                    className="Error"
+                  />
                 </div>
               </div>
               <div className="FieldRow">
@@ -104,7 +124,11 @@ const AddWiki = () => {
                     id="category"
                     className="Input"
                   />
-                  <ErrorMessage name="category" component="div" />
+                  <ErrorMessage
+                    name="category"
+                    component="div"
+                    className="Error"
+                  />
                 </div>
               </div>
               <div className="BtnContainer">
