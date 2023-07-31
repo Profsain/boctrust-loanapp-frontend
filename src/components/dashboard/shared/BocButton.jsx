@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-const BocButton = ({fontSize="1rem", type, width, bgcolor = "#f64f4f", bradius, cursor, margin, func, children }) => {
+const BocButton = ({fontSize="1rem", type, width, bgcolor = "#f64f4f", bradius, cursor, margin, func, disable, children }) => {
   const style = {
     backgroundColor: bgcolor,
     color: "#fff",
@@ -13,7 +13,7 @@ const BocButton = ({fontSize="1rem", type, width, bgcolor = "#f64f4f", bradius, 
     margin: margin,
   };
 
-  return <button onClick={func} type={type} style={style}>{children}</button>;
+  return <button onClick={func} disabled={disable} type={type} style={style}>{children}</button>;
 };
 
 BocButton.propTypes = {
@@ -26,6 +26,7 @@ BocButton.propTypes = {
   fontSize: PropTypes.string,
   margin: PropTypes.string,
   func: PropTypes.func,
+  disable: PropTypes.bool,
 }
 
 export default BocButton;
