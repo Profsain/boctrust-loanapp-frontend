@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -75,6 +75,7 @@ const formats = [
 ];
 
 const AddNewBlog = ({ func }) => {
+  const [notification, setNotification] = useState("");
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     // convert tags to array
     const tags = values.tags.split(",");
@@ -88,11 +89,18 @@ const AddNewBlog = ({ func }) => {
     formData.append("tags", tags);
     formData.append("postImg", values.postImg);
 
-    await fetch("http://localhost:3030/api/posts", {
+    await fetch("http://localhost:3030/api/blog/posts", {
       method: "POST",
       enctype: "multipart/form-data",
       body: formData,
     });
+
+    setNotification("Blog post added successfully");
+
+    // set notification to disappear after 5 seconds
+    setTimeout(() => {
+      setNotification("");
+    }, 5000);
 
     setSubmitting(false);
 
@@ -113,6 +121,7 @@ const AddNewBlog = ({ func }) => {
     <div>
       <div className="TransContainer">
         <DashboardHeadline>Add New Blog Post</DashboardHeadline>
+
         <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
           <div className="FieldRow">
             <div className="FieldGroup">
@@ -148,7 +157,7 @@ const AddNewBlog = ({ func }) => {
 
           <div className="FieldRow">
             <div className="FieldGroup IUpload">
-              <label htmlFor="tags">Post Image</label>
+              <label htmlFor="tags">Featured Image</label>
               <input
                 type="file"
                 name="postImg"
@@ -221,7 +230,9 @@ const AddNewBlog = ({ func }) => {
               value={formik.values.body}
             />
           </div>
-
+          <div className="Notification">
+            <p>{notification}</p>
+          </div>
           <div className="BtnContainer">
             <BocButton
               fontSize="1.6rem"

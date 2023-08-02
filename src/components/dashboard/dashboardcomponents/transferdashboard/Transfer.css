@@ -12,6 +12,15 @@
     margin: 0 1rem;
 }
 
+.Notification {
+    font-size: 1rem;
+    text-align: center;
+    color: #145098;
+    margin-top: 2rem;
+    
+    
+}
+
 .FieldRow {
     display: flex;
     flex-direction: row;

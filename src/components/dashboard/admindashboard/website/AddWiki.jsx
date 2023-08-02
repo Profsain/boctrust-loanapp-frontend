@@ -29,7 +29,7 @@ const AddWiki = () => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     // Handle form submission logic here
     try {
-      await fetch("http://localhost:3030/api/wikis", {
+      await fetch("http://localhost:3030/api/wiki/wikis", {
         method: "POST",
         body: JSON.stringify(values),
         headers: {
