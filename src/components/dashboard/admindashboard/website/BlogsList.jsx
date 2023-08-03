@@ -46,23 +46,22 @@ const BlogsList = () => {
   // delete blog post
   const handleDelete = async (e) => {
     e.preventDefault();
-    
+
     await fetch(`http://localhost:3030/api/blog/posts/${actionId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
     });
+    setAction(false);
     dispatch(fetchBlogPosts());
   };
 
   const styles = {
-    table: {
-      // margin: "0 2rem 0 3rem",
-    },
     head: {
       color: "#fff",
       fontSize: "1rem",
+      backgroundColor: "#145098",
     },
     booked: {
       color: "#145098",
@@ -83,11 +82,11 @@ const BlogsList = () => {
         <PageLoader />
       ) : (
         <div className="ListSec">
-          <DashboardHeadline
+          {/* <DashboardHeadline
             height="52px"
             mspacer="2rem 0 -2.5rem -1rem"
             bgcolor="#145098"
-          ></DashboardHeadline>
+          ></DashboardHeadline> */}
           <div style={styles.table}>
             <Table hover responsive="sm">
               <thead style={styles.head}>
@@ -111,7 +110,7 @@ const BlogsList = () => {
                     <td>
                       <div>
                         <BocButton
-                          margin="0 4px"
+                          margin="4px"
                           bradius="8px"
                           bgcolor="#145098"
                           func={handleAction}
@@ -120,7 +119,7 @@ const BlogsList = () => {
                           Edit
                         </BocButton>
                         <BocButton
-                          margin="0 4px"
+                          margin="4px"
                           bradius="8px"
                           func={handleAction}
                           id={blog._id}
