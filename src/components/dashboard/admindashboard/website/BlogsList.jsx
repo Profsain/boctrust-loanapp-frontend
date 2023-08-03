@@ -1,15 +1,20 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogPosts } from "../../../../redux/reducers/blogReducer";
-// import { getDateOnly }  from "../../utilities/getDate";
 import Table from "react-bootstrap/Table";
 import "../../Dashboard.css";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import PageLoader from "../../shared/PageLoader";
 import getDateOnly from "../../../../../utilities/getDate";
+import EditBlogPage from "./EditBlogPost";
+import BocButton from "../../shared/BocButton";
+import ActionNotification from "../../shared/ActionNotification";
 
 const BlogsList = () => {
-  // const [action, setAction] = useState("");
+  const [modalShow, setModalShow] = useState(false);
+  const [action, setAction] = useState(false);
+  const [actionId, setActionId] = useState("");
+  const [selectedBlog, setSelectedBlog] = useState({});
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,17 +27,35 @@ const BlogsList = () => {
   const status = useSelector((state) => state.blogReducer.status);
 
   // handle selection option change
-  const handleOptionChange = (e, id) => {
-    const setValue = e.target.value;
+  const handleAction = (e) => {
+    const setValue = e.target.innerHTML.toLowerCase();
+    const postId = e.target.id;
+    setActionId(postId);
+
+    // find single blog post
+    const blog = blogs?.find((blog) => blog._id === postId);
+    setSelectedBlog(blog);
 
     if (setValue === "edit") {
-      console.log("handle edit", id);
-
+      setModalShow(true);
     } else if (setValue === "delete") {
-      console.log("handle delete", id);
+      setAction(true);
     }
   };
-  
+
+  // delete blog post
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    
+    await fetch(`http://localhost:3030/api/blog/posts/${actionId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(fetchBlogPosts());
+  };
+
   const styles = {
     table: {
       // margin: "0 2rem 0 3rem",
@@ -86,24 +109,52 @@ const BlogsList = () => {
                     <td>{getDateOnly(blog.createdAt)}</td>
                     <td style={styles.completed}>Active</td>
                     <td>
-                      <select
+                      <div>
+                        <BocButton
+                          margin="0 4px"
+                          bradius="8px"
+                          bgcolor="#145098"
+                          func={handleAction}
+                          id={blog._id}
+                        >
+                          Edit
+                        </BocButton>
+                        <BocButton
+                          margin="0 4px"
+                          bradius="8px"
+                          func={handleAction}
+                          id={blog._id}
+                        >
+                          Delete
+                        </BocButton>
+                      </div>
+                      {/* <select
                         name="action"
-                        id="action"
-                        onChange={(e) => handleOptionChange(e, blog._id)}
+                        id={blog._id}
+                        onChange={(e) => handleOptionChange(e)}
                       >
                         <option value="">Action</option>
-                        <option value="edit">Edit</option>
-                        <option value="delete">Delete</option>
-                      </select>
+                        <option value="edit" onClick={() => console.log("Post id", blog._id)}>
+                          Edit
+                        </option>
+                        <option value="delete">
+                          Delete
+                        </option>
+                      </select> */}
                     </td>
                   </tr>
                 ))}
-
               </tbody>
             </Table>
           </div>
         </div>
       )}
+      <EditBlogPage
+        blog={selectedBlog}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+      <ActionNotification handleClose={() => setAction(false)} handleProceed={handleDelete} show={ action} />
     </>
   );
 };
