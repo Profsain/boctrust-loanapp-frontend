@@ -157,7 +157,7 @@ const AddNewBlog = ({ func }) => {
 
           <div className="FieldRow">
             <div className="FieldGroup IUpload">
-              <label htmlFor="tags">Featured Image</label>
+              <label htmlFor="postImg">Featured Image</label>
               <input
                 type="file"
                 name="postImg"

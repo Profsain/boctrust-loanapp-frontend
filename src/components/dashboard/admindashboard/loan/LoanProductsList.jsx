@@ -4,9 +4,6 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 
 const LoanProductsList = () => {
   const styles = {
-    table: {
-      // margin: "0 2rem 0 3rem",
-    },
     head: {
       color: "#fff",
       fontSize: "1.2rem",

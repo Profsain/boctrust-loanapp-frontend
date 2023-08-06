@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogPosts } from "../../../../redux/reducers/blogReducer";
 import Table from "react-bootstrap/Table";
 import "../../Dashboard.css";
-import DashboardHeadline from "../../shared/DashboardHeadline";
 import PageLoader from "../../shared/PageLoader";
 import getDateOnly from "../../../../../utilities/getDate";
 import EditBlogPage from "./EditBlogPost";
