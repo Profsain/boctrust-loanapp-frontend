@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -33,6 +34,7 @@ const initialValues = {
 };
 
 const AddNewLoanProduct = ({ func }) => {
+  const [notification, setNotification] = useState("");
   const handleSubmit = async (values, {setSubmitting, resetForm }) => {
     // Handle form submission logic here
     // create form data
@@ -59,6 +61,13 @@ const AddNewLoanProduct = ({ func }) => {
     // func(false);
     setSubmitting(false);
     resetForm();
+
+    setNotification("Product added successfully");
+
+    // set notification to disappear after 5 seconds
+    setTimeout(() => {
+      setNotification("");
+    }, 5000);
   };
 
    const formik = useFormik({
@@ -237,9 +246,9 @@ const AddNewLoanProduct = ({ func }) => {
           </div>
         </div>
 
-        {/* <div className="Notification">
+        <div className="Notification">
           <p>{notification}</p>
-        </div> */}
+        </div>
 
         <div className="BtnContainer">
           <BocButton

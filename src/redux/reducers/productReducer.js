@@ -1,38 +1,38 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// fetch blog posts
-const API_ENDPOINT = 'http://localhost:3030/api/blog/posts';
+//fetch product
+const API_ENDPOINT = 'http://localhost:3030/api/product/products';
 
 // Thunk to fetch blog posts from the API
-export const fetchBlogPosts = createAsyncThunk('blog/fetchPosts', async () => {
+export const fetchProduct = createAsyncThunk('product/fetchProduct', async () => {
     const response = await axios.get(API_ENDPOINT);
   return response.data;
 });
 
-// Blog slice
-const blogSlice = createSlice({
-  name: 'blog',
+// product slice
+const productSlice = createSlice({
+  name: 'product',
   initialState: {
-    posts: [],
+    products: [],
     status: 'idle',
     error: null,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchBlogPosts.pending, (state) => {
+      .addCase(fetchProduct.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchBlogPosts.fulfilled, (state, action) => {
+      .addCase(fetchProduct.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.posts = action.payload;
+        state.products = action.payload;
       })
-      .addCase(fetchBlogPosts.rejected, (state, action) => {
+      .addCase(fetchProduct.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
   },
 });
 
-export default blogSlice.reducer;
+export default productSlice.reducer;

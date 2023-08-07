@@ -75,6 +75,7 @@ const BlogsList = () => {
       color: "#ecaa00",
     },
   };
+
   return (
     <>
       {status === "loading" ? (
@@ -126,19 +127,6 @@ const BlogsList = () => {
                           Delete
                         </BocButton>
                       </div>
-                      {/* <select
-                        name="action"
-                        id={blog._id}
-                        onChange={(e) => handleOptionChange(e)}
-                      >
-                        <option value="">Action</option>
-                        <option value="edit" onClick={() => console.log("Post id", blog._id)}>
-                          Edit
-                        </option>
-                        <option value="delete">
-                          Delete
-                        </option>
-                      </select> */}
                     </td>
                   </tr>
                 ))}

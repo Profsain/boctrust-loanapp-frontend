@@ -1,6 +1,12 @@
+import { useEffect, useState} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchProduct } from "../../../../redux/reducers/productReducer";
 import Table from "react-bootstrap/Table";
 import "../../Dashboard.css";
 import DashboardHeadline from "../../shared/DashboardHeadline";
+import PageLoader from "../../shared/PageLoader";
+import EditLoanProduct from "./EditLoanProduct";
+import ActionNotification from "../../shared/ActionNotification";
 
 const LoanProductsList = () => {
   const styles = {
@@ -8,119 +14,130 @@ const LoanProductsList = () => {
       color: "#fff",
       fontSize: "1.2rem",
     },
-    booked: {
-      color: "#145098",
-    },
-    completed: {
-      color: "#5cc51c",
-    },
-    withcredit: {
-      color: "#f64f4f",
-    },
-    withdisbursement: {
-      color: "#ecaa00",
-    },
+    select: {
+      backgroundColor: "#ecaa00",
+      color: "#fff",
+      border: "none",
+      fontSize: "1rem",
+      marginTop: "0.1rem",
+    }
   };
+
+  // select option value
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProduct());
+  }, [dispatch]);
+
+  const products = useSelector(
+    (state) => state.productReducer.products.products
+  );
+  const status = useSelector((state) => state.productReducer.status);
+  const [editLoanProduct, setEditLoanProduct] = useState({});
+  const [showEditModel, setShowEditModel] = useState(false);
+  const [action, setAction] = useState(false);
+  const [productId, setProductId] = useState("")
+
+  // action  handler
+  const handleEdit = () => {
+    setShowEditModel(true);
+    
+  };
+  const handleDelete = async () => {
+    await fetch(`http://localhost:3030/api/product/products/${productId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    dispatch(fetchProduct());
+    setAction(false);
+  };
+
+  const handleSelect = (e) => {
+    // setOptionVal(e.target.value);
+    const option = e.target.value;
+    const productId = e.target.id;
+    setProductId(productId);
+
+    // filter product by id
+    const productObj = products?.find((product) => product._id === productId);
+    setEditLoanProduct(productObj);
+
+    if (option === "edit") {
+      handleEdit();
+    } else if (option === "delete") {
+      setAction(true);
+      
+    }
+  };
+
   return (
-    <div>
-      <DashboardHeadline
-        height="52px"
-        mspacer="2rem 0 -2.95rem -1rem"
-        bgcolor="#145098"
-      ></DashboardHeadline>
-      <div style={styles.table}>
-        <Table borderless hover responsive="sm">
-          <thead style={styles.head}>
-            <tr>
-              <th>Name</th>
-              <th>Interest Rate</th>
-              <th>Interest Type</th>
-              <th>Max Term</th>
-              <th>Term Period</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Personal Loan</td>
-              <td>12.00%</td>
-              <td>Simple</td>
-              <td>24</td>
-              <td>Month</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>SME Loan</td>
-              <td>8.00%</td>
-              <td>Compound</td>
-              <td>18</td>
-              <td>Month</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Salary Advance</td>
-              <td>6.00%</td>
-              <td>Simple</td>
-              <td>12</td>
-              <td>Month</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Travel Loan</td>
-              <td>10.00%</td>
-              <td>Accrued</td>
-              <td>18</td>
-              <td>Month</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Car Loan</td>
-              <td>6.00%</td>
-              <td>Simple</td>
-              <td>24</td>
-              <td>Month</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            
-          </tbody>
-        </Table>
-      </div>
-    </div>
+    <>
+      {status === "loading" ? (
+        <PageLoader />
+      ) : (
+        <div>
+          <DashboardHeadline
+            height="52px"
+            mspacer="2rem 0 -2.95rem -1rem"
+            bgcolor="#145098"
+          ></DashboardHeadline>
+          <div style={styles.table}>
+            <Table borderless hover responsive="sm">
+              <thead style={styles.head}>
+                <tr>
+                  <th>Name</th>
+                  <th>Interest Rate</th>
+                  <th>Interest Type</th>
+                  <th>Max Term</th>
+                  <th>Term Period</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products?.map((product) => (
+                  <tr key={product._id}>
+                    <td>{product.productName}</td>
+                    <td>{product.interestRate.toFixed(2)}%</td>
+                    <td>{product.interestType}</td>
+                    <td>{product.maxTerm}</td>
+                    <td>{product.termPeriod}</td>
+                    <td>
+                      <div>
+                        <select
+                          name="action"
+                          id={product._id}
+                          onChange={(e) => handleSelect(e)}
+                          style={styles.select}
+                        >
+                          <option value="">Action</option>
+                          <option value="edit">Edit</option>
+                          <option value="delete">Delete</option>
+                        </select>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+        </div>
+      )}
+
+      {/* edit loan product modal */}
+      <EditLoanProduct
+        show={showEditModel}
+        product={editLoanProduct}
+        onHide={() => setShowEditModel(false)}
+      />
+      <ActionNotification
+        show={action}
+        handleClose={() => setAction(false)}
+        handleProceed={handleDelete}
+      />
+    </>
   );
 };
 

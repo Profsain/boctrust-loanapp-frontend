@@ -49,7 +49,6 @@ const EditBlogPage = (props) => {
   // submit update to api endpoint
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submitting form");
 
     const updatedPost = {
       title: editTitle,

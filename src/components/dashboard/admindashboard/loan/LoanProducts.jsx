@@ -8,10 +8,11 @@ import AddNewLoanProduct from "./AddNewLoanProduct";
 
 const CustomersDashboard = () => {
   const [openAddLoanProduct, setOpenAddLoanProduct] = useState(false);
+  const [product, setProduct] = useState({});
   const handleAddLoanProduct = () => {
     setOpenAddLoanProduct(true);
   };
-
+console.log("product update", product)
   return (
     <>
       {!openAddLoanProduct ? (
@@ -43,13 +44,13 @@ const CustomersDashboard = () => {
           </div>
           <div className="ListSec">
             {/* customers list  */}
-            <LoanProductsList />
+            <LoanProductsList func={ setOpenAddLoanProduct} product={setProduct} />
             {/* next and previous button  */}
             <NextPreBtn />
           </div>
         </div>
       ) : (
-        <AddNewLoanProduct func={setOpenAddLoanProduct} />
+        <AddNewLoanProduct func={setOpenAddLoanProduct}/>
       )}
     </>
   );
