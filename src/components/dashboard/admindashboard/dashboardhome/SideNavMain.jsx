@@ -291,6 +291,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
               <li id="addwiki" onClick={onMenuItemClick}>
                 Wiki/FAQ
               </li>
+              <li id="customerAsk" onClick={onMenuItemClick}>
+                Customer Ask
+              </li>
             </ul>
           </div>
         ) : null}

@@ -45,6 +45,7 @@ import WebsiteManagerDashboard from "../website/WebsiteManagerDashboard";
 import WithdrawRequestDashboard from "../withdraw/WithdrawRequestDashboard";
 import WithdrawMethodDashboard from "../withdrawmethod/WithdrawMethodDashboard";
 import AddWiki from "../website/AddWiki";
+import CustomerAsk from "../website/CustomerAsk";
 import StatementRules from "../employersmanager/StatementRules";
 import AllWebsitePages from "../website/AllWebsitePages";
 
@@ -173,6 +174,9 @@ const AdminDashboard = () => {
       case "addwiki":
         setCurrentTitle("Add New FAQs/Wiki");
         break;
+      case "customerAsk":
+        setCurrentTitle("Customer FAQ Request");
+        break;
       case "withdrawmethod":
         setCurrentTitle("Disbursement Methods");
         break;
@@ -280,6 +284,8 @@ const AdminDashboard = () => {
         return <WebsiteManagerDashboard />;
       case "addwiki":
         return <AddWiki />;
+      case "customerAsk":
+        return <CustomerAsk />;
       case "website":
         return <AllWebsitePages />;
       case "usermanager":
