@@ -4,7 +4,7 @@ import axios from 'axios';
 //fetch product
 const API_ENDPOINT = 'http://localhost:3030/api/product/products';
 
-// Thunk to fetch blog posts from the API
+// Thunk to fetch product from the API
 export const fetchProduct = createAsyncThunk('product/fetchProduct', async () => {
     const response = await axios.get(API_ENDPOINT);
   return response.data;

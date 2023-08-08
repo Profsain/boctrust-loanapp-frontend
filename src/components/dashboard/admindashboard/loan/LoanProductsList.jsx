@@ -20,7 +20,8 @@ const LoanProductsList = () => {
       border: "none",
       fontSize: "1rem",
       marginTop: "0.1rem",
-    }
+      padding: "0.2rem 0.5rem",
+    },
   };
 
   // select option value
@@ -43,6 +44,8 @@ const LoanProductsList = () => {
     setShowEditModel(true);
     
   };
+
+  // handle delete action
   const handleDelete = async () => {
     await fetch(`http://localhost:3030/api/product/products/${productId}`, {
       method: "DELETE",
@@ -55,6 +58,7 @@ const LoanProductsList = () => {
     setAction(false);
   };
 
+  // handle select action
   const handleSelect = (e) => {
     // setOptionVal(e.target.value);
     const option = e.target.value;

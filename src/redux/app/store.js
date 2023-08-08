@@ -3,6 +3,7 @@ import fetchJobs from '../reducers/fetchJobs';
 import userSlice from '../reducers/userSlice';
 import blogReducer from '../reducers/blogReducer';
 import productReducer from '../reducers/productReducer';
+import wikiReducer from '../reducers/wikiReducer';
 
 // create a store
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
         fetchJobs,
         blogReducer,
         productReducer,
+        wikiReducer,
         user: userSlice,
     }
 });
