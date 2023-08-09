@@ -1,26 +1,28 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchWikis } from "../../../../redux/reducers/wikiReducer";
 import getDateOnly from "../../../../../utilities/getDate";
 import Table from "react-bootstrap/Table";
-import PageLoader from "../../shared/PageLoader";
 import ActionNotification from "../../shared/ActionNotification";
 import "../../Dashboard.css";
-import EditWiki from "./EditWiki";
+import EditInquiry from "./EditInquiry";
 
 const CustomerAsk = () => {
+  const [inquiries, setInquiries] = useState([]);
   const [openModel, setOpenModel] = useState(false);
   const [action, setAction] = useState(false);
-  const [wikiId, setWikiId] = useState("");
-  const [wikisObj, setWikisObj] = useState({});
+  const [inquiryId, setInquiryId] = useState("");
+  const [inquiryObj, setInquiryObj] = useState({});
 
-  const dispatch = useDispatch();
+  const fetchInquiry = async () => {
+    const response = await fetch("http://localhost:3030/api/inquiry/inquiries");
+    const data = await response.json();
+    setInquiries(data.inquiries);
+  };
+
   useEffect(() => {
-    dispatch(fetchWikis());
-  }, [dispatch]);
+    fetchInquiry();
+  }, []);
 
-  const wikis = useSelector((state) => state.wikiReducer.wikis.wikis);
-  const status = useSelector((state) => state.wikiReducer.status);
+  console.log("Inquiry data", inquiries);
 
   // handle edit action
   const handleEdit = () => {
@@ -31,11 +33,11 @@ const CustomerAsk = () => {
   const handleSelect = (e) => {
     const option = e.target.value;
     const id = e.target.id;
-    setWikiId(id);
+    setInquiryId(id);
 
     // filter wiki object by id
-    const wiki = wikis.find((wiki) => wiki._id === id);
-    setWikisObj(wiki);
+    const inquiry = inquiries.find((inquiry) => inquiry._id === id);
+    setInquiryObj(inquiry);
 
     if (option === "edit") {
       handleEdit();
@@ -46,15 +48,13 @@ const CustomerAsk = () => {
 
   // handle delete action
   const handleDelete = async () => {
-    console.log("delete action", wikiId);
-    await fetch(`http://localhost:3030/api/wiki/wikis/${wikiId}`, {
+    await fetch(`http://localhost:3030/api/inquiry/inquiries/${inquiryId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
     });
-
-    dispatch(fetchWikis());
+    fetchInquiry();
     setAction(false);
   };
 
@@ -76,55 +76,52 @@ const CustomerAsk = () => {
 
   return (
     <>
-      {status === "loading" ? (
-        <PageLoader />
-      ) : (
-        <div className="ListSec">
-          <div style={styles.table}>
-            <Table hover responsive="sm">
-              <thead style={styles.head}>
-                <tr>
-                  <th>Question</th>
-                  <th>Answer</th>
-                  <th>Category</th>
-                  <th>Date</th>
-                  <th>Action</th>
+      <div className="ListSec">
+        <div style={styles.table}>
+          <Table hover responsive="sm">
+            <thead style={styles.head}>
+              <tr>
+                <th>Inquiry</th>
+                <th>Subject</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {inquiries?.map((inquiry) => (
+                <tr key={inquiry._id}>
+                  <td>{inquiry.message}</td>
+                  <td>{inquiry.subject}</td>
+                  <td>{inquiry.email}</td>
+                  <td>{getDateOnly(inquiry.createdAt)}</td>
+                  <td>
+                    <div>
+                      <select
+                        name="action"
+                        id={inquiry._id}
+                        onChange={(e) => handleSelect(e)}
+                        style={styles.select}
+                      >
+                        <option value="">Action</option>
+                        <option value="edit">Edit</option>
+                        <option value="delete">Delete</option>
+                      </select>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {wikis?.map((wiki) => (
-                  <tr key={wiki._id}>
-                    <td>{wiki.question}</td>
-                    <td>{wiki.answer}</td>
-                    <td>{wiki.category}</td>
-                    <td>{getDateOnly(wiki.createdAt)}</td>
-                    <td>
-                      <div>
-                        <select
-                          name="action"
-                          id={wiki._id}
-                          onChange={(e) => handleSelect(e)}
-                          style={styles.select}
-                        >
-                          <option value="">Action</option>
-                          <option value="edit">Edit</option>
-                          <option value="delete">Delete</option>
-                        </select>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
+              ))}
+            </tbody>
+          </Table>
         </div>
-      )}
-
-      <EditWiki
+      </div>
+      {/* model box */}
+      <EditInquiry
         onHide={() => setOpenModel(false)}
         show={openModel}
-        wikis={wikisObj}
+        inquiry={inquiryObj}
       />
+      {/* action notification */}
       <ActionNotification
         show={action}
         handleClose={() => setAction(false)}

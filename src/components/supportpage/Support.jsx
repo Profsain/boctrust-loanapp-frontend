@@ -14,11 +14,11 @@ import TermsPolicy from "./TermsPolicy";
 const Support = () => {
   // inquiry form state
   const [formData, setFormData] = useState({
-    email: "Check",
-    subject: "testing",
-    message: "more test",
+    email: "",
+    subject: "",
+    message: "",
   });
-
+  const [message, setMessage] = useState("");
 
   // handle form input change
   const handleFormChange = (e) => {
@@ -37,7 +37,6 @@ const Support = () => {
 
   // handle form submit
   const handleFormSubmit = async (e) => {
-    console.log("form submission");
     e.preventDefault();
     const { email, subject, message } = formData;
     const inquiry = {
@@ -45,7 +44,7 @@ const Support = () => {
       subject,
       message,
     };
-    console.log("form data confirm", inquiry);
+
     await fetch("http://localhost:3030/api/inquiry/inquiries", {
       method: "POST",
       headers: {
@@ -53,9 +52,13 @@ const Support = () => {
       },
       body: JSON.stringify(inquiry),
     });
-    
+
     clearForm();
-  }
+    setMessage("Inquiry sent successfully");
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+  };
 
   useEffect(() => {
     AOS.init({
@@ -201,6 +204,7 @@ const Support = () => {
                     Submit
                   </Button>
                 </Form>
+                <p style={{textAlign: "center"}}>{ message}</p>
               </div>
             </div>
           ) : (
