@@ -48,6 +48,7 @@ import AddWiki from "../website/AddWiki";
 import CustomerAsk from "../website/CustomerAsk";
 import StatementRules from "../employersmanager/StatementRules";
 import AllWebsitePages from "../website/AllWebsitePages";
+import ContactForm from "../website/ContactForm";
 
 const AdminDashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -177,6 +178,9 @@ const AdminDashboard = () => {
       case "customerAsk":
         setCurrentTitle("Customer FAQ Request");
         break;
+      case "contactForm":
+        setCurrentTitle("Contact Us Record");
+        break;
       case "withdrawmethod":
         setCurrentTitle("Disbursement Methods");
         break;
@@ -286,6 +290,8 @@ const AdminDashboard = () => {
         return <AddWiki />;
       case "customerAsk":
         return <CustomerAsk />;
+      case "contactForm":
+        return <ContactForm />;
       case "website":
         return <AllWebsitePages />;
       case "usermanager":

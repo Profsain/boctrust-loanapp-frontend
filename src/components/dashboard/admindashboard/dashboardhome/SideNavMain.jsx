@@ -285,6 +285,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
               <li id="website" onClick={onMenuItemClick}>
                 All Pages
               </li>
+              <li id="contactForm" onClick={onMenuItemClick}>
+                Contact Form
+              </li>
               <li id="webmanager" onClick={onMenuItemClick}>
                 Blogs
               </li>
