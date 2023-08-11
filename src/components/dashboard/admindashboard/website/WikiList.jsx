@@ -48,7 +48,6 @@ const WikiList = () => {
 
   // handle delete action
   const handleDelete = async () => { 
-    console.log("delete action", wikiId)
     await fetch(`http://localhost:3030/api/wiki/wikis/${wikiId}`, {
       method: "DELETE",
       headers: {

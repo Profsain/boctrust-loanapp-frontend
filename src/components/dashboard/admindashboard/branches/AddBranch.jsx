@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -8,7 +9,7 @@ import BocButton from "../../shared/BocButton";
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
   branchId: Yup.string().required("Branch ID is required"),
-  name: Yup.string().required("Branch name is required"),
+  branchName: Yup.string().required("Branch name is required"),
   contactEmail: Yup.string().required("Contact email is required"),
   phoneNumber: Yup.string().required("Phone number is required"),
   address: Yup.string().required("Address is required"),
@@ -16,7 +17,7 @@ const validationSchema = Yup.object().shape({
 
 const initialValues = {
   branchId: "",
-  name: "",
+  branchName: "",
   contactEmail: "",
   phoneNumber: "",
   address: "",
@@ -24,11 +25,28 @@ const initialValues = {
 };
 
 const AddBranch = ({ func }) => {
-  const handleSubmit = (values) => {
+  const [message, setMessage] = useState("");
+  const handleSubmit = async (values, { resetForm }) => {
     // Handle form submission logic here
+    await fetch("http://localhost:3030/api/branch/branches", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+
+    // reset form
+    resetForm();
+
+    // set message
+    setMessage("Branch added successfully");
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+
     // set open add branch component to true
-    func(false);
-    console.log(values);
+    // func(false);
   };
 
   return (
@@ -48,13 +66,20 @@ const AddBranch = ({ func }) => {
                 name="branchId"
                 id="branchId"
                 className="Input"
+                placeholder="001"
               />
               <ErrorMessage name="branchId" component="div" />
             </div>
             <div className="FieldGroup">
-              <label htmlFor="name">Branch Name</label>
-              <Field type="text" name="name" id="name" className="Input" />
-              <ErrorMessage name="name" component="div" />
+              <label htmlFor="branchName">Branch Name</label>
+              <Field
+                type="text"
+                name="branchName"
+                placeholder="Ikeja Branch"
+                id="branchName"
+                className="Input"
+              />
+              <ErrorMessage name="branchName" component="div" />
             </div>
           </div>
 
@@ -66,6 +91,7 @@ const AddBranch = ({ func }) => {
                 name="contactEmail"
                 id="contactEmail"
                 className="Input"
+                placeholder="ikeja@boctrustmfb.com"
               />
               <ErrorMessage name="contactEmail" component="div" />
             </div>
@@ -77,6 +103,7 @@ const AddBranch = ({ func }) => {
                 name="phoneNumber"
                 id="phoneNumber"
                 className="Input"
+                placeholder="08012345678"
               />
               <ErrorMessage name="phoneNumber" component="div" />
             </div>
@@ -98,6 +125,7 @@ const AddBranch = ({ func }) => {
               <ErrorMessage name="note" component="div" />
             </div>
           </div>
+          <p style={{ textAlign: "center", color: "#145098" }}>{message}</p>
 
           <div className="BtnContainer">
             <BocButton
