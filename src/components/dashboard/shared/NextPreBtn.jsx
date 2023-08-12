@@ -1,6 +1,7 @@
+import PropTypes from "prop-types"
 import "../Dashboard.css"
 
-const NextPreBtn = () => {
+const NextPreBtn = ({prevFunc, nextFunc, count}) => {
     const styles = {
         container: {
             // width: "100%",
@@ -33,16 +34,22 @@ const NextPreBtn = () => {
   return (
     <div style={styles.container}>
       <div style={styles.btnBox}>
-        <button style={styles.btn} id="PrevBtn">
-          <img style={styles.img} src="images/arrowleft.png" alt="prev" />{" "}
+        <button style={styles.btn} id="PrevBtn" value="prev" onClick={prevFunc}>
+          <img style={styles.img} src="images/arrowleft.png" alt="prev"/>{" "}
         </button>
-        <p style={styles.p}>1</p>
-        <button style={styles.btn} id="NextBtn">
+        <p style={styles.p}>{ count}</p>
+        <button style={styles.btn} id="NextBtn" value="next" onClick={(e)=> nextFunc(e)}>
           <img style={styles.img} src="images/arrowright.png" alt="next" />
         </button>
       </div>
     </div>
   );
 };
+
+NextPreBtn.propTypes = {
+  nextFunc: PropTypes.func,
+  prevFunc: PropTypes.func,
+  count: PropTypes.number
+}
 
 export default NextPreBtn;

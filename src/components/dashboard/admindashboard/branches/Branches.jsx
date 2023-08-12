@@ -1,8 +1,7 @@
-import {useState} from "react";
+import { useState } from "react";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
-import "../customers/Customer.css"
-import NextPreBtn from "../../shared/NextPreBtn";
+import "../customers/Customer.css";
 import BranchesList from "./BranchesList";
 import AddBranch from "./AddBranch";
 
@@ -10,6 +9,10 @@ const Branches = () => {
   const [openAddBranch, setOpenAddBranch] = useState(false);
   // open add branch component
   const openAddBranches = () => setOpenAddBranch(true);
+
+  // handle search
+  const [showCount, setShowCount] = useState(10);
+  const [searchTerms, setSearchTerms] = useState("");
 
   return (
     <>
@@ -27,10 +30,22 @@ const Branches = () => {
               <div className="SearchBar">
                 <div className="FormGroup">
                   <label htmlFor="show">Show</label>
-                  <input name="showCount" type="number" step={10} min={10} />
+                  <input
+                    name="showCount"
+                    type="number"
+                    step={10}
+                    min={10}
+                    value={showCount}
+                    onChange={(e) => setShowCount(e.target.value)}
+                  />
                 </div>
                 <div className="FormGroup SBox">
-                  <input name="search" placeholder="Search" />
+                  <input
+                    name="search"
+                    placeholder="branch name"
+                    value={searchTerms}
+                    onChange={(e) => setSearchTerms(e.target.value)}
+                  />
                   <img src="images/search.png" alt="search-icon" />
                 </div>
               </div>
@@ -39,10 +54,7 @@ const Branches = () => {
           <div>
             {/* branches list  */}
             <div className="ListSec">
-
-            <BranchesList />
-            {/* next and previous button  */}
-            <NextPreBtn />
+              <BranchesList setCount={setShowCount} showCount={showCount} searchTerms={searchTerms} />
             </div>
           </div>
         </div>

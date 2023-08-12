@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBranches } from "../../../../redux/reducers/branchReducer";
@@ -6,29 +7,30 @@ import "../../Dashboard.css";
 import PageLoader from "../../shared/PageLoader";
 import EditBranch from "./EditBranch";
 import ActionNotification from "../../shared/ActionNotification";
+import NoResult from "../../../shared/NoResult";
+import NextPreBtn from "../../shared/NextPreBtn";
+// function
+import searchList from "../../../../../utilities/searchListFunc";
+import handleNextPre from "../../../../../utilities/handleNextPrevFunc";
 
-const BranchesList = () => {
+const BranchesList = ({ showCount, searchTerms }) => {
+  // styles
   const styles = {
     head: {
       color: "#fff",
       fontSize: "1rem",
       backgroundColor: "#145098",
     },
-    booked: {
+    notFound: {
+      // textAlign: "center",
       color: "#145098",
-    },
-    completed: {
-      color: "#5cc51c",
-    },
-    withcredit: {
-      color: "#f64f4f",
-    },
-    withdisbursement: {
-      color: "#ecaa00",
+      fontSize: "1.5rem",
+      paddingTop: "2rem",
     },
   };
 
   // component state
+  const [branchesList, setBranchesList] = useState([]);
   const [branchObj, setBranchObj] = useState([]);
   const [branchId, setBranchId] = useState("");
   const [actionType, setActionType] = useState("");
@@ -43,8 +45,31 @@ const BranchesList = () => {
   const branches = useSelector(
     (state) => state.branchReducer.branches.branches
   );
+
+  // update branchesList
+  useEffect(() => {
+    setBranchesList(branches?.slice(0, showCount));
+  }, [branches, showCount]);
   const status = useSelector((state) => state.branchReducer.status);
 
+  // update branchesList on search
+  useEffect(() => {
+    setBranchesList(
+      searchList(branches, searchTerms, "branchName").slice(0, showCount)
+    );
+  }, [searchTerms, branches, showCount]);
+
+  // handle next and previous button
+  const handleNextPreBtn = (e) => {
+    handleNextPre(
+      e,
+      branchesList,
+      setBranchesList,
+      showCount,
+    );
+  }
+
+  
   // handle action selection
   const handleAction = (e) => {
     const action = e.target.value;
@@ -95,7 +120,8 @@ const BranchesList = () => {
               </tr>
             </thead>
             <tbody>
-              {branches?.map((branch) => (
+              {branchesList?.length === 0 && <NoResult name="branches" />}
+              {branchesList?.map((branch) => (
                 <tr key={branch._id}>
                   <td>{branch.branchId}</td>
                   <td>{branch.branchName}</td>
@@ -121,6 +147,8 @@ const BranchesList = () => {
           </Table>
         </div>
       </div>
+      {/* next and previous button */}
+      <NextPreBtn count={showCount} prevFunc={handleNextPreBtn} nextFunc={handleNextPreBtn} />
 
       {/* branch model */}
       <EditBranch
@@ -138,6 +166,11 @@ const BranchesList = () => {
       />
     </>
   );
+};
+
+BranchesList.propTypes = {
+  searchTerms: PropTypes.string,
+  showCount: PropTypes.number,
 };
 
 export default BranchesList;
