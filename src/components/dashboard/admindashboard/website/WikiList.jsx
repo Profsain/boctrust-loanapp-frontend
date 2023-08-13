@@ -1,14 +1,18 @@
+import PropTypes from "prop-types"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchWikis } from "../../../../redux/reducers/wikiReducer";
-import getDateOnly from "../../../../../utilities/getDate";
 import Table from "react-bootstrap/Table";
 import PageLoader from "../../shared/PageLoader";
 import ActionNotification from "../../shared/ActionNotification";
 import "../../Dashboard.css";
 import EditWiki from "./EditWiki";
+import NoResult from "../../../shared/NoResult";
+// functions
+import getDateOnly from "../../../../../utilities/getDate";
+import searchList from "../../../../../utilities/searchListFunc";
 
-const WikiList = () => {
+const WikiList = ({count, searchTerms}) => {
   const [openModel, setOpenModel] = useState(false);
   const [action, setAction] = useState(false);
   const [wikiId, setWikiId] = useState("");
@@ -21,6 +25,22 @@ const WikiList = () => {
 
   const wikis = useSelector((state) => state.wikiReducer.wikis.wikis);
   const status = useSelector((state) => state.wikiReducer.status);
+  const [wikisList, setWikisList] = useState(wikis);
+
+  // update wikisList to show 10 wikis on page load
+  // or when count changes
+  useEffect(() => {
+    setWikisList(wikis?.slice(0, count));
+  }, [wikis, count]);
+
+  // update wikisList on search
+  const handleSearch = () => {
+    const currSearch = searchList(wikis, searchTerms, "question");
+    setWikisList(currSearch.slice(0, count));
+  };
+  useEffect(() => {
+    handleSearch();
+  }, [searchTerms]);
 
   // handle edit action
   const handleEdit = () => {
@@ -92,8 +112,9 @@ const WikiList = () => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
-                {wikis?.map((wiki) => (
+                <tbody>
+                  {wikisList?.length === 0 && <NoResult name="wikis" />}
+                {wikisList?.map((wiki) => (
                   <tr key={wiki._id}>
                     <td>{wiki.question}</td>
                     <td>{wiki.answer}</td>
@@ -134,5 +155,10 @@ const WikiList = () => {
     </>
   );
 };
+
+WikiList.propTypes = {
+  count: PropTypes.number,
+  searchTerms: PropTypes.string
+}
 
 export default WikiList;

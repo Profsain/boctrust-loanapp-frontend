@@ -1,15 +1,19 @@
+import PropTypes from "prop-types"
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogPosts } from "../../../../redux/reducers/blogReducer";
 import Table from "react-bootstrap/Table";
 import "../../Dashboard.css";
 import PageLoader from "../../shared/PageLoader";
-import getDateOnly from "../../../../../utilities/getDate";
 import EditBlogPage from "./EditBlogPost";
 import BocButton from "../../shared/BocButton";
 import ActionNotification from "../../shared/ActionNotification";
+import NoResult from "../../../shared/NoResult";
+// function
+import getDateOnly from "../../../../../utilities/getDate";
+import searchList from "../../../../../utilities/searchListFunc";
 
-const BlogsList = () => {
+const BlogsList = ({count, searchTerms}) => {
   const [modalShow, setModalShow] = useState(false);
   const [action, setAction] = useState(false);
   const [actionId, setActionId] = useState("");
@@ -24,6 +28,23 @@ const BlogsList = () => {
   // Get the blogs from the store
   const blogs = useSelector((state) => state.blogReducer.posts.posts);
   const status = useSelector((state) => state.blogReducer.status);
+  // local state
+  const [blogsList, setBlogsList] = useState(blogs);
+
+  // update blogsList to show 10 blogs on page load
+  // or when count changes
+  useEffect(() => {
+    setBlogsList(blogs?.slice(0, count));
+  }, [blogs, count]);
+
+  // update blogsList on search
+  const handleSearch = () => {
+    const currSearch = searchList(blogs, searchTerms, "title");
+    setBlogsList(currSearch.slice(0, count));
+  };
+  useEffect(() => {
+    handleSearch();
+  }, [searchTerms]);
 
   // handle selection option change
   const handleAction = (e) => {
@@ -82,11 +103,7 @@ const BlogsList = () => {
         <PageLoader />
       ) : (
         <div className="ListSec">
-          {/* <DashboardHeadline
-            height="52px"
-            mspacer="2rem 0 -2.5rem -1rem"
-            bgcolor="#145098"
-          ></DashboardHeadline> */}
+          
           <div style={styles.table}>
             <Table hover responsive="sm">
               <thead style={styles.head}>
@@ -99,8 +116,9 @@ const BlogsList = () => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
-                {blogs?.map((blog) => (
+                <tbody>
+                  {blogsList?.length === 0 && (<NoResult name="blogs" />)}
+                {blogsList?.map((blog) => (
                   <tr key={blog._id}>
                     <td>{blog.title}</td>
                     <td>{blog.postSummary}</td>
@@ -144,5 +162,10 @@ const BlogsList = () => {
     </>
   );
 };
+
+BlogsList.propTypes = {
+  count: PropTypes.number,
+  searchTerms: PropTypes.string
+}
 
 export default BlogsList;

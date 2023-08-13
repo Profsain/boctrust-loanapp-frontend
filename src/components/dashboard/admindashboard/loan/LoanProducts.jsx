@@ -8,11 +8,14 @@ import AddNewLoanProduct from "./AddNewLoanProduct";
 
 const CustomersDashboard = () => {
   const [openAddLoanProduct, setOpenAddLoanProduct] = useState(false);
-  const [product, setProduct] = useState({});
+  const [showCount, setShowCount] = useState(10);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // const [product, setProduct] = useState({});
   const handleAddLoanProduct = () => {
     setOpenAddLoanProduct(true);
   };
-console.log("product update", product)
+
   return (
     <>
       {!openAddLoanProduct ? (
@@ -33,10 +36,22 @@ console.log("product update", product)
               <div className="SearchBar">
                 <div className="FormGroup">
                   <label htmlFor="show">Show</label>
-                  <input name="showCount" type="number" step={10} min={10} />
+                  <input
+                    name="showCount"
+                    type="number"
+                    step={10}
+                    min={10}
+                    value={showCount}
+                    onChange={(e) => setShowCount(e.target.value)}
+                  />
                 </div>
                 <div className="FormGroup SBox">
-                  <input name="search" placeholder="Search" />
+                  <input
+                    name="search"
+                    placeholder="Search"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
                   <img src="images/search.png" alt="search-icon" />
                 </div>
               </div>
@@ -44,13 +59,18 @@ console.log("product update", product)
           </div>
           <div className="ListSec">
             {/* customers list  */}
-            <LoanProductsList func={ setOpenAddLoanProduct} product={setProduct} />
+            <LoanProductsList
+              func={setOpenAddLoanProduct}
+              count={showCount}
+              searchTerm={searchTerm}
+            />
+
             {/* next and previous button  */}
             <NextPreBtn />
           </div>
         </div>
       ) : (
-        <AddNewLoanProduct func={setOpenAddLoanProduct}/>
+        <AddNewLoanProduct func={setOpenAddLoanProduct} />
       )}
     </>
   );

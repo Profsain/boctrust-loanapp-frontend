@@ -11,7 +11,7 @@ import NoResult from "../../../shared/NoResult";
 import NextPreBtn from "../../shared/NextPreBtn";
 // function
 import searchList from "../../../../../utilities/searchListFunc";
-import handleNextPre from "../../../../../utilities/handleNextPrevFunc";
+
 
 const BranchesList = ({ showCount, searchTerms }) => {
   // styles
@@ -30,7 +30,6 @@ const BranchesList = ({ showCount, searchTerms }) => {
   };
 
   // component state
-  const [branchesList, setBranchesList] = useState([]);
   const [branchObj, setBranchObj] = useState([]);
   const [branchId, setBranchId] = useState("");
   const [actionType, setActionType] = useState("");
@@ -45,28 +44,33 @@ const BranchesList = ({ showCount, searchTerms }) => {
   const branches = useSelector(
     (state) => state.branchReducer.branches.branches
   );
-
-  // update branchesList
+  
+  const [branchesList, setBranchesList] = useState(branches);
+  // update branchesList to show 10 branches on page load
+  // or when count changes
   useEffect(() => {
     setBranchesList(branches?.slice(0, showCount));
   }, [branches, showCount]);
   const status = useSelector((state) => state.branchReducer.status);
 
   // update branchesList on search
+  const handleSearch = () => {
+    const currSearch = searchList(branches, searchTerms, "branchName");
+    setBranchesList(currSearch.slice(0, showCount));
+  };
+
   useEffect(() => {
-    setBranchesList(
-      searchList(branches, searchTerms, "branchName").slice(0, showCount)
-    );
-  }, [searchTerms, branches, showCount]);
+    handleSearch();
+  }, [searchTerms]);
 
   // handle next and previous button
-  const handleNextPreBtn = (e) => {
-    handleNextPre(
-      e,
-      branchesList,
-      setBranchesList,
-      showCount,
-    );
+  const handleNextPreBtn = () => {
+    // handleNextPre(
+    //   e,
+    //   branchesList,
+    //   setBranchesList,
+    //   showCount,
+    // );
   }
 
   

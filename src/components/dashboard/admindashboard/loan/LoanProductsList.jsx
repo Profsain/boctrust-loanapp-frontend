@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { useEffect, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProduct } from "../../../../redux/reducers/productReducer";
@@ -7,8 +8,12 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 import PageLoader from "../../shared/PageLoader";
 import EditLoanProduct from "./EditLoanProduct";
 import ActionNotification from "../../shared/ActionNotification";
+import NoResult from "../../../shared/NoResult";
+// function
+import searchList from "../../../../../utilities/searchListFunc";
 
-const LoanProductsList = () => {
+const LoanProductsList = ({ count, searchTerm }) => {
+  // styles
   const styles = {
     head: {
       color: "#fff",
@@ -24,7 +29,7 @@ const LoanProductsList = () => {
     },
   };
 
-  // select option value
+  // fetch products
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProduct());
@@ -34,10 +39,27 @@ const LoanProductsList = () => {
     (state) => state.productReducer.products.products
   );
   const status = useSelector((state) => state.productReducer.status);
+    const [productsList, setProductsList] = useState(products);
   const [editLoanProduct, setEditLoanProduct] = useState({});
   const [showEditModel, setShowEditModel] = useState(false);
   const [action, setAction] = useState(false);
   const [productId, setProductId] = useState("")
+
+  // update productsList to show 10 products on page load
+  // or when count changes
+  useEffect(() => {
+    setProductsList(products?.slice(0, count));
+  }, [products, count]);
+
+  // update productsList on search
+  const handleSearch = () => {
+    const currProducts = searchList(products, searchTerm, "productName");
+    setProductsList(currProducts.slice(0, count));
+  }
+  useEffect(() => {
+    handleSearch();
+  }, [searchTerm]);
+  
 
   // action  handler
   const handleEdit = () => {
@@ -100,8 +122,9 @@ const LoanProductsList = () => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
-                {products?.map((product) => (
+                <tbody>
+                  {productsList?.length === 0 && <NoResult name="Product" />}
+                {productsList?.map((product) => (
                   <tr key={product._id}>
                     <td>{product.productName}</td>
                     <td>{product.interestRate.toFixed(2)}%</td>
@@ -144,5 +167,10 @@ const LoanProductsList = () => {
     </>
   );
 };
+
+LoanProductsList.propTypes = {
+  count: PropTypes.number,
+  searchTerm: PropTypes.string
+}
 
 export default LoanProductsList;

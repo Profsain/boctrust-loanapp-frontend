@@ -25,6 +25,8 @@ const AddWiki = () => {
   const [showAddNew, setShowAddNew] = useState(false);
   const handleAddNew = () => setShowAddNew(true);
   const handleClose = () => setShowAddNew(false);
+  const [showCount, setShowCount] = useState(10);
+  const [searchTerms, setSearchTerms] = useState("");
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     // Handle form submission logic here
@@ -59,10 +61,24 @@ const AddWiki = () => {
               <div className="SearchBar">
                 <div className="FormGroup">
                   <label htmlFor="show">Show</label>
-                  <input name="showCount" type="number" step={10} min={10} />
+                  <input
+                    name="showCount"
+                    type="number"
+                    step={10}
+                    min={10}
+                    value={showCount}
+                    onChange={(e) => setShowCount(e.target.value)}
+                  />
                 </div>
+
+                {/* search bar input */}
                 <div className="FormGroup SBox">
-                  <input name="search" placeholder="Search" />
+                  <input
+                    name="search"
+                    placeholder="Search"
+                    value={searchTerms}
+                    onChange={(e) => setSearchTerms(e.target.value)}
+                  />
                   <img src="images/search.png" alt="search-icon" />
                 </div>
               </div>
@@ -70,7 +86,7 @@ const AddWiki = () => {
           </div>
           <div>
             {/* wiki list  */}
-            <WikiList />
+            <WikiList count={showCount} searchTerms={searchTerms} />
             {/* next and previous button  */}
             <NextPreBtn />
           </div>

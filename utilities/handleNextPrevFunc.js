@@ -1,7 +1,6 @@
   // handle next and previous button
   const handleNextPre = (e, listData, setListData, showCount) => {
       const value = e.target.value || e.target.alt;
-      console.log(value);
     if (value === "next") {
       setListData(
         listData?.slice(

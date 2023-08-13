@@ -6,9 +6,10 @@ import NextPreBtn from "../../shared/NextPreBtn";
 import BlogsList from "./BlogsList";
 import AddNewBlog from "./AddNewBlog";
 
-
 const WebsiteManagerDashboard = () => {
   const [showAddNew, setShowAddNew] = useState(false);
+  const [searchTerms, setSearchTerms] = useState("");
+  const [showCount, setShowCount] = useState(10);
   const handleAddNew = () => setShowAddNew(true);
 
   return (
@@ -26,10 +27,24 @@ const WebsiteManagerDashboard = () => {
               <div className="SearchBar">
                 <div className="FormGroup">
                   <label htmlFor="show">Show</label>
-                  <input name="showCount" type="number" step={10} min={10} />
+                  <input
+                    name="showCount"
+                    type="number"
+                    step={10}
+                    min={10}
+                    value={showCount}
+                    onChange={(e) => setShowCount(e.target.value)}
+                  />
                 </div>
+
+                {/* search bar input */}
                 <div className="FormGroup SBox">
-                  <input name="search" placeholder="Search" />
+                  <input
+                    name="search"
+                    placeholder="Search"
+                    value={searchTerms}
+                    onChange={(e) => setSearchTerms(e.target.value)}
+                  />
                   <img src="images/search.png" alt="search-icon" />
                 </div>
               </div>
@@ -37,7 +52,7 @@ const WebsiteManagerDashboard = () => {
           </div>
           <div>
             {/* blogs list  */}
-            <BlogsList />
+            <BlogsList count={ showCount} searchTerms={searchTerms} />
             {/* next and previous button  */}
             <NextPreBtn />
           </div>

@@ -54,7 +54,7 @@ const Branches = () => {
           <div>
             {/* branches list  */}
             <div className="ListSec">
-              <BranchesList setCount={setShowCount} showCount={showCount} searchTerms={searchTerms} />
+              <BranchesList showCount={showCount} searchTerms={searchTerms} />
             </div>
           </div>
         </div>
