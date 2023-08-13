@@ -36,7 +36,7 @@ const WikiList = ({count, searchTerms}) => {
   // update wikisList on search
   const handleSearch = () => {
     const currSearch = searchList(wikis, searchTerms, "question");
-    setWikisList(currSearch.slice(0, count));
+    setWikisList(currSearch?.slice(0, count));
   };
   useEffect(() => {
     handleSearch();

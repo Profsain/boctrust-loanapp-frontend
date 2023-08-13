@@ -1,26 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAccount } from "../../../../redux/reducers/accountReducer";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../customers/Customer.css";
 import NextPreBtn from "../../shared/NextPreBtn";
 import AddNewAccountType from "./AddNewAccountType";
 import Table from "react-bootstrap/Table";
+import PageLoader from "../../shared/PageLoader";
+// function
+import searchList from "../../../../../utilities/searchListFunc";
 
 const AccountTypes = () => {
   const [openAddAccountType, setOpenAddAccountType] = useState(false);
+
+  // fetch account type
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchAccount());
+  }, [dispatch]);
+
+  const accounts = useSelector(
+    (state) => state.accountReducer.accounts.accounts
+  );
+  const status = useSelector((state) => state.accountReducer.status);
+
+  // local account state
+  const [accountsList, setAccountsList] = useState(accounts);
+  const [showCount, setShowCount] = useState(10);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // update accountsList to show 10 accounts on page load
+  // on count change
+  useEffect(() => {
+    setAccountsList(accounts?.slice(0, showCount));
+  }, [accounts, showCount]);
+
+  // add account handler
   const handleAddAccountType = () => {
     setOpenAddAccountType(true);
   };
+
+  // update accountsList on search
+  const handleSearch = () => {
+    const currSearch = searchList(accounts, searchTerm, "accountName");
+    console.log(searchTerm)
+    setAccountsList(currSearch?.slice(0, showCount));
+  };
+  useEffect(() => {
+    handleSearch();
+  }, [searchTerm]);
+
+  // style
   const styles = {
-    table: {
-      // margin: "0 2rem 0 3rem",
-    },
     head: {
       color: "#fff",
-      fontSize: "1.2rem",
-    },
-    booked: {
-      color: "#145098",
+      fontSize: "1rem",
+      backgroundColor: "#145098",
     },
     completed: {
       color: "#5cc51c",
@@ -28,16 +64,18 @@ const AccountTypes = () => {
     withcredit: {
       color: "#f64f4f",
     },
-    withdisbursement: {
-      color: "#ecaa00",
-    },
   };
+
   return (
     <>
       {!openAddAccountType ? (
         <div className="MainBox">
           <div className="AddBtn">
-            <BocButton bgcolor="#ecaa00" bradius="22px" func={handleAddAccountType}>
+            <BocButton
+              bgcolor="#ecaa00"
+              bradius="22px"
+              func={handleAddAccountType}
+            >
               <span>+</span> Add New Account
             </BocButton>
           </div>
@@ -48,87 +86,72 @@ const AccountTypes = () => {
               <div className="SearchBar">
                 <div className="FormGroup">
                   <label htmlFor="show">Show</label>
-                  <input name="showCount" type="number" step={10} min={10} />
+                  <input
+                    name="showCount"
+                    type="number"
+                    step={10}
+                    min={10}
+                    value={showCount}
+                    onChange={(e) => setShowCount(e.target.value)}
+                  />
                 </div>
                 <div className="FormGroup SBox">
-                  <input name="search" placeholder="Search" />
+                  <input
+                    name="search"
+                    placeholder="Search me"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
                   <img src="images/search.png" alt="search-icon" />
                 </div>
               </div>
             </DashboardHeadline>
           </div>
           <div>
-            {/* accounts list  */}
-            <div className="ListSec">
-              <DashboardHeadline
-                height="52px"
-                mspacer="2rem 0 -2.95rem -1rem"
-                bgcolor="#145098"
-              ></DashboardHeadline>
-              <div style={styles.table}>
-                <Table borderless hover responsive="sm">
-                  <thead style={styles.head}>
-                    <tr>
-                      <th>Name</th>
-                      <th>Interest Rate</th>
-                      <th>Interest Method</th>
-                      <th>Interest Period</th>
-                      <th>Status</th>
-                      <th>Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Savings Account - NGN</td>
-                      <td>%</td>
-                      <td>Daily Outstanding Balance</td>
-                      <td>Every 3 month</td>
-                      <td style={styles.completed}>Active</td>
-                      <td>
-                        <select name="action" id="action">
-                          <option value="">Action</option>
-                          <option value="">Action 1</option>
-                          <option value="">Action 2</option>
-                          <option value="">Action 3</option>
-                        </select>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Current Account - NGN</td>
-                      <td>%</td>
-                      <td>Daily Outstanding Balance</td>
-                      <td>Every month</td>
-                      <td style={styles.completed}>Active</td>
-                      <td>
-                        <select name="action" id="action">
-                          <option value="">Action</option>
-                          <option value="">Action 1</option>
-                          <option value="">Action 2</option>
-                          <option value="">Action 3</option>
-                        </select>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Fixed Deposit - NGN</td>
-                      <td>%</td>
-                      <td>Daily Outstanding Balance</td>
-                      <td>Every month</td>
-                      <td style={styles.withcredit}>Deactivated</td>
-                      <td>
-                        <select name="action" id="action">
-                          <option value="">Action</option>
-                          <option value="">Action 1</option>
-                          <option value="">Action 2</option>
-                          <option value="">Action 3</option>
-                        </select>
-                      </td>
-                    </tr>
-                  </tbody>
-                </Table>
+            {status === "loading" ? (
+              <PageLoader />
+            ) : (
+              <div className="ListSec">
+                <div style={styles.table}>
+                  <Table borderless hover responsive="sm">
+                    <thead style={styles.head}>
+                      <tr>
+                        <th>Name</th>
+                        <th>Interest Rate</th>
+                        <th>Interest Method</th>
+                        <th>Interest Period</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {accountsList?.map((account) => (
+                        <tr key={account._id}>
+                          <td>{account.accountName}</td>
+                          <td>{account.interestRate.toFixed(2)}%</td>
+                          <td>{account.interestMethod}</td>
+                          <td>{account.interestPeriod}</td>
+                          <td style={styles.completed}>Active</td>
+                          <td>
+                            <select
+                              name="action"
+                              id="action"
+                              // onChange={(e) => handleSelect(e)}
+                              style={styles.select}
+                            >
+                              <option value="">Action</option>
+                              <option value="edit">Edit</option>
+                              <option value="delete">Delete</option>
+                            </select>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                </div>
               </div>
-            </div>
+            )}
+
             {/* next and previous button  */}
             <NextPreBtn />
           </div>

@@ -40,7 +40,7 @@ const BlogsList = ({count, searchTerms}) => {
   // update blogsList on search
   const handleSearch = () => {
     const currSearch = searchList(blogs, searchTerms, "title");
-    setBlogsList(currSearch.slice(0, count));
+    setBlogsList(currSearch?.slice(0, count));
   };
   useEffect(() => {
     handleSearch();

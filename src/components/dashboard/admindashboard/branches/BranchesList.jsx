@@ -56,7 +56,7 @@ const BranchesList = ({ showCount, searchTerms }) => {
   // update branchesList on search
   const handleSearch = () => {
     const currSearch = searchList(branches, searchTerms, "branchName");
-    setBranchesList(currSearch.slice(0, showCount));
+    setBranchesList(currSearch?.slice(0, showCount));
   };
 
   useEffect(() => {

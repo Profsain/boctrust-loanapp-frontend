@@ -6,6 +6,7 @@ import productReducer from '../reducers/productReducer';
 import wikiReducer from '../reducers/wikiReducer';
 import contactFormReducer from '../reducers/contactFormReducer';
 import branchReducer from '../reducers/branchReducer';
+import accountReducer from '../reducers/accountReducer';
 
 // create a store
 const store = configureStore({
@@ -17,6 +18,7 @@ const store = configureStore({
         wikiReducer,
         contactFormReducer,
         branchReducer,
+        accountReducer,
         user: userSlice,
     }
 });

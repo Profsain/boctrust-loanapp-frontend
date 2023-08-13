@@ -54,7 +54,7 @@ const LoanProductsList = ({ count, searchTerm }) => {
   // update productsList on search
   const handleSearch = () => {
     const currProducts = searchList(products, searchTerm, "productName");
-    setProductsList(currProducts.slice(0, count));
+    setProductsList(currProducts?.slice(0, count));
   }
   useEffect(() => {
     handleSearch();

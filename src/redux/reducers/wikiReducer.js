@@ -10,7 +10,7 @@ export const fetchWikis = createAsyncThunk('wiki/fetchWikis', async () => {
   return response.data;
 });
 
-// product slice
+// wiki slice
 const wikiSlice = createSlice({
   name: 'wiki',
   initialState: {

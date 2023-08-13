@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { fetchAccounts } from "../../../../redux/reducers/accountReducer";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../../dashboardcomponents/transferdashboard/Transfer.css";
 import BocButton from "../../shared/BocButton";
@@ -22,11 +24,27 @@ const initialValues = {
 };
 
 const AddNewAccountType = ({ func }) => {
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values, {resetForm}) => {
     // Handle form submission logic here
+    await fetch("http://localhost:3030/api/account/accounts", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+      body: JSON.stringify(values),
+    });
+    resetForm()
     // set open add branch component to true
+    // func(false);
+    dispatch(fetchAccounts());
+
+  };
+
+  // handle cancel
+  const dispatch = useDispatch();
+  const handleCancel = () => {
     func(false);
-    console.log(values);
+    dispatch(fetchAccounts());
   };
 
   return (
@@ -52,7 +70,7 @@ const AddNewAccountType = ({ func }) => {
             <div className="FieldGroup">
               <label htmlFor="interestRate">Interest Rate</label>
               <Field
-                type="text"
+                type="number"
                 name="interestRate"
                 id="interestRate"
                 className="Input"
@@ -101,7 +119,7 @@ const AddNewAccountType = ({ func }) => {
               width="220px"
               bgcolor="gray"
               bradius="18px"
-              func={() => func(false)}
+              func={handleCancel}
             >
                 Cancel
             </BocButton>

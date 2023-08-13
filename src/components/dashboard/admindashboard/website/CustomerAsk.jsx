@@ -22,8 +22,6 @@ const CustomerAsk = () => {
     fetchInquiry();
   }, []);
 
-  console.log("Inquiry data", inquiries);
-
   // handle edit action
   const handleEdit = () => {
     setOpenModel(true);
