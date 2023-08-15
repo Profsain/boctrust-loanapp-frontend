@@ -51,7 +51,7 @@ const WikiList = ({count, searchTerms}) => {
   const handleSelect = (e) => {
     const option = e.target.value;
     const id = e.target.id;
-    setWikiId(id);
+    setWikiId(id); 
 
     // filter wiki object by id
     const wiki = wikis.find((wiki) => wiki._id === id);

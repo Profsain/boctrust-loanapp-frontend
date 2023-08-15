@@ -80,9 +80,9 @@ const SideNavMain = ({ onMenuItemClick }) => {
               <li id="customer" onClick={onMenuItemClick}>
                 All Customer
               </li>
-              <li id="addcustomer" onClick={onMenuItemClick}>
+              {/* <li id="addcustomer" onClick={onMenuItemClick}>
                 Add Customer
-              </li>
+              </li> */}
               <li id="customerrequest" onClick={onMenuItemClick}>
                 Customer Request
               </li>

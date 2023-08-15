@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { fetchAccounts } from "../../../../redux/reducers/accountReducer";
+import { fetchAccount } from "../../../../redux/reducers/accountReducer";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../../dashboardcomponents/transferdashboard/Transfer.css";
 import BocButton from "../../shared/BocButton";
@@ -23,7 +23,7 @@ const initialValues = {
   interestPeriod: "",
 };
 
-const AddNewAccountType = ({ func }) => {
+const AddNewAccountType = ({ func}) => {
   const handleSubmit = async (values, {resetForm}) => {
     // Handle form submission logic here
     await fetch("http://localhost:3030/api/account/accounts", {
@@ -36,7 +36,7 @@ const AddNewAccountType = ({ func }) => {
     resetForm()
     // set open add branch component to true
     // func(false);
-    dispatch(fetchAccounts());
+    dispatch(fetchAccount());
 
   };
 
@@ -44,7 +44,7 @@ const AddNewAccountType = ({ func }) => {
   const dispatch = useDispatch();
   const handleCancel = () => {
     func(false);
-    dispatch(fetchAccounts());
+    dispatch(fetchAccount());
   };
 
   return (

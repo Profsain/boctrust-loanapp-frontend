@@ -328,7 +328,7 @@ p {
    .Content {
     width: 300px !important;
    }
-   #action {
+   .action {
     width: 90px !important;
    }
    .FieldRow {

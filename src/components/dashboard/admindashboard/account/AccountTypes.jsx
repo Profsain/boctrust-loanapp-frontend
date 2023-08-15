@@ -8,8 +8,11 @@ import NextPreBtn from "../../shared/NextPreBtn";
 import AddNewAccountType from "./AddNewAccountType";
 import Table from "react-bootstrap/Table";
 import PageLoader from "../../shared/PageLoader";
+import NoResult from "../../../shared/NoResult";
 // function
 import searchList from "../../../../../utilities/searchListFunc";
+import ActionNotification from "../../shared/ActionNotification";
+import EditAccount from "./EditAccount";
 
 const AccountTypes = () => {
   const [openAddAccountType, setOpenAddAccountType] = useState(false);
@@ -29,6 +32,12 @@ const AccountTypes = () => {
   const [accountsList, setAccountsList] = useState(accounts);
   const [showCount, setShowCount] = useState(10);
   const [searchTerm, setSearchTerm] = useState("");
+  // single account object
+  const [accountObj, setAccountObj] = useState({});
+  const [accountId, setAccountId] = useState("");
+  const [action, setAction] = useState(false);
+  const [openEditModel, setOpenEditModel] = useState(false);
+
 
   // update accountsList to show 10 accounts on page load
   // on count change
@@ -44,13 +53,39 @@ const AccountTypes = () => {
   // update accountsList on search
   const handleSearch = () => {
     const currSearch = searchList(accounts, searchTerm, "accountName");
-    console.log(searchTerm)
     setAccountsList(currSearch?.slice(0, showCount));
   };
+
   useEffect(() => {
     handleSearch();
   }, [searchTerm]);
 
+  // handle account delete action
+  const handleDelete = async () => {
+    await fetch(`http://localhost:3030/api/account/accounts/${accountId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    dispatch(fetchAccount());
+    setAction(false);
+  };
+
+  // handle action select
+  const handleSelect = (e) => {
+    const option = e.target.value;
+    const id = e.target.id;
+    setAccountId(id);
+    // find single account
+    const account = accounts.find((account) => account._id === id);
+    setAccountObj(account);
+    if (option === "edit") {
+      setOpenEditModel(true);
+    } else if (option === "delete") {
+      setAction(true);
+    }
+  };
   // style
   const styles = {
     head: {
@@ -98,7 +133,7 @@ const AccountTypes = () => {
                 <div className="FormGroup SBox">
                   <input
                     name="search"
-                    placeholder="Search me"
+                    placeholder="Search"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
@@ -125,6 +160,9 @@ const AccountTypes = () => {
                       </tr>
                     </thead>
                     <tbody>
+                      {accountsList?.length === 0 && (
+                        <NoResult name="Account" />
+                      )}
                       {accountsList?.map((account) => (
                         <tr key={account._id}>
                           <td>{account.accountName}</td>
@@ -135,8 +173,9 @@ const AccountTypes = () => {
                           <td>
                             <select
                               name="action"
-                              id="action"
-                              // onChange={(e) => handleSelect(e)}
+                              id={account._id}
+                              className="action"
+                              onChange={(e) => handleSelect(e)}
                               style={styles.select}
                             >
                               <option value="">Action</option>
@@ -157,8 +196,21 @@ const AccountTypes = () => {
           </div>
         </div>
       ) : (
-        <AddNewAccountType func={setOpenAddAccountType} />
+        <AddNewAccountType
+          func={setOpenAddAccountType}
+        />
       )}
+
+      <EditAccount
+        show={openEditModel}
+        onHide={() => setOpenEditModel(false)}
+        account={accountObj}
+      />
+      <ActionNotification
+        show={action}
+        handleClose={() => setAction(false)}
+        handleProceed={handleDelete}
+      />
     </>
   );
 };
