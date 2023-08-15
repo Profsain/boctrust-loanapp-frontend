@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchProduct } from "../../../../redux/reducers/productReducer";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import DashboardHeadline from "../../shared/DashboardHeadline";
@@ -14,12 +17,6 @@ const validationSchema = Yup.object().shape({
   purpose: Yup.string().required("Loan purpose is required"),
 });
 
-const loanProductOptions = [
-  { value: "car loan", label: "Car Loan" },
-  { value: "salary advance", label: "Salary Advance" },
-  // Add more options as needed
-];
-
 const initialValues = {
   loanProduct: "",
   duration: "",
@@ -28,9 +25,56 @@ const initialValues = {
 };
 
 const LoanCalculator = () => {
-  const handleSubmit = (values) => {
-    // Handle form submission logic here
-    console.log(values);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProduct());
+  }, [dispatch]);
+
+  // local state
+  const [errorMessage, setErrorMessage] = useState("");
+  const [totalRepayment, setTotalRepayment] = useState(0);
+  const [monthlyRepayment, setMonthlyRepayment] = useState(0);
+  const [paymentDuration, setPaymentDuration] = useState(0);
+
+  // loan products
+  const products = useSelector(
+    (state) => state.productReducer.products.products
+  );
+  
+  // calculate loan repayment
+  const calculateRepayment = (amount, duration, rate) => { 
+    const interest = (amount * duration * rate) / 100;
+    const total = Number(amount) + interest;
+    const monthly = total / duration;
+    setTotalRepayment(total);
+    setMonthlyRepayment(monthly.toFixed(2));
+  };
+
+  const handleSubmit = (values, {resetForm}) => {
+    // find single products by id
+    const product = products.find(
+      (product) => product._id === values.loanProduct
+    );
+    // loan product duration
+    const productDuration = product.maxTerm;
+    const productRate = product.interestRate;
+    const amount = values.amount;
+    const duration = values.duration;
+
+    // check loan duration
+    if (values.duration > productDuration) {
+      setErrorMessage(
+        "Number of month exceeds the maximum duration of the loan product"
+      );
+    } else {
+      setErrorMessage("");
+      setPaymentDuration(values.duration);
+      // calculate loan repayment
+      calculateRepayment(amount, duration, productRate);
+      resetForm();
+    }
+    // proceed with loan cal or error message
+    // console.log(values);
   };
 
   return (
@@ -52,11 +96,11 @@ const LoanCalculator = () => {
                 className="Select"
               >
                 <option value="" label="Select a product" />
-                {loanProductOptions.map((option) => (
+                {products?.map((product) => (
                   <option
-                    key={option.value}
-                    value={option.value}
-                    label={option.label}
+                    key={product._id}
+                    value={product._id}
+                    label={product.productName}
                   />
                 ))}
               </Field>
@@ -73,6 +117,7 @@ const LoanCalculator = () => {
                 min="1"
               />
               <ErrorMessage name="duration" component="div" />
+              <div className="Error">{errorMessage}</div>
             </div>
           </div>
           <div className="FieldRow">
@@ -92,6 +137,11 @@ const LoanCalculator = () => {
               />
               <ErrorMessage name="purpose" component="div" />
             </div>
+          </div>
+          <div className="ResultContainer">
+            <h3>Total Repayment: {totalRepayment}</h3>
+            <h3>Repayment Duration: {paymentDuration}</h3>
+            <h3>Monthly Repayment: {monthlyRepayment}</h3>
           </div>
           <div className="BtnContainer">
             <BocButton
