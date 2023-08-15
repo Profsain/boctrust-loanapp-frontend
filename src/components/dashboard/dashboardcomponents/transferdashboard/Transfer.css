@@ -80,3 +80,15 @@
     font-size: 0.9rem;
     margin-top: -1.7rem;
 }
+
+.ResultContainer {
+    margin-left: 2rem;
+    font-size: 1rem;
+}
+
+.ResultContainer p > span {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-left: 2rem;
+    color: #145098;
+}

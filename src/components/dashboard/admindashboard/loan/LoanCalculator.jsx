@@ -73,8 +73,6 @@ const LoanCalculator = () => {
       calculateRepayment(amount, duration, productRate);
       resetForm();
     }
-    // proceed with loan cal or error message
-    // console.log(values);
   };
 
   return (
@@ -139,9 +137,15 @@ const LoanCalculator = () => {
             </div>
           </div>
           <div className="ResultContainer">
-            <h3>Total Repayment: {totalRepayment}</h3>
-            <h3>Repayment Duration: {paymentDuration}</h3>
-            <h3>Monthly Repayment: {monthlyRepayment}</h3>
+            <p>
+              Total Repayment: <span>N{totalRepayment}</span>
+            </p>
+            <p>
+              Repayment Duration: <span>{paymentDuration}</span>
+            </p>
+            <p>
+              Monthly Repayment: <span>N{monthlyRepayment}</span>
+            </p>
           </div>
           <div className="BtnContainer">
             <BocButton
