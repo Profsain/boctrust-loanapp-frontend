@@ -1,5 +1,6 @@
+import {useState} from "react";
 import PropTypes from "prop-types";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
@@ -7,72 +8,112 @@ import "../customers/Customer.css";
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required("Required"),
+  methodName: Yup.string().required("Required"),
   logo: Yup.string().required("Required"),
 });
 
 const initialValues = {
-  name: "",
+  methodName: "",
   logo: "",
 };
 
 const AddNewWithdrawerMethod = ({ func }) => {
-  const handleSubmit = (values) => {
+  const [notification, setNotification] = useState("");
+
+  const handleSubmit = async (values, {resetForm}) => {
     // Handle form submission logic here
-    console.log(values);
+    const formData = new FormData();
+    formData.append("methodName", values.methodName);
+    formData.append("logo", values.logo);
+
+    await fetch("http://localhost:3030/api/disbursement/disbursements", {
+      method: "POST",
+      enctype: "multipart/form-data",
+      body: formData,
+    });
+    resetForm();
+    setNotification("Method added successfully");
+
+    setTimeout(() => {
+      setNotification("");
+    }
+    , 3000);
   };
 
   const handleClose = () => {
     func(false);
   };
 
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: handleSubmit,
+  });
+
   return (
     <div className="TransContainer">
-      <DashboardHeadline>Add New Withdrawer Method</DashboardHeadline>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        <Form>
-          <div className="FieldRow">
-            <div className="FieldGroup">
-              <label htmlFor="name">Method Name</label>
-              <Field type="text" name="name" id="name" className="Input" />
-              <ErrorMessage name="name" component="div" />
-            </div>
+      <DashboardHeadline>Add New Method</DashboardHeadline>
+      <form onSubmit={formik.handleSubmit}>
+        <div className="FieldRow">
+          <div className="FieldGroup">
+            <label htmlFor="methodName">Method Name</label>
+            <input
+              type="text"
+              name="methodName"
+              id="methodName"
+              className="Input"
+              onChange={formik.handleChange}
+              value={formik.values.methodName}
+            />
+            {formik.errors.methodName && formik.touched.methodName ? (
+              <div className="Error">{formik.errors.methodName}</div>
+            ) : null}
+          </div>
+          <div className="FieldGroup IUpload">
+            <label htmlFor="logo">Image Logo</label>
+            <input
+              type="file"
+              name="logo"
+              id="logo"
+              className="Input"
+              onChange={(event) => {
+                formik.setFieldValue("logo", event.currentTarget.files[0]);
+              }}
+              style={{ paddingBottom: "38px", fontSize: "12px" }}
+            />
+            {formik.errors.logo && formik.touched.logo ? (
+              <div className="Error">{formik.errors.logo}</div>
+            ) : null}
+          </div>
+        </div>
+        <div className="Notification">
+          <p>{notification}</p>
+        </div>
 
-            <div className="FieldGroup">
-              <label htmlFor="logo">Logo</label>
-              <Field type="file" name="logo" id="MethodLogo" />
-              <ErrorMessage name="logo" component="div" />
-            </div>
+        <div className="BtnRow">
+          <div className="BtnContainer">
+            <BocButton
+              fontSize="1.6rem"
+              type="button"
+              bgcolor="gray"
+              bradius="18px"
+              func={handleClose}
+            >
+              Cancel
+            </BocButton>
           </div>
-          <div className="BtnRow">
-            <div className="BtnContainer">
-              <BocButton
-                fontSize="1.6rem"
-                type="button"
-                bgcolor="gray"
-                bradius="18px"
-                func={handleClose}
-              >
-                Cancel
-              </BocButton>
-            </div>
-            <div className="BtnContainer">
-              <BocButton
-                fontSize="1.6rem"
-                type="submit"
-                bgcolor="#ecaa00"
-                bradius="18px"
-              >
-                Submit
-              </BocButton>
-            </div>
+          <div className="BtnContainer">
+            <BocButton
+              fontSize="1.6rem"
+              type="submit"
+              bgcolor="#ecaa00"
+              bradius="18px"
+            >
+              Submit
+            </BocButton>
           </div>
-        </Form>
-      </Formik>
+        </div>
+      </form>
     </div>
   );
 };
