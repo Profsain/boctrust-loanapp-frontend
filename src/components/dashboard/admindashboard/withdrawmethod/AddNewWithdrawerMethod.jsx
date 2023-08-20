@@ -20,7 +20,7 @@ const initialValues = {
 const AddNewWithdrawerMethod = ({ func }) => {
   const [notification, setNotification] = useState("");
 
-  const handleSubmit = async (values, {resetForm}) => {
+  const handleSubmit = async (values, { resetForm }) => {
     // Handle form submission logic here
     const formData = new FormData();
     formData.append("methodName", values.methodName);

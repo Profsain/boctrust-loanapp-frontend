@@ -7,7 +7,6 @@ const API_ENDPOINT = 'http://localhost:3030/api/contact/contacts';
 // Thunk to fetch contact from the API
 export const fetchContact = createAsyncThunk('contact/fetchContact', async () => {
     const response = await axios.get(API_ENDPOINT);
-    console.log(response.data);
   return response.data;
 });
 

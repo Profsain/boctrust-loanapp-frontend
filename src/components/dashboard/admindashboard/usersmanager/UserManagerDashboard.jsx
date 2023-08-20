@@ -4,10 +4,12 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../customers/Customer.css";
 import NextPreBtn from "../../shared/NextPreBtn";
 import UsersList from "./UsersList";
-import AddNewUser from "./AddNewUser";
+import CreateNewAdmin from "./CreateNewAdmin";
 
 const UserManagerDashboard = () => {
   const [showAddNew, setShowAddNew] = useState(false);
+  const [showCount, setShowCount] = useState(10);
+  const [searchTerms, setSearchTerms] = useState("");
   const handleAddNew = () => setShowAddNew(true);
 
   return (
@@ -25,10 +27,23 @@ const UserManagerDashboard = () => {
               <div className="SearchBar">
                 <div className="FormGroup">
                   <label htmlFor="show">Show</label>
-                  <input name="showCount" type="number" step={10} min={10} />
+                  <input
+                    name="showCount"
+                    type="number"
+                    step={10}
+                    min={10}
+                    value={showCount}
+                    onChange={(e) => setShowCount(e.target.value)}
+                  />
                 </div>
+
                 <div className="FormGroup SBox">
-                  <input name="search" placeholder="Search" />
+                  <input
+                    name="search"
+                    placeholder="Search"
+                    value={searchTerms}
+                    onChange={(e) => setSearchTerms(e.target.value)}
+                  />
                   <img src="images/search.png" alt="search-icon" />
                 </div>
               </div>
@@ -36,13 +51,14 @@ const UserManagerDashboard = () => {
           </div>
           <div>
             {/* users list  */}
-            <UsersList />
+            <UsersList count={showCount} searchTerms={searchTerms} />
             {/* next and previous button  */}
             <NextPreBtn />
           </div>
         </div>
       ) : (
-        <AddNewUser func={setShowAddNew} />
+ 
+        <CreateNewAdmin func={setShowAddNew} />
       )}
     </div>
   );

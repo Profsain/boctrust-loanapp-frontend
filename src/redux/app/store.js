@@ -8,6 +8,7 @@ import contactFormReducer from '../reducers/contactFormReducer';
 import branchReducer from '../reducers/branchReducer';
 import accountReducer from '../reducers/accountReducer';
 import disbursementMethodReducer from '../reducers/disbursementMethodReducer';
+import adminUserReducer from '../reducers/adminUserReducer';
 
 // create a store
 const store = configureStore({
@@ -21,6 +22,7 @@ const store = configureStore({
         branchReducer,
         accountReducer,
         disbursementMethodReducer,
+        adminUserReducer,
         user: userSlice,
     }
 });
