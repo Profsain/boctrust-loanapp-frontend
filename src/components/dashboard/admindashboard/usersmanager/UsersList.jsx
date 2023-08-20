@@ -156,7 +156,7 @@ const UsersList = ({ count, searchTerms }) => {
       <EditUser
         show={show}
         onHide={() => setShow(false)}
-        userObj={userObj}
+        userobj={userObj}
       />
 
       {/* acton popup model */}

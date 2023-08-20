@@ -7,14 +7,13 @@ import Modal from "react-bootstrap/Modal";
 
 const EditUser = (props) => {
   const dispatch = useDispatch();
-  const user = props.userObj;
+  const user = props.userobj;
 
   // form state
   const [editFullName, setEditFullName] = useState("");
-  const [editPhoto, setEditPhoto] = useState("");
   const [editEmail, setEditEmail] = useState("");
   const [editPhone, setEditPhone] = useState("");
-  const [editUsername, setEditUsername] = useState("");
+  const [editUsername, setEditUsername] = useState(""); 
   const [editPassword, setEditPassword] = useState("");
   const [editUserType, setEditUserType] = useState("");
   const [editJobRole, setEditJobRole] = useState("");
@@ -22,11 +21,9 @@ const EditUser = (props) => {
   // pass object data to form
   const updateFormObject = () => {
     setEditFullName(user.fullName);
-    setEditPhoto(user.photo);
     setEditEmail(user.email);
     setEditPhone(user.phone);
     setEditUsername(user.username);
-    setEditPassword(user.password);
     setEditUserType(user.userType);
     setEditJobRole(user.jobRole);
   };
@@ -38,7 +35,6 @@ const EditUser = (props) => {
   // clear form fields
   const clearForm = () => {
     setEditFullName("");
-    setEditPhoto("");
     setEditEmail("");
     setEditPhone("");
     setEditUsername("");
@@ -58,9 +54,9 @@ const EditUser = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+
     const updatedBranch = {
       fullName: editFullName,
-      photo: editPhoto,
       email: editEmail,
       phone: editPhone,
       username: editUsername,
@@ -69,7 +65,7 @@ const EditUser = (props) => {
       jobRole: editJobRole,
     };
 
-    await fetch(`http://localhost:3030/api/branch/branches/${user._id}`, {
+    await fetch(`http://localhost:3030/api/admin/update/${user._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -149,17 +145,30 @@ const EditUser = (props) => {
               onChange={(e) => setEditUsername(e.target.value)}
             />
           </div>
-
           <div className="FieldGroup">
             <label htmlFor="password" style={{ marginTop: "-1rem" }}>
-              Change Password
+              Password
             </label>
             <input
               type="password"
+              placeholder="Enter new password or retype old password"
               style={{ width: "100%" }}
               className="Input"
               value={editPassword}
               onChange={(e) => setEditPassword(e.target.value)}
+            />
+          </div>
+
+          <div className="FieldGroup">
+            <label htmlFor="userType" style={{ marginTop: "-1rem" }}>
+              User Role Type
+            </label>
+            <input
+              type="text"
+              style={{ width: "100%" }}
+              className="Input"
+              value={editUserType}
+              onChange={(e) => setEditUserType(e.target.value)}
             />
           </div>
 

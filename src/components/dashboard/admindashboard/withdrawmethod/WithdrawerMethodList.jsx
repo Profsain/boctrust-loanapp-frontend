@@ -118,26 +118,6 @@ const WithdrawerMethodList = () => {
                     </td>
                   </tr>
                 ))}
-
-                <tr>
-                  <td>
-                    <img
-                      src="images/banktransfer.png"
-                      alt="method-logo"
-                      style={styles.img}
-                    />
-                  </td>
-                  <td>Bank Transfer</td>
-                  <td>29-03-2023</td>
-                  <td style={styles.completed}>Active</td>
-                  <td>
-                    <select name="action" id="action">
-                      <option value="">Action</option>
-                      <option value="">Edit</option>
-                      <option value="">Delete</option>
-                    </select>
-                  </td>
-                </tr>
               </tbody>
             </Table>
           </div>
