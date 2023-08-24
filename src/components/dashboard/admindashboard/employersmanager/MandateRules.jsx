@@ -55,10 +55,10 @@ const mandateTitles = [
 ];
 
 const durationOptions = [
-  { value: "365", label: "365 Days" },
-  { value: "180", label: "180 Days" },
-  { value: "90", label: "90 Days" },
-  { value: "30", label: "30 Days" },
+  { value: "365 days", label: "365 Days" },
+  { value: "180 days", label: "180 Days" },
+  { value: "90 days", label: "90 Days" },
+  { value: "30 days", label: "30 Days" },
   // Add more options as needed
 ];
 
