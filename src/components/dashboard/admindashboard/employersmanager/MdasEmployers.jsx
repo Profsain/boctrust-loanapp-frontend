@@ -42,7 +42,6 @@ const MdasEmployers = () => {
 
   const employers = useSelector((state) => state.employersManagerReducer.employers.employers);
   const status = useSelector((state) => state.employersManagerReducer.status);
-  console.log(status, employers);
 
   return (
     <div style={styles.container} className="DCard">
@@ -62,6 +61,7 @@ const MdasEmployers = () => {
                 <th>Employer Name</th>
                 <th>Mandate Rule</th>
                 <th>Onboarding Date</th>
+                <th>Max Loan Tenure</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -72,12 +72,13 @@ const MdasEmployers = () => {
                   <td>{employer.employersName}</td>
                   <td>{employer.mandateRule.mandateTitle}</td>
                   <td>{getDateOnly(employer.dateAdded)}</td>
+                  <td>{employer.statementRule.maximumTenure}</td>
                   <td>
                     <BocButton
                       bradius="12px"
                       fontSize="14px"
                       width="80px"
-                      margin="0 4px"  
+                      margin="0 4px"
                       bgcolor="#5cc51c"
                     >
                       Edit
@@ -85,23 +86,6 @@ const MdasEmployers = () => {
                   </td>
                 </tr>
               ))}
-              <tr>
-                <td>E001</td>
-                <td>Nigerian Airforce</td>
-                <td>365 Days Eligibility</td>
-                <td>04-03-2023</td>
-                <td>
-                  <BocButton
-                    bradius="12px"
-                    fontSize="14px"
-                    width="80px"
-                    margin="0 4px"
-                    bgcolor="#5cc51c"
-                  >
-                    Edit
-                  </BocButton>
-                </td>
-              </tr>
             </tbody>
           </Table>
         </div>

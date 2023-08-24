@@ -31,23 +31,23 @@ const initialValues = {
 // Define options for select inputs
 const mandateTitles = [
   {
-    value: "loanEligibilityAfter365Days",
+    value: "365 Days Eligibility",
     label: "Loan Eligibility after 365 days",
   },
   {
-    value: "loanEligibilityAfter365DaysStacked",
+    value: "365 Days Eligibility (Stacked)",
     label: "Loan Eligibility after 365 days (stacked)",
   },
   {
-    value: "loanEligibilityAfter180Days",
+    value: "180 Days Eligibility",
     label: "Loan Eligibility after 180 days",
   },
   {
-    value: "loanEligibilityAfter90Days",
+    value: "90 Days Eligibility",
     label: "Loan Eligibility after 90 days",
   },
   {
-    value: "loanEligibilityAfter30Days",
+    value: "30 Days Eligibility",
     label: "Loan Eligibility after 30 days",
   },
 
