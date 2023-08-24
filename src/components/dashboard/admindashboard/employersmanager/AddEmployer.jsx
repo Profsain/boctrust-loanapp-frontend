@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import DashboardHeadline from "../../shared/DashboardHeadline";
@@ -6,6 +7,7 @@ import BocButton from "../../shared/BocButton";
 
 // Define validation schema using Yup
 const validationSchema = Yup.object().shape({
+  employersId: Yup.string().required("Employers ID is required"),
   employersName: Yup.string().required("Employers name is required"),
   employersAddress: Yup.string().required("Employer address is required"),
   dateAdded: Yup.string().required("Date is required"),
@@ -13,6 +15,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const initialValues = {
+  employersId: "",
   employersName: "",
   employersAddress: "",
   dateAdded: "",
@@ -20,9 +23,25 @@ const initialValues = {
 };
 
 const AddEmployer = () => {
-  const handleSubmit = (values) => {
+  const [message, setMessage] = useState(null);
+  const handleSubmit = async (values, {resetForm}) => {
     // Handle form submission logic here
-    console.log(values);
+    await fetch("http://localhost:3030/api/agency/employers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+
+    // Reset form after submission
+    resetForm();
+    // Set message after successful submission
+    setMessage("Employer added successfully");
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
+
   };
 
   return (
@@ -35,6 +54,20 @@ const AddEmployer = () => {
           onSubmit={handleSubmit}
         >
           <Form>
+            <div style={{ padding: "0 1rem" }}>
+              {" "}
+              <div className="FieldGroup">
+                <label htmlFor="employersId">Employers ID</label>
+                <Field
+                  type="text"
+                  name="employersId"
+                  id="employersId"
+                  // className="Input"
+                />
+                <ErrorMessage name="employersId" component="div" />
+              </div>
+            </div>
+
             <div className="FieldRow">
               <div className="FieldGroup">
                 <label htmlFor="employersName">Employers Name</label>
@@ -58,6 +91,7 @@ const AddEmployer = () => {
                 <ErrorMessage name="employersAddress" component="div" />
               </div>
             </div>
+
             <div className="FieldRow">
               <div className="FieldGroup">
                 <label htmlFor="dateAdded">Date Added</label>
@@ -77,7 +111,7 @@ const AddEmployer = () => {
                     <Field
                       type="radio"
                       name="mandateIssued"
-                      value="Yes"
+                      value="true"
                       className="Gap"
                     />
                     Yes
@@ -86,7 +120,7 @@ const AddEmployer = () => {
                     <Field
                       type="radio"
                       name="mandateIssued"
-                      value="No"
+                      value="false"
                       className="Gap"
                     />
                     No
@@ -97,6 +131,11 @@ const AddEmployer = () => {
               </div>
             </div>
 
+            {message && (
+              <div style={{ textAlign: "center", color: "#145098" }}>
+                {message}
+              </div>
+            )}
             <div className="BtnContainer">
               <BocButton
                 fontSize="1.6rem"

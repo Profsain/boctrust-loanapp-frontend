@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEmployers } from "../../../../redux/reducers/employersManagerReducer";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import DashboardHeadline from "../../shared/DashboardHeadline";
@@ -8,68 +11,102 @@ import BocButton from "../../shared/BocButton";
 const validationSchema = Yup.object().shape({
   mandateTitle: Yup.string().required("Mandate title is required"),
   mandateDuration: Yup.string().required("Mandate duration is required"),
+  mandateUser: Yup.string().required("Mandate user is required"),
+  allowStacking: Yup.string().required("Allow stacking is required"),
   dateCreated: Yup.string().required("Date created is required"),
-  mandateUse: Yup.string().required("Mandate use is required"),
-  secondaryRule: Yup.string().required("Secondary rule duration is required"),
+  // secondaryDuration: Yup.string().required("Secondary duration is required"),
   addEmployerStack: Yup.string().required("Add employer stack is required"),
 });
 
 const initialValues = {
   mandateTitle: "",
   mandateDuration: "",
-  dateCreated: "",
-  mandateUse: "",
+  mandateUser: "",
   allowStacking: "",
+  dateCreated: "",
   secondaryDuration: "",
   addEmployerStack: "",
 };
 
+// Define options for select inputs
+const mandateTitles = [
+  {
+    value: "loanEligibilityAfter365Days",
+    label: "Loan Eligibility after 365 days",
+  },
+  {
+    value: "loanEligibilityAfter365DaysStacked",
+    label: "Loan Eligibility after 365 days (stacked)",
+  },
+  {
+    value: "loanEligibilityAfter180Days",
+    label: "Loan Eligibility after 180 days",
+  },
+  {
+    value: "loanEligibilityAfter90Days",
+    label: "Loan Eligibility after 90 days",
+  },
+  {
+    value: "loanEligibilityAfter30Days",
+    label: "Loan Eligibility after 30 days",
+  },
+
+  // Add more options as needed
+];
+
+const durationOptions = [
+  { value: "365", label: "365 Days" },
+  { value: "180", label: "180 Days" },
+  { value: "90", label: "90 Days" },
+  { value: "30", label: "30 Days" },
+  // Add more options as needed
+];
+
+const secondaryDuration = [
+  { value: "365", label: "365 Days" },
+  { value: "180", label: "180 Days" },
+  { value: "90", label: "90 Days" },
+  { value: "30", label: "30 Days" },
+  // Add more options as needed
+];
+
 const MandateRules = () => {
-  const handleSubmit = (values) => {
+  const [message, setMessage] = useState(null);
+  // Fetch employers from redux store
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchEmployers());
+  }, [dispatch]);
+
+  // Get employers from redux store
+  const employers = useSelector(
+    (state) => state.employersManagerReducer.employers.employers
+  );
+
+  const employerOptions = employers.map((employer) => ({
+    value: employer._id,
+    label: employer.employersName,
+  }));
+
+  const handleSubmit = async (values, { resetForm }) => {
+    const id = values.addEmployerStack;
     // Handle form submission logic here
-    console.log(values);
+    await fetch(`http://localhost:3030/api/agency/employers/${id}/mandateRule`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    })
+
+    // Reset form after submission
+    resetForm();
+    // Set message after successful submission
+    setMessage("Mandate rule added successfully");
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
   };
-
-  const mandateTitles = [
-    {
-      value: "loanEligibilityAfter365Days",
-      label: "Loan Eligibility after 365 days",
-    },
-    {
-      value: "loanEligibilityAfter365DaysStacked",
-      label: "Loan Eligibility after 365 days (stacked)",
-    },
-    {
-      value: "loanEligibilityAfter180Days",
-      label: "Loan Eligibility after 180 days",
-    },
-    {
-      value: "loanEligibilityAfter90Days",
-      label: "Loan Eligibility after 90 days",
-    },
-    {
-      value: "loanEligibilityAfter30Days",
-      label: "Loan Eligibility after 30 days",
-    },
-
-    // Add more options as needed
-  ];
-
-  const durationOptions = [
-    { value: "365", label: "365 Days" },
-    { value: "180", label: "180 Days" },
-    { value: "90", label: "90 Days" },
-    { value: "30", label: "30 Days" },
-    // Add more options as needed
-  ];
-
-  const secondaryDuration = [
-    { value: "365", label: "365 Days" },
-    { value: "180", label: "180 Days" },
-    { value: "90", label: "90 Days" },
-    { value: "30", label: "30 Days" },
-    // Add more options as needed
-  ];
 
   return (
     <div>
@@ -101,6 +138,7 @@ const MandateRules = () => {
                 </Field>
                 <ErrorMessage name="mandateTitle" component="div" />
               </div>
+
               <div className="FieldGroup">
                 <label htmlFor="mandateDuration">Duration</label>
                 <Field
@@ -124,13 +162,13 @@ const MandateRules = () => {
 
             <div className="FieldRow">
               <div className="RadioCon">
-                <label htmlFor="mandateUse">Mandate Use</label>
+                <label htmlFor="mandateUser">Mandate User</label>
                 <div className="Input">
                   <label className="MandateLabel">
                     <Field
                       type="radio"
-                      name="mandateUse"
-                      value="Employer"
+                      name="mandateUser"
+                      value="employer"
                       className="Gap"
                     />
                     Employer
@@ -138,16 +176,17 @@ const MandateRules = () => {
                   <label className="MandateLabel">
                     <Field
                       type="radio"
-                      name="mandateUse"
-                      value="Admin"
+                      name="mandateUser"
+                      value="admin"
                       className="Gap"
                     />
                     Admin
                   </label>
                 </div>
 
-                <ErrorMessage name="mandateUse" component="div" />
+                <ErrorMessage name="mandateUser" component="div" />
               </div>
+
               <div className="RadioCon">
                 <label htmlFor="allowStacking">
                   Allow Remita Rule Stacking
@@ -157,7 +196,7 @@ const MandateRules = () => {
                     <Field
                       type="radio"
                       name="allowStacking"
-                      value="Yes"
+                      value="yes"
                       className="Gap"
                     />
                     Yes
@@ -166,14 +205,14 @@ const MandateRules = () => {
                     <Field
                       type="radio"
                       name="allowStacking"
-                      value="No"
+                      value="no"
                       className="Gap"
                     />
                     No
                   </label>
                 </div>
 
-                <ErrorMessage name="mandateIssued" component="div" />
+                <ErrorMessage name="allowStacking" component="div" />
               </div>
             </div>
 
@@ -218,14 +257,30 @@ const MandateRules = () => {
                   Add Employer for Rule Stacking
                 </label>
                 <Field
-                  type="text"
+                  as="select"
                   name="addEmployerStack"
                   id="addEmployerStack"
-                  className="Input"
-                />
+                  className="Select"
+                >
+                  <option value="" label="Select employers" />
+                  {employerOptions?.map((option) => (
+                    <option
+                      key={option.value}
+                      value={option.value}
+                      label={option.label}
+                    />
+                  ))}
+                </Field>
                 <ErrorMessage name="addEmployerStack" component="div" />
               </div>
             </div>
+
+            {message && (
+              <div style={{ textAlign: "center", color: "#145098" }}>
+                {message}
+              </div>
+            )}
+
             <div className="BtnContainer">
               <BocButton
                 fontSize="1.6rem"

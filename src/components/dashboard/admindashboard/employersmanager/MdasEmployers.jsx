@@ -1,7 +1,12 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchEmployers } from "../../../../redux/reducers/employersManagerReducer";
 import { Table } from "react-bootstrap";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import NextPreBtn from "../../shared/NextPreBtn";
+import PageLoader from "../../shared/PageLoader";
+import getDateOnly from "../../../../../utilities/getDate";
 
 const MdasEmployers = () => {
   const styles = {
@@ -30,8 +35,18 @@ const MdasEmployers = () => {
       color: "#ecaa00",
     },
   };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchEmployers());
+  }, [dispatch]);
+
+  const employers = useSelector((state) => state.employersManagerReducer.employers.employers);
+  const status = useSelector((state) => state.employersManagerReducer.status);
+  console.log(status, employers);
+
   return (
     <div style={styles.container} className="DCard">
+      {status === "loading" && <PageLoader />}
       {/* table section */}
       <div>
         <DashboardHeadline
@@ -51,85 +66,29 @@ const MdasEmployers = () => {
               </tr>
             </thead>
             <tbody>
+              {employers?.map((employer) => (
+                <tr key={employer._id}>
+                  <td>{employer.employersId}</td>
+                  <td>{employer.employersName}</td>
+                  <td>{employer.mandateRule.mandateTitle}</td>
+                  <td>{getDateOnly(employer.dateAdded)}</td>
+                  <td>
+                    <BocButton
+                      bradius="12px"
+                      fontSize="14px"
+                      width="80px"
+                      margin="0 4px"  
+                      bgcolor="#5cc51c"
+                    >
+                      Edit
+                    </BocButton>
+                  </td>
+                </tr>
+              ))}
               <tr>
                 <td>E001</td>
                 <td>Nigerian Airforce</td>
                 <td>365 Days Eligibility</td>
-                <td>04-03-2023</td>
-                <td>
-                  <BocButton
-                    bradius="12px"
-                    fontSize="14px"
-                    width="80px"
-                    margin="0 4px"
-                    bgcolor="#5cc51c"
-                  >
-                    Edit
-                  </BocButton>
-                </td>
-              </tr>
-
-              <tr>
-                <td>E002</td>
-                <td>Nigeria Fire Service</td>
-                <td>180 Days Eligibility</td>
-                <td>04-03-2023</td>
-                <td>
-                  <BocButton
-                    bradius="12px"
-                    fontSize="14px"
-                    width="80px"
-                    margin="0 4px"
-                    bgcolor="#5cc51c"
-                  >
-                    Edit
-                  </BocButton>
-                </td>
-              </tr>
-
-              <tr>
-                <td>E003</td>
-                <td>FAAN</td>
-                <td>90 Days Eligibility</td>
-                <td>04-03-2023</td>
-                <td>
-                  <BocButton
-                    bradius="12px"
-                    fontSize="14px"
-                    width="80px"
-                    margin="0 4px"
-                    bgcolor="#5cc51c"
-                  >
-                    Edit
-                  </BocButton>
-                </td>
-              </tr>
-
-              <tr>
-                <td>E001</td>
-                <td>Nigerian Airforce</td>
-                <td>
-                  365 Days Eligibility (
-                  <span style={styles.completed}>Stacked</span>)
-                </td>
-                <td>04-03-2023</td>
-                <td>
-                  <BocButton
-                    bradius="12px"
-                    fontSize="14px"
-                    width="80px"
-                    margin="0 4px"
-                    bgcolor="#5cc51c"
-                  >
-                    Edit
-                  </BocButton>
-                </td>
-              </tr>
-
-              <tr>
-                <td>E004</td>
-                <td>Nigeria Custom</td>
-                <td>180 Days Eligibility</td>
                 <td>04-03-2023</td>
                 <td>
                   <BocButton
