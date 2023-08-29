@@ -7,8 +7,8 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 import NextPreBtn from "../../shared/NextPreBtn";
 import PageLoader from "../../shared/PageLoader";
 import EditEmployer from "./EditEmployer";
+import ActionNotification from "../../shared/ActionNotification";
 import getDateOnly from "../../../../../utilities/getDate";
-
 
 const MdasEmployers = () => {
   const styles = {
@@ -38,28 +38,57 @@ const MdasEmployers = () => {
     },
   };
 
-  // hooks 
+  // hooks
   const [show, setShow] = useState(false);
-  const [employersObj, setEmployersObj] = useState([]);
+  const [employersObj, setEmployersObj] = useState({});
+  const [action, setAction] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
+
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchEmployers());
   }, [dispatch]);
 
-  const employers = useSelector((state) => state.employersManagerReducer.employers.employers);
+  const employers = useSelector(
+    (state) => state.employersManagerReducer.employers.employers
+  );
   const status = useSelector((state) => state.employersManagerReducer.status);
 
   // handle edit action
   const handleEdit = (e) => {
-    setShow(true);
     // get id
     const id = e.target.id;
     // get employer object by id
     const employer = employers.find((employer) => employer._id === id);
     // set employer object
     setEmployersObj(employer);
+    // show modal
+    setShow(true);
   };
+
+  // handle delete action
+  const handleDelete = async () => {
+    await fetch(`http://localhost:3030/api/agency/employers/${deleteId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    // close modal
+    setAction(false);
+    // fetch employers
+    dispatch(fetchEmployers());
+  };
+
+  // handle open notification modal
+  const openDelete = (e) => {
+    // get id
+    const id = e.target.id;
+    // set id
+    setDeleteId(id);
+    setAction(true);
+  }
 
   return (
     <>
@@ -104,6 +133,18 @@ const MdasEmployers = () => {
                       >
                         Edit
                       </BocButton>
+
+                      <BocButton
+                        id={employer._id}
+                        bradius="12px"
+                        fontSize="14px"
+                        width="80px"
+                        margin="0 4px"
+                        bgcolor="red"
+                        func={(e) => openDelete(e)}
+                      >
+                        Delete
+                      </BocButton>
                     </td>
                   </tr>
                 ))}
@@ -117,7 +158,14 @@ const MdasEmployers = () => {
       <EditEmployer
         show={show}
         onHide={() => setShow(false)}
-        employers={employersObj}
+        employerData={employersObj}
+      />
+
+      {/* acton popup model */}
+      <ActionNotification
+        show={action}
+        handleClose={() => setAction(false)}
+        handleProceed={handleDelete}
       />
     </>
   );

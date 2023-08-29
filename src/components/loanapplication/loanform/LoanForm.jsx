@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
+// fetch data from api
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProduct } from "../../../redux/reducers/productReducer";
 // formik and yup for form data management
 import { Formik, Form, Field } from "formik";
 import validationSchema from "./formvalidation";
@@ -17,9 +20,19 @@ import initialValues from "./formInitialValue";
 
 // loan form component
 const LoanForm = ({ data }) => {
+  // fetch loan product
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchProduct());
+  }, [dispatch]);
+  const loanProducts = useSelector(
+    (state) => state.productReducer.products.products
+  );
+
   // data from loan home
   const { loanamount, careertype } = data;
   const [noofmonth, setNoofmonth] = useState(1);
+  // const [interestRate, setInterestRate] = useState(6);
   const [currentLoanAmount, setCurrentLoanAmount] = useState(
     parseInt(loanamount)
   );
@@ -32,21 +45,38 @@ const LoanForm = ({ data }) => {
   const [lga, setLga] = useState([]);
   const [captureImg, setCaptureImg] = useState("");
 
-  // calculate interest rate
-  useEffect(() => {
-    // calculator loan amount
-    const loanCal = calculatorfunc(
-      parseInt(currentLoanAmount),
-      noofmonth * 30,
-      6
-    );
-    setInterestResult(loanCal);
-  }, [currentLoanAmount, noofmonth]);
-
   // scroll to the top of the page
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [step, showForm]);
+
+  // get current formik value
+  const ref = useRef();
+
+  // calculate interest rate
+  const calculateRepayment = () => {
+    // get product id from formik values
+    const productId = ref.current?.values.loanproduct;
+    const noOfMonths = ref.current?.values.numberofmonth;
+    setNoofmonth(noOfMonths);
+
+    // find product
+    const product = loanProducts?.find((product) => product._id === productId);
+    // get interest rate
+    const loanRate = product?.interestRate;
+
+    // calculator loan amount
+    const loanCal = calculatorfunc(
+      parseInt(currentLoanAmount),
+      noofmonth * 30,
+      loanRate
+    );
+    setInterestResult(loanCal);
+  };
+
+  useEffect(() => {
+    calculateRepayment();
+  }, []);
 
   const loanTotal = parseInt(currentLoanAmount) + interestResult;
   const monthlyPay = (loanTotal / parseInt(noofmonth)).toFixed();
@@ -64,12 +94,10 @@ const LoanForm = ({ data }) => {
   const [isBvnVarified, setIsBvnVarified] = useState(false);
 
   // handle bvn varification
-  const ref = useRef(null);
   const handleBvnVarification = () => {
     setIsBvnVarified(true);
   };
 
-  console.log(ref.current);
   // handle form submit/move to next step
   const handleSubmit = (values, { setSubmitting }) => {
     // handle form submition to backend here
@@ -191,28 +219,44 @@ const LoanForm = ({ data }) => {
 
                                 {/* repayments months */}
                                 <div>
-                                  <label htmlFor="numberofmonth">
-                                    Enter Number of Months
-                                  </label>
-                                  <input
-                                    type="number"
+                                  <TextInput
+                                    label="Enter Number of Repayment Months"
                                     name="numberofmonth"
-                                    className="TextInput"
-                                    value={noofmonth || 1}
-                                    min="1"
-                                    max="22"
-                                    onChange={(e) =>
-                                      setNoofmonth(e.target.value)
-                                    }
+                                    type="number"
                                   />
-                                  {noofmonth === "" ? (
-                                    <p className="ErrorMsg">Required</p>
-                                  ) : null}
-                                  {noofmonth > 22 ? (
-                                    <p className="ErrorMsg">
-                                      Enter between 1 to 22 months only
-                                    </p>
-                                  ) : null}
+                                </div>
+
+                                {/* loan product */}
+                                <div>
+                                  <label htmlFor="loanproduct">
+                                    Select Loan Product
+                                  </label>
+                                  {/* select loan product list */}
+                                  <Field
+                                    as="select"
+                                    name="loanproduct"
+                                    className="TextInput"
+                                  >
+                                    <option value=""></option>
+                                    {loanProducts?.map((product) => (
+                                      <option
+                                        key={product._id}
+                                        value={product._id}
+                                      >
+                                        {product.productName}
+                                      </option>
+                                    ))}
+                                  </Field>
+                                </div>
+                                {/* calculate repayment btn */}
+                                <div className="ButtonContainer">
+                                  <button
+                                    type="button"
+                                    onClick={calculateRepayment}
+                                    className="BtnAction BtnSecondary"
+                                  >
+                                    Calculate Repayment
+                                  </button>
                                 </div>
 
                                 {/* loan cal result */}
@@ -314,6 +358,7 @@ const LoanForm = ({ data }) => {
                                   )}
                                 </div>
                               </div>
+                              {/* next form page btn */}
                               <div className="ButtonContainer">
                                 <button
                                   type="button"

@@ -7,7 +7,7 @@ import Modal from "react-bootstrap/Modal";
 
 const EditEmployer = (props) => {
   const dispatch = useDispatch();
-  const employers = props.employers;
+  const employers = props.employerData;
 
   // form state
   const [editEmployerName, setEditEmployerName] = useState("");
@@ -19,6 +19,11 @@ const EditEmployer = (props) => {
 
   // pass object data to form
   const updateFormObject = () => {
+    // check if object is empty
+    if (Object.keys(employers).length === 0) {
+      return;
+    }
+    
     setEditEmployerName(employers.employersName);
     setEditEmployerAddress(employers.employersAddress);
     setEditMandateTitle(employers.mandateRule.mandateTitle);
@@ -60,7 +65,6 @@ const EditEmployer = (props) => {
       maximumTenure: editMaximumTenure,
       maximumAmount: editMaximumAmount,
     };
-
     await fetch(`http://localhost:3030/api/agency/employers/${employers._id}`, {
       method: "PUT",
       headers: {
