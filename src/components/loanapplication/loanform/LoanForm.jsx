@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 // fetch data from api
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../../../redux/reducers/productReducer";
+import { fetchEmployers } from "../../../redux/reducers/employersManagerReducer";
+
 // formik and yup for form data management
 import { Formik, Form, Field } from "formik";
 import validationSchema from "./formvalidation";
@@ -17,6 +19,8 @@ import PhotoCapture from "./photocapture/PhotoCapture";
 import ConfirmData from "./ConfirmData";
 import CreateAccount from "./CreateAccount";
 import initialValues from "./formInitialValue";
+// function
+import convertFile from "../../../../utilities/convertFile";
 
 // loan form component
 const LoanForm = ({ data }) => {
@@ -24,15 +28,18 @@ const LoanForm = ({ data }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProduct());
+    dispatch(fetchEmployers());
   }, [dispatch]);
   const loanProducts = useSelector(
     (state) => state.productReducer.products.products
+  );
+  const employers = useSelector(
+    (state) => state.employersManagerReducer.employers.employers
   );
 
   // data from loan home
   const { loanamount, careertype } = data;
   const [noofmonth, setNoofmonth] = useState(1);
-  // const [interestRate, setInterestRate] = useState(6);
   const [currentLoanAmount, setCurrentLoanAmount] = useState(
     parseInt(loanamount)
   );
@@ -43,8 +50,11 @@ const LoanForm = ({ data }) => {
   const [stepImg, setStepImg] = useState("images/step1.png");
   const [state, setState] = useState("");
   const [lga, setLga] = useState([]);
+  // file upload
   const [captureImg, setCaptureImg] = useState("");
-  console.log("capture Image", captureImg)
+  const [idCard, setIdCard] = useState("");
+  const [paySlip, setPaySlip] = useState("");
+  const [signature, setSignature] = useState("");
 
   // scroll to the top of the page
   useEffect(() => {
@@ -57,7 +67,7 @@ const LoanForm = ({ data }) => {
       ref.current?.setFieldValue("photocapture", captureImg);
     }
   }, [captureImg]);
-  
+
   // get current formik value
   const ref = useRef();
 
@@ -84,7 +94,7 @@ const LoanForm = ({ data }) => {
 
   useEffect(() => {
     calculateRepayment();
-  }, []);
+  }, [noofmonth, currentLoanAmount]);
 
   const loanTotal = parseInt(currentLoanAmount) + interestResult;
   const monthlyPay = (loanTotal / parseInt(noofmonth)).toFixed();
@@ -94,8 +104,11 @@ const LoanForm = ({ data }) => {
   const lgas = lga.lgas;
   // handle select state
   const handleSelectState = (e) => {
-    setState(e.target.value);
-    setLga(NaijaStates.lgas(e.target.value));
+    const state = e.target.value;
+    setState(state);
+    setLga(NaijaStates.lgas(state));
+    // update state form value
+    ref.current?.setFieldValue("stateofresidence", state);
   };
 
   // BVN Varification
@@ -109,14 +122,16 @@ const LoanForm = ({ data }) => {
   // handle form submit/move to next step
   const handleSubmit = () => {
     // handle form submit to backend here
-    console.log("Submitting form..............")
+    console.log("Submitting form..............");
     // ref.current?.values.photocapture = captureImg
     if (ref.current) {
+      ref.current?.setFieldValue("valididcard", idCard);
+      ref.current?.setFieldValue("uploadpayslip", paySlip);
+      ref.current?.setFieldValue("signature", signature);
       const formData = ref.current?.values;
       console.log("Form data", formData);
     }
     // setSubmitting(false);
-
   };
 
   // handle proceed to account creation
@@ -301,7 +316,7 @@ const LoanForm = ({ data }) => {
                                     <span className="CalNaira">
                                       <img src="images/naira.png" alt="" />
                                     </span>
-                                    
+
                                     {isNaN(monthlyPay) ? 0 : monthlyPay}
                                   </h4>
                                 </div>
@@ -377,7 +392,7 @@ const LoanForm = ({ data }) => {
                               <div className="ButtonContainer">
                                 <button
                                   type="button"
-                                  // disabled={isSubmitting}
+                                  disabled={isSubmitting}
                                   onClick={handleNext}
                                   className="BtnAction BtnSecondary"
                                 >
@@ -628,6 +643,9 @@ const LoanForm = ({ data }) => {
                                                 name="valididcard"
                                                 accept="image/png, .svg, .jpg, .jpeg, .pdf"
                                                 className="UploadFile"
+                                                onChange={(e) =>
+                                                  convertFile(e, setIdCard)
+                                                }
                                               />
                                             </div>
                                           </div>
@@ -655,6 +673,9 @@ const LoanForm = ({ data }) => {
                                             name="valididcard"
                                             accept="image/png, .svg, .jpg, .jpeg, .pdf"
                                             className="UploadFile"
+                                            onChange={(e) =>
+                                              convertFile(e, setIdCard)
+                                            }
                                           />
                                         </div>
                                       )}
@@ -756,12 +777,39 @@ const LoanForm = ({ data }) => {
                                   text="Employer Details"
                                 />
                                 {/* to be change to dropdown list and input field */}
-                                <TextInput
+                                {/* <TextInput
                                   label="Employer Name"
                                   name="employername"
                                   type="text"
-                                />
+                                /> */}
+                                <div>
+                                  {/* dropdown list */}
+                                  <SelectField
+                                    label="Employer Name"
+                                    name="employername"
+                                  >
+                                    <option value=""></option>
+                                    {employers?.map((employer) => (
+                                      <option
+                                        key={employer._id}
+                                        value={employer._id}
+                                      >
+                                        {employer.employersName}
+                                      </option>
+                                    ))}
+                                    <option value="other">Other</option>
+                                  </SelectField>
 
+                                  {/* type employer name if not in list */}
+                                  {values.employername === "other" && (
+                                    <TextInput
+                                      label="Enter Employers Name"
+                                      name="otheremployername"
+                                      type="text"
+                                      placeholder="Type employers name here"
+                                    />
+                                  )}
+                                </div>
                                 <TextInput
                                   label="Employer Address"
                                   name="employeraddress"
@@ -806,6 +854,9 @@ const LoanForm = ({ data }) => {
                                       name="uploadpayslip"
                                       accept="image/png, .svg, .jpg, .jpeg, .pdf"
                                       className="UploadFile"
+                                      onChange={(e) =>
+                                        convertFile(e, setPaySlip)
+                                      }
                                     />
                                   </div>
                                 ) : null}
@@ -1260,11 +1311,14 @@ const LoanForm = ({ data }) => {
                                     />
                                   </div>
                                   <div>
-                                    <Field
+                                    <input
                                       type="file"
                                       name="signature"
                                       accept="image/png, .svg, .jpg, .jpeg, .pdf"
                                       className="UploadFile"
+                                      onChange={(e) =>
+                                        convertFile(e, setSignature)
+                                      }
                                     />
                                   </div>
                                 </div>
@@ -1292,14 +1346,25 @@ const LoanForm = ({ data }) => {
                                     Previous
                                   </button>
                                   {/* next form page btn */}
-                                  <button
-                                    type="button"
-                                    onClick={handleNext}
-                                    disabled={isSubmitting}
-                                    className="BtnAction BtnSecondary"
-                                  >
-                                    Review
-                                  </button>
+                                  {!values.acceptterms ||
+                                  !values.acceptpolicy ? (
+                                    <button
+                                      type="button"
+                                      disabled={true}
+                                      className="BtnAction btnDisabled"
+                                    >
+                                      Review
+                                    </button>
+                                  ) : (
+                                    <button
+                                      type="button"
+                                      onClick={handleNext}
+                                      disabled={isSubmitting}
+                                      className="BtnAction BtnSecondary"
+                                    >
+                                      Review
+                                    </button>
+                                  )}
                                 </div>
                               </div>
                             </>
@@ -1343,7 +1408,7 @@ const LoanForm = ({ data }) => {
                   </div>
                 ) : (
                   <div className="CreateAccount">
-                    <CreateAccount handleSubmit={handleSubmit}/>
+                    <CreateAccount handleSubmit={handleSubmit} />
                   </div>
                 )}
               </>

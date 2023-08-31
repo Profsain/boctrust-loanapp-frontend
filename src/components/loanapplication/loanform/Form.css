@@ -193,6 +193,11 @@ label {
      background-color: #ecaa00;
 }
 
+.btnDisabled {
+    background-color: #aaaaaa;
+    cursor: none;
+}
+
 .BtnSecondary:hover {
     background-color: #d49900;
 }
