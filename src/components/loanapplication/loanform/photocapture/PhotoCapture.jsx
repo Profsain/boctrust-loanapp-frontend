@@ -1,27 +1,39 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import Webcam from "react-webcam";
 import { useRef, useState, useCallback } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
-
 import "./PhotoCapture.css";
 
 const PhotoCapture = ({ func }) => {
   const webcamRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(null);
 
-  // create capture function
+  // Create capture function
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
-    func(imageSrc)
+    convertToBase64(imageSrc);
   }, [webcamRef]);
 
-  // retake capture function
-  const retake = useCallback(() => {
-    setImgSrc(null);
-  }, []);
+  // Convert image to Base64
+  const convertToBase64 = (imageSrc) => {
+    const image = new Image();
+    image.src = imageSrc;
 
-  // handle take photos container
+    image.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = image.width;
+      canvas.height = image.height;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0);
+
+      const base64 = canvas.toDataURL("image/jpeg");
+      func(base64);
+    };
+  };
+
+  // Handle take photos container
   const takePhotos = useCallback(() => {
     const container = document.querySelector(".Container");
     container.style.display = "none";
@@ -29,11 +41,16 @@ const PhotoCapture = ({ func }) => {
     captureContainer.style.display = "block";
   }, []);
 
+  // Handle retake function
+  const retake = useCallback(() => {
+    setImgSrc(null);
+  }, []);
+
   return (
     <>
       <div className="Container" onClick={takePhotos}>
         <AiOutlineCamera className="CameraIcon" />
-        <p className="Text">Take a Photos</p>
+        <p className="Text">Take a Photo</p>
       </div>
 
       <div className="CaptureContainer">
@@ -69,7 +86,7 @@ const PhotoCapture = ({ func }) => {
 };
 
 PhotoCapture.propTypes = {
-  func: PropTypes.func
-}
+  func: PropTypes.func,
+};
 
 export default PhotoCapture;

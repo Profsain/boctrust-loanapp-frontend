@@ -62,7 +62,7 @@ const  initialValues = (loanamount, careertype, captureImg) => ({
     agreefullname: "",
     agreedate: "",
     signature: "",
-    photocapture: { captureImg },
+    photocapture: captureImg,
     haveagent: "",
     agentname: "",
     username: "",

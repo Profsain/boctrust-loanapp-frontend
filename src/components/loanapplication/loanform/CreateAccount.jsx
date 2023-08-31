@@ -1,16 +1,16 @@
+import PropTypes from "prop-types"
 import { useFormikContext } from "formik";
 import ReCAPTCHA from "react-google-recaptcha";
 import ConfirmField from "./ConfirmField";
 import Headline from "../../shared/Headline";
 import "./Form.css";
 
-const CreateAccount = () => {
+const CreateAccount = ({handleSubmit}) => {
 
   const { values, setFieldValue } = useFormikContext();
   const handleInputChange = (fieldName, event) => {
     // Update the field value as the user types
     setFieldValue(fieldName, event.target.value);
-    console.log("values after change", values.fieldName);
   };
 
   const handleRecaptcha = (value) => {
@@ -56,8 +56,7 @@ const CreateAccount = () => {
             <div className="ProceedBtn">
               <button
                 type="button"
-                // onClick={handleNext}
-                // disabled={isSubmitting}
+                onClick={handleSubmit}
                 className="BtnAction BtnSecondary BtnCreate"
               >
                 Create Account
@@ -69,5 +68,9 @@ const CreateAccount = () => {
     </div>
   );
 };
+
+CreateAccount.propTypes = {
+  handleSubmit: PropTypes.func
+}
 
 export default CreateAccount;

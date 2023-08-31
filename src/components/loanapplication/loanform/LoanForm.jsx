@@ -44,12 +44,20 @@ const LoanForm = ({ data }) => {
   const [state, setState] = useState("");
   const [lga, setLga] = useState([]);
   const [captureImg, setCaptureImg] = useState("");
+  console.log("capture Image", captureImg)
 
   // scroll to the top of the page
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [step, showForm]);
 
+  // update photocapture value when captureImg change
+  useEffect(() => {
+    if (captureImg) {
+      ref.current?.setFieldValue("photocapture", captureImg);
+    }
+  }, [captureImg]);
+  
   // get current formik value
   const ref = useRef();
 
@@ -99,10 +107,16 @@ const LoanForm = ({ data }) => {
   };
 
   // handle form submit/move to next step
-  const handleSubmit = (values, { setSubmitting }) => {
-    // handle form submition to backend here
-    // submit form
-    setSubmitting(false);
+  const handleSubmit = () => {
+    // handle form submit to backend here
+    console.log("Submitting form..............")
+    // ref.current?.values.photocapture = captureImg
+    if (ref.current) {
+      const formData = ref.current?.values;
+      console.log("Form data", formData);
+    }
+    // setSubmitting(false);
+
   };
 
   // handle proceed to account creation
@@ -287,7 +301,8 @@ const LoanForm = ({ data }) => {
                                     <span className="CalNaira">
                                       <img src="images/naira.png" alt="" />
                                     </span>
-                                    {monthlyPay}
+                                    
+                                    {isNaN(monthlyPay) ? 0 : monthlyPay}
                                   </h4>
                                 </div>
                                 <div className="Purpose">
@@ -1328,7 +1343,7 @@ const LoanForm = ({ data }) => {
                   </div>
                 ) : (
                   <div className="CreateAccount">
-                    <CreateAccount />
+                    <CreateAccount handleSubmit={handleSubmit}/>
                   </div>
                 )}
               </>
