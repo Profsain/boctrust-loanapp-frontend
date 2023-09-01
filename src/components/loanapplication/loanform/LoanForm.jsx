@@ -30,6 +30,7 @@ const LoanForm = ({ data }) => {
     dispatch(fetchProduct());
     dispatch(fetchEmployers());
   }, [dispatch]);
+
   const loanProducts = useSelector(
     (state) => state.productReducer.products.products
   );
@@ -66,7 +67,11 @@ const LoanForm = ({ data }) => {
     if (captureImg) {
       ref.current?.setFieldValue("photocapture", captureImg);
     }
-  }, [captureImg]);
+
+    ref.current?.setFieldValue("valididcard", idCard);
+    ref.current?.setFieldValue("uploadpayslip", paySlip);
+    ref.current?.setFieldValue("signature", signature);
+  }, [captureImg, idCard, paySlip, signature]);
 
   // get current formik value
   const ref = useRef();
@@ -125,9 +130,6 @@ const LoanForm = ({ data }) => {
     console.log("Submitting form..............");
     // ref.current?.values.photocapture = captureImg
     if (ref.current) {
-      ref.current?.setFieldValue("valididcard", idCard);
-      ref.current?.setFieldValue("uploadpayslip", paySlip);
-      ref.current?.setFieldValue("signature", signature);
       const formData = ref.current?.values;
       console.log("Form data", formData);
     }
@@ -1148,17 +1150,17 @@ const LoanForm = ({ data }) => {
                                           value="guranteeofemployer"
                                         />
                                       </label>
-                                      Gurantee of Employer
+                                      Guarantee of Employer
                                     </div>
                                     <div>
                                       <label>
                                         <Field
                                           type="checkbox"
-                                          name="gurantee"
+                                          name="guarantee"
                                           value="individualguarantee"
                                         />
                                       </label>
-                                      Individual Gurantee
+                                      Individual Guarantee
                                     </div>
                                   </div>
                                 </div>

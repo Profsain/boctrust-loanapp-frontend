@@ -69,6 +69,7 @@ label {
     color: red;
     font-size: 1.2rem;
     font-weight: 500;
+    padding-top: 18px;
 }
 
 .LoanCal {
@@ -194,8 +195,19 @@ label {
 }
 
 .btnDisabled {
-    background-color: #aaaaaa;
+    background-color: #cccccc;
     cursor: none;
+}
+
+.BtnNoAction {
+    background-color: #fff;
+    cursor: help;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 8px 38px;
+    border: none;
+    border-radius: 26px;
+    color: lightgray;
 }
 
 .BtnSecondary:hover {

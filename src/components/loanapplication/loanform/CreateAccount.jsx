@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types"
 import { useFormikContext } from "formik";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -8,14 +9,39 @@ import "./Form.css";
 const CreateAccount = ({handleSubmit}) => {
 
   const { values, setFieldValue } = useFormikContext();
+  const { password, confirmpassword } = values;
+  const [isValid, setIsValid] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   const handleInputChange = (fieldName, event) => {
     // Update the field value as the user types
     setFieldValue(fieldName, event.target.value);
   };
 
-  const handleRecaptcha = (value) => {
-    console.log("recaptcha value", value);
+  const handleValidation = () => {
+    // Check if the passwords match
+    if (password === confirmpassword) {
+      setIsValid(true);
+      setErrorMsg("");
+    } else {
+      setIsValid(false);
+      setErrorMsg("Passwords do not match");
+    }
   };
+  const handleRecaptcha = (value) => {
+    if (value) {
+      setIsValid(true);
+      setErrorMsg("");
+    } else {
+      setIsValid(false);
+      setErrorMsg("Please complete the recaptcha");
+    }
+  };
+
+  useEffect(() => {
+    handleValidation();
+    handleRecaptcha();
+  }, [password, confirmpassword]);
 
   return (
     <div className="SignUpContainer">
@@ -54,16 +80,26 @@ const CreateAccount = ({handleSubmit}) => {
             </div>
 
             <div className="ProceedBtn">
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="BtnAction BtnSecondary BtnCreate"
-              >
-                Create Account
-              </button>
+              {!isValid ? (
+                <button
+                  type="button"
+                  className="BtnNoAction"
+                >
+                  Create Account
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  className="BtnAction BtnSecondary BtnCreate"
+                >
+                  Create Account
+                </button>
+              )}
             </div>
           </div>
         </div>
+        <p className="Error">{errorMsg}</p>
       </div>
     </div>
   );
