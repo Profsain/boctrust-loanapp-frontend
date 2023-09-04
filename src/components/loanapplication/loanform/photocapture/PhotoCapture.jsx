@@ -12,26 +12,26 @@ const PhotoCapture = ({ func }) => {
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
-    convertToBase64(imageSrc);
+    func(imageSrc);
   }, [webcamRef]);
 
   // Convert image to Base64
-  const convertToBase64 = (imageSrc) => {
-    const image = new Image();
-    image.src = imageSrc;
+  // const convertToBase64 = (imageSrc) => {
+  //   const image = new Image();
+  //   image.src = imageSrc;
 
-    image.onload = () => {
-      const canvas = document.createElement("canvas");
-      canvas.width = image.width;
-      canvas.height = image.height;
+  //   image.onload = () => {
+  //     const canvas = document.createElement("canvas");
+  //     canvas.width = image.width;
+  //     canvas.height = image.height;
 
-      const ctx = canvas.getContext("2d");
-      ctx.drawImage(image, 0, 0);
+  //     const ctx = canvas.getContext("2d");
+  //     ctx.drawImage(image, 0, 0);
 
-      const base64 = canvas.toDataURL("image/jpeg");
-      func(base64);
-    };
-  };
+  //     const base64 = canvas.toDataURL("image/jpeg");
+  //     func(base64);
+  //   };
+  // };
 
   // Handle take photos container
   const takePhotos = useCallback(() => {

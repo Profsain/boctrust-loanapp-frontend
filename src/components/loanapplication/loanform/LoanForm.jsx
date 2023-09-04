@@ -21,6 +21,7 @@ import CreateAccount from "./CreateAccount";
 import initialValues from "./formInitialValue";
 // function
 import convertFile from "../../../../utilities/convertFile";
+import dataURItoBlob from "../../../../utilities/dataURItoBlob";
 
 // loan form component
 const LoanForm = ({ data }) => {
@@ -56,6 +57,7 @@ const LoanForm = ({ data }) => {
   const [idCard, setIdCard] = useState("");
   const [paySlip, setPaySlip] = useState("");
   const [signature, setSignature] = useState("");
+
 
   // scroll to the top of the page
   useEffect(() => {
@@ -125,13 +127,107 @@ const LoanForm = ({ data }) => {
   };
 
   // handle form submit/move to next step
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     // handle form submit to backend here
     console.log("Submitting form..............");
-    // ref.current?.values.photocapture = captureImg
+
     if (ref.current) {
-      const formData = ref.current?.values;
+      const formValues = ref.current?.values;
+      const formData = new FormData();
+      formData.append("loanamount", formValues.loanamount);
+      formData.append("careertype", formValues.careertype);
+      formData.append("numberofmonth", formValues.numberofmonth);
+      formData.append("loanproduct", formValues.loanproduct);
+      formData.append("loanpurpose", formValues.loanpurpose);
+      formData.append("otherpurpose", formValues.otherpurpose);
+      formData.append("bvnnumber", formValues.bvnnumber);
+      formData.append("title", formValues.title);
+      formData.append("firstname", formValues.firstname);
+      formData.append("lastname", formValues.lastname);
+      formData.append("phonenumber", formValues.phonenumber);
+      formData.append("dob", formValues.dob);
+      formData.append("email", formValues.email);
+      formData.append("maritalstatus", formValues.maritalstatus);
+      formData.append("noofdependent", formValues.noofdependent);
+      formData.append("educationlevel", formValues.educationlevel);
+      formData.append("howdidyouhearaboutus", formValues.howdidyouhearaboutus);
+      formData.append("houseaddress", formValues.houseaddress);
+      formData.append("stateofresidence", formValues.stateofresidence);
+      formData.append("lga", formValues.lga);
+      formData.append("stateoforigin", formValues.stateoforigin);
+      formData.append("ippis", formValues.ippis);
+      formData.append("servicenumber", formValues.servicenumber);
+      formData.append("valididcard", formValues.valididcard);
+      formData.append("idcardnotinclude", formValues.idcardnotinclude);
+      formData.append("nkinfirstname", formValues.nkinfirstname);
+      formData.append("nkinlastname", formValues.nkinlastname);
+      formData.append("nkinphonenumber", formValues.nkinphonenumber);
+      formData.append("nkinrelationship", formValues.nkinrelationship);
+      formData.append(
+        "nkinresidentialaddress",
+        formValues.nkinresidentialaddress
+      );
+      formData.append("employername", formValues.employername);
+      formData.append("otheremployername", formValues.otheremployername);
+      formData.append("employeraddress", formValues.employeraddress);
+      formData.append("employmentstartdate", formValues.employmentstartdate);
+      formData.append("netmonthlyincome", formValues.netmonthlyincome);
+      formData.append("totalannualincome", formValues.totalannualincome);
+      formData.append("officialemail", formValues.officialemail);
+      formData.append("uploadpayslip", formValues.uploadpayslip);
+
+      // financial info
+      formData.append("salarybankname", formValues.salarybankname);
+      formData.append("salaryaccountnumber", formValues.salaryaccountnumber);
+      formData.append("sameasaboveaccount", formValues.sameasaboveaccount);
+      formData.append("disbursementbankname", formValues.disbursementbankname);
+      formData.append(
+        "disbursementaccountnumber",
+        formValues.disbursementaccountnumber
+      );
+      formData.append("hasloan", formValues.hasloan);
+      formData.append(
+        "currentmonthlyplanrepaymentamount",
+        formValues.currentmonthlyplanrepaymentamount
+      );
+      formData.append(
+        "estimatedmonthlylivingexpense",
+        formValues.estimatedmonthlylivingexpense
+      );
+      formData.append("buyoverloan", formValues.buyoverloan);
+      formData.append("beneficiaryname", formValues.beneficiaryname);
+      formData.append("beneficiarybank", formValues.beneficiarybank);
+      formData.append(
+        "beneficiaryaccountnumber",
+        formValues.beneficiaryaccountnumber
+      );
+      formData.append("liquidationbalance", formValues.liquidationbalance);
+      formData.append("deductions", formValues.deductions);
+      formData.append("guarantee", formValues.guarantee);
+
+      // agree and sign
+      formData.append("acceptterms", formValues.acceptterms);
+      formData.append("acceptpolicy", formValues.acceptpolicy);
+      formData.append("sharemyremita", formValues.sharemyremita);
+      formData.append("agreefullname", formValues.agreefullname);
+      formData.append("agreedate", formValues.agreedate);
+      formData.append("signature", formValues.signature);
+      // formData.append("photocapture", formValues.photocapture);
+      formData.append("photocapture", dataURItoBlob(formValues.photocapture), "image.jpg"); // Convert data URI to Blob
+      formData.append("haveagent", formValues.haveagent);
+      formData.append("agentname", formValues.agentname);
+      formData.append("username", formValues.username);
+      formData.append("password", formValues.password);
+      formData.append("confirmpassword", formValues.confirmpassword);
+
       console.log("Form data", formData);
+
+      // send formData to database
+      await fetch("http://localhost:3030/api/customer/customer", {
+        method: "POST",
+        enctype: "multipart/form-data",
+        body: formData,
+      });
     }
     // setSubmitting(false);
   };
@@ -195,6 +291,7 @@ const LoanForm = ({ data }) => {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
             innerRef={ref}
+            encType="multipart/form-data"
           >
             {({ isSubmitting, values }) => (
               <>

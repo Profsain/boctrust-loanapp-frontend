@@ -35,7 +35,9 @@ const initialValues = {
 
 const AddNewLoanProduct = ({ func }) => {
   const [notification, setNotification] = useState("");
-  const handleSubmit = async (values, {setSubmitting, resetForm }) => {
+
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    console.log("product values", values)
     // Handle form submission logic here
     // create form data
     const formData = new FormData();
