@@ -1,148 +1,310 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
-import DashboardHeadline from "../../shared/DashboardHeadline";
+import {useState } from "react";
+// import { htmlFormik, htmlForm, Field, ErrorMessage } from "htmlFormik";
+// import * as Yup from "yup";
+// import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../../dashboardcomponents/transferdashboard/Transfer.css";
-import BocButton from "../../shared/BocButton";
-
-// Define validation schema using Yup
-const validationSchema = Yup.object().shape({
-  selectCreditBureau: Yup.string().required("Credit Bureau is required"),
-  selectReportType: Yup.string().required("Report type is required"),
-  reportReason: Yup.string().required("Report reason is required"),
-  uniqueIdentifier: Yup.string().required("Unique identifier is required"),
-});
+import "./Credit.css";
+import { PaySlipAnalysis } from "./PaySlipAnalysis";
+import DecisionSummary from "./DecisionSummary";
+// import BocButton from "../../shared/BocButton";
 
 const creditBureauOptions = [
-  { value: "First Central", label: "First Central" },
-  { value: "fgn bureau", label: "FGN Bureau" },
+  { value: "first_central", label: "First Central" },
+  { value: "crc_bureau", label: "CRC" },
+  { value: "credit_register", label: "Credit Register" },
   // Add more options as needed
 ];
+
 const reportOptions = [
   { value: "consumer", label: "Consumer Report" },
   { value: "finance", label: "Financial Report" },
   // Add more options as needed
 ];
 
-const initialValues = {
-  selectCreditBureau: "",
-  selectReportType: "",
-  reportReason: "",
-  uniqueIdentifier: "",
-};
+const searchTypes = [
+  { value: "defaulters", label: "Defaulters" },
+  { value: "request", label: "Request" },
+  { value: "issuance", label: "Issuance" },
+  // Add more options as needed
+];
 
-const CreditCheckForm = () => {
-  const handleSubmit = (values) => {
-    // Handle form submission logic here
-    console.log(values);
-  };
+const CreditCheckhtmlForm = () => {
+   const [isChecked, setIsChecked] = useState(false);
+   const [isDbChecked, setIsDbChecked] = useState(false);
+   const [isBureauChecked, setIsBureauChecked] = useState(false);
+
+   const handleChange = () => {
+     setIsChecked(!isChecked);
+   };
+   const handleDbChange = () => {
+     setIsDbChecked(!isDbChecked);
+   };
+   const handleBureauChange = () => {
+     setIsBureauChecked(!isBureauChecked);
+   };
+
+  // const handleSubmit = (values) => {
+  //   // Handle htmlForm submission logic here
+  //   console.log(values);
+  // };
 
   return (
-    <div>
-      {/* <DashboardHeadline
-        bgcolor="#145098"
-        mspacer="1rem 4rem 0 1rem"
-        padding="0.3rem 0 0 1rem"
-        height="70px"
-      >
-        <div>
-          <input placeholder="Search" type="text" className="CreditSearch" />
-          <img
-            src="images/search.png"
-            alt="search-icon"
-            className="SearchIcon"
-          />
-        </div>
-      </DashboardHeadline> */}
-
+    <>
       <div className="TransContainer RBox">
-        <DashboardHeadline>Perform a Credit Check</DashboardHeadline>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          <Form>
-            <div className="FieldRow">
-              <div className="FieldGroup">
-                <label htmlFor="selectCreditBureau">Select Credit Bureau</label>
-                <Field
-                  as="select"
-                  name="selectCreditBureau"
-                  id="selectCreditBureau"
-                  className="Select"
-                >
-                  <option value="" label="Select a product" />
-                  {creditBureauOptions.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                      label={option.label}
-                    />
-                  ))}
-                </Field>
-                <ErrorMessage name="selectCreditBureau" component="div" />
-              </div>
-              <div className="FieldGroup">
-                <label htmlFor="selectReportType">Select Report Type</label>
-                <Field
-                  as="select"
-                  name="selectReportType"
-                  id="selectReportType"
-                  className="Select"
-                >
-                  <option value="" label="Select a product" />
-                  {reportOptions.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                      label={option.label}
-                    />
-                  ))}
-                </Field>
-                <ErrorMessage name="selectReportType" component="div" />
-              </div>
-            </div>
-            <div className="FieldRow">
-              <div className="FieldGroup">
-                <label htmlFor="reportReason">Reason of Report</label>
-                <Field
-                  type="text"
-                  name="reportReason"
-                  id="reportReason"
-                  className="Input"
-                />
-                <ErrorMessage name="reportReason" component="div" />
-              </div>
+        <div className=" d-flex justify-content-center p-5">
+          <h4>BVN Validated</h4>
+        </div>
 
-              <div className="FieldGroup">
-                <label htmlFor="uniqueIdentifier">
-                  Enter Unique Identifier
+        {/* step 1 */}
+        <div className="row">
+          {/* credit DB check */}
+          <div className="col-sm-12 col-md-4">
+            <h6 className="creditTitle">Do Credit DB Check</h6>
+            <form>
+              <div className="row mb-3">
+                <label htmlFor="searchType" className="col-form-label">
+                  Choose Search Type
                 </label>
-                <Field
-                  type="text"
-                  name="uniqueIdentifier"
-                  placeholder="BVN, Phone Number"
-                  id="uniqueIdentifier"
-                  className="Input"
+                <div>
+                  <select id="searchType" className="form-select">
+                    <option selected>Choose...</option>
+                    {searchTypes.map((searchType) => (
+                      <option key={searchType.value} value={searchType.value}>
+                        {searchType.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label htmlFor="searchInput" className="col-form-label">
+                  IPPIS, BVN, or Phone No
+                </label>
+                <div>
+                  <input type="text" className="form-control" />
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label htmlFor="dSearchDate" className="col-form-label">
+                  Search Date
+                </label>
+                <div>
+                  <input type="date" className="form-control" />
+                </div>
+              </div>
+              <div className="row mx-5 align-items-center">
+                <button type="submit" className="btn btn-primary">
+                  Search
+                </button>
+                <button type="submit" className="btn btn-warning mt-3">
+                  Generate Manual Report
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* deduct check */}
+          <div className="col-sm-12 col-md-4 midBorder">
+            <h6 className="creditTitle">Do Deduct Check</h6>
+            <form>
+              <div className="row mb-3">
+                <label htmlFor="dSearchInput" className="col-form-label">
+                  IPPIS
+                </label>
+                <div>
+                  <input type="text" className="form-control" />
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label htmlFor="searchDate" className="col-form-label">
+                  Search Date
+                </label>
+                <div>
+                  <input type="date" className="form-control" />
+                </div>
+              </div>
+              <div className="row mx-5 align-items-center">
+                <button type="submit" className="btn btn-primary">
+                  Search
+                </button>
+                <button type="submit" className="btn btn-warning mt-3">
+                  Generate Manual Report
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* credit bureau check */}
+          <div className="col-sm-12 col-md-4">
+            <h6 className="creditTitle">Do Credit Bureau Check</h6>
+            <form>
+              <div className="row mb-3">
+                <label htmlFor="searchType" className="col-form-label">
+                  Choose Search Type
+                </label>
+                <div>
+                  <select id="searchType" className="form-select">
+                    <option selected>Choose...</option>
+                    {creditBureauOptions.map((creditBureauOption) => (
+                      <option
+                        key={creditBureauOption.value}
+                        value={creditBureauOption.value}
+                      >
+                        {creditBureauOption.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label htmlFor="reportType" className="col-form-label">
+                  Reason of Report
+                </label>
+                <div>
+                  <select id="reportType" className="form-select">
+                    <option selected>Choose...</option>
+                    {reportOptions.map((reportOption) => (
+                      <option
+                        key={reportOption.value}
+                        value={reportOption.value}
+                      >
+                        {reportOption.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label htmlFor="creditSearchDate" className="col-form-label">
+                  Search Date
+                </label>
+                <div>
+                  <input type="date" className="form-control" />
+                </div>
+              </div>
+              <div className="row mx-5 align-items-center">
+                <button type="submit" className="btn btn-primary">
+                  Search
+                </button>
+                <button type="submit" className="btn btn-warning mt-3">
+                  Generate Report
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        {/* attach report */}
+        <div className="row m-5">
+          <h4>Upload Reports</h4>
+          <div className="row reportRow">
+            <div className="col-sm-8 col-md-4">
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckChecked"
+              >
+                Is there a Credit DB Report?
+              </label>
+            </div>
+
+            <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                checked={isChecked}
+                onChange={handleChange}
+              />
+              <label className="form-check-label mx-3 checked">
+                {isChecked ? "Yes" : "No"}
+              </label>
+            </div>
+            <div className="col-sm-12 col-md-6 mt-2">
+              <div className="input-group">
+                <input
+                  type="file"
+                  className="form-control"
+                  id="inputGroupFile01"
                 />
-                <ErrorMessage name="uniqueIdentifier" component="div" />
               </div>
             </div>
-            <div className="BtnContainer">
-              <BocButton
-                fontSize="1.6rem"
-                type="submit"
-                bgcolor="#ecaa00"
-                bradius="18px"
+          </div>
+
+          <div className="row reportRow">
+            <div className="col-sm-8 col-md-4">
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckChecked"
               >
-                Generate Report
-              </BocButton>
+                Is there a Credit DB Report?
+              </label>
             </div>
-          </Form>
-        </Formik>
+
+            <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                checked={isDbChecked}
+                onChange={handleDbChange}
+              />
+              <label className="form-check-label mx-3 checked">
+                {isDbChecked ? "Yes" : "No"}
+              </label>
+            </div>
+            <div className="col-sm-12 col-md-6 mt-2">
+              <div className="input-group">
+                <input
+                  type="file"
+                  className="form-control"
+                  id="inputGroupFile01"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="row reportRow">
+            <div className="col-sm-8 col-md-4">
+              <label
+                className="form-check-label"
+                htmlFor="flexSwitchCheckChecked"
+              >
+                Is there a Credit Bureau Report?
+              </label>
+            </div>
+
+            <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
+              <input
+                className="form-check-input"
+                type="checkbox"
+                role="switch"
+                checked={isBureauChecked}
+                onChange={handleBureauChange}
+              />
+              <label className="form-check-label mx-3 checked">
+                {isBureauChecked ? "Yes" : "No"}
+              </label>
+            </div>
+            <div className="col-sm-12 col-md-6 mt-2">
+              <div className="input-group">
+                <input
+                  type="file"
+                  className="form-control"
+                  id="inputGroupFile01"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* pay slip analysis component */}
+      {/* <PaySlipAnalysis /> */}
+
+      {/* decision summary */}
+      <DecisionSummary />
+    </>
   );
 };
 
-export default CreditCheckForm;
+export default CreditCheckhtmlForm;

@@ -58,7 +58,6 @@ const LoanForm = ({ data }) => {
   const [paySlip, setPaySlip] = useState("");
   const [signature, setSignature] = useState("");
 
-
   // scroll to the top of the page
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -127,10 +126,8 @@ const LoanForm = ({ data }) => {
   };
 
   // handle form submit/move to next step
-  const handleSubmit = async() => {
+  const handleSubmit = async () => {
     // handle form submit to backend here
-    console.log("Submitting form..............");
-
     if (ref.current) {
       const formValues = ref.current?.values;
       const formData = new FormData();
@@ -212,15 +209,16 @@ const LoanForm = ({ data }) => {
       formData.append("agreefullname", formValues.agreefullname);
       formData.append("agreedate", formValues.agreedate);
       formData.append("signature", formValues.signature);
-      // formData.append("photocapture", formValues.photocapture);
-      formData.append("photocapture", dataURItoBlob(formValues.photocapture), "image.jpg"); // Convert data URI to Blob
+      formData.append(
+        "photocapture",
+        dataURItoBlob(formValues.photocapture),
+        "image.jpg"
+      ); // Convert data URI to Blob
       formData.append("haveagent", formValues.haveagent);
       formData.append("agentname", formValues.agentname);
       formData.append("username", formValues.username);
       formData.append("password", formValues.password);
       formData.append("confirmpassword", formValues.confirmpassword);
-
-      console.log("Form data", formData);
 
       // send formData to database
       await fetch("http://localhost:3030/api/customer/customer", {
