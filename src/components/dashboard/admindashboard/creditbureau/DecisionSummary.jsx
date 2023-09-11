@@ -10,13 +10,14 @@ const DecisionSummary = () => {
       <div className="row">
         <div className="mx-5">
           <p>
-            50% of Customer s Net pay is <span className="figure">N85,000</span>
+            50% of Customer&apos;s Net pay is{" "}
+            <span className="figure">N85,000</span>
           </p>
           <p>
             20% of Gross pay is <span className="figure">N35,000</span>
           </p>
           <p>
-            If Loan is approved, customers Take Home is{" "}
+            If Loan is approved, customer&apos;s Take Home is{" "}
             <span className="figure">N45,000</span> which is{" "}
             <span className="figure">25%</span> of his/her Gross pay.
           </p>
@@ -33,7 +34,7 @@ const DecisionSummary = () => {
             <div className="row">
               <div className="col-sm-12 col-md-6">
                 <p>
-                  Customer has good credit History{" "}
+                  Customer Next of Kin is okay{" "}
                   <span className="validBtn">Yes</span>
                 </p>
               </div>
@@ -138,6 +139,17 @@ const DecisionSummary = () => {
           <div className="col-sm-12 col-md-4">
             <p>
               Payslip Analysis <span className="validBtn">12/08/2023</span>
+            </p>
+          </div>
+          <div className="col-sm-12 col-md-3">
+            <button className="viewBtn">View Data</button>
+          </div>
+        </div>
+
+        <div className="row mt-2">
+          <div className="col-sm-12 col-md-4">
+            <p>
+              Decision Analysis <span className="validBtn">12/08/2023</span>
             </p>
           </div>
           <div className="col-sm-12 col-md-3">

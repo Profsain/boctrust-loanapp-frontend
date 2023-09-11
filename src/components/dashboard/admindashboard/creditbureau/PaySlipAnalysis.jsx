@@ -125,6 +125,7 @@ export const PaySlipAnalysis = () => {
                 <input type="text" className="form-control" />
               </div>
             </div>
+
             <div className="row mb-3">
               <label
                 htmlFor="dSearchDate"
@@ -136,6 +137,7 @@ export const PaySlipAnalysis = () => {
                 <input type="date" className="form-control" />
               </div>
             </div>
+
             <div className="row mb-3">
               <label
                 htmlFor="dSearchDate"
@@ -172,10 +174,16 @@ export const PaySlipAnalysis = () => {
               </div>
             </div>
 
-            <div className="row mx-5 align-items-center">
-              <button type="submit" className="btn btn-primary">
+            <div className="row mb-3">
+              <label
+                htmlFor="dSearchDate"
+                className="col-form-label col-4 mt-2"
+              >
                 Upload Pay Slip
-              </button>
+              </label>
+              <div className="col-8">
+                <input type="file" className="form-control" />
+              </div>
             </div>
           </form>
         </div>

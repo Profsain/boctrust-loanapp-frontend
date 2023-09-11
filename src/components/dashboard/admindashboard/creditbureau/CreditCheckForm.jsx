@@ -1,11 +1,9 @@
-import {useState } from "react";
-// import { htmlFormik, htmlForm, Field, ErrorMessage } from "htmlFormik";
-// import * as Yup from "yup";
-// import DashboardHeadline from "../../shared/DashboardHeadline";
+import { useState } from "react";
 import "../../dashboardcomponents/transferdashboard/Transfer.css";
 import "./Credit.css";
 import { PaySlipAnalysis } from "./PaySlipAnalysis";
 import DecisionSummary from "./DecisionSummary";
+import PdfDocument from "../../../shared/PdfDocument";
 // import BocButton from "../../shared/BocButton";
 
 const creditBureauOptions = [
@@ -29,29 +27,55 @@ const searchTypes = [
 ];
 
 const CreditCheckhtmlForm = () => {
-   const [isChecked, setIsChecked] = useState(false);
-   const [isDbChecked, setIsDbChecked] = useState(false);
-   const [isBureauChecked, setIsBureauChecked] = useState(false);
+  const [isCreditDbCheck, setIsCreditDbCheck] = useState(false);
+  const [searchType, setSearchType] = useState("");
+  const [searchBy, setSearchBy] = useState("");
+  const [applicantName, setApplicantName] = useState("");
+  const [searchDate, setSearchDate] = useState("");
+  const [remarks, setRemarks] = useState("");
+  const [reportObj, setReportObj] = useState({});
+  const [reportTitle, setReportTitle] = useState("");
+  const [dbSearchReport, setDbSearchReport] = useState("");
+  const [isDbChecked, setIsDbChecked] = useState(false);
+  const [isBureauChecked, setIsBureauChecked] = useState(false);
 
-   const handleChange = () => {
-     setIsChecked(!isChecked);
-   };
-   const handleDbChange = () => {
-     setIsDbChecked(!isDbChecked);
-   };
-   const handleBureauChange = () => {
-     setIsBureauChecked(!isBureauChecked);
-   };
+  const handleChange = () => {
+    setIsCreditDbCheck(!isCreditDbCheck);
+  };
+  const handleDbChange = () => {
+    setIsDbChecked(!isDbChecked);
+  };
+  const handleBureauChange = () => {
+    setIsBureauChecked(!isBureauChecked);
+  };
 
-  // const handleSubmit = (values) => {
-  //   // Handle htmlForm submission logic here
-  //   console.log(values);
-  // };
+  // handle Credit DB check
+  const handleDbCheck = (e) => {
+    e.preventDefault();
+    setReportTitle("Credit DB Check Report");
+
+    const dbSearchReport = {
+      searchType,
+      searchBy,
+      searchDate,
+      remarks,
+      isDbChecked,
+    };
+    // setDbSearchReport(dbSearchReport);
+    // generate pdf and download
+    const pdfReport = {
+      reportTitle,
+      applicantName,
+      dbSearchReport,
+    }
+    setReportObj(pdfReport);
+    console.log(dbSearchReport);
+  };
 
   return (
     <>
       <div className="TransContainer RBox">
-        <div className=" d-flex justify-content-center p-5">
+        <div className=" d-flex  p-5">
           <h4>BVN Validated</h4>
         </div>
 
@@ -60,13 +84,18 @@ const CreditCheckhtmlForm = () => {
           {/* credit DB check */}
           <div className="col-sm-12 col-md-4">
             <h6 className="creditTitle">Do Credit DB Check</h6>
-            <form>
+            <form onSubmit={handleDbCheck}>
               <div className="row mb-3">
                 <label htmlFor="searchType" className="col-form-label">
                   Choose Search Type
                 </label>
                 <div>
-                  <select id="searchType" className="form-select">
+                  <select
+                    id="searchType"
+                    className="form-select"
+                    value={searchType}
+                    onChange={(e) => setSearchType(e.target.value)}
+                  >
                     <option selected>Choose...</option>
                     {searchTypes.map((searchType) => (
                       <option key={searchType.value} value={searchType.value}>
@@ -81,7 +110,25 @@ const CreditCheckhtmlForm = () => {
                   IPPIS, BVN, or Phone No
                 </label>
                 <div>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={searchBy}
+                    onChange={(e) => setSearchBy(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label htmlFor="searchInput" className="col-form-label">
+                  Applicant Full-name
+                </label>
+                <div>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={applicantName}
+                    onChange={(e) => setApplicantName(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="row mb-3">
@@ -89,13 +136,29 @@ const CreditCheckhtmlForm = () => {
                   Search Date
                 </label>
                 <div>
-                  <input type="date" className="form-control" />
+                  <input
+                    type="date"
+                    className="form-control"
+                    value={searchDate}
+                    onChange={(e) => setSearchDate(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="row my-3">
+                <label htmlFor="netPay" className="col-form-label">
+                  Remarks
+                </label>
+                <div>
+                  <textarea
+                    className="form-control"
+                    id="netPay"
+                    placeholder="Enter remarks here..."
+                    value={remarks}
+                    onChange={(e) => setRemarks(e.target.value)}
+                  ></textarea>
                 </div>
               </div>
               <div className="row mx-5 align-items-center">
-                <button type="submit" className="btn btn-primary">
-                  Search
-                </button>
                 <button type="submit" className="btn btn-warning mt-3">
                   Generate Manual Report
                 </button>
@@ -123,10 +186,15 @@ const CreditCheckhtmlForm = () => {
                   <input type="date" className="form-control" />
                 </div>
               </div>
+              <div className="row my-3">
+                <label htmlFor="netPay" className="col-form-label">
+                  Remarks
+                </label>
+                <div>
+                  <textarea className="form-control" id="netPay"></textarea>
+                </div>
+              </div>
               <div className="row mx-5 align-items-center">
-                <button type="submit" className="btn btn-primary">
-                  Search
-                </button>
                 <button type="submit" className="btn btn-warning mt-3">
                   Generate Manual Report
                 </button>
@@ -140,7 +208,7 @@ const CreditCheckhtmlForm = () => {
             <form>
               <div className="row mb-3">
                 <label htmlFor="searchType" className="col-form-label">
-                  Choose Search Type
+                  Select Credit Bureau
                 </label>
                 <div>
                   <select id="searchType" className="form-select">
@@ -153,6 +221,26 @@ const CreditCheckhtmlForm = () => {
                         {creditBureauOption.label}
                       </option>
                     ))}
+                  </select>
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label htmlFor="dSearchInput" className="col-form-label">
+                  BVN
+                </label>
+                <div>
+                  <input type="text" className="form-control" />
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label htmlFor="searchType" className="col-form-label">
+                  Select Report Type
+                </label>
+                <div>
+                  <select id="searchType" className="form-select">
+                    <option selected>Choose...</option>
+                    <option value="credit">Credit Report</option>
+                    <option value="kyc">KYC</option>
                   </select>
                 </div>
               </div>
@@ -174,18 +262,7 @@ const CreditCheckhtmlForm = () => {
                   </select>
                 </div>
               </div>
-              <div className="row mb-3">
-                <label htmlFor="creditSearchDate" className="col-form-label">
-                  Search Date
-                </label>
-                <div>
-                  <input type="date" className="form-control" />
-                </div>
-              </div>
               <div className="row mx-5 align-items-center">
-                <button type="submit" className="btn btn-primary">
-                  Search
-                </button>
                 <button type="submit" className="btn btn-warning mt-3">
                   Generate Report
                 </button>
@@ -194,6 +271,12 @@ const CreditCheckhtmlForm = () => {
           </div>
         </div>
 
+        <div className="row m-5">
+          {/* generated pdf report component */}
+          {Object.keys(reportObj).length > 0 && (
+            <PdfDocument report={reportObj} />
+          )}
+        </div>
         {/* attach report */}
         <div className="row m-5">
           <h4>Upload Reports</h4>
@@ -212,11 +295,11 @@ const CreditCheckhtmlForm = () => {
                 className="form-check-input"
                 type="checkbox"
                 role="switch"
-                checked={isChecked}
+                checked={isCreditDbCheck}
                 onChange={handleChange}
               />
               <label className="form-check-label mx-3 checked">
-                {isChecked ? "Yes" : "No"}
+                {isCreditDbCheck ? "Yes" : "No"}
               </label>
             </div>
             <div className="col-sm-12 col-md-6 mt-2">
@@ -236,7 +319,7 @@ const CreditCheckhtmlForm = () => {
                 className="form-check-label"
                 htmlFor="flexSwitchCheckChecked"
               >
-                Is there a Credit DB Report?
+                Is there a Deduct Report?
               </label>
             </div>
 
@@ -295,6 +378,17 @@ const CreditCheckhtmlForm = () => {
               </div>
             </div>
           </div>
+
+          <div className="row mx-5 align-items-center">
+            <div className="col-sm-12 col-md-3"></div>
+            <button
+              type="submit"
+              className="btn btn-warning mt-3 col-sm-12 col-md-6"
+            >
+              Update Report
+            </button>
+            <div className="col-sm-12 col-md-3"></div>
+          </div>
         </div>
       </div>
 
@@ -302,7 +396,7 @@ const CreditCheckhtmlForm = () => {
       {/* <PaySlipAnalysis /> */}
 
       {/* decision summary */}
-      <DecisionSummary />
+      {/* <DecisionSummary /> */}
     </>
   );
 };
