@@ -33,43 +33,156 @@ const CreditCheckhtmlForm = () => {
   const [applicantName, setApplicantName] = useState("");
   const [searchDate, setSearchDate] = useState("");
   const [remarks, setRemarks] = useState("");
+  const [searchByDeduct, setSearchByDeduct] = useState("");
+  const [applicantNameDeduct, setApplicantNameDeduct] = useState("");
+  const [searchDateDeduct, setSearchDateDeduct] = useState("");
+  const [remarksDeduct, setRemarksDeduct] = useState("");
   const [reportObj, setReportObj] = useState({});
   const [reportTitle, setReportTitle] = useState("");
   const [dbSearchReport, setDbSearchReport] = useState("");
-  const [isDbChecked, setIsDbChecked] = useState(false);
+
+  const [customerId, setCustomerId] = useState("64fecbd663898c27692bea4c");
+
   const [isBureauChecked, setIsBureauChecked] = useState(false);
+  const [isDeductCheck, setIsDeductCheck] = useState(false);
+  const [deductSearchReport, setDeductSearchReport] = useState("");
+  const [bureauSearchReport, setBureauSearchReport] = useState("");
 
   const handleChange = () => {
     setIsCreditDbCheck(!isCreditDbCheck);
   };
   const handleDbChange = () => {
-    setIsDbChecked(!isDbChecked);
+    setIsDeductCheck(!isDeductCheck);
   };
   const handleBureauChange = () => {
     setIsBureauChecked(!isBureauChecked);
   };
 
-  // handle Credit DB check
-  const handleDbCheck = (e) => {
+  // handle file update
+  const handleFileUpdate = async (e) => {
     e.preventDefault();
-    setReportTitle("Credit DB Check Report");
+    const formData = new FormData();
 
-    const dbSearchReport = {
+    if (isCreditDbCheck) {
+      formData.append("dbSearchReport", dbSearchReport);
+      await fetch(
+        `http://localhost:3030/api/updatecustomer/creditDbSearch/${customerId}`,
+        {
+          method: "PUT",
+          enctype: "multipart/form-data",
+          body: formData,
+        }
+      );
+      setDbSearchReport("");
+      setIsCreditDbCheck(false);
+    }
+    if (isDeductCheck) {
+      formData.append("deductSearchReport", deductSearchReport);
+      await fetch(
+        `http://localhost:3030/api/updatecustomer/deductcheck/${customerId}`,
+        {
+          method: "PUT",
+          enctype: "multipart/form-data",
+          body: formData,
+        }
+      );
+      setDeductSearchReport("");
+      setIsDeductCheck(false);
+    }
+    if (isBureauChecked) {
+      console.log("bureau check");
+    }
+    console.log("Update file");
+  };
+
+  // clear form fields
+  const clearForm = () => {
+    setSearchType("");
+    setSearchBy("");
+    setApplicantName("");
+    setSearchDate("");
+    setRemarks("");
+    setReportTitle("");
+    setDbSearchReport("");
+  };
+  // handle Credit DB check
+  const handleDbCheck = async (e) => {
+    e.preventDefault();
+
+    const searchReport = {
       searchType,
       searchBy,
       searchDate,
       remarks,
-      isDbChecked,
+      dbSearchReport,
+      isCreditDbCheck,
     };
     // setDbSearchReport(dbSearchReport);
     // generate pdf and download
+    setReportTitle(() => "Credit DB Check Report");
     const pdfReport = {
       reportTitle,
       applicantName,
-      dbSearchReport,
-    }
+      searchType: searchType,
+      searchBy: searchBy,
+      searchDate: searchDate,
+      remarks: remarks,
+    };
     setReportObj(pdfReport);
-    console.log(dbSearchReport);
+
+    // send update to backend
+    await fetch(
+      `http://localhost:3030/api/updatecustomer/creditDbSearch/${customerId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(searchReport),
+      }
+    );
+
+    clearForm();
+  };
+  // handle Credit DB check
+  const handleDeductCheck = async (e) => {
+    e.preventDefault();
+
+    const searchReport = {
+      searchByDeduct,
+      searchDateDeduct,
+      remarksDeduct,
+      deductSearchReport,
+      isDeductCheck,
+    };
+
+    // setDbSearchReport(dbSearchReport);
+    // generate pdf and download
+    setReportTitle(() => "Deduct Check Report");
+    const pdfReport = {
+      reportTitle,
+      applicantName: applicantNameDeduct,
+      searchType: "Deduct Check",
+      searchBy: searchByDeduct,
+      searchDate: searchDateDeduct,
+      remarks: remarksDeduct,
+    };
+    setReportObj(pdfReport);
+
+    // send update to backend
+    await fetch(
+      `http://localhost:3030/api/updatecustomer/deductcheck/${customerId}`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(searchReport),
+      }
+    );
+
+    // clear form fields
+    setSearchByDeduct("");
+    setApplicantNameDeduct("");
+    setRemarksDeduct("");
+    setSearchDateDeduct("");
+    setReportTitle("");
   };
 
   return (
@@ -169,21 +282,44 @@ const CreditCheckhtmlForm = () => {
           {/* deduct check */}
           <div className="col-sm-12 col-md-4 midBorder">
             <h6 className="creditTitle">Do Deduct Check</h6>
-            <form>
+            <form onSubmit={handleDeductCheck}>
               <div className="row mb-3">
                 <label htmlFor="dSearchInput" className="col-form-label">
                   IPPIS
                 </label>
                 <div>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={searchByDeduct}
+                    onChange={(e) => setSearchByDeduct(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="row mb-3">
-                <label htmlFor="searchDate" className="col-form-label">
+                <label htmlFor="searchInput" className="col-form-label">
+                  Applicant Full-name
+                </label>
+                <div>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={applicantNameDeduct}
+                    onChange={(e) => setApplicantNameDeduct(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="row mb-3">
+                <label htmlFor="dSearchDate" className="col-form-label">
                   Search Date
                 </label>
                 <div>
-                  <input type="date" className="form-control" />
+                  <input
+                    type="date"
+                    className="form-control"
+                    value={searchDateDeduct}
+                    onChange={(e) => setSearchDateDeduct(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="row my-3">
@@ -191,7 +327,13 @@ const CreditCheckhtmlForm = () => {
                   Remarks
                 </label>
                 <div>
-                  <textarea className="form-control" id="netPay"></textarea>
+                  <textarea
+                    className="form-control"
+                    id="netPay"
+                    placeholder="Enter remarks here..."
+                    value={remarksDeduct}
+                    onChange={(e) => setRemarksDeduct(e.target.value)}
+                  ></textarea>
                 </div>
               </div>
               <div className="row mx-5 align-items-center">
@@ -277,118 +419,123 @@ const CreditCheckhtmlForm = () => {
             <PdfDocument report={reportObj} />
           )}
         </div>
+
         {/* attach report */}
         <div className="row m-5">
           <h4>Upload Reports</h4>
-          <div className="row reportRow">
-            <div className="col-sm-8 col-md-4">
-              <label
-                className="form-check-label"
-                htmlFor="flexSwitchCheckChecked"
-              >
-                Is there a Credit DB Report?
-              </label>
-            </div>
+          <form onSubmit={handleFileUpdate} encType="multipart/form-data">
+            <div className="row reportRow">
+              <div className="col-sm-8 col-md-4">
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckChecked"
+                >
+                  Is there a Credit DB Report?
+                </label>
+              </div>
 
-            <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                role="switch"
-                checked={isCreditDbCheck}
-                onChange={handleChange}
-              />
-              <label className="form-check-label mx-3 checked">
-                {isCreditDbCheck ? "Yes" : "No"}
-              </label>
-            </div>
-            <div className="col-sm-12 col-md-6 mt-2">
-              <div className="input-group">
+              <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
                 <input
-                  type="file"
-                  className="form-control"
-                  id="inputGroupFile01"
+                  className="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  checked={isCreditDbCheck}
+                  onChange={handleChange}
                 />
+                <label className="form-check-label mx-3 checked">
+                  {isCreditDbCheck ? "Yes" : "No"}
+                </label>
+              </div>
+              <div className="col-sm-12 col-md-6 mt-2">
+                <div className="input-group">
+                  <input
+                    type="file"
+                    className="form-control"
+                    onChange={(e) => setDbSearchReport(e.target.files[0])}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="row reportRow">
-            <div className="col-sm-8 col-md-4">
-              <label
-                className="form-check-label"
-                htmlFor="flexSwitchCheckChecked"
-              >
-                Is there a Deduct Report?
-              </label>
-            </div>
+            <div className="row reportRow">
+              <div className="col-sm-8 col-md-4">
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckChecked"
+                >
+                  Is there a Deduct Report?
+                </label>
+              </div>
 
-            <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                role="switch"
-                checked={isDbChecked}
-                onChange={handleDbChange}
-              />
-              <label className="form-check-label mx-3 checked">
-                {isDbChecked ? "Yes" : "No"}
-              </label>
-            </div>
-            <div className="col-sm-12 col-md-6 mt-2">
-              <div className="input-group">
+              <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
                 <input
-                  type="file"
-                  className="form-control"
-                  id="inputGroupFile01"
+                  className="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  checked={isDeductCheck}
+                  onChange={handleDbChange}
                 />
+                <label className="form-check-label mx-3 checked">
+                  {isDeductCheck ? "Yes" : "No"}
+                </label>
+              </div>
+              <div className="col-sm-12 col-md-6 mt-2">
+                <div className="input-group">
+                  <input
+                    type="file"
+                    className="form-control"
+                    onChange={(e) => setDeductSearchReport(e.target.files[0])}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="row reportRow">
-            <div className="col-sm-8 col-md-4">
-              <label
-                className="form-check-label"
-                htmlFor="flexSwitchCheckChecked"
-              >
-                Is there a Credit Bureau Report?
-              </label>
-            </div>
+            <div className="row reportRow">
+              <div className="col-sm-8 col-md-4">
+                <label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckChecked"
+                >
+                  Is there a Credit Bureau Report?
+                </label>
+              </div>
 
-            <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                role="switch"
-                checked={isBureauChecked}
-                onChange={handleBureauChange}
-              />
-              <label className="form-check-label mx-3 checked">
-                {isBureauChecked ? "Yes" : "No"}
-              </label>
-            </div>
-            <div className="col-sm-12 col-md-6 mt-2">
-              <div className="input-group">
+              <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
                 <input
-                  type="file"
-                  className="form-control"
-                  id="inputGroupFile01"
+                  className="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  checked={isBureauChecked}
+                  onChange={handleBureauChange}
                 />
+                <label className="form-check-label mx-3 checked">
+                  {isBureauChecked ? "Yes" : "No"}
+                </label>
+              </div>
+              <div className="col-sm-12 col-md-6 mt-2">
+                <div className="input-group">
+                  <input
+                    type="file"
+                    className="form-control"
+                    id="inputGroupFile01"
+                    value={bureauSearchReport}
+                    onChange={(e) => setBureauSearchReport(e.target.value)}
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="row mx-5 align-items-center">
-            <div className="col-sm-12 col-md-3"></div>
-            <button
-              type="submit"
-              className="btn btn-warning mt-3 col-sm-12 col-md-6"
-            >
-              Update Report
-            </button>
-            <div className="col-sm-12 col-md-3"></div>
-          </div>
+            <div className="row mx-5 align-items-center">
+              <div className="col-sm-12 col-md-3"></div>
+              <button
+                type="submit"
+                className="btn btn-warning mt-3 col-sm-12 col-md-6"
+              >
+                Update Report
+              </button>
+              <div className="col-sm-12 col-md-3"></div>
+            </div>
+          </form>
         </div>
       </div>
 

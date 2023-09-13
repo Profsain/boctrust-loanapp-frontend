@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 
 const PdfDocument = ({ report }) => {
   const { reportTitle, applicantName } = report;
-  const { searchType, searchBy, searchDate, remarks } = report.dbSearchReport;
+  const { searchType, searchBy, searchDate, remarks } = report;
   return (
     <PDFViewer style={styles.viewer}>
       {/* Start of the document*/}
@@ -39,7 +39,9 @@ const PdfDocument = ({ report }) => {
         {/*render a single page*/}
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
-            <Text style={styles.title}>{reportTitle ? reportTitle : "Boctrust Credit Check"}</Text>
+            <Text style={styles.title}>
+              {reportTitle ? reportTitle : "Boctrust Credit Check"}
+            </Text>
           </View>
           <View style={styles.section}>
             <Text>Name: {applicantName}</Text>
@@ -71,12 +73,10 @@ PdfDocument.propTypes = {
   report: PropTypes.shape({
     reportTitle: PropTypes.string,
     applicantName: PropTypes.string,
-    dbSearchReport: PropTypes.shape({
-      searchType: PropTypes.string,
-      searchBy: PropTypes.string,
-      searchDate: PropTypes.string,
-      remarks: PropTypes.string,
-    }),
+    searchType: PropTypes.string,
+    searchBy: PropTypes.string,
+    searchDate: PropTypes.string,
+    remarks: PropTypes.string,
   }),
 };
 
