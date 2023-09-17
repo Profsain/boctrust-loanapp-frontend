@@ -5,12 +5,6 @@ import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../../dashboardcomponents/transferdashboard/Transfer.css";
 import BocButton from "../../shared/BocButton";
 
-// const loanProductOptions = [
-//   { value: "car loan", label: "Car Loan" },
-//   { value: "salary advance", label: "Salary Advance" },
-//   // Add more options as needed
-// ];
-
 const AddCustomer = () => {
   const handleSubmit = (values) => {
     // Handle form submission logic here

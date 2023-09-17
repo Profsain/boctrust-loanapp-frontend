@@ -22,6 +22,7 @@ import initialValues from "./formInitialValue";
 // function
 import convertFile from "../../../../utilities/convertFile";
 import dataURItoBlob from "../../../../utilities/dataURItoBlob";
+import generateCustomerId from "../../dashboard/admindashboard/customers/generateCustomerId";
 
 // loan form component
 const LoanForm = ({ data }) => {
@@ -129,8 +130,11 @@ const LoanForm = ({ data }) => {
   const handleSubmit = async () => {
     // handle form submit to backend here
     if (ref.current) {
-      const formValues = ref.current?.values;
+      const formValues = ref.current?.values; 
+      // generate customer id
+      const customerId = generateCustomerId();
       const formData = new FormData();
+      formData.append("customerId", customerId);
       formData.append("loanamount", formValues.loanamount);
       formData.append("careertype", formValues.careertype);
       formData.append("numberofmonth", formValues.numberofmonth);

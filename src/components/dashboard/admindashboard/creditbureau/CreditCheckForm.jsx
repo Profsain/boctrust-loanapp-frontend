@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import "../../dashboardcomponents/transferdashboard/Transfer.css";
 import "./Credit.css";
 import { PaySlipAnalysis } from "./PaySlipAnalysis";
@@ -185,6 +186,61 @@ const CreditCheckhtmlForm = () => {
     setReportTitle("");
   };
 
+  // credit bureau check logic
+  const [bureauData, setBureauData] = useState({
+    bureauName: "",
+    bvnNo: "",
+    reportType: "",
+    reportReason: "",
+    bureauDate: "",
+  });
+
+  const handleBureauDataChange = (e) => {
+    const { name, value } = e.target;
+    setBureauData({ ...bureauData, [name]: value });
+  };
+
+  // login to first central bureau
+  const [dataTicket, setDataTicket] = useState("");
+
+  const loginToFirstCentral = async () => {
+    try {
+      const response = await fetch(
+        "https://uat.firstcentralcreditbureau.com/RestAPI/firstCentral /login",
+        {
+          "username": "BOCTRUSTAPI",
+          "password": "boctrustAPI@100%",
+        }
+      );
+      console.log("Request send");
+      const data = await response.json();
+      console.log("Ticket data", data);
+
+      // setDataTicket(data.data.ticket);
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
+
+  useEffect(() => {
+    loginToFirstCentral();
+  }, []);
+
+  const handleBureauCheck = async (e) => {
+    e.preventDefault();
+    if (bureauData.bureauName === "first_central") {
+      console.log("first central check");
+    }
+
+    if (bureauData.bureauName === "crc_bureau") {
+      console.log("crc bureau check");
+    }
+
+    if (bureauData.bureauName === "credit_register") {
+      console.log("credit register check");
+    }
+  };
+
   return (
     <>
       <div className="TransContainer RBox">
@@ -347,13 +403,19 @@ const CreditCheckhtmlForm = () => {
           {/* credit bureau check */}
           <div className="col-sm-12 col-md-4">
             <h6 className="creditTitle">Do Credit Bureau Check</h6>
-            <form>
+            <form onSubmit={handleBureauCheck}>
               <div className="row mb-3">
                 <label htmlFor="searchType" className="col-form-label">
                   Select Credit Bureau
                 </label>
                 <div>
-                  <select id="searchType" className="form-select">
+                  <select
+                    id="searchType"
+                    className="form-select"
+                    name="bureauName"
+                    value={bureauData.bureauName}
+                    onChange={handleBureauDataChange}
+                  >
                     <option selected>Choose...</option>
                     {creditBureauOptions.map((creditBureauOption) => (
                       <option
@@ -366,32 +428,53 @@ const CreditCheckhtmlForm = () => {
                   </select>
                 </div>
               </div>
+
               <div className="row mb-3">
                 <label htmlFor="dSearchInput" className="col-form-label">
                   BVN
                 </label>
                 <div>
-                  <input type="text" className="form-control" />
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="bvnNo"
+                    value={bureauData.bvnNo}
+                    onChange={handleBureauDataChange}
+                  />
                 </div>
               </div>
+
               <div className="row mb-3">
                 <label htmlFor="searchType" className="col-form-label">
                   Select Report Type
                 </label>
                 <div>
-                  <select id="searchType" className="form-select">
+                  <select
+                    id="searchType"
+                    className="form-select"
+                    name="reportType"
+                    value={bureauData.reportType}
+                    onChange={handleBureauDataChange}
+                  >
                     <option selected>Choose...</option>
                     <option value="credit">Credit Report</option>
                     <option value="kyc">KYC</option>
                   </select>
                 </div>
               </div>
+
               <div className="row mb-3">
                 <label htmlFor="reportType" className="col-form-label">
                   Reason of Report
                 </label>
                 <div>
-                  <select id="reportType" className="form-select">
+                  <select
+                    id="reportType"
+                    className="form-select"
+                    name="reportReason"
+                    value={bureauData.reportReason}
+                    onChange={handleBureauDataChange}
+                  >
                     <option selected>Choose...</option>
                     {reportOptions.map((reportOption) => (
                       <option
@@ -404,6 +487,21 @@ const CreditCheckhtmlForm = () => {
                   </select>
                 </div>
               </div>
+              <div className="row mb-3">
+                <label htmlFor="dSearchInput" className="col-form-label">
+                  Search Date
+                </label>
+                <div>
+                  <input
+                    type="date"
+                    className="form-control"
+                    name="bureauDate"
+                    value={bureauData.bureauDate}
+                    onChange={handleBureauDataChange}
+                  />
+                </div>
+              </div>
+
               <div className="row mx-5 align-items-center">
                 <button type="submit" className="btn btn-warning mt-3">
                   Generate Report
@@ -540,7 +638,7 @@ const CreditCheckhtmlForm = () => {
       </div>
 
       {/* pay slip analysis component */}
-      {/* <PaySlipAnalysis /> */}
+      <PaySlipAnalysis customerId={customerId} />
 
       {/* decision summary */}
       {/* <DecisionSummary /> */}
