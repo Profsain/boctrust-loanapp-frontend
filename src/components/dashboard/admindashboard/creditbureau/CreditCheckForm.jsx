@@ -1,8 +1,8 @@
+import PropTypes from "prop-types"
 import { useEffect, useState } from "react";
-import axios from "axios";
 import "../../dashboardcomponents/transferdashboard/Transfer.css";
 import "./Credit.css";
-import { PaySlipAnalysis } from "./PaySlipAnalysis";
+import PaySlipAnalysis from "./PaySlipAnalysis";
 import DecisionSummary from "./DecisionSummary";
 import PdfDocument from "../../../shared/PdfDocument";
 // import BocButton from "../../shared/BocButton";
@@ -27,7 +27,7 @@ const searchTypes = [
   // Add more options as needed
 ];
 
-const CreditCheckhtmlForm = () => {
+const CreditCheckhtmlForm = ({ customerId }) => {
   const [isCreditDbCheck, setIsCreditDbCheck] = useState(false);
   const [searchType, setSearchType] = useState("");
   const [searchBy, setSearchBy] = useState("");
@@ -41,8 +41,6 @@ const CreditCheckhtmlForm = () => {
   const [reportObj, setReportObj] = useState({});
   const [reportTitle, setReportTitle] = useState("");
   const [dbSearchReport, setDbSearchReport] = useState("");
-
-  const [customerId, setCustomerId] = useState("64fecbd663898c27692bea4c");
 
   const [isBureauChecked, setIsBureauChecked] = useState(false);
   const [isDeductCheck, setIsDeductCheck] = useState(false);
@@ -208,15 +206,15 @@ const CreditCheckhtmlForm = () => {
       const response = await fetch(
         "https://uat.firstcentralcreditbureau.com/RestAPI/firstCentral /login",
         {
-          "username": "BOCTRUSTAPI",
-          "password": "boctrustAPI@100%",
+          username: "BOCTRUSTAPI",
+          password: "boctrustAPI@100%",
         }
       );
-      console.log("Request send");
+
       const data = await response.json();
       console.log("Ticket data", data);
 
-      // setDataTicket(data.data.ticket);
+      setDataTicket(data.data.ticket);
     } catch (error) {
       console.error("Login error:", error);
     }
@@ -224,7 +222,7 @@ const CreditCheckhtmlForm = () => {
 
   useEffect(() => {
     loginToFirstCentral();
-  }, []);
+  }, []); // first central bureau end here
 
   const handleBureauCheck = async (e) => {
     e.preventDefault();
@@ -241,409 +239,449 @@ const CreditCheckhtmlForm = () => {
     }
   };
 
+  // handle next prev form step start
+  const [formStep, setFormStep] = useState(1);
+  const handleNext = () => {
+    if (formStep === 1) {
+      setFormStep(2);
+    } else if (formStep === 2) {
+      setFormStep(3);
+    } else {
+      setFormStep(3);
+    }
+  };
+
+  const handlePrev = () => {
+    if (formStep === 2) {
+      setFormStep(1);
+    } else if (formStep === 3) {
+      setFormStep(2);
+    } else {
+      setFormStep(1);
+    }
+  };
+
+  // scroll to the top of the page
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [formStep]);
+
+  console.log("step", formStep);
+  console.log("Customer ID: ", customerId);
+  // next prev form step end here
+
   return (
     <>
-      <div className="TransContainer RBox">
-        <div className=" d-flex  p-5">
-          <h4>BVN Validated</h4>
-        </div>
+      {formStep === 1 && (
+        <div className="TransContainer RBox">
 
-        {/* step 1 */}
-        <div className="row">
-          {/* credit DB check */}
-          <div className="col-sm-12 col-md-4">
-            <h6 className="creditTitle">Do Credit DB Check</h6>
-            <form onSubmit={handleDbCheck}>
-              <div className="row mb-3">
-                <label htmlFor="searchType" className="col-form-label">
-                  Choose Search Type
-                </label>
-                <div>
-                  <select
-                    id="searchType"
-                    className="form-select"
-                    value={searchType}
-                    onChange={(e) => setSearchType(e.target.value)}
+          {/* step 1 */}
+          <div className="row">
+            {/* credit DB check */}
+            <div className="col-sm-12 col-md-4">
+              <h6 className="creditTitle">Do Credit DB Check</h6>
+              <form onSubmit={handleDbCheck}>
+                <div className="row mb-3">
+                  <label htmlFor="searchType" className="col-form-label">
+                    Choose Search Type
+                  </label>
+                  <div>
+                    <select
+                      id="searchType"
+                      className="form-select"
+                      value={searchType}
+                      onChange={(e) => setSearchType(e.target.value)}
+                    >
+                      <option selected>Choose...</option>
+                      {searchTypes.map((searchType) => (
+                        <option key={searchType.value} value={searchType.value}>
+                          {searchType.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label htmlFor="searchInput" className="col-form-label">
+                    IPPIS, BVN, or Phone No
+                  </label>
+                  <div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={searchBy}
+                      onChange={(e) => setSearchBy(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label htmlFor="searchInput" className="col-form-label">
+                    Applicant Full-name
+                  </label>
+                  <div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={applicantName}
+                      onChange={(e) => setApplicantName(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label htmlFor="dSearchDate" className="col-form-label">
+                    Search Date
+                  </label>
+                  <div>
+                    <input
+                      type="date"
+                      className="form-control"
+                      value={searchDate}
+                      onChange={(e) => setSearchDate(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="row my-3">
+                  <label htmlFor="netPay" className="col-form-label">
+                    Remarks
+                  </label>
+                  <div>
+                    <textarea
+                      className="form-control"
+                      id="netPay"
+                      placeholder="Enter remarks here..."
+                      value={remarks}
+                      onChange={(e) => setRemarks(e.target.value)}
+                    ></textarea>
+                  </div>
+                </div>
+                <div className="row mx-5 align-items-center">
+                  <button type="submit" className="btn btn-warning mt-3">
+                    Generate Manual Report
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            {/* deduct check */}
+            <div className="col-sm-12 col-md-4 midBorder">
+              <h6 className="creditTitle">Do Deduct Check</h6>
+              <form onSubmit={handleDeductCheck}>
+                <div className="row mb-3">
+                  <label htmlFor="dSearchInput" className="col-form-label">
+                    IPPIS
+                  </label>
+                  <div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={searchByDeduct}
+                      onChange={(e) => setSearchByDeduct(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label htmlFor="searchInput" className="col-form-label">
+                    Applicant Full-name
+                  </label>
+                  <div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      value={applicantNameDeduct}
+                      onChange={(e) => setApplicantNameDeduct(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label htmlFor="dSearchDate" className="col-form-label">
+                    Search Date
+                  </label>
+                  <div>
+                    <input
+                      type="date"
+                      className="form-control"
+                      value={searchDateDeduct}
+                      onChange={(e) => setSearchDateDeduct(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="row my-3">
+                  <label htmlFor="netPay" className="col-form-label">
+                    Remarks
+                  </label>
+                  <div>
+                    <textarea
+                      className="form-control"
+                      id="netPay"
+                      placeholder="Enter remarks here..."
+                      value={remarksDeduct}
+                      onChange={(e) => setRemarksDeduct(e.target.value)}
+                    ></textarea>
+                  </div>
+                </div>
+                <div className="row mx-5 align-items-center">
+                  <button type="submit" className="btn btn-warning mt-3">
+                    Generate Manual Report
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            {/* credit bureau check */}
+            <div className="col-sm-12 col-md-4">
+              <h6 className="creditTitle">Do Credit Bureau Check</h6>
+              <form onSubmit={handleBureauCheck}>
+                <div className="row mb-3">
+                  <label htmlFor="searchType" className="col-form-label">
+                    Select Credit Bureau
+                  </label>
+                  <div>
+                    <select
+                      id="searchType"
+                      className="form-select"
+                      name="bureauName"
+                      value={bureauData.bureauName}
+                      onChange={handleBureauDataChange}
+                    >
+                      <option selected>Choose...</option>
+                      {creditBureauOptions.map((creditBureauOption) => (
+                        <option
+                          key={creditBureauOption.value}
+                          value={creditBureauOption.value}
+                        >
+                          {creditBureauOption.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <label htmlFor="dSearchInput" className="col-form-label">
+                    BVN
+                  </label>
+                  <div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="bvnNo"
+                      value={bureauData.bvnNo}
+                      onChange={handleBureauDataChange}
+                    />
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <label htmlFor="searchType" className="col-form-label">
+                    Select Report Type
+                  </label>
+                  <div>
+                    <select
+                      id="searchType"
+                      className="form-select"
+                      name="reportType"
+                      value={bureauData.reportType}
+                      onChange={handleBureauDataChange}
+                    >
+                      <option selected>Choose...</option>
+                      <option value="credit">Credit Report</option>
+                      <option value="kyc">KYC</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <label htmlFor="reportType" className="col-form-label">
+                    Reason of Report
+                  </label>
+                  <div>
+                    <select
+                      id="reportType"
+                      className="form-select"
+                      name="reportReason"
+                      value={bureauData.reportReason}
+                      onChange={handleBureauDataChange}
+                    >
+                      <option selected>Choose...</option>
+                      {reportOptions.map((reportOption) => (
+                        <option
+                          key={reportOption.value}
+                          value={reportOption.value}
+                        >
+                          {reportOption.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label htmlFor="dSearchInput" className="col-form-label">
+                    Search Date
+                  </label>
+                  <div>
+                    <input
+                      type="date"
+                      className="form-control"
+                      name="bureauDate"
+                      value={bureauData.bureauDate}
+                      onChange={handleBureauDataChange}
+                    />
+                  </div>
+                </div>
+
+                <div className="row mx-5 align-items-center">
+                  <button type="submit" className="btn btn-warning mt-3">
+                    Generate Report
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div className="row m-5">
+            {/* generated pdf report component */}
+            {Object.keys(reportObj).length > 0 && (
+              <PdfDocument report={reportObj} />
+            )}
+          </div>
+
+          {/* attach report */}
+          <div className="row m-5">
+            <h4>Upload Reports</h4>
+            <form onSubmit={handleFileUpdate} encType="multipart/form-data">
+              <div className="row reportRow">
+                <div className="col-sm-8 col-md-4">
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexSwitchCheckChecked"
                   >
-                    <option selected>Choose...</option>
-                    {searchTypes.map((searchType) => (
-                      <option key={searchType.value} value={searchType.value}>
-                        {searchType.label}
-                      </option>
-                    ))}
-                  </select>
+                    Is there a Credit DB Report?
+                  </label>
                 </div>
-              </div>
-              <div className="row mb-3">
-                <label htmlFor="searchInput" className="col-form-label">
-                  IPPIS, BVN, or Phone No
-                </label>
-                <div>
+
+                <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
                   <input
-                    type="text"
-                    className="form-control"
-                    value={searchBy}
-                    onChange={(e) => setSearchBy(e.target.value)}
+                    className="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    checked={isCreditDbCheck}
+                    onChange={handleChange}
                   />
+                  <label className="form-check-label mx-3 checked">
+                    {isCreditDbCheck ? "Yes" : "No"}
+                  </label>
+                </div>
+                <div className="col-sm-12 col-md-6 mt-2">
+                  <div className="input-group">
+                    <input
+                      type="file"
+                      className="form-control"
+                      onChange={(e) => setDbSearchReport(e.target.files[0])}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="row mb-3">
-                <label htmlFor="searchInput" className="col-form-label">
-                  Applicant Full-name
-                </label>
-                <div>
+
+              <div className="row reportRow">
+                <div className="col-sm-8 col-md-4">
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexSwitchCheckChecked"
+                  >
+                    Is there a Deduct Report?
+                  </label>
+                </div>
+
+                <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
                   <input
-                    type="text"
-                    className="form-control"
-                    value={applicantName}
-                    onChange={(e) => setApplicantName(e.target.value)}
+                    className="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    checked={isDeductCheck}
+                    onChange={handleDbChange}
                   />
+                  <label className="form-check-label mx-3 checked">
+                    {isDeductCheck ? "Yes" : "No"}
+                  </label>
+                </div>
+                <div className="col-sm-12 col-md-6 mt-2">
+                  <div className="input-group">
+                    <input
+                      type="file"
+                      className="form-control"
+                      onChange={(e) => setDeductSearchReport(e.target.files[0])}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="row mb-3">
-                <label htmlFor="dSearchDate" className="col-form-label">
-                  Search Date
-                </label>
-                <div>
+
+              <div className="row reportRow">
+                <div className="col-sm-8 col-md-4">
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexSwitchCheckChecked"
+                  >
+                    Is there a Credit Bureau Report?
+                  </label>
+                </div>
+
+                <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
                   <input
-                    type="date"
-                    className="form-control"
-                    value={searchDate}
-                    onChange={(e) => setSearchDate(e.target.value)}
+                    className="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    checked={isBureauChecked}
+                    onChange={handleBureauChange}
                   />
+                  <label className="form-check-label mx-3 checked">
+                    {isBureauChecked ? "Yes" : "No"}
+                  </label>
+                </div>
+                <div className="col-sm-12 col-md-6 mt-2">
+                  <div className="input-group">
+                    <input
+                      type="file"
+                      className="form-control"
+                      id="inputGroupFile01"
+                      value={bureauSearchReport}
+                      onChange={(e) => setBureauSearchReport(e.target.value)}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="row my-3">
-                <label htmlFor="netPay" className="col-form-label">
-                  Remarks
-                </label>
-                <div>
-                  <textarea
-                    className="form-control"
-                    id="netPay"
-                    placeholder="Enter remarks here..."
-                    value={remarks}
-                    onChange={(e) => setRemarks(e.target.value)}
-                  ></textarea>
-                </div>
-              </div>
+
               <div className="row mx-5 align-items-center">
-                <button type="submit" className="btn btn-warning mt-3">
-                  Generate Manual Report
+                <div className="col-sm-12 col-md-3"></div>
+                <button
+                  type="submit"
+                  className="btn btn-warning mt-3 col-sm-12 col-md-6"
+                >
+                  Update Report
                 </button>
+                <div className="col-sm-12 col-md-3"></div>
               </div>
             </form>
           </div>
-
-          {/* deduct check */}
-          <div className="col-sm-12 col-md-4 midBorder">
-            <h6 className="creditTitle">Do Deduct Check</h6>
-            <form onSubmit={handleDeductCheck}>
-              <div className="row mb-3">
-                <label htmlFor="dSearchInput" className="col-form-label">
-                  IPPIS
-                </label>
-                <div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={searchByDeduct}
-                    onChange={(e) => setSearchByDeduct(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="row mb-3">
-                <label htmlFor="searchInput" className="col-form-label">
-                  Applicant Full-name
-                </label>
-                <div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    value={applicantNameDeduct}
-                    onChange={(e) => setApplicantNameDeduct(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="row mb-3">
-                <label htmlFor="dSearchDate" className="col-form-label">
-                  Search Date
-                </label>
-                <div>
-                  <input
-                    type="date"
-                    className="form-control"
-                    value={searchDateDeduct}
-                    onChange={(e) => setSearchDateDeduct(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="row my-3">
-                <label htmlFor="netPay" className="col-form-label">
-                  Remarks
-                </label>
-                <div>
-                  <textarea
-                    className="form-control"
-                    id="netPay"
-                    placeholder="Enter remarks here..."
-                    value={remarksDeduct}
-                    onChange={(e) => setRemarksDeduct(e.target.value)}
-                  ></textarea>
-                </div>
-              </div>
-              <div className="row mx-5 align-items-center">
-                <button type="submit" className="btn btn-warning mt-3">
-                  Generate Manual Report
-                </button>
-              </div>
-            </form>
-          </div>
-
-          {/* credit bureau check */}
-          <div className="col-sm-12 col-md-4">
-            <h6 className="creditTitle">Do Credit Bureau Check</h6>
-            <form onSubmit={handleBureauCheck}>
-              <div className="row mb-3">
-                <label htmlFor="searchType" className="col-form-label">
-                  Select Credit Bureau
-                </label>
-                <div>
-                  <select
-                    id="searchType"
-                    className="form-select"
-                    name="bureauName"
-                    value={bureauData.bureauName}
-                    onChange={handleBureauDataChange}
-                  >
-                    <option selected>Choose...</option>
-                    {creditBureauOptions.map((creditBureauOption) => (
-                      <option
-                        key={creditBureauOption.value}
-                        value={creditBureauOption.value}
-                      >
-                        {creditBureauOption.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <label htmlFor="dSearchInput" className="col-form-label">
-                  BVN
-                </label>
-                <div>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="bvnNo"
-                    value={bureauData.bvnNo}
-                    onChange={handleBureauDataChange}
-                  />
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <label htmlFor="searchType" className="col-form-label">
-                  Select Report Type
-                </label>
-                <div>
-                  <select
-                    id="searchType"
-                    className="form-select"
-                    name="reportType"
-                    value={bureauData.reportType}
-                    onChange={handleBureauDataChange}
-                  >
-                    <option selected>Choose...</option>
-                    <option value="credit">Credit Report</option>
-                    <option value="kyc">KYC</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="row mb-3">
-                <label htmlFor="reportType" className="col-form-label">
-                  Reason of Report
-                </label>
-                <div>
-                  <select
-                    id="reportType"
-                    className="form-select"
-                    name="reportReason"
-                    value={bureauData.reportReason}
-                    onChange={handleBureauDataChange}
-                  >
-                    <option selected>Choose...</option>
-                    {reportOptions.map((reportOption) => (
-                      <option
-                        key={reportOption.value}
-                        value={reportOption.value}
-                      >
-                        {reportOption.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="row mb-3">
-                <label htmlFor="dSearchInput" className="col-form-label">
-                  Search Date
-                </label>
-                <div>
-                  <input
-                    type="date"
-                    className="form-control"
-                    name="bureauDate"
-                    value={bureauData.bureauDate}
-                    onChange={handleBureauDataChange}
-                  />
-                </div>
-              </div>
-
-              <div className="row mx-5 align-items-center">
-                <button type="submit" className="btn btn-warning mt-3">
-                  Generate Report
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
-
-        <div className="row m-5">
-          {/* generated pdf report component */}
-          {Object.keys(reportObj).length > 0 && (
-            <PdfDocument report={reportObj} />
-          )}
-        </div>
-
-        {/* attach report */}
-        <div className="row m-5">
-          <h4>Upload Reports</h4>
-          <form onSubmit={handleFileUpdate} encType="multipart/form-data">
-            <div className="row reportRow">
-              <div className="col-sm-8 col-md-4">
-                <label
-                  className="form-check-label"
-                  htmlFor="flexSwitchCheckChecked"
-                >
-                  Is there a Credit DB Report?
-                </label>
-              </div>
-
-              <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  checked={isCreditDbCheck}
-                  onChange={handleChange}
-                />
-                <label className="form-check-label mx-3 checked">
-                  {isCreditDbCheck ? "Yes" : "No"}
-                </label>
-              </div>
-              <div className="col-sm-12 col-md-6 mt-2">
-                <div className="input-group">
-                  <input
-                    type="file"
-                    className="form-control"
-                    onChange={(e) => setDbSearchReport(e.target.files[0])}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="row reportRow">
-              <div className="col-sm-8 col-md-4">
-                <label
-                  className="form-check-label"
-                  htmlFor="flexSwitchCheckChecked"
-                >
-                  Is there a Deduct Report?
-                </label>
-              </div>
-
-              <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  checked={isDeductCheck}
-                  onChange={handleDbChange}
-                />
-                <label className="form-check-label mx-3 checked">
-                  {isDeductCheck ? "Yes" : "No"}
-                </label>
-              </div>
-              <div className="col-sm-12 col-md-6 mt-2">
-                <div className="input-group">
-                  <input
-                    type="file"
-                    className="form-control"
-                    onChange={(e) => setDeductSearchReport(e.target.files[0])}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="row reportRow">
-              <div className="col-sm-8 col-md-4">
-                <label
-                  className="form-check-label"
-                  htmlFor="flexSwitchCheckChecked"
-                >
-                  Is there a Credit Bureau Report?
-                </label>
-              </div>
-
-              <div className="form-check form-switch col-sm-4 col-md-2 mt-4">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  checked={isBureauChecked}
-                  onChange={handleBureauChange}
-                />
-                <label className="form-check-label mx-3 checked">
-                  {isBureauChecked ? "Yes" : "No"}
-                </label>
-              </div>
-              <div className="col-sm-12 col-md-6 mt-2">
-                <div className="input-group">
-                  <input
-                    type="file"
-                    className="form-control"
-                    id="inputGroupFile01"
-                    value={bureauSearchReport}
-                    onChange={(e) => setBureauSearchReport(e.target.value)}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="row mx-5 align-items-center">
-              <div className="col-sm-12 col-md-3"></div>
-              <button
-                type="submit"
-                className="btn btn-warning mt-3 col-sm-12 col-md-6"
-              >
-                Update Report
-              </button>
-              <div className="col-sm-12 col-md-3"></div>
-            </div>
-          </form>
-        </div>
-      </div>
-
+      )}
       {/* pay slip analysis component */}
-      <PaySlipAnalysis customerId={customerId} />
-
-      {/* decision summary */}
-      {/* <DecisionSummary /> */}
+      {formStep === 2 && <PaySlipAnalysis customerId={customerId} />}
+      {/* decision summary */} {formStep === 3 && <DecisionSummary />}
+      {/* next prev button */}
+      <div className="row justify-content-center">
+        <button className="btn btn-warning btn-prev" onClick={handlePrev}>
+          Prev
+        </button>
+        <button className="btn btn-primary btn-next" onClick={handleNext}>
+          Next
+        </button>
+      </div>
     </>
   );
 };
+
+CreditCheckhtmlForm.propTypes = {
+  customerId: PropTypes.string
+}
 
 export default CreditCheckhtmlForm;

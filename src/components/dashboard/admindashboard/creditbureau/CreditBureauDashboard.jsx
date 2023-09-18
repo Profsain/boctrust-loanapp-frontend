@@ -1,3 +1,7 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
+import { Modal, Button } from "react-bootstrap";
 import CreditCheckForm from "./CreditCheckForm";
 import Headline from "../../../shared/Headline";
 import { Table } from "react-bootstrap";
@@ -7,137 +11,209 @@ import NextPreBtn from "../../shared/NextPreBtn";
 import "../customers/Customer.css";
 import "../remita/Remita.css";
 
+const styles = {
+  btnBox: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  table: {
+    //   margin: "0 2rem 0 3rem",
+    fontSize: "14px",
+  },
+  head: {
+    color: "#fff",
+    fontSize: "1rem",
+  },
+  approved: {
+    color: "#5cc51c",
+  },
+  completed: {
+    color: "#f64f4f",
+  },
+  pending: {
+    color: "#ecaa00",
+  },
+};
 const CreditBureauDashboard = () => {
-   const styles = {
-     btnBox: {
-       display: "flex",
-       justifyContent: "center",
-     },
-     table: {
-       //   margin: "0 2rem 0 3rem",
-       fontSize: "14px",
-     },
-     head: {
-       color: "#fff",
-       fontSize: "1rem",
-     },
-     approved: {
-       color: "#5cc51c",
-     },
-     completed: {
-       color: "#f64f4f",
-     },
-     pending: {
-       color: "#ecaa00",
-     },
-   };
+  const [customerId, setCustomerId] = useState("");
+  const [showCreditCheckForm, setShowCreditCheckForm] = useState(false);
+  const [show, setShow] = useState(false);
+  const [creditAnalyst, setCreditAnalyst] = useState("Profsain");
+
+  // fetch all customer
+  const dispatch = useDispatch();
+  const customers = useSelector(
+    (state) => state.customerReducer.customers.customer
+  );
+
+  useEffect(() => {
+    dispatch(fetchAllCustomer());
+  }, [dispatch]);
+
+  // handle credit check start btn
+  const handleStartCheck = (id) => {
+    setCustomerId(id);
+    setShow(true);
+
+  };
+
+  // handle cancel check
+  const handleCancelCheck = () => {
+    setShowCreditCheckForm(false);
+    setCustomerId("");
+    dispatch(fetchAllCustomer());
+  };
+
+   useEffect(() => {
+     window.scrollTo(0, 0);
+   }, [showCreditCheckForm]);
+
+  // handle assignment and start credit check
+  const assignCustomer = async () => { 
+    await fetch(
+      `http://localhost:3030/api/updatecustomer/assignto/${customerId}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          creditAnalyst,
+          isCreditAnalystAssigned: true,
+        }),
+      }
+    );
+  };
+
+  const handleProceed = () => {
+    assignCustomer(); // assign customer to credit analyst
+    setShow(false);
+    setShowCreditCheckForm(true);
+  };
+
+  const handleClose = () => {
+    setShow(false);
+  };
+
   return (
-    <div>
+    <>
+      {!showCreditCheckForm ? (
+        <div>
+          <div>
+            <Headline text="View by:" />
+            <div style={styles.btnBox} className="VBox">
+              <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
+                Applicantion Today
+              </BocButton>
+              <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
+                Date Range
+              </BocButton>
+              <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
+                Specific User
+              </BocButton>
+            </div>
+          </div>
+
+          {/* table section */}
+          <div className="RBox">
+            <DashboardHeadline
+              height="52px"
+              mspacer="2rem 0 -2.55rem -1rem"
+              bgcolor="#145098"
+            ></DashboardHeadline>
+            <div style={styles.table}>
+              <Table borderless hover responsive="sm">
+                <thead style={styles.head}>
+                  <tr>
+                    <th>Customer ID</th>
+                    <th>Name</th>
+                    <th>Employer Name</th>
+                    <th>Loan Requested</th>
+                    <th>Review</th>
+                    <th>Assigned</th>
+                    <th>Credit Check</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {customers?.map((customer) => (
+                    <tr key={customer._id}>
+                      <td>{customer._id}</td>
+                      <td>
+                        {customer.firstname} {customer.lastname}
+                      </td>
+                      {customer.employername ? (
+                        <td>{customer.employername}</td>
+                      ) : (
+                        <td>N/A</td>
+                      )}
+
+                      <td>N{customer.loanamount}</td>
+                      <td>Full Details</td>
+                      {customer.creditCheck.assignment
+                        .isCreditAnalystAssigned ? (
+                        <td>Yes</td>
+                      ) : (
+                        <td>No</td>
+                      )}
+                      <td>
+                        <div>
+                          <BocButton
+                            bradius="12px"
+                            fontSize="14px"
+                            width="80px"
+                            margin="0 4px"
+                            bgcolor="#f64f4f"
+                            func={() => handleStartCheck(customer._id)}
+                          >
+                            Start
+                          </BocButton>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+            <NextPreBtn />
+          </div>
+        </div>
+      ) : (
+        <div>
+          {/* credit check form  */}
+          <CreditCheckForm customerId={customerId} />
+          <div className="row justify-content-right">
+            <div className="col-md-4"></div>
+            <button
+              className="btn col-sm-12 col-md-4 btn-danger"
+              onClick={handleCancelCheck}
+            >
+              Cancel Check
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* pop up modal */}
       <div>
-        <Headline text="View by:" />
-        <div style={styles.btnBox} className="VBox">
-          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Applicantion Today
-          </BocButton>
-          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Date Range
-          </BocButton>
-          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Specific User
-          </BocButton>
-        </div>
+        <Modal show={show} backdrop="static" keyboard={false}>
+          <Modal.Header>
+            <Modal.Title> Assign Customer Notification</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            This customer will be assigned to you for credit check. Do you want
+            to proceed?
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Cancel
+            </Button>
+            <Button variant="primary" onClick={handleProceed}>
+              Assign/Proceed
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
-
-      {/* table section */}
-      <div className="RBox">
-        <DashboardHeadline
-          height="52px"
-          mspacer="2rem 0 -2.55rem -1rem"
-          bgcolor="#145098"
-        ></DashboardHeadline>
-        <div style={styles.table}>
-          <Table borderless hover responsive="sm">
-            <thead style={styles.head}>
-              <tr>
-                <th>Customer ID</th>
-                <th>Name</th>
-                <th>Employer Name</th>
-                <th>Loan Requested</th>
-                <th>Review Application</th>
-                <th>Credit Check</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>C001</td>
-                <td>Cynthia Kola</td>
-                <td>NPF</td>
-                <td>N50,000</td>
-                <td>Full Details</td>
-                <td>
-                  <div>
-                    <BocButton
-                      bradius="12px"
-                      fontSize="14px"
-                      width="80px"
-                      margin="0 4px"
-                      bgcolor="#f64f4f"
-                    >
-                      Start
-                    </BocButton>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>C007</td>
-                <td>Ebuka Akim </td>
-                <td>NCS</td>
-                <td>N500,000</td>
-                <td>Full Details</td>
-                <td>
-                  <div>
-                    <BocButton
-                      bradius="12px"
-                      fontSize="14px"
-                      width="80px"
-                      margin="0 4px"
-                      bgcolor="#f64f4f"
-                    >
-                      Start
-                    </BocButton>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>C003</td>
-                <td>Mariam Bola</td>
-                <td>NPF</td>
-                <td>N35,000</td>
-                <td>Full Details</td>
-                <td>
-                  <div>
-                    <BocButton
-                      bradius="12px"
-                      fontSize="14px"
-                      width="80px"
-                      margin="0 4px"
-                      bgcolor="#f64f4f"
-                    >
-                      Start
-                    </BocButton>
-                  </div>
-                </td>
-              </tr>
-             
-            </tbody>
-          </Table>
-        </div>
-        <NextPreBtn />
-      </div>
-
-      {/* credit check form  */}
-      <CreditCheckForm />
-    </div>
+    </>
   );
 };
 

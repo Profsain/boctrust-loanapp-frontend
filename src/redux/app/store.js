@@ -7,6 +7,7 @@ import wikiReducer from '../reducers/wikiReducer';
 import contactFormReducer from '../reducers/contactFormReducer';
 import branchReducer from '../reducers/branchReducer';
 import accountReducer from '../reducers/accountReducer';
+import customerReducer from '../reducers/customerReducer';
 import disbursementMethodReducer from '../reducers/disbursementMethodReducer';
 import employersManagerReducer from '../reducers/employersManagerReducer';
 import adminUserReducer from '../reducers/adminUserReducer';
@@ -22,6 +23,7 @@ const store = configureStore({
         contactFormReducer,
         branchReducer,
         accountReducer,
+        customerReducer,
         disbursementMethodReducer,
         adminUserReducer,
         employersManagerReducer,

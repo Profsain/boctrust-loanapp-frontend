@@ -5,7 +5,7 @@ import "./Credit.css";
 // function
 import addMoreLenders from "./addMoreLender";
 
-export const PaySlipAnalysis = ({ customerId }) => {
+const PaySlipAnalysis = ({ customerId }) => {
   const [isApplicantCivilianPolice, setIsApplicantCivilianPolice] =
     useState(false);
   const [
@@ -138,7 +138,7 @@ export const PaySlipAnalysis = ({ customerId }) => {
           onSubmit={handleFormSubmit}
         >
           <div className="col-sm-12 col-md-6">
-            <h6 className="creditTitle">Pay Slip Check</h6>
+            <h6 className="creditTitle">Pay Slip Data</h6>
 
             <div className="row mb-3">
               <label htmlFor="netPay" className="col-form-label col-4 mt-2">
@@ -482,3 +482,5 @@ export const PaySlipAnalysis = ({ customerId }) => {
 PaySlipAnalysis.propTypes = {
   customerId: PropTypes.string
 }
+
+export default PaySlipAnalysis;

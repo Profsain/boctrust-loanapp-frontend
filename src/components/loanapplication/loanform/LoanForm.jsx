@@ -79,6 +79,8 @@ const LoanForm = ({ data }) => {
   const ref = useRef();
 
   // calculate interest rate
+  const [loanRepaymentTotal, setLoanRepaymentTotal] = useState(0);
+  const [monthlyRepayment, setMonthlyRepayment] = useState(0);
   const calculateRepayment = () => {
     // get product id from formik values
     const productId = ref.current?.values.loanproduct;
@@ -105,6 +107,11 @@ const LoanForm = ({ data }) => {
 
   const loanTotal = parseInt(currentLoanAmount) + interestResult;
   const monthlyPay = (loanTotal / parseInt(noofmonth)).toFixed();
+  // update repayment
+  useEffect(() => {
+    setLoanRepaymentTotal((loanTotal));
+    setMonthlyRepayment((monthlyPay));
+  }, [loanTotal, monthlyPay])
 
   // state and lgas
   const ngState = NaijaStates.states();
@@ -136,8 +143,10 @@ const LoanForm = ({ data }) => {
       const formData = new FormData();
       formData.append("customerId", customerId);
       formData.append("loanamount", formValues.loanamount);
-      formData.append("careertype", formValues.careertype);
       formData.append("numberofmonth", formValues.numberofmonth);
+      formData.append("loantotalrepayment", loanRepaymentTotal);
+      formData.append("monthlyrepayment", monthlyRepayment);
+      formData.append("careertype", formValues.careertype);
       formData.append("loanproduct", formValues.loanproduct);
       formData.append("loanpurpose", formValues.loanpurpose);
       formData.append("otherpurpose", formValues.otherpurpose);
