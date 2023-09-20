@@ -1518,7 +1518,7 @@ const LoanForm = ({ data }) => {
                   </div>
                 ) : (
                   <div className="CreateAccount">
-                    <CreateAccount handleSubmit={handleSubmit} />
+                    <CreateAccount handleSubmit={handleSubmit}  phoneNumber={ref.current?.values.phonenumber}/>
                   </div>
                 )}
               </>

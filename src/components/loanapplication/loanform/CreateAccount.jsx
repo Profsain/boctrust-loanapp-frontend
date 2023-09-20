@@ -4,14 +4,17 @@ import { useFormikContext } from "formik";
 import ReCAPTCHA from "react-google-recaptcha";
 import ConfirmField from "./ConfirmField";
 import Headline from "../../shared/Headline";
+import PhoneOtp from "./PhoneOtp";
 import "./Form.css";
 
-const CreateAccount = ({ handleSubmit }) => {
+const CreateAccount = ({ handleSubmit, phoneNumber }) => {
   const { values, setFieldValue } = useFormikContext();
   const { password, confirmpassword } = values;
   const [isValid, setIsValid] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+  const [modalShow, setModalShow] = useState(false);
 
   const handleInputChange = (fieldName, event) => {
     // Update the field value as the user types
@@ -43,7 +46,7 @@ const CreateAccount = ({ handleSubmit }) => {
       setErrorMsg("Passwords do not match");
     }
   };
-  
+
   const handleRecaptcha = (value) => {
     if (value) {
       setIsValid(true);
@@ -109,7 +112,7 @@ const CreateAccount = ({ handleSubmit }) => {
               ) : (
                 <button
                   type="button"
-                  onClick={handleSubmit}
+                  onClick={setModalShow(true)}
                   className="BtnAction BtnSecondary BtnCreate"
                 >
                   Create Account
@@ -121,12 +124,20 @@ const CreateAccount = ({ handleSubmit }) => {
         <p className="Error">{errorMsg}</p>
         <p className="Error">{passwordError}</p>
       </div>
+
+      <PhoneOtp
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        submitLoan={handleSubmit}
+        phonenumber={phoneNumber}
+      />
     </div>
   );
 };
 
 CreateAccount.propTypes = {
   handleSubmit: PropTypes.func,
+  phoneNumber: PropTypes.string,
 };
 
 export default CreateAccount;

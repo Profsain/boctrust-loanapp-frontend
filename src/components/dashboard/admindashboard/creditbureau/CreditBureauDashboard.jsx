@@ -8,6 +8,7 @@ import { Table } from "react-bootstrap";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import NextPreBtn from "../../shared/NextPreBtn";
+import PageLoader from "../../shared/PageLoader";
 import "../customers/Customer.css";
 import "../remita/Remita.css";
 
@@ -33,6 +34,10 @@ const styles = {
   pending: {
     color: "#ecaa00",
   },
+  yes: {
+    color: "#5cc51c",
+    fontWeight: "bold",
+  }
 };
 const CreditBureauDashboard = () => {
   const [customerId, setCustomerId] = useState("");
@@ -45,6 +50,7 @@ const CreditBureauDashboard = () => {
   const customers = useSelector(
     (state) => state.customerReducer.customers.customer
   );
+  const status = useSelector((state) => state.customerReducer.status);
 
   useEffect(() => {
     dispatch(fetchAllCustomer());
@@ -54,7 +60,6 @@ const CreditBureauDashboard = () => {
   const handleStartCheck = (id) => {
     setCustomerId(id);
     setShow(true);
-
   };
 
   // handle cancel check
@@ -64,12 +69,12 @@ const CreditBureauDashboard = () => {
     dispatch(fetchAllCustomer());
   };
 
-   useEffect(() => {
-     window.scrollTo(0, 0);
-   }, [showCreditCheckForm]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [showCreditCheckForm]);
 
   // handle assignment and start credit check
-  const assignCustomer = async () => { 
+  const assignCustomer = async () => {
     await fetch(
       `http://localhost:3030/api/updatecustomer/assignto/${customerId}`,
       {
@@ -115,6 +120,7 @@ const CreditBureauDashboard = () => {
           </div>
 
           {/* table section */}
+          {status === "loading" && <PageLoader />}
           <div className="RBox">
             <DashboardHeadline
               height="52px"
@@ -151,24 +157,43 @@ const CreditBureauDashboard = () => {
                       <td>Full Details</td>
                       {customer.creditCheck.assignment
                         .isCreditAnalystAssigned ? (
-                        <td>Yes</td>
+                        <td style={styles.yes}>Yes</td>
                       ) : (
-                        <td>No</td>
+                        <td style={styles.completed}>No</td>
                       )}
-                      <td>
-                        <div>
-                          <BocButton
-                            bradius="12px"
-                            fontSize="14px"
-                            width="80px"
-                            margin="0 4px"
-                            bgcolor="#f64f4f"
-                            func={() => handleStartCheck(customer._id)}
-                          >
-                            Start
-                          </BocButton>
-                        </div>
-                      </td>
+
+                      {!customer.creditCheck.decisionSummary
+                        .isCreditOfficerApproved ? (
+                        <td>
+                          <div>
+                            <BocButton
+                              bradius="12px"
+                              fontSize="14px"
+                              width="80px"
+                              margin="0 4px"
+                              bgcolor="#f64f4f"
+                              func={() => handleStartCheck(customer._id)}
+                            >
+                              Start
+                            </BocButton>
+                          </div>
+                        </td>
+                      ) : (
+                        <td>
+                          <div>
+                            <BocButton
+                              bradius="12px"
+                              fontSize="14px"
+                              width="80px"
+                              margin="0 4px"
+                              bgcolor="#f64f4f"
+                              func={() => handleStartCheck(customer._id)}
+                            >
+                              Done
+                            </BocButton>
+                          </div>
+                        </td>
+                      )}
                     </tr>
                   ))}
                 </tbody>
