@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button, Form } from "react-bootstrap";
+import { authentication } from "../../../firebase-config";
 import {
   getAuth,
   RecaptchaVerifier,
@@ -19,17 +20,6 @@ const styles = {
   }
 };
 
-// generate recaptcha
-const auth = getAuth();
-const setUpRecaptcha = (number) => {
-  const recaptchaVerifier = new RecaptchaVerifier(
-    auth,
-    "recaptcha-container",
-    {}
-  );
-  recaptchaVerifier.render();
-  return signInWithPhoneNumber(auth, number, recaptchaVerifier);
-};
 
 const PhoneOtp = (props) => {
   const [confirmOtp, setConfirmOtp] = useState("");
@@ -39,6 +29,18 @@ const PhoneOtp = (props) => {
   const [flag, setFlag] = useState(false);
 
   const navigate = useNavigate();
+
+  // generate recaptcha
+  const auth = getAuth();
+  const setUpRecaptcha = (number) => {
+    const recaptchaVerifier = new RecaptchaVerifier(
+      authentication,
+      "recaptcha-container",
+      {}
+    );
+    recaptchaVerifier.render();
+    return signInWithPhoneNumber(auth, number, recaptchaVerifier);
+  };
 
   // handle otp request
   const requestOtp = async (e) => {
@@ -64,8 +66,7 @@ const PhoneOtp = (props) => {
     try {
       setErrorMsg("");
       await confirmOtp.confirm(otp);
-      props.onHide();
-      props.handleSubmit();
+      props.onHide(false);
       navigate("/dashboard");
     } catch (error) {
       setErrorMsg(error.message);
@@ -91,8 +92,8 @@ const PhoneOtp = (props) => {
         <p style={styles.error}>{errorMsg}</p>
         <div style={{ display: !flag ? "block" : "none" }}>
           <p>A 6 digit OTP will be sent to your phone number</p>
-          <Form onSubmit={requestOtp}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form onSubmit={(e) => requestOtp(e)}>
+            <Form.Group className="mb-3" controlId="formPhone">
               <Form.Control
                 type="text"
                 value={props.phonenumber}
@@ -104,7 +105,7 @@ const PhoneOtp = (props) => {
             </Form.Group>
             <div id="recaptcha-container" className="mb-3"></div>
             <div style={styles.btnBox}>
-              <Button variant="secondary" onClick={props.onHide}>
+              <Button variant="secondary" onClick={() => props.onHide(false)}>
                 Cancel
               </Button>{" "}
               &nbsp; &nbsp; &nbsp; &nbsp;
@@ -119,7 +120,7 @@ const PhoneOtp = (props) => {
         <div style={{ display: flag ? "block" : "none" }}>
           <p>Enter the 6 digit OTP sent to your phone</p>
           <Form onSubmit={verifyOtp}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formOtp">
               <Form.Control
                 type="text"
                 onChange={(e) => setOtp(e.target.value)}
@@ -127,8 +128,8 @@ const PhoneOtp = (props) => {
               <Form.Text className="text-muted">e.g: 384756</Form.Text>
             </Form.Group>
             <div style={styles.btnBox}>
-              <Button variant="secondary" onClick={props.onHide}>
-                Cancel
+              <Button variant="secondary" onClick={() => setFlag(false)}>
+                Resend OTP
               </Button>{" "}
               &nbsp; &nbsp; &nbsp; &nbsp;
               <Button variant="primary" type="submit">
@@ -145,7 +146,6 @@ const PhoneOtp = (props) => {
 PhoneOtp.propTypes = {
   onHide: PropTypes.func,
   phonenumber: PropTypes.string,
-  handleSubmit: PropTypes.func,
 };
 
 export default PhoneOtp;

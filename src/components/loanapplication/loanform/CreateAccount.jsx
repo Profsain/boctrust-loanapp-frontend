@@ -59,79 +59,82 @@ const CreateAccount = ({ handleSubmit, phoneNumber }) => {
 
   useEffect(() => {
     validPassword();
-    handleValidation();
-    // handleRecaptcha();
-  }, [password, confirmpassword]);
-
-  useEffect(() => {
-    validPassword();
-    // handleRecaptcha();
   }, [password]);
 
+  useEffect(() => {
+    handleValidation();
+  }, [confirmpassword]);
+
+
+  const handleCreateAccount = () => {
+    setModalShow(true);
+    // handleSubmit();
+  };
+
   return (
-    <div className="SignUpContainer">
-      <div className="container SignUpInner">
-        <Headline color="#000" text="Create Login / User Details" />
-        <div className="row">
-          <div className="col-sm-12 col-md-8">
-            <ConfirmField
-              placeholderText="Username"
-              fieldName="username"
-              type="text"
-              values={values}
-              func={handleInputChange}
-            />
-            <ConfirmField
-              placeholderText="Password"
-              fieldName="password"
-              type="password"
-              values={values}
-              func={handleInputChange}
-            />
-            <ConfirmField
-              placeholderText="Confirm Password"
-              fieldName="confirmpassword"
-              type="password"
-              values={values}
-              func={handleInputChange}
-            />
-          </div>
-          <div className="col-sm-12 col-md-4 RecaptchaBox">
-            <div className="RecaptchaBadge ">
-              <ReCAPTCHA
-                sitekey="6Lfm1MgmAAAAAJVycYHLFujgGixm-JkyY2gv-r9o"
-                onChange={handleRecaptcha}
+    <>
+      <div className="SignUpContainer">
+        <div className="container SignUpInner">
+          <Headline color="#000" text="Create Login / User Details" />
+          <div className="row">
+            <div className="col-sm-12 col-md-8">
+              <ConfirmField
+                placeholderText="Username"
+                fieldName="username"
+                type="text"
+                values={values}
+                func={handleInputChange}
+              />
+              <ConfirmField
+                placeholderText="Password"
+                fieldName="password"
+                type="password"
+                values={values}
+                func={handleInputChange}
+              />
+              <ConfirmField
+                placeholderText="Confirm Password"
+                fieldName="confirmpassword"
+                type="password"
+                values={values}
+                func={handleInputChange}
               />
             </div>
+            <div className="col-sm-12 col-md-4 RecaptchaBox">
+              <div className="RecaptchaBadge ">
+                <ReCAPTCHA
+                  sitekey="6Lfm1MgmAAAAAJVycYHLFujgGixm-JkyY2gv-r9o"
+                  onChange={handleRecaptcha}
+                />
+              </div>
 
-            <div className="ProceedBtn">
-              {!isValid ? (
-                <button type="button" className="BtnNoAction">
-                  Create Account
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={setModalShow(true)}
-                  className="BtnAction BtnSecondary BtnCreate"
-                >
-                  Create Account
-                </button>
-              )}
+              <div className="ProceedBtn">
+                {!isValid ? (
+                  <button type="button" className="BtnNoAction">
+                    Create Account
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => handleCreateAccount()}
+                    className="BtnAction BtnSecondary BtnCreate"
+                  >
+                    Create Account
+                  </button>
+                )}
+              </div>
             </div>
           </div>
+          <p className="Error">{errorMsg}</p>
+          <p className="Error">{passwordError}</p>
         </div>
-        <p className="Error">{errorMsg}</p>
-        <p className="Error">{passwordError}</p>
       </div>
-
       <PhoneOtp
         show={modalShow}
         onHide={() => setModalShow(false)}
-        submitLoan={handleSubmit}
         phonenumber={phoneNumber}
       />
-    </div>
+    </>
   );
 };
 
