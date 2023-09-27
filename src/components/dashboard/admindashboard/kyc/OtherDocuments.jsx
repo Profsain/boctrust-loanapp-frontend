@@ -1,11 +1,11 @@
-import Headline from "../../../shared/Headline";
+import PropTypes from "prop-types";
+import { useState } from "react";
 import { Table } from "react-bootstrap";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
-import NextPreBtn from "../../shared/NextPreBtn";
 import "./Kyc.css";
 
-const OtherDocuments = () => {
+const OtherDocuments = ({ customerObj, setShowDocs }) => {
   const styles = {
     btnBox: {
       display: "flex",
@@ -30,23 +30,16 @@ const OtherDocuments = () => {
     },
   };
 
+  const [currentDocs, setCurrentDocs] = useState(customerObj.photocaptureImg);
+
+  const handleDocs = (docs) => {
+    console.log("current docs", docs);
+    setCurrentDocs(docs);
+  };
+
+  console.log("current customer", customerObj);
   return (
     <div>
-      <div>
-        <Headline text="View by:" />
-        <div style={styles.btnBox} className="VBox">
-          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Recent Application
-          </BocButton>
-          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Date Range
-          </BocButton>
-          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Specific User
-          </BocButton>
-        </div>
-      </div>
-
       {/* table section */}
       <div className="Section RBox DCard">
         <DashboardHeadline
@@ -61,37 +54,54 @@ const OtherDocuments = () => {
                 <th>Customer ID</th>
                 <th>Full Name</th>
                 <th>Employment Letters</th>
-                <th>Bank Statements</th>
+                <th>Bank Statements/Slip</th>
                 <th>Time Stamp</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>C001</td>
-                <td>Cynthia Bola</td>
-                <td style={styles.completed}>View</td>
-                <td style={styles.approved}>View</td>
-                <td>03-03-2023</td>
+                <td>-</td>
+                <td>-</td>
+                <td style={styles.completed}>-</td>
+                <td style={styles.approved}>-</td>
+                <td>-</td>
               </tr>
               <tr>
-                <td>C003</td>
-                <td>Ekene Ikoku</td>
-                <td style={styles.completed}>View</td>
-                <td style={styles.approved}>View</td> <td>04-03-2023</td>
-              </tr>
-              <tr>
-                <td>C0018</td>
-                <td>Akin Tinibu</td>
-                <td style={styles.completed}>View</td>
-                <td style={styles.approved}>View</td> <td>05-03-2023</td>
+                <td>{customerObj.customerId}</td>
+                <td>{customerObj.firstname + " " + customerObj.lastname}</td>
+                <td
+                  onClick={() => handleDocs(customerObj.employmentletter)} className="viewDocsBtn"
+                  style={styles.completed}>View</td>
+                <td
+                  onClick={() => handleDocs(customerObj.uploadpayslip)} className="viewDocsBtn"
+                  style={styles.approved}>View</td>
+                <td>-</td>
               </tr>
             </tbody>
           </Table>
         </div>
-        <NextPreBtn />
+        <div className="checkBtn">
+          <BocButton 
+            margin="1rem 0 3rem 0" 
+            bgcolor="#ecaa00"
+            bradius="25px"
+            width="200px"
+            func={() => setShowDocs(false)}
+          >
+            Close Docs View
+          </BocButton>
+        </div>
+        <div className="checkBtn">
+          <img src={currentDocs} alt="other docs" />
+        </div>
       </div>
     </div>
   );
+};
+
+OtherDocuments.propTypes = {
+  customerObj: PropTypes.string,
+  setShowDocs: PropTypes.func,
 };
 
 export default OtherDocuments;

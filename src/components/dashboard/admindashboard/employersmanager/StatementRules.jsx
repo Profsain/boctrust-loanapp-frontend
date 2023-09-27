@@ -49,7 +49,7 @@ const StatementRules = () => {
     (state) => state.employersManagerReducer.employers.employers
   );
 
-  const employerOptions = employers.map((employer) => ({
+  const employerOptions = employers?.map((employer) => ({
     value: employer._id,
     label: employer.employersName,
   }));

@@ -1,4 +1,4 @@
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import "../../dashboardcomponents/transferdashboard/Transfer.css";
 import "./Credit.css";
@@ -6,6 +6,7 @@ import PaySlipAnalysis from "./PaySlipAnalysis";
 import DecisionSummary from "./DecisionSummary";
 import PdfDocument from "../../../shared/PdfDocument";
 // import BocButton from "../../shared/BocButton";
+import generateFirstCentralTicket from "./generateTicket";
 
 const creditBureauOptions = [
   { value: "first_central", label: "First Central" },
@@ -201,33 +202,69 @@ const CreditCheckhtmlForm = ({ customerId }) => {
   // login to first central bureau
   const [dataTicket, setDataTicket] = useState("");
 
-  const loginToFirstCentral = async () => {
-    try {
-      const response = await fetch(
-        "https://uat.firstcentralcreditbureau.com/RestAPI/firstCentral /login",
-        {
-          username: "BOCTRUSTAPI",
-          password: "boctrustAPI@100%",
-        }
-      );
+  // const loginToFirstCentral = async () => {
+  //   // Define the API endpoint and request headers
+  //   const apiUrl =
+  //     "https://uat.firstcentralcreditbureau.com/firstcentralrestv2//login";
 
-      const data = await response.json();
-      console.log("Ticket data", data);
+  //   const requestOptions = {
+  //     method: "POST",
+  //     mode: "cors",
+  //     headers: {
+  //       accept: "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       username: "demo",
+  //       password: "demo@123",
+  //     }),
+  //   };
 
-      setDataTicket(data.data.ticket);
-    } catch (error) {
-      console.error("Login error:", error);
-    }
-  };
+  //   // Make the fetch request to the API
+  //   await fetch(apiUrl, requestOptions)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log("Data fetch", data)
+  //       setDataTicket(data.DataTicket); // Store the
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
-  useEffect(() => {
-    loginToFirstCentral();
-  }, []); // first central bureau end here
+  //  useEffect(() => {
+  //    // Define the API endpoint and request headers
+  //    const apiUrl =
+  //      "https://uat.firstcentralcreditbureau.com/firstcentralrestv2//login";
+  //    const requestOptions = {
+  //      method: "POST",
+  //      mode: "cors",
+  //      headers: {
+  //        "Content-Type": "application/json",
+  //      },
+  //      body: JSON.stringify({
+  //        username: "demo",
+  //        password: "demo@123",
+  //      }),
+  //    };
+
+  //    // Make the fetch request to the API
+  //    fetch(apiUrl, requestOptions)
+  //      .then((response) => response.json())
+  //      .then((data) => {
+  //        setDataTicket(data.DataTicket); // Store the
+  //      })
+  //      .catch((error) => {
+  //         console.log(error);
+
+  //      });
+  //  }, []);
 
   const handleBureauCheck = async (e) => {
     e.preventDefault();
     if (bureauData.bureauName === "first_central") {
       console.log("first central check");
+      // login to first central
+      // loginToFirstCentral();
     }
 
     if (bureauData.bureauName === "crc_bureau") {
@@ -274,7 +311,6 @@ const CreditCheckhtmlForm = ({ customerId }) => {
     <>
       {formStep === 1 && (
         <div className="TransContainer RBox">
-
           {/* step 1 */}
           <div className="row">
             {/* credit DB check */}
@@ -681,7 +717,7 @@ const CreditCheckhtmlForm = ({ customerId }) => {
 };
 
 CreditCheckhtmlForm.propTypes = {
-  customerId: PropTypes.string
-}
+  customerId: PropTypes.string,
+};
 
 export default CreditCheckhtmlForm;

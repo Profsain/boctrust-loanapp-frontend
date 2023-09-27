@@ -39,6 +39,7 @@ const styles = {
     fontWeight: "bold",
   }
 };
+
 const CreditBureauDashboard = () => {
   const [customerId, setCustomerId] = useState("");
   const [showCreditCheckForm, setShowCreditCheckForm] = useState(false);
@@ -143,7 +144,7 @@ const CreditBureauDashboard = () => {
                 <tbody>
                   {customers?.map((customer) => (
                     <tr key={customer._id}>
-                      <td>{customer._id}</td>
+                      <td>{customer.customerId}</td>
                       <td>
                         {customer.firstname} {customer.lastname}
                       </td>

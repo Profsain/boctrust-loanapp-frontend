@@ -95,11 +95,6 @@ const UsersList = ({ count, searchTerms }) => {
       {status === "loading" && <PageLoader />}
 
       <div className="ListSec">
-        {/* <DashboardHeadline
-          height="52px"
-          mspacer="2rem 0 -2.7rem 0.6rem"
-          bgcolor="#145098"
-        ></DashboardHeadline> */}
         <div style={styles.table}>
           <Table hover responsive="sm">
             <thead style={styles.head}>
