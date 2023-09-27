@@ -1,8 +1,12 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import Headline from "../../../shared/Headline";
 import { Table } from "react-bootstrap";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import NextPreBtn from "../../shared/NextPreBtn";
+import PageLoader from "../../shared/PageLoader";
 import "./Kyc.css";
 
 const ReviewSignature = () => {
@@ -30,6 +34,18 @@ const ReviewSignature = () => {
     },
   };
 
+  // fetch all customer
+  const dispatch = useDispatch();
+  const customers = useSelector(
+    (state) => state.customerReducer.customers.customer
+  );
+  const status = useSelector((state) => state.customerReducer.status);
+
+  useEffect(() => {
+    dispatch(fetchAllCustomer());
+  }, [dispatch]);
+
+
   return (
     <div>
       <div>
@@ -47,6 +63,9 @@ const ReviewSignature = () => {
         </div>
       </div>
 
+      {/* data loader */}
+      {status === "loading" && <PageLoader />}
+
       {/* table section */}
       <div className="Section RBox DCard">
         <DashboardHeadline
@@ -60,57 +79,59 @@ const ReviewSignature = () => {
               <tr>
                 <th>Customer ID</th>
                 <th>Full Name</th>
-                <th>Govt ID Submitted</th>
-                <th>Facial Capture Done</th>
                 <th>Is there a match</th>
-                <th>View</th>
+                <th>Valid ID Submitted</th>
+                <th>Facial Capture Done</th>
+                <th>Valid Signature</th>
+                <th>KYC Approved</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>C001</td>
-                <td>Cynthia Bola</td>
-                <td>Yes </td>
-                <td>Yes </td>
-                <td>Yes </td>
-                <td style={styles.padding}>View</td>
-              </tr>
-              <tr>
-                <td>C003</td>
-                <td>Ekene Ikoku</td>
-                <td>Yes </td>
-                <td>Yes </td>
-                <td>No </td>
-                <td style={styles.padding}>View </td>
-              </tr>
-              <tr>
-                <td>C0018</td>
-                <td>Akin Tinibu</td>
-                <td>Yes </td>
-                <td>Yes </td>
-                <td>Yes </td>
-                <td style={styles.padding}>View </td>
-              </tr>
+              {customers?.map((customer) => (
+                <tr key={customer._id}>
+                  <td>{customer.customerId}</td>
+                  <td>{customer.firstname + " " + customer.lastname}</td>
+                  <td>
+                    {customer.kyc.isFacialMatch ? (
+                      <span style={styles.approved}>Yes</span>
+                    ) : (
+                      <span style={styles.completed}>No</span>
+                    )}
+                  </td>
+                  <td>
+                    {customer.kyc.isIdCardValid ? (
+                      <span style={styles.approved}>Yes</span>
+                    ) : (
+                      <span style={styles.completed}>No</span>
+                    )}
+                  </td>
+                  <td>
+                    {customer.kyc.isPhotoCaptured ? (
+                      <span style={styles.approved}>Yes</span>
+                    ) : (
+                      <span style={styles.completed}>No</span>
+                    )}
+                  </td>
+                  <td>
+                    {customer.kyc.isSignatureValid ? (
+                      <span style={styles.approved}>Yes</span>
+                    ) : (
+                      <span style={styles.completed}>No</span>
+                    )}
+                  </td>
+                  <td>
+                    {customer.kyc.isKycApproved ? (
+                      <span style={styles.approved}>Yes</span>
+                    ) : (
+                      <span style={styles.completed}>No</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </div>
         <NextPreBtn />
-      </div>
-
-      {/* kyc detail section */}
-      <div className="KSection">
-        <div className="row">
-          <div className="col-sm-12 col-md-6">
-            <div>
-              <Headline fontSize="24px" text="Signature View" />
-              <img
-                src="images/signature1.png"
-                alt="official signature"
-                className="Signature"
-              />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

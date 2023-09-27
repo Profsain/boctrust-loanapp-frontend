@@ -34,6 +34,7 @@ const  initialValues = (loanamount, careertype, captureImg) => ({
     otheremployername: "",
     employeraddress: "",
     employmentstartdate: "",
+    employmentletter: "",
     netmonthlyincome: "",
     totalannualincome: "",
     officialemail: "",

@@ -57,6 +57,7 @@ const LoanForm = ({ data }) => {
   const [captureImg, setCaptureImg] = useState("");
   const [idCard, setIdCard] = useState("");
   const [paySlip, setPaySlip] = useState("");
+  const [employmentLetter, setEmploymentLetter] = useState("");
   const [signature, setSignature] = useState("");
 
   // scroll to the top of the page
@@ -72,8 +73,9 @@ const LoanForm = ({ data }) => {
 
     ref.current?.setFieldValue("valididcard", idCard);
     ref.current?.setFieldValue("uploadpayslip", paySlip);
+    ref.current?.setFieldValue("employmentletter", employmentLetter);
     ref.current?.setFieldValue("signature", signature);
-  }, [captureImg, idCard, paySlip, signature]);
+  }, [captureImg, idCard, paySlip, employmentLetter, signature]);
 
   // get current formik value
   const ref = useRef();
@@ -181,6 +183,7 @@ const LoanForm = ({ data }) => {
       formData.append("otheremployername", formValues.otheremployername);
       formData.append("employeraddress", formValues.employeraddress);
       formData.append("employmentstartdate", formValues.employmentstartdate);
+      formData.append("employmentletter", formValues.employmentletter);
       formData.append("netmonthlyincome", formValues.netmonthlyincome);
       formData.append("totalannualincome", formValues.totalannualincome);
       formData.append("officialemail", formValues.officialemail);
@@ -751,7 +754,7 @@ const LoanForm = ({ data }) => {
                                               <input
                                                 type="file"
                                                 name="valididcard"
-                                                accept="image/png, .svg, .jpg, .jpeg, .pdf"
+                                                accept="image/png, .jpg, .jpeg"
                                                 className="UploadFile"
                                                 onChange={(e) =>
                                                   convertFile(e, setIdCard)
@@ -791,6 +794,7 @@ const LoanForm = ({ data }) => {
                                       )}
                                       <hr />
                                     </div>
+
                                     {/* Next off kin information */}
                                     <div className="NextOfKin">
                                       <Headline
@@ -902,7 +906,7 @@ const LoanForm = ({ data }) => {
                                     {employers?.map((employer) => (
                                       <option
                                         key={employer._id}
-                                        value={employer._id}
+                                        value={employer.employersName}
                                       >
                                         {employer.employersName}
                                       </option>
@@ -962,7 +966,7 @@ const LoanForm = ({ data }) => {
                                     <input
                                       type="file"
                                       name="uploadpayslip"
-                                      accept="image/png, .svg, .jpg, .jpeg, .pdf"
+                                      accept="image/png, .svg, .jpg, .jpeg"
                                       className="UploadFile"
                                       onChange={(e) =>
                                         convertFile(e, setPaySlip)
@@ -970,6 +974,28 @@ const LoanForm = ({ data }) => {
                                     />
                                   </div>
                                 ) : null}
+
+                                {/* employement card upload */}
+                                {careertype.toLowerCase() ===
+                                "private employee" ? (
+                                  <div className="FileUploadBox ">
+                                    <Headline
+                                      color="#000"
+                                      fontSize="22px"
+                                      text="Upload Pay Slip"
+                                    />
+                                    <input
+                                      type="file"
+                                      name="employmentletter"
+                                      accept="image/png, .svg, .jpg, .jpeg"
+                                      className="UploadFile"
+                                      onChange={(e) =>
+                                        convertFile(e, setEmploymentLetter)
+                                      }
+                                    />
+                                  </div>
+                                ) : null}
+                               
                               </div>
 
                               <div className="ButtonContainer">
@@ -1518,7 +1544,10 @@ const LoanForm = ({ data }) => {
                   </div>
                 ) : (
                   <div className="CreateAccount">
-                    <CreateAccount handleSubmit={handleSubmit}  phoneNumber={ref.current?.values.phonenumber}/>
+                    <CreateAccount
+                      handleSubmit={handleSubmit}
+                      phoneNumber={ref.current?.values.phonenumber}
+                    />
                   </div>
                 )}
               </>

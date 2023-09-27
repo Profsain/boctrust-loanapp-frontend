@@ -34,6 +34,7 @@ const formData = (formValues) => {
     formData.append("otheremployername", formValues.otheremployername);
     formData.append("employeraddress", formValues.employeraddress);
     formData.append("employmentstartdate", formValues.employmentstartdate);
+    formData.append("employmentletter", formValues.employmentletter);
     formData.append("netmonthlyincome", formValues.netmonthlyincome); 
     formData.append("totalannualincome", formValues.totalannualincome);
     formData.append("officialemail", formValues.officialemail);

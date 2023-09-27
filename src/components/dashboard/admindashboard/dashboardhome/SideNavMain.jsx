@@ -256,17 +256,8 @@ const SideNavMain = ({ onMenuItemClick }) => {
               <li id="kyc" onClick={onMenuItemClick}>
                 Do KYC Review
               </li>
-              <li id="governmentid" onClick={onMenuItemClick}>
-                Government IDs
-              </li>
-              <li id="facialcapture" onClick={onMenuItemClick}>
-                Facial Capture
-              </li>
               <li id="signature" onClick={onMenuItemClick}>
-                Review & Signature
-              </li>
-              <li id="otherdocs" onClick={onMenuItemClick}>
-                Other Document
+                Review Report
               </li>
             </ul>
           </div>
