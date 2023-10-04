@@ -258,7 +258,50 @@ const CreditCheckhtmlForm = ({ customerId }) => {
 
   //      });
   //  }, []);
+  
+  const sendCreditRequest = async() => {
+    const apiUrl =
+      "https://webserver.creditreferencenigeria.net/JsonLiveRequest/JsonService.svc/CIRRequest/ProcessRequestJson";
 
+    // Define the request payload
+    const requestBody = {
+      Request:
+        "{'@REQUEST_ID': '1','REQUEST_PARAMETERS': {   'REPORT_PARAMETERS': {      '@REPORT_ID': '2',      '@SUBJECT_TYPE': '1',      '@RESPONSE_TYPE': '5'   },   'INQUIRY_REASON': {      '@CODE': '1'   },   'APPLICATION': {      '@PRODUCT': '017',      '@NUMBER': '232',      '@AMOUNT': '15000',      '@CURRENCY': 'NGN'   }},'SEARCH_PARAMETERS': {   '@SEARCH-TYPE': '4',   'BVN_NO': '22237445320' }}",
+      UserName: "your_user_name_goes_here",
+      Password: "your_password_goes_here",
+    };
+
+    // Define the request headers
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    // Define the fetch options
+    const requestOptions = {
+      method: "POST",
+      headers,
+      body: JSON.stringify(requestBody),
+    };
+
+    try {
+      // Make the API request
+      const response = await fetch(apiUrl, requestOptions);
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("API Response:", responseData);
+        // You can process the API response here
+      } else {
+        console.error(
+          "API Request Failed:",
+          response.status,
+          response.statusText
+        );
+      }
+    } catch (error) {
+      console.error("API Request Error:", error);
+    }
+  }
   const handleBureauCheck = async (e) => {
     e.preventDefault();
     if (bureauData.bureauName === "first_central") {

@@ -192,6 +192,7 @@ const LoanForm = ({ data }) => {
       // financial info
       formData.append("salarybankname", formValues.salarybankname);
       formData.append("salaryaccountnumber", formValues.salaryaccountnumber);
+      formData.append("bankcode", formValues.bankcode);
       formData.append("sameasaboveaccount", formValues.sameasaboveaccount);
       formData.append("disbursementbankname", formValues.disbursementbankname);
       formData.append(
@@ -1053,11 +1054,12 @@ const LoanForm = ({ data }) => {
                                   </div>
                                 </div>
 
-                                <div id="Disbursement">
+                                <div className="InputRow">
+                                     <div id="Disbursement">
                                   <Headline
                                     align="left"
-                                    fontSize="22px"
-                                    spacer="35px 0 -16px 0"
+                                    fontSize="18px"
+                                    spacer="35px 128px -16px 0"
                                     color="#000"
                                     text="Disbursement Account Details"
                                   />
@@ -1070,7 +1072,14 @@ const LoanForm = ({ data }) => {
                                       Same as above Account
                                     </label>
                                   </div>
-
+                                </div>
+                                 <TextInput
+                                      label="Bank Code"
+                                      name="bankcode"
+                                      type="text"
+                                    />
+                                </div>
+                               
                                   {!values.sameasaboveaccount && (
                                     <div className="InputRow">
                                       <TextInput
@@ -1086,7 +1095,6 @@ const LoanForm = ({ data }) => {
                                       />
                                     </div>
                                   )}
-                                </div>
 
                                 <div id="ExistingLoan">
                                   <Headline

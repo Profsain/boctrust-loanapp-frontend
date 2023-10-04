@@ -1,11 +1,15 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import Headline from "../../../shared/Headline";
 import { Table } from "react-bootstrap";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
+import PageLoader from "../../shared/PageLoader";
 import NextPreBtn from "../../shared/NextPreBtn";
-import "../customers/Customer.css";
+import CheckSalaryDetails from "./CheckSalaryDetails";
 import "./Remita.css";
-import RowCard from "./RowCard";
+import "../customers/Customer.css";
 
 const CheckSalaryHistory = () => {
   const styles = {
@@ -31,6 +35,79 @@ const CheckSalaryHistory = () => {
       color: "#ecaa00",
     },
   };
+
+  // fetch all customer
+  const dispatch = useDispatch();
+  const customers = useSelector(
+    (state) => state.customerReducer.customers.customer
+  );
+  const status = useSelector((state) => state.customerReducer.status);
+  const [customerObj, setCustomerObj] = useState({});
+  const [openDetails, setOpenDetails] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    dispatch(fetchAllCustomer());
+  }, [dispatch]);
+
+  // handle salary check
+  const handleCheck = async (id) => {
+    // find customer by id and update the customerObj
+    const customer = customers.find((customer) => customer._id === id);
+    setCustomerObj(customer);
+    setIsLoading(true);
+
+    // get customer history from remita
+    const response = await fetch(
+      "http://localhost:3030/api/remita/get-salary-history",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          authorisationCode: customer.bvnnumber,
+          firstName: customer.firstname,
+          lastName: customer.lastname,
+          accountNumber: customer.salaryaccountnumber,
+          bankCode: customer.bankcode,
+          bvn: customer.bvnnumber || "041",
+          authorisationChannel: "WEB",
+        }),
+      //   body: JSON.stringify({
+      //     authorisationCode: "{{authorization}}",
+      //     firstName: "Teresa",
+      //     lastName: "Stoker",
+      //     accountNumber: "5012284010",
+      //     bankCode: "22222222223",
+      //     bvn: "023",
+      //     authorisationChannel: "USSD",
+      //   }),
+      }
+    );
+    // const data = await response.json();
+    console.log("response", response)
+    await fetch("http://localhost:3030/api/email/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: "profsainhm@gmail.com",
+        subject: "Salary Check",
+        html: `<h1>Salary Check</h1>
+        <p>Dear ${customer.firstname} ${customer.lastname},</p>
+        <p>Your salary check has been completed.</p>
+        <p>Kindly login to your account to view the details.</p>
+        <p>Thank you.</p>
+        `,
+      }),
+    });
+    
+    setIsLoading(false);
+    setOpenDetails(true);
+  };
+
   return (
     <div>
       <div>
@@ -48,6 +125,8 @@ const CheckSalaryHistory = () => {
         </div>
       </div>
 
+      {/* data loader */}
+      {status === "loading" && <PageLoader />}
       {/* table section */}
       <div className="RBox">
         <DashboardHeadline
@@ -64,50 +143,42 @@ const CheckSalaryHistory = () => {
                 <th>Account Number</th>
                 <th>BVN</th>
                 <th>Do Check</th>
-                <th>Actions</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Bola</td>
-                <td>Cynthia</td>
-                <td>745787698</td>
-                <td>4531232367</td>
-                <td style={styles.padding}>View</td>
-                <td>
-                  <div>
-                    <BocButton
-                      bradius="12px"
-                      fontSize="14px"
-                      width="80px"
-                      margin="0 4px"
-                      bgcolor="#f64f4f"
-                    >
-                      Drop
-                    </BocButton>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Ola</td>
-                <td>John</td>
-                <td>745787666</td>
-                <td>4534432345</td>
-                <td style={styles.padding}>View</td>
-                <td>
-                  <div>
-                    <BocButton
-                      bradius="12px"
-                      fontSize="14px"
-                      width="90px"
-                      margin="0 4px"
-                      bgcolor="#7dd50e"
-                    >
-                      Process
-                    </BocButton>
-                  </div>
-                </td>
-              </tr>
+              {customers?.map((customer) => {
+                if (customer.kyc.isKycApproved) {
+                  return (
+                    <tr key={customer._id}>
+                      <td>{customer.firstname}</td>
+                      <td>{customer.lastname}</td>
+                      <td>{customer.salaryaccountnumber}</td>
+                      <td>{customer.bvnnumber}</td>
+                      <td
+                        style={styles.pending}
+                        className="startBtn"
+                        onClick={() => handleCheck(customer._id)}
+                      >
+                        Start
+                      </td>
+                      <td>
+                        <div>
+                          <BocButton
+                            bradius="12px"
+                            fontSize="14px"
+                            width="90px"
+                            margin="0 4px"
+                            bgcolor="#f64f4f"
+                          >
+                            Pending
+                          </BocButton>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                }
+              })}
             </tbody>
           </Table>
         </div>
@@ -115,51 +186,8 @@ const CheckSalaryHistory = () => {
       </div>
 
       {/* details section */}
-      <div className="DetailsCon">
-        <div className="RowSection">
-          <RowCard title="Customer ID" text="10098" />
-          <RowCard title="Account Number" text="1023456412" />
-        </div>
-        <div className="RowSection">
-          <RowCard title="Bank Code" text="10293" />
-          <RowCard title="BVN" text="4343254676" />
-          <RowCard title="First Payment Date" text="29-07-2023" />
-        </div>
-        <hr />
-        <div className="RowSection">
-          <div id="PastSalary">
-            <Headline
-              align="left"
-              fontSize="18px"
-              text="Past Salary Payment Details"
-            />
-            <div>
-              <select>
-                <option value="">Select Number of Months</option>
-                <option value="">6 months</option>
-                <option value="">12 months</option>
-              </select>
-            </div>
-            <RowCard title="Salary Payment Date" text="30-06-2923" />
-            <RowCard title="Salary Amount" text="150,000" />
-            <RowCard title="Account Number" text="1023452112" />
-            <RowCard title="Bank Code" text="10234" />
-          </div>
-          <div id="LoanDetails">
-            <Headline
-              align="left"
-              fontSize="18px"
-              text="Loan History Details"
-            />
-            <RowCard title="Loan Provider" text="GTB" />
-            <RowCard title="Loan Amount" text="100,000" />
-            <RowCard title="Loan Disbursement Date" text="02-04-2023" />
-            <RowCard title="Outstanding Amount" text="50,000" />
-            <RowCard title="Repayment Amount" text="20,000" />
-            <RowCard title="Repayment Frequency" text="Monthly" />
-          </div>
-        </div>
-      </div>
+      {isLoading ? <PageLoader /> : null}
+      {openDetails && <CheckSalaryDetails customerObj={customerObj} setOpenDetails={setOpenDetails} />}
     </div>
   );
 };

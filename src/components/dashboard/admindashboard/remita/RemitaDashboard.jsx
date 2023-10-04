@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import { Table } from "react-bootstrap";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import DetailsCard from "./DetailsCard";
@@ -26,10 +29,10 @@ const RemitaDashboard = () => {
       margin: "1.9rem 4rem ",
     },
     inputBox: {
-      color: "#145098"
+      color: "#145098",
     },
     spanIn: {
-      paddingRight: "1.5rem"
+      paddingRight: "1.5rem",
     },
     head: {
       color: "#fff",
@@ -45,6 +48,19 @@ const RemitaDashboard = () => {
       color: "#ecaa00",
     },
   };
+
+  // fetch all customer
+  const dispatch = useDispatch();
+  const customers = useSelector(
+    (state) => state.customerReducer.customers.customer
+  );
+  const status = useSelector((state) => state.customerReducer.status);
+  useEffect(() => {
+    dispatch(fetchAllCustomer());
+  }, [dispatch]);
+  // console.log("status", status)
+  // console.log("customers", customers)
+
   return (
     <div className="DetailSection DCard" style={styles.container}>
       <div>

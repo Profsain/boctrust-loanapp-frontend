@@ -1,6 +1,6 @@
+import PropTypes from "prop-types";
+import "./Remita.css";
 
-
-import PropTypes from "prop-types"
 const DetailsCard = ({title, text}) => {
     const styles = {
         container: {

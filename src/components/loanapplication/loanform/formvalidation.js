@@ -48,6 +48,7 @@ const validationSchema = Yup.object({
 
   // bank details and disbursement
   salarybankname: Yup.string().required("Required"),
+  bankcode: Yup.string().required("Required"),
   salaryaccountnumber: Yup.string().required("Required").matches(/^[0-9]+$/, "Must be only digits").min(10, 'Must be exactly 10 digits').max(10, 'Must be exactly 10 digits'),
   sameasaboveaccount: Yup.boolean().required("Required"),
   disbursmentbankname: Yup.string().required("Required"),

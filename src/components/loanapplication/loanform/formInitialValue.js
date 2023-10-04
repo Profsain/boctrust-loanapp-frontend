@@ -43,6 +43,7 @@ const  initialValues = (loanamount, careertype, captureImg) => ({
     // financial information
     salarybankname: "",
     salaryaccountnumber: "",
+    bankcode: "",
     sameasaboveaccount: false,
     disbursementbankname: "",
     disbursementaccountnumber: "",

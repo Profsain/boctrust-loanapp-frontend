@@ -1,9 +1,13 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import Headline from "../../../shared/Headline";
 import { Table } from "react-bootstrap";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import NextPreBtn from "../../shared/NextPreBtn";
 import DetailsCard from "./DetailsCard";
+import PageLoader from "../../shared/PageLoader";
 
 const MandateHistory = () => {
   const styles = {
@@ -20,6 +24,18 @@ const MandateHistory = () => {
       fontSize: "0.9rem",
     },
   };
+
+  // fetch all customer
+  const dispatch = useDispatch();
+  const customers = useSelector(
+    (state) => state.customerReducer.customers.customer
+  );
+  const status = useSelector((state) => state.customerReducer.status);
+  useEffect(() => {
+    dispatch(fetchAllCustomer());
+  }, [dispatch]);
+  // console.log("status", status);
+  // console.log("customers", customers);
   return (
     <div>
       <div>
@@ -37,6 +53,8 @@ const MandateHistory = () => {
         </div>
       </div>
 
+      {/* data loader */}
+      {status === "loading" && <PageLoader />}
       {/* table section */}
       <div className="RBox">
         <DashboardHeadline
