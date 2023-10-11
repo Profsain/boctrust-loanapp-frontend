@@ -5,8 +5,11 @@ import "./Credit.css";
 import PaySlipAnalysis from "./PaySlipAnalysis";
 import DecisionSummary from "./DecisionSummary";
 import PdfDocument from "../../../shared/PdfDocument";
+import PageLoader from "../../shared/PageLoader";
+
 // import BocButton from "../../shared/BocButton";
-import generateFirstCentralTicket from "./generateTicket";
+// import generateFirstCentralTicket from "./generateTicket";
+import crcCheckApi from "./crcCheck";
 
 const creditBureauOptions = [
   { value: "first_central", label: "First Central" },
@@ -258,52 +261,21 @@ const CreditCheckhtmlForm = ({ customerId }) => {
 
   //      });
   //  }, []);
-  
-  const sendCreditRequest = async() => {
-    const apiUrl =
-      "https://webserver.creditreferencenigeria.net/JsonLiveRequest/JsonService.svc/CIRRequest/ProcessRequestJson";
 
-    // Define the request payload
-    const requestBody = {
-      Request:
-        "{'@REQUEST_ID': '1','REQUEST_PARAMETERS': {   'REPORT_PARAMETERS': {      '@REPORT_ID': '2',      '@SUBJECT_TYPE': '1',      '@RESPONSE_TYPE': '5'   },   'INQUIRY_REASON': {      '@CODE': '1'   },   'APPLICATION': {      '@PRODUCT': '017',      '@NUMBER': '232',      '@AMOUNT': '15000',      '@CURRENCY': 'NGN'   }},'SEARCH_PARAMETERS': {   '@SEARCH-TYPE': '4',   'BVN_NO': '22237445320' }}",
-      UserName: "your_user_name_goes_here",
-      Password: "your_password_goes_here",
-    };
+  // credit bureau check operation
+  const [bureauReport, setBureauReport] = useState({});
+  const [bureauLoading, setBureauLoading] = useState(false);
 
-    // Define the request headers
-    const headers = {
-      "Content-Type": "application/json",
-    };
-
-    // Define the fetch options
-    const requestOptions = {
-      method: "POST",
-      headers,
-      body: JSON.stringify(requestBody),
-    };
-
-    try {
-      // Make the API request
-      const response = await fetch(apiUrl, requestOptions);
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("API Response:", responseData);
-        // You can process the API response here
-      } else {
-        console.error(
-          "API Request Failed:",
-          response.status,
-          response.statusText
-        );
-      }
-    } catch (error) {
-      console.error("API Request Error:", error);
+  // update bureau loading
+  const updateBureauLoading = (value) => {
+    if (value === "success") {
+      setBureauLoading(true);
     }
   }
+
   const handleBureauCheck = async (e) => {
     e.preventDefault();
+    setBureauLoading(true);
     if (bureauData.bureauName === "first_central") {
       console.log("first central check");
       // login to first central
@@ -311,13 +283,38 @@ const CreditCheckhtmlForm = ({ customerId }) => {
     }
 
     if (bureauData.bureauName === "crc_bureau") {
-      console.log("crc bureau check");
+      try {
+         const bvn = bureauData.bvnNo;
+         const response = await fetch("http://localhost:3030/api/crc/getcrc", {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify({ bvn }),
+         });
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        // set bureau report 
+        setBureauReport(data.data);
+        // set bureau loading
+        setBureauLoading(false);
+        // updateBureauLoading("success");
+      } catch (error) {
+        throw new Error(error.message);
+      }
     }
 
     if (bureauData.bureauName === "credit_register") {
       console.log("credit register check");
     }
   };
+
+  // check if bureauReport is not empty
+  if (Object.keys(bureauReport).length > 0) {
+    console.log("bureau report", bureauReport);
+  }
+
 
   // handle next prev form step start
   const [formStep, setFormStep] = useState(1);
@@ -346,9 +343,6 @@ const CreditCheckhtmlForm = ({ customerId }) => {
     window.scrollTo(0, 0);
   }, [formStep]);
 
-  console.log("step", formStep);
-  console.log("Customer ID: ", customerId);
-  // next prev form step end here
 
   return (
     <>
@@ -614,6 +608,10 @@ const CreditCheckhtmlForm = ({ customerId }) => {
                   </button>
                 </div>
               </form>
+            </div>
+            {/* loading bar */}
+            <div>
+              {bureauLoading && <PageLoader />}
             </div>
           </div>
 
