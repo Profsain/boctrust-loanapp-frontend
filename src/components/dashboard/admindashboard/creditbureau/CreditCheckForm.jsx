@@ -263,15 +263,9 @@ const CreditCheckhtmlForm = ({ customerId }) => {
   //  }, []);
 
   // credit bureau check operation
+
   const [bureauReport, setBureauReport] = useState({});
   const [bureauLoading, setBureauLoading] = useState(false);
-
-  // update bureau loading
-  const updateBureauLoading = (value) => {
-    if (value === "success") {
-      setBureauLoading(true);
-    }
-  }
 
   const handleBureauCheck = async (e) => {
     e.preventDefault();
@@ -307,6 +301,29 @@ const CreditCheckhtmlForm = ({ customerId }) => {
 
     if (bureauData.bureauName === "credit_register") {
       console.log("credit register check");
+       try {
+         const bvn = bureauData.bvnNo;
+         const response = await fetch(
+           "http://localhost:3030/api/creditregistry/getreport",
+           {
+             method: "POST",
+             headers: { "Content-Type": "application/json" },
+             body: JSON.stringify({ bvn }),
+           }
+         );
+         if (!response.ok) {
+           throw new Error("Network response was not ok");
+         }
+
+         const data = await response.json();
+         // set bureau report
+         setBureauReport(data.data);
+         // set bureau loading
+         setBureauLoading(false);
+         // updateBureauLoading("success");
+       } catch (error) {
+         throw new Error(error.message);
+       }
     }
   };
 
