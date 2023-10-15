@@ -202,68 +202,6 @@ const CreditCheckhtmlForm = ({ customerId }) => {
     setBureauData({ ...bureauData, [name]: value });
   };
 
-  // login to first central bureau
-  const [dataTicket, setDataTicket] = useState("");
-
-  // const loginToFirstCentral = async () => {
-  //   // Define the API endpoint and request headers
-  //   const apiUrl =
-  //     "https://uat.firstcentralcreditbureau.com/firstcentralrestv2//login";
-
-  //   const requestOptions = {
-  //     method: "POST",
-  //     mode: "cors",
-  //     headers: {
-  //       accept: "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       username: "demo",
-  //       password: "demo@123",
-  //     }),
-  //   };
-
-  //   // Make the fetch request to the API
-  //   await fetch(apiUrl, requestOptions)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("Data fetch", data)
-  //       setDataTicket(data.DataTicket); // Store the
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
-  //  useEffect(() => {
-  //    // Define the API endpoint and request headers
-  //    const apiUrl =
-  //      "https://uat.firstcentralcreditbureau.com/firstcentralrestv2//login";
-  //    const requestOptions = {
-  //      method: "POST",
-  //      mode: "cors",
-  //      headers: {
-  //        "Content-Type": "application/json",
-  //      },
-  //      body: JSON.stringify({
-  //        username: "demo",
-  //        password: "demo@123",
-  //      }),
-  //    };
-
-  //    // Make the fetch request to the API
-  //    fetch(apiUrl, requestOptions)
-  //      .then((response) => response.json())
-  //      .then((data) => {
-  //        setDataTicket(data.DataTicket); // Store the
-  //      })
-  //      .catch((error) => {
-  //         console.log(error);
-
-  //      });
-  //  }, []);
-
-  // credit bureau check operation
-
   const [bureauReport, setBureauReport] = useState({});
   const [bureauLoading, setBureauLoading] = useState(false);
 
@@ -272,11 +210,33 @@ const CreditCheckhtmlForm = ({ customerId }) => {
     setBureauLoading(true);
     if (bureauData.bureauName === "first_central") {
       console.log("first central check");
-      // login to first central
-      // loginToFirstCentral();
+       try {
+         const bvn = bureauData.bvnNo;
+         const response = await fetch(
+           "http://localhost:3030/api/firstcentral/firstcentralreport",
+           {
+             method: "POST",
+             headers: { "Content-Type": "application/json" },
+             body: JSON.stringify({ bvn }),
+           }
+         );
+         if (!response.ok) {
+           throw new Error("Network response was not ok");
+         }
+
+         const data = await response.json();
+         // set bureau report
+         setBureauReport(data.data);
+         // set bureau loading
+         setBureauLoading(false);
+         // updateBureauLoading("success");
+       } catch (error) {
+         throw new Error(error.message);
+       }
     }
 
     if (bureauData.bureauName === "crc_bureau") {
+      console.log("crc check")
       try {
          const bvn = bureauData.bvnNo;
          const response = await fetch("http://localhost:3030/api/crc/getcrc", {
