@@ -52,5 +52,6 @@ fetch(idpTokenUrl, {
       });
   })
   .catch((error) => {
-    console.error('Error exchanging code for access token:', error.message);
+    console.error('Error exchanging code for access token:', error.message
+    );
   });

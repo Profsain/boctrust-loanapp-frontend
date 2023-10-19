@@ -110,10 +110,9 @@ const KycCheck = () => {
     // filter customer by id and update current customer state
     const customer = customers.filter((customer) => customer._id === id);
     setCurrentCustomer(customer[0]);
-    console.log("customer", customer);
   };
 
-  // handle save kyc check
+  // handle save kyc check and create bankone account
   const handleSaveCheck = async () => {
     const data = {
       isFacialMatch,
@@ -130,6 +129,35 @@ const KycCheck = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
     });
+
+    // create bankone account for customer
+    if (isKycApproved) {
+      console.log("Ready to create account")
+      const newAccount = await fetch(
+        "http://localhost:3030/api/bankone/createCustomerAccount",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(currentCustomer),
+        }
+      );
+      const account = await newAccount.json();
+
+      // update customer data with account details
+      const accountData = {
+        isAccountCreated: true,
+        accountDetails: account.data,
+      }
+      await fetch(
+        `http://localhost:3030/api/updatecustomer/banking/${customerId}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(accountData),
+        }
+      );
+
+     }
     setShowKycDetails(false);
   };
 
@@ -491,7 +519,7 @@ const KycCheck = () => {
                   bgcolor="#f64f4f"
                   func={() => setShowKycDetails(false)}
                 >
-                  Cancel Check
+                  Invalid/Cancel
                 </BocButton>
                 <BocButton
                   bradius="12px"
@@ -500,7 +528,7 @@ const KycCheck = () => {
                   bgcolor="#145098"
                   func={handleSaveCheck}
                 >
-                  Save Check
+                  Valid/Create Account
                 </BocButton>
               </div>
             </div>
