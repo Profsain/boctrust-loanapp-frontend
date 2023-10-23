@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+
 const LoanCard = ({
   title,
   description,
@@ -65,7 +66,7 @@ LoanCard.propTypes = {
   description: PropTypes.any,
   icon: PropTypes.any,
   imgsrc: PropTypes.any,
-  title: PropTypes.any,
+  title: PropTypes.string,
   width: PropTypes.string,
   color: PropTypes.string,
   cname: PropTypes.string,

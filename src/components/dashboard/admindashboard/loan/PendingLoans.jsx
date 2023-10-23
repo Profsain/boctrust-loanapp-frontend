@@ -1,8 +1,14 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import { Table } from "react-bootstrap";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import "../customers/Customer.css";
 import NextPreBtn from "../../shared/NextPreBtn";
+import PageLoader from "../../shared/PageLoader";
+import getDateOnly from "../../../../../utilities/getDate";
+import capitalizeEachWord from "../../../../../utilities/capitalizeFirstLetter";
 
 const PaddingLoans = () => {
   const styles = {
@@ -24,14 +30,27 @@ const PaddingLoans = () => {
       color: "#ecaa00",
     },
   };
+
+  const [currentAdmin, setCurrentAdmin] = useState("admin");
+  // fetch all customer
+  const dispatch = useDispatch();
+  const customers = useSelector(
+    (state) => state.customerReducer.customers.customer
+  );
+  const status = useSelector((state) => state.customerReducer.status);
+
+  useEffect(() => {
+    dispatch(fetchAllCustomer());
+  }, [dispatch]);
+
+  // filtere customer by isKycApproved
+  const filteredCustomers = customers?.filter(
+    (customer) => customer.kyc.isKycApproved === true
+  );
+  console.log("filteredCustomers", filteredCustomers);
+
   return (
     <div className="MainBox">
-      <div className="AddBtn">
-        <BocButton bgcolor="#ecaa00" bradius="22px">
-          <span>+</span> Add New
-        </BocButton>
-      </div>
-
       {/* top search bar */}
       <div className="Search">
         <DashboardHeadline padding="0" height="70px" bgcolor="#d9d9d9">
@@ -48,6 +67,8 @@ const PaddingLoans = () => {
         </DashboardHeadline>
       </div>
       <div>
+        {/* data loader */}
+        {status === "loading" && <PageLoader />}
         {/* Loans list  */}
         <div className="ListSec">
           <DashboardHeadline
@@ -70,166 +91,57 @@ const PaddingLoans = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>004</td>
-                  <td>Travel Loan</td>
-                  <td>Folashade Ojo</td>
-                  <td>7462329467</td>
-                  <td>25-03-2023</td>
-                  <td>N60,200</td>
-                  <td style={styles.padding}>With Operation</td>
-                  <td>
-                    <div>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#ecaa00"
-                      >
-                        Details
-                      </BocButton>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#7dd50e"
-                      >
-                        Approve
-                      </BocButton>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#f64f4f"
-                      >
-                        Reject
-                      </BocButton>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>005</td>
-                  <td>Salary Advance</td>
-                  <td>Saheed Musa</td>
-                  <td>7462329444</td>
-                  <td>25-06-2023</td>
-                  <td>N150,000</td>
-                  <td style={styles.padding}>With COO</td>
-                  <td>
-                    <div>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#ecaa00"
-                      >
-                        Details
-                      </BocButton>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#7dd50e"
-                      >
-                        Approve
-                      </BocButton>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#f64f4f"
-                      >
-                        Reject
-                      </BocButton>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>006</td>
-                  <td>Personal Loan</td>
-                  <td>Chika Igwe</td>
-                  <td>7462329444</td>
-                  <td>25-07-2023</td>
-                  <td>N105,200</td>
-                  <td style={styles.padding}>With Credit</td>
-                  <td>
-                    <div>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#ecaa00"
-                      >
-                        Details
-                      </BocButton>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#7dd50e"
-                      >
-                        Approve
-                      </BocButton>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#f64f4f"
-                      >
-                        Reject
-                      </BocButton>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>002</td>
-                  <td>SME&apos;s Loan</td>
-                  <td>Shola John</td>
-                  <td>7462329447</td>
-                  <td>25-07-2023</td>
-                  <td>N2,000,000</td>
-                  <td style={styles.padding}>With Operation</td>
-                  <td>
-                    <div>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#ecaa00"
-                      >
-                        Details
-                      </BocButton>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#7dd50e"
-                      >
-                        Approve
-                      </BocButton>
-                      <BocButton
-                        bradius="12px"
-                        fontSize="12px"
-                        width="80px"
-                        margin="4px"
-                        bgcolor="#f64f4f"
-                      >
-                        Reject
-                      </BocButton>
-                    </div>
-                  </td>
-                </tr>
+                {filteredCustomers?.map((customer) => {
+                  return (
+                    <tr key={customer.id}>
+                      <td>{customer.banking.accountDetails.Message.Id}</td>
+                      <td>{customer.loanProduct || "General Loan"}</td>
+                      <td>
+                        {customer.banking.accountDetails.Message.FullName}
+                      </td>
+                      <td>
+                        {customer.banking.accountDetails.Message.AccountNumber}
+                      </td>
+                      <td>{getDateOnly(customer.createdAt)}</td>
+                      <td>N{customer.loanamount}</td>
+                      <td style={styles.padding}>
+                        {capitalizeEachWord(customer.kyc.loanstatus)}
+                      </td>
+                      <td>
+                        <div>
+                          <BocButton
+                            bradius="12px"
+                            fontSize="12px"
+                            width="80px"
+                            margin="4px"
+                            bgcolor="#ecaa00"
+                          >
+                            Details
+                          </BocButton>
+                          <BocButton
+                            bradius="12px"
+                            fontSize="12px"
+                            width="80px"
+                            margin="4px"
+                            bgcolor="#7dd50e"
+                          >
+                            Approve
+                          </BocButton>
+                          <BocButton
+                            bradius="12px"
+                            fontSize="12px"
+                            width="80px"
+                            margin="4px"
+                            bgcolor="#f64f4f"
+                          >
+                            Reject
+                          </BocButton>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+               
               </tbody>
             </Table>
           </div>

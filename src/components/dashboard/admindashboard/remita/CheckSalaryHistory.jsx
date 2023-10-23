@@ -74,19 +74,9 @@ const CheckSalaryHistory = () => {
           bvn: customer.bvnnumber || "041",
           authorisationChannel: "WEB",
         }),
-      //   body: JSON.stringify({
-      //     authorisationCode: "{{authorization}}",
-      //     firstName: "Teresa",
-      //     lastName: "Stoker",
-      //     accountNumber: "5012284010",
-      //     bankCode: "22222222223",
-      //     bvn: "023",
-      //     authorisationChannel: "USSD",
-      //   }),
       }
     );
-    // const data = await response.json();
-    console.log("response", response)
+   
     await fetch("http://localhost:3030/api/email/send-email", {
       method: "POST",
       headers: {

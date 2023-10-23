@@ -23,7 +23,7 @@ import initialValues from "./formInitialValue";
 import convertFile from "../../../../utilities/convertFile";
 import dataURItoBlob from "../../../../utilities/dataURItoBlob";
 import generateCustomerId from "../../dashboard/admindashboard/customers/generateCustomerId";
-import idpRedirect from "./bvnIDPAuth"
+// import idpRedirect from "./bvnIDPAuth"
 
 // loan form component
 const LoanForm = ({ data }) => {
@@ -133,8 +133,8 @@ const LoanForm = ({ data }) => {
 
   // handle bvn varification
   const handleBvnVarification = () => {
-    idpRedirect();
-    // setIsBvnVarified(true);
+    // idpRedirect();
+    setIsBvnVarified(true);
   };
 
   // handle form submit/move to next step

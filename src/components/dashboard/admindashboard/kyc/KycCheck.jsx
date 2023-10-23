@@ -56,6 +56,8 @@ const KycCheck = () => {
   const [isOtherDocsValidated, setIsOtherDocsValidated] = useState(null);
   const [isKycApproved, setIsKycApproved] = useState(null);
   const [showOtherDocs, setShowOtherDocs] = useState(false);
+  // processing bar state
+  const [progress, setProgress] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllCustomer());
@@ -114,7 +116,9 @@ const KycCheck = () => {
 
   // handle save kyc check and create bankone account
   const handleSaveCheck = async () => {
+    setProgress(true);
     const data = {
+      loanstatus: "with coo",
       isFacialMatch,
       isIdCardValid,
       isPhotoCaptured,
@@ -132,7 +136,6 @@ const KycCheck = () => {
 
     // create bankone account for customer
     if (isKycApproved) {
-      console.log("Ready to create account")
       const newAccount = await fetch(
         "http://localhost:3030/api/bankone/createCustomerAccount",
         {
@@ -159,6 +162,7 @@ const KycCheck = () => {
 
      }
     setShowKycDetails(false);
+    setProgress(false);
   };
 
   return (
@@ -203,7 +207,7 @@ const KycCheck = () => {
                 <tbody>
                   {customers?.map((customer) => (
                     <tr key={customer._id}>
-                      <td>{customer.customerId}</td>
+                      <td>{customer.phonenumber.slice(1)}</td>
                       <td>{customer.firstname + " " + customer.lastname}</td>
                       <td
                         onClick={() => handleViewDocs(customer._id)}
@@ -521,15 +525,19 @@ const KycCheck = () => {
                 >
                   Invalid/Cancel
                 </BocButton>
-                <BocButton
-                  bradius="12px"
-                  fontSize="18px"
-                  margin="8px 28px"
-                  bgcolor="#145098"
-                  func={handleSaveCheck}
-                >
-                  Valid/Create Account
-                </BocButton>
+                {!progress ? (
+                  <BocButton
+                    bradius="12px"
+                    fontSize="18px"
+                    margin="8px 28px"
+                    bgcolor="#145098"
+                    func={handleSaveCheck}
+                  >
+                    Valid/Create Account
+                  </BocButton>
+                ) : (
+                  <PageLoader />
+                )}
               </div>
             </div>
           )}
@@ -537,7 +545,12 @@ const KycCheck = () => {
       )}
 
       {/* other document component */}
-      {showOtherDocs && <OtherDocuments customerObj={ currentCustomer}  setShowDocs={setShowOtherDocs}/>}
+      {showOtherDocs && (
+        <OtherDocuments
+          customerObj={currentCustomer}
+          setShowDocs={setShowOtherDocs}
+        />
+      )}
     </>
   );
 };
