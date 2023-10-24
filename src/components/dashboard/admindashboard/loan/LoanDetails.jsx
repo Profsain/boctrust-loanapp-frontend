@@ -1,10 +1,15 @@
 import PropTypes from "prop-types";
-import { Modal, Button, Row } from "react-bootstrap";
-import Headline from "../../../shared/Headline"
+import { Modal, Button } from "react-bootstrap";
+import Headline from "../../../shared/Headline";
 import RowCard from "../remita/RowCard";
 
-const LoanDetails = ({ loanObj, show, handleClose, currentPage }) => {
-  console.log("loanObj", loanObj);
+const LoanDetails = ({
+  loanObj,
+  show,
+  handleClose,
+  handleApproval,
+  currentPage,
+}) => {
   return (
     <>
       <Modal
@@ -23,15 +28,22 @@ const LoanDetails = ({ loanObj, show, handleClose, currentPage }) => {
             title="Loan ID:"
             text={loanObj.banking.accountDetails.Message.Id}
           />
+          <hr />
           <RowCard title="Valid BVN:" text={loanObj.bvnnumber} />
+          <hr />
           <RowCard title="KYC:" text="Completed" />
+          <hr />
           <RowCard
             title="Loan Product:"
             text={loanObj.loanProduct || "General Loan"}
           />
+          <hr />
           <RowCard title="Loan Amount:" text={loanObj.loanamount} />
+          <hr />
           <RowCard title="Total Repayment:" text={loanObj.loantotalrepayment} />
+          <hr />
           <RowCard title="Repayment Month:" text={loanObj.numberofmonth} />
+          <hr />
           <RowCard title="Loan Status:" text={loanObj.kyc.loanstatus} />
         </Modal.Body>
         <Modal.Footer>
@@ -39,7 +51,9 @@ const LoanDetails = ({ loanObj, show, handleClose, currentPage }) => {
             Close
           </Button>
           {currentPage === "pending" && (
-            <Button variant="primary">Approve</Button>
+            <Button onClick={handleApproval} variant="primary">
+              Approve
+            </Button>
           )}
         </Modal.Footer>
       </Modal>
@@ -49,6 +63,7 @@ const LoanDetails = ({ loanObj, show, handleClose, currentPage }) => {
 
 LoanDetails.propTypes = {
   handleClose: PropTypes.func,
+  handleApproval: PropTypes.func,
   show: PropTypes.bool,
   currentPage: PropTypes.string,
   loanObj: PropTypes.object,
