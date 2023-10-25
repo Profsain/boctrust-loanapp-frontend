@@ -8,13 +8,15 @@ import AdminDashboard from "./admindashboard/dashboardhome/AdminDashboard";
 const Dashboard = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState("");
-  const currentUser = useSelector((state) => state.user.currentUser);
+  // show dashboard base on current user admin/customer
+  const currentUser = useSelector((state) => state.adminAuth.user);
   useEffect(() => {
     if (currentUser) {
       setIsLogin(true);
-      setUser(currentUser.username);
+      setUser(currentUser.userType);
     }
   }, [currentUser]);
+
   return (
     <div className="DashboardContainer">
       {isLogin === false ? (

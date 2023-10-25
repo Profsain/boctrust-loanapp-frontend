@@ -11,6 +11,7 @@ import customerReducer from '../reducers/customerReducer';
 import disbursementMethodReducer from '../reducers/disbursementMethodReducer';
 import employersManagerReducer from '../reducers/employersManagerReducer';
 import adminUserReducer from '../reducers/adminUserReducer';
+import authReducer from '../reducers/adminAuthReducer';
 
 // create a store
 const store = configureStore({
@@ -28,6 +29,7 @@ const store = configureStore({
         adminUserReducer,
         employersManagerReducer,
         user: userSlice,
+        adminAuth: authReducer,
     }
 });
 

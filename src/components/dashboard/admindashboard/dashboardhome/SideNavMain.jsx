@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import "../../Dashboard.css";
 
@@ -36,13 +37,17 @@ const SideNavMain = ({ onMenuItemClick }) => {
   const openSubReports = () => setIsReportsOpen(true);
   const closeSubReports = () => setIsReportsOpen(false);
 
+  // current login admin user
+  const currentUser = useSelector((state) => state.adminAuth.user);
+  const userRole = currentUser.jobRole;
+
   return (
     <div className="NavIcons SideMain FixSideNav">
       <div className="BrandCon">
         <div className=" LgLogo">
           <img src="images/dlogo.png" alt="boctrust-logo" />
         </div>
-        <p>Admin User</p>
+        <p>{userRole}</p>
       </div>
 
       <div id="dashboard" className="IconBox" onClick={onMenuItemClick}>

@@ -10,8 +10,9 @@ const SidebarMain = ({ onMenuItemClick }) => {
   const [isReportOpen, setIsReportOpen] = useState(false);
   const openSubReport = () => setIsReportOpen(true);
   const closeSubReport = () => setIsReportOpen(false);
-  const currentUser = useSelector((state) => state.user.currentUser);
-  const user = currentUser.username;
+  const currentUser = useSelector((state) => state.adminAuth.user);
+  const user = currentUser.userType;
+  const userRole = currentUser.jobRole;
 
   return (
     <div className="NavIcons SideMain FixSideNav">
@@ -19,7 +20,7 @@ const SidebarMain = ({ onMenuItemClick }) => {
         <div className=" LgLogo">
           <img src="images/dlogo.png" alt="boctrust-logo" />
         </div>
-        <p>App User</p>
+        <p>{ userRole}</p>
       </div>
       <div id="dashboard" className="IconBox" onClick={onMenuItemClick}>
         <img

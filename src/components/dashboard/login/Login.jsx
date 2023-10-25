@@ -1,37 +1,21 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { login } from "../../../redux/reducers/userSlice";
+import { loginUser } from "../../../redux/reducers/adminAuthReducer";
+// import { login } from "../../../redux/reducers/userSlice";
 import { Form, Button } from "react-bootstrap";
+import loginUserOnServer from "./loginUserOnServer";
 import HeadLine from "../../shared/HeadLine";
 import "./Login.css";
 
-const Login = ({ setLogin}) => {
+const Login = ({ setLogin }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
+    loginAs: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
-
-  //   users object
-  const users = [
-    {
-      username: "admin",
-      password: "123456",
-      role: "admin",
-    },
-    {
-      username: "customer1",
-      password: "123456",
-      role: "customer",
-    },
-    {
-      username: "customer2",
-      password: "123456",
-      role: "customer",
-    },
-  ];
 
   //   handle on change
   const handleChange = (e) => {
@@ -42,48 +26,44 @@ const Login = ({ setLogin}) => {
     }));
   };
 
-  // check if user exist
-  const checkUser = (username, password) => {
-    const user = users.find(
-      (user) => user.username === username && user.password === password
-    );
-    if (user) {
-      return user;
-    } else {
-      setErrorMessage("Invalid username or password");
-    }
-  };
-
-  // handle form submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { username, password } = formData;
-    const user = checkUser(username, password);
-    if (user.username === "admin") {
-      dispatch(login({ username: "admin", role: "admin" }));
-    } else if (user.username === "customer1") {
-      dispatch(login({ username: "customer1", role: "customer" }));
-    } else {
-      dispatch(login({ username: "customer2", role: "customer" }));
-    }
-    setLogin(true);
-
-    //   clear fields
+  //   clear fields
+  const clearField = () => {
     setFormData({
       username: "",
       password: "",
+      loginAs: "",
     });
+  };
+
+  // handle form submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { username, password, loginAs } = formData;
+
+    if (loginAs === "staff") {
+      const response = await loginUserOnServer(username, password);
+      if (response.success) {
+        clearField();
+        // Dispatch the login action with the user data.
+        dispatch(loginUser(response));
+        setLogin(true);
+      } else {
+        // Handle login failure.
+        setErrorMessage("Invalid username or password");
+      }
+    } else if (loginAs === "customer") {
+      console.log("customer login");
+    }
   };
 
   return (
     <div className="LogContainer">
-      <div >
+      <div>
         <HeadLine text="Login to your Dashboard" />
         <p className="Error">{errorMessage}</p>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="my-4">
             <Form.Control
-           
               type="text"
               placeholder="Enter username"
               name="username"
@@ -100,6 +80,31 @@ const Login = ({ setLogin}) => {
               value={formData.password}
               onChange={handleChange}
             />
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <p className="asText">Login as:</p>
+            <div className="asBox">
+              <div>
+                <input
+                  type="radio"
+                  name="loginAs"
+                  className="radio"
+                  value="staff"
+                  onChange={handleChange}
+                />
+                <label className="Remember">Staff </label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="loginAs"
+                  className="radio"
+                  value="customer"
+                  onChange={handleChange}
+                />
+                <label className="Remember">Customer </label>
+              </div>
+            </div>
           </Form.Group>
 
           <Button type="submit" className="LoginBtn">

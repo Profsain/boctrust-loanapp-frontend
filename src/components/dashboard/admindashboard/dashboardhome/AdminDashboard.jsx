@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import "../../Dashboard.css";
 import TopNavber from "../../topnavbar/TopNavber";
 import SideNavIcons from "./SideNavIcons";
@@ -321,6 +322,10 @@ const AdminDashboard = () => {
     }
   };
 
+  // current login admin user
+  const currentUser = useSelector((state) => state.adminAuth.user);
+  const adminName = currentUser.fullName;
+
   return (
     <div className="DashboardContainer">
       <div className="container-fluid">
@@ -328,8 +333,7 @@ const AdminDashboard = () => {
           <div className="col-2 SideNavContainer">
             {/* desktop navbar */}
             <div className="DesktopNav">
-
-            <SideNavMain onMenuItemClick={handleMenuItemClick} />
+              <SideNavMain onMenuItemClick={handleMenuItemClick} />
             </div>
             {/* mobile navbar */}
             <div className="MobileNav">
@@ -346,7 +350,7 @@ const AdminDashboard = () => {
           </div>
           <div className="col-10">
             <div className="TopNavber">
-              <TopNavber title={currentTitle} user="Boctrust_Admin" />
+              <TopNavber title={currentTitle} user={adminName} />
               {renderComponent()}
             </div>
           </div>

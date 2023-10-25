@@ -35,10 +35,10 @@ const PaddingLoans = () => {
       textAlign: "center",
       fontSize: "1.2rem",
       color: "#145098",
-    }
+    },
   };
 
-  const [currentAdmin, setCurrentAdmin] = useState("admin");
+  const [currentAdmin, setCurrentAdmin] = useState("");
   // fetch all customer
   const dispatch = useDispatch();
   const customers = useSelector(
@@ -46,11 +46,21 @@ const PaddingLoans = () => {
   );
   const status = useSelector((state) => state.customerReducer.status);
 
+  // current login admin user
+  const currentUser = useSelector((state) => state.adminAuth.user);
+  const userType = currentUser.userType;
+  useEffect(() => {
+    if (currentUser) {
+      setCurrentAdmin(userType);
+    }
+  }, [currentUser, userType]);
+
   // filtere customer by isKycApproved
   const filteredCustomers = customers?.filter(
-    (customer) => customer.kyc.isKycApproved === true && customer.kyc.loanstatus !== "completed"
+    (customer) =>
+      customer.kyc.isKycApproved === true &&
+      customer.kyc.loanstatus !== "completed"
   );
-
 
   const [show, setShow] = useState(false);
   const [loanObj, setLoanObj] = useState({});
@@ -58,15 +68,15 @@ const PaddingLoans = () => {
   const [message, setMessage] = useState("");
   const [showNotification, setShowNotification] = useState(false);
 
-   useEffect(() => {
-     dispatch(fetchAllCustomer());
-   }, [dispatch, showNotification]);
+  useEffect(() => {
+    dispatch(fetchAllCustomer());
+  }, [dispatch, showNotification]);
 
   // handle close notification
   const closeNotification = () => {
     setShowNotification(false);
     setMessage("");
-  }
+  };
 
   // handle close loan details
   const handleClose = () => {
@@ -88,27 +98,30 @@ const PaddingLoans = () => {
     const data = { loanstatus: status };
 
     // send update to backend
-    await fetch(`http://localhost:3030/api/updatecustomer/kyc/${customerId}/loanstatus`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-  }
+    await fetch(
+      `http://localhost:3030/api/updatecustomer/kyc/${customerId}/loanstatus`,
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    );
+  };
   const handleApproval = (id) => {
     // process loan approval
     if (currentAdmin === "admin" || currentAdmin === "md") {
       updateLoanStatus(id, "completed");
       // add bankone loan app creation here
-    } else if (currentAdmin === "coo") { 
+    } else if (currentAdmin === "coo") {
       updateLoanStatus(id, "with operation");
     } else if (currentAdmin === "operation") {
-      console.log("Operation approval")
+      console.log("Operation approval");
       updateLoanStatus(id, "booked");
     }
 
     setShow(false);
     setMessage("Loan Approved Successfully");
-    setShowNotification(true)
+    setShowNotification(true);
     // dispatch fetch all customer
     dispatch(fetchAllCustomer());
   };
@@ -118,8 +131,8 @@ const PaddingLoans = () => {
     // process loan approval
     if (currentAdmin === "admin" || currentAdmin === "md") {
       updateLoanStatus(id, "rejected admin");
-    } else if (currentAdmin === "coo") { 
-      console.log("Coo approval")
+    } else if (currentAdmin === "coo") {
+      console.log("Coo approval");
       updateLoanStatus(id, "rejected coo");
     } else if (currentAdmin === "operation") {
       updateLoanStatus(id, "rejected operation");
@@ -127,7 +140,7 @@ const PaddingLoans = () => {
 
     setShow(false);
     setMessage("Loan Approved Successfully");
-    setShowNotification(true)
+    setShowNotification(true);
     // dispatch fetch all customer
     dispatch(fetchAllCustomer());
   };
@@ -252,7 +265,13 @@ const PaddingLoans = () => {
       )}
 
       {/* show notification model */}
-      {showNotification && (<NotificationBox message={message} show={ showNotification} handleClose={closeNotification} />)}
+      {showNotification && (
+        <NotificationBox
+          message={message}
+          show={showNotification}
+          handleClose={closeNotification}
+        />
+      )}
     </>
   );
 };

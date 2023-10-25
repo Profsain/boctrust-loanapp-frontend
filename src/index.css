@@ -401,5 +401,8 @@ p {
    .Capture, .ICard {
     margin-top: -5rem !important;
    }
-}
 
+   .asBox {
+      flex-direction: column;
+    }
+}

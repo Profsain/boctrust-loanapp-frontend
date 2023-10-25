@@ -30,3 +30,20 @@
     color: #145098;
     cursor: pointer;
 }
+
+.asBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -2.5rem;
+}
+
+.asText {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #145098;
+}
+
+.radio {
+    margin-right: 0.8rem;
+}
