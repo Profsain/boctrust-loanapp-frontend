@@ -1,9 +1,6 @@
-let customerCount = 0;
-
-const generateCustomerId = () => {
-  customerCount++;
-  const customerId = `C-${String(customerCount).padStart(6, '0')}`;
-  return customerId;
+const generateRandomNumber = () => {
+  const randomNumber = Math.floor(10000 + Math.random() * 90000); // Generates a random 5-digit number
+  return randomNumber;
 }
 
-export default generateCustomerId;
+export default generateRandomNumber;

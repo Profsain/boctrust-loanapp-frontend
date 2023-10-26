@@ -1,6 +1,14 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
+import PageLoader from "../../shared/PageLoader";
 import Table from "react-bootstrap/Table";
 import "../../Dashboard.css";
 import DashboardHeadline from "../../shared/DashboardHeadline";
+import BocButton from "../../shared/BocButton";
+import LoanDetails from "../loan/LoanDetails";
+import capitalizeEachWord from "../../../../../utilities/capitalizeFirstLetter";
+
 
 const CustomersList = () => {
   const styles = {
@@ -24,139 +32,93 @@ const CustomersList = () => {
       color: "#ecaa00",
     },
   };
+
+  // fetch all customer
+  const dispatch = useDispatch();
+  const customers = useSelector(
+    (state) => state.customerReducer.customers.customer
+  );
+  const status = useSelector((state) => state.customerReducer.status);
+
+  useEffect(() => {
+    dispatch(fetchAllCustomer());
+  }, [dispatch]);
+
+  const [show, setShow] = useState(false);
+  const [loanObj, setLoanObj] = useState({});
+  // handle close loan details
+  const handleClose = () => {
+    setLoanObj({});
+    setShow(false);
+  };
+
+  // handle show loan details
+  const handleShow = (id) => {
+    const loan = customers.find((customer) => customer._id === id);
+    setLoanObj(loan);
+    setShow(true);
+  };
+
   return (
-    <div>
-      <DashboardHeadline
-        height="52px"
-        mspacer="2rem 0 -2.95rem -1rem"
-        bgcolor="#145098"
-      ></DashboardHeadline>
-      <div style={styles.table}>
-        <Table borderless hover responsive="sm">
-          <thead style={styles.head}>
-            <tr>
-              <th>Photo</th>
-              <th>A/C Number</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Branch</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <img className="CustomerImg" src="images/c1.png" alt="" />
-              </td>
-              <td>7460615677</td>
-              <td>Kola</td>
-              <td>Abiola</td>
-              <td>Kolaabiola@gmail.com</td>
-              <td>Main Branch</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img className="CustomerImg" src="images/c2.png" alt="" />
-              </td>
-              <td>7460615644</td>
-              <td>Uche</td>
-              <td>Abuka</td>
-              <td>ucheabu@gmail.com</td>
-              <td>Main Branch</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img className="CustomerImg" src="images/c3.png" alt="" />
-              </td>
-              <td>7460615677</td>
-              <td>Folashade</td>
-              <td>Ojo</td>
-              <td>folashadeoj@yahoo.com</td>
-              <td>Main Branch</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img className="CustomerImg" src="images/c4.png" alt="" />
-              </td>
-              <td>7460615677</td>
-              <td>Monday</td>
-              <td>Ife</td>
-              <td>mondayife@gmail.com</td>
-              <td>Main Branch</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img className="CustomerImg" src="images/c5.png" alt="" />
-              </td>
-              <td>7460615677</td>
-              <td>Saheed</td>
-              <td>Olakolo</td>
-              <td>saheedola@gmail.com</td>
-              <td>Main Branch</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <img className="CustomerImg" src="images/c6.png" alt="" />
-              </td>
-              <td>7460615677</td>
-              <td>Zainab</td>
-              <td>Ebube</td>
-              <td>saheedola@gmail.com</td>
-              <td>Main Branch</td>
-              <td>
-                <select name="action" id="action">
-                  <option value="">Action</option>
-                  <option value="">Action 1</option>
-                  <option value="">Action 2</option>
-                  <option value="">Action 3</option>
-                </select>
-              </td>
-            </tr>
-          </tbody>
-        </Table>
+    <>
+      {status === "loading" && <PageLoader />}
+      <div>
+        <DashboardHeadline
+          height="52px"
+          mspacer="2rem 0 -2.95rem -1rem"
+          bgcolor="#145098"
+        ></DashboardHeadline>
+        <div style={styles.table}>
+          <Table borderless hover responsive="sm">
+            <thead style={styles.head}>
+              <tr>
+                <th>Photo</th>
+                <th>A/C Number</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Branch</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {customers?.map((customer) => (
+                <tr key={customer._id}>
+                  <td>
+                    <img
+                      className="CustomerImg"
+                      src={customer.photocaptureImg}
+                      alt={customer.firstname}
+                    />
+                  </td>
+                  <td>
+                    {customer.banking.accountDetails.Message.AccountNumber}
+                  </td>
+                  <td>{customer.firstname}</td>
+                  <td>{customer.lastname}</td>
+                  <td>{customer.email}</td>
+                  <td>{capitalizeEachWord(customer.branch)}</td>
+                  <td>
+                    <BocButton
+                      func={() => handleShow(customer._id)}
+                      bgcolor="#ecaa00"
+                      bradius="8px"
+                    >
+                      View
+                    </BocButton>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       </div>
-    </div>
+
+      {/* show loan details model */}
+      {show && (
+        <LoanDetails show={show} handleClose={handleClose} loanObj={loanObj} />
+      )}
+    </>
   );
 };
 
