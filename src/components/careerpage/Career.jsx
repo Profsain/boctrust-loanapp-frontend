@@ -135,7 +135,7 @@ const Career = () => {
                         </p>
                         <img
                           className="ImgCard"
-                          src="https://shorturl.at/sLVW2"
+                          src="images/bocstruststaff4.jpg"
                           alt="boctrust social impact"
                         />
                       </div>
@@ -159,7 +159,7 @@ const Career = () => {
                         </p>
                         <img
                           className="ImgCard"
-                          src="https://shorturl.at/opqP0"
+                          src="images/social.avif"
                           alt="boctrust staff growth"
                         />
                       </div>
@@ -183,7 +183,7 @@ const Career = () => {
                         </p>
                         <img
                           className="ImgCard"
-                          src="https://shorturl.at/bhrvC"
+                          src="images/staff1.avif"
                           alt="boctrust teamwork"
                         />
                       </div>
@@ -210,13 +210,6 @@ const Career = () => {
 
                     {/* why join us right section */}
                     <div className="col-md-6 col-sm-12 p-4">
-                      <img
-                        className="ImgCard"
-                        src="https://shorturl.at/fnuEQ"
-                        alt="boctrust mfb"
-                        data-aos="fade-up"
-                      />
-
                       <div data-aos="fade-up">
                         <Headline
                           align="left"
@@ -237,7 +230,7 @@ const Career = () => {
                         </p>
                         <img
                           className="ImgCard"
-                          src="https://shorturl.at/otCPT"
+                          src="images/bocstrusonline.avif"
                           alt="boctrust technology"
                         />
                       </div>
@@ -258,11 +251,7 @@ const Career = () => {
                           more. Your dedication and contribution to our mission
                           will be recognized and appropriately rewarded.
                         </p>
-                        <img
-                          className="ImgCard"
-                          src="https://shorturl.at/lpw25"
-                          alt="boctrust technology"
-                        />
+                       
                       </div>
 
                       <div data-aos="fade-up">
@@ -563,7 +552,11 @@ const Career = () => {
           </div>
         </div>
       </div>
-      <BoxModel vacancy={singleVacancy} show={modalShow} onHide={() => setModalShow(false)} />
+      <BoxModel
+        vacancy={singleVacancy}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
     </>
   );
 };
