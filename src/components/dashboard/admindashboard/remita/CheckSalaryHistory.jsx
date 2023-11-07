@@ -76,23 +76,10 @@ const CheckSalaryHistory = () => {
         }),
       }
     );
+
+    const data = await response.json();
+    console.log("Response Data: ", data);
    
-    await fetch("http://localhost:3030/api/email/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: "profsainhm@gmail.com",
-        subject: "Salary Check",
-        html: `<h1>Salary Check</h1>
-        <p>Dear ${customer.firstname} ${customer.lastname},</p>
-        <p>Your salary check has been completed.</p>
-        <p>Kindly login to your account to view the details.</p>
-        <p>Thank you.</p>
-        `,
-      }),
-    });
     
     setIsLoading(false);
     setOpenDetails(true);
@@ -133,7 +120,7 @@ const CheckSalaryHistory = () => {
                 <th>Account Number</th>
                 <th>BVN</th>
                 <th>Do Check</th>
-                <th>Status</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -159,9 +146,18 @@ const CheckSalaryHistory = () => {
                             fontSize="14px"
                             width="90px"
                             margin="0 4px"
+                            bgcolor="#145088"
+                          >
+                            Process
+                          </BocButton>
+                          <BocButton
+                            bradius="12px"
+                            fontSize="14px"
+                            width="90px"
+                            margin="0 4px"
                             bgcolor="#f64f4f"
                           >
-                            Pending
+                            Drop
                           </BocButton>
                         </div>
                       </td>

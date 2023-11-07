@@ -1,6 +1,4 @@
 const idpRedirect = () => {
-    console.log("IDP Redirect");
-
     // Define the URL with the required parameters
     const idpAuthorizeURL =
     'https://idsandbox.nibss-plc.com.ng/oxauth/authorize.htm' +
