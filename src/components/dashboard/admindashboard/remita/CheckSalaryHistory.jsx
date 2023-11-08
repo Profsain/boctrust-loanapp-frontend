@@ -10,6 +10,7 @@ import NextPreBtn from "../../shared/NextPreBtn";
 import CheckSalaryDetails from "./CheckSalaryDetails";
 import "./Remita.css";
 import "../customers/Customer.css";
+import updateSalaryHistory from "./updateSalaryHistory.js";
 
 const CheckSalaryHistory = () => {
   const styles = {
@@ -54,7 +55,7 @@ const CheckSalaryHistory = () => {
   const handleCheck = async (id) => {
     // find customer by id and update the customerObj
     const customer = customers.find((customer) => customer._id === id);
-    setCustomerObj(customer);
+
     setIsLoading(true);
 
     // get customer history from remita
@@ -78,12 +79,52 @@ const CheckSalaryHistory = () => {
     );
 
     const data = await response.json();
-    console.log("Response Data: ", data);
+    // set customerObj to remita data
+    setCustomerObj(data);
    
+    // update customer history
+    await updateSalaryHistory(customer._id, data);
     
     setIsLoading(false);
     setOpenDetails(true);
+
+    // call dispatch to update list
+    dispatch(fetchAllCustomer());
   };
+
+  // handle view
+  const handleView = (id) => {
+    // find customer by id
+    const customer = customers.find((customer) => customer._id === id);
+    // console.log(id, customer)
+
+    // set customerObj to customer
+    setCustomerObj(customer);
+    setOpenDetails(true);
+
+  }
+
+  const handleAction = async (e, id) => {
+    e.preventDefault();
+    const actionBtn = e.target.innerText;
+
+    // find customer by id
+    const customer = customers.find((customer) => customer._id === id);
+    const data = customer.remita.remitaDetails;
+
+    if (actionBtn === "Process") {
+    // update remitaStatus to processed
+      await updateSalaryHistory(id, data, "processed");
+    } else if (actionBtn === "Drop") {
+      // update remitaStatus to droped
+      await updateSalaryHistory(id, data, "dropped");
+      
+      // send email notification to customer
+    }
+
+    // call dispatch to update list
+    dispatch(fetchAllCustomer());
+   }
 
   return (
     <div>
@@ -132,34 +173,76 @@ const CheckSalaryHistory = () => {
                       <td>{customer.lastname}</td>
                       <td>{customer.salaryaccountnumber}</td>
                       <td>{customer.bvnnumber}</td>
-                      <td
-                        style={styles.pending}
-                        className="startBtn"
-                        onClick={() => handleCheck(customer._id)}
-                      >
-                        Start
-                      </td>
+
+                      {customer.remita?.isRemitaCheck === true ? (
+                        <td
+                          style={styles.pending}
+                          className="startBtn"
+                          onClick={() => handleView(customer._id)}
+                        >
+                          View
+                        </td>
+                      ) : (
+                        <td
+                          style={styles.pending}
+                          className="startBtn"
+                          onClick={() => handleCheck(customer._id)}
+                        >
+                          Start
+                        </td>
+                      )}
+
                       <td>
-                        <div>
-                          <BocButton
-                            bradius="12px"
-                            fontSize="14px"
-                            width="90px"
-                            margin="0 4px"
-                            bgcolor="#145088"
-                          >
-                            Process
-                          </BocButton>
-                          <BocButton
-                            bradius="12px"
-                            fontSize="14px"
-                            width="90px"
-                            margin="0 4px"
-                            bgcolor="#f64f4f"
-                          >
-                            Drop
-                          </BocButton>
-                        </div>
+                        {customer.remita?.remitaStatus === "processed" && (
+                          <div>
+                            <BocButton
+                              bradius="12px"
+                              fontSize="14px"
+                              width="90px"
+                              margin="0 4px"
+                              bgcolor="#145088"
+                            >
+                              Processed
+                            </BocButton>
+                          </div>
+                        )}
+                        {customer.remita?.remitaStatus === "dropped" && (
+                          <div>
+                            <BocButton
+                              bradius="12px"
+                              fontSize="14px"
+                              width="90px"
+                              margin="0 4px"
+                              bgcolor="#f64f4f"
+                            >
+                              Dropped
+                            </BocButton>
+                          </div>
+                        )}
+                        {customer.remita?.remitaStatus === "pending" && (
+                          <div>
+                            <BocButton
+                              bradius="12px"
+                              fontSize="14px"
+                              width="90px"
+                              margin="0 4px"
+                              bgcolor="#145088"
+                              func={(e) => handleAction(e, customer._id)}
+                            >
+                              Process
+                            </BocButton>
+                            <BocButton
+                              bradius="12px"
+                              fontSize="14px"
+                              width="90px"
+                              margin="0 4px"
+                              bgcolor="#f64f4f"
+                              func={(e) => handleAction(e, customer._id)}
+                            >
+                              Drop
+                            </BocButton>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   );

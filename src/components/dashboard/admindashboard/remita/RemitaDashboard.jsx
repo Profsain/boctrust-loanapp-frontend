@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {  useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import { Table } from "react-bootstrap";
@@ -7,6 +7,11 @@ import DetailsCard from "./DetailsCard";
 import Headline from "../../../shared/Headline";
 import BocButton from "../../shared/BocButton";
 import NextPreBtn from "../../shared/NextPreBtn";
+import PageLoader from "../../shared/PageLoader";
+import "./Remita.css";
+
+import getDateOnly from "../../../../../utilities/getDate";
+import LoanDetailModel from "./LoanDetailModel";
 
 const RemitaDashboard = () => {
   const styles = {
@@ -55,122 +60,149 @@ const RemitaDashboard = () => {
     (state) => state.customerReducer.customers.customer
   );
   const status = useSelector((state) => state.customerReducer.status);
+
+  const [openModel, setOpenModel] = useState(false);
+
+
   useEffect(() => {
     dispatch(fetchAllCustomer());
   }, [dispatch]);
-  // console.log("status", status)
-  // console.log("customers", customers)
+
+  // filter customer by remitaStatus
+  const remitaCustomers = customers.filter(
+    (customer) => customer?.remita.remitaStatus === "processed"
+  );
+
+  // handle view details
+  const handleView = (id) => {
+    console.log("Detail Id", id);
+    setOpenModel(true);
+  }
 
   return (
-    <div className="DetailSection DCard" style={styles.container}>
-      <div>
-        <Headline text="View by:" />
-        <div style={styles.btnBox} className="VBox">
-          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Disbursement Today
-          </BocButton>
-          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Date Range
-          </BocButton>
-          <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
-            Specific User
-          </BocButton>
-        </div>
-      </div>
-
-      {/* table section */}
-      <div className="RBox">
-        <DashboardHeadline
-          height="79px"
-          mspacer="3.9rem -1rem -3.9rem -1rem"
-          bgcolor="#145098"
-        ></DashboardHeadline>
-        <div style={styles.table}>
-          <Table borderless hover responsive="sm">
-            <thead style={styles.head}>
-              <tr>
-                <th>Customer Acct No</th>
-                <th>Name</th>
-                <th>Income from Employer</th>
-                <th>Loan Amount</th>
-                <th>Collection Amount</th>
-                <th>Date of Disbursement</th>
-                <th>Date of Collection </th>
-                <th>Booked Loan</th>
-                <th>Details</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>7456161553</td>
-                <td>Cynthia Aremu</td>
-                <td>N230,000</td>
-                <td>N75,000</td>
-                <td>N80,500</td>
-                <td>03-03-2023</td>
-                <td>30-03-2023</td>
-                <td style={styles.approved}>Processed</td>
-                <td style={styles.completed}>View</td>
-              </tr>
-              <tr>
-                <td>7456161598</td>
-                <td>Ebuka Akim</td>
-                <td>N300,000</td>
-                <td>N750,000</td>
-                <td>N900,000</td>
-                <td>01-02-2023</td>
-                <td>30-03-2023</td>
-                <td style={styles.pending}>Pending</td>
-                <td style={styles.completed}>View</td>
-              </tr>
-            </tbody>
-          </Table>
-        </div>
-        <NextPreBtn />
-      </div>
-
-      {/* details section */}
-      <div style={styles.view}>
-        <DashboardHeadline mspacer="-2rem 0 5rem 0">
-          <h4 className="RTitle">
-            View your Remita Loan Disbursement Notifications
-          </h4>
-        </DashboardHeadline>
-        <div className="RBox">
-          <DetailsCard title="Customer Name" text="Akinwande" />
-          <DetailsCard title="Customer Account Number" text="7468868564" />
-          <DetailsCard title="Income from employer" text="N250,000" />
-          <DetailsCard title="Loan Amount" text="N100,000" />
-          <DetailsCard title="Collection Amount" text="N120,000" />
-          <DetailsCard
-            title="Date of Disbursement"
-            text="23-02-2023 .  16:49"
-          />
-          <DetailsCard title="Date of Collection" text="23-03-2023 .  17:25" />
-          <DetailsCard title="Total Collection amount" text="N122,500" />
-          <DetailsCard title="Number of Repayements" text="2" />
-          <div style={styles.ref} className="DCard">
-            <p>Mandate Reference Generated</p>
-            <div style={styles.inputBox}>
-              <p>
-                <span style={styles.spanIn}>
-                  <input type="radio" name="generateRef" />
-                </span>
-                Yes
-              </p>
-            </div>
-            <div style={styles.inputBox}>
-              <p>
-                <span style={styles.spanIn}>
-                  <input type="radio" name="generateRef" />
-                </span>
-                No
-              </p>
-            </div>
+    <>
+      <div className="DetailSection DCard" style={styles.container}>
+        <div>
+          <Headline text="View by:" />
+          <div style={styles.btnBox} className="VBox">
+            <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
+              Disbursement Today
+            </BocButton>
+            <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
+              Date Range
+            </BocButton>
+            <BocButton margin="8px 18px" bgcolor="#ecaa00" bradius="25px">
+              Specific User
+            </BocButton>
           </div>
         </div>
+
+        {/* data loader */}
+        {status === "loading" && <PageLoader />}
+
+        {/* table section */}
+        <div className="RBox">
+          <DashboardHeadline
+            height="79px"
+            mspacer="3.9rem -1rem -3.9rem -1rem"
+            bgcolor="#145098"
+          ></DashboardHeadline>
+          <div style={styles.table}>
+            <Table borderless hover responsive="sm">
+              <thead style={styles.head}>
+                <tr>
+                  <th>Customer Acct No</th>
+                  <th>Name</th>
+                  <th>Income from Employer</th>
+                  <th>Loan Amount</th>
+                  <th>Collection Amount</th>
+                  <th>Date of Disbursement</th>
+                  <th>Date of Collection </th>
+                  <th>COO Approval</th>
+                  <th>Booked Loan</th>
+                  <th>View Details</th>
+                </tr>
+              </thead>
+              <tbody>
+                {remitaCustomers?.map((customer) => {
+                  return (
+                    <tr key={customer._id}>
+                      <td>
+                        {customer.disbursementaccountnumber ||
+                          customer.salaryaccountnumber}
+                      </td>
+                      <td>
+                        {customer.firstname} {customer.lastname}
+                      </td>
+                      <td>N{customer.netmonthlyincome || "0.00"}</td>
+                      <td>N{customer.loanamount}</td>
+                      <td>N{customer.loantotalrepayment || "0.00"}</td>
+                      <td>{getDateOnly(customer.updatedAt)}</td>
+                      <td>
+                        {customer?.remita.remitaDetails.data.data.firstPaymentDate.slice(
+                          0,
+                          10
+                        )}
+                      </td>
+                      {customer?.remita.loanStatus === "approved" ? (
+                        <td style={styles.approved}>Done</td>
+                      ) : (
+                        <td style={styles.pending}>Pending</td>
+                      )}
+
+                      {customer?.remita.loanStatus === "approved" ? (
+                        <td style={styles.approved}>Processed</td>
+                      ) : (
+                        <td style={styles.completed}>Pending</td>
+                      )}
+
+                      <td 
+                        onClick={() => handleView(customer._id)} 
+                        className="startBtn" 
+                        style={styles.completed}>
+                        View
+                      </td>
+                    </tr>
+                  );
+                }
+                )}
+                <tr>
+                  <td>7456161553</td>
+                  <td>Cynthia Aremu</td>
+                  <td>N230,000</td>
+                  <td>N75,000</td>
+                  <td>N80,500</td>
+                  <td>03-03-2023</td>
+                  <td>30-03-2023</td>
+                  <td style={styles.approved}>Done</td>
+                  <td style={styles.approved}>Processed</td>
+                  <td style={styles.completed}>View</td>
+                </tr>
+                <tr>
+                  <td>7456161598</td>
+                  <td>Ebuka Akim</td>
+                  <td>N300,000</td>
+                  <td>N750,000</td>
+                  <td>N900,000</td>
+                  <td>01-02-2023</td>
+                  <td>30-03-2023</td>
+                  <td style={styles.pending}>Pending</td>
+                  <td style={styles.pending}>Pending</td>
+                  <td style={styles.completed}>View</td>
+                </tr>
+              </tbody>
+            </Table>
+          </div>
+          <NextPreBtn />
+        </div>
+
+        {/* loan details model */}
+        <LoanDetailModel
+          show={openModel}
+          onHide={() => setOpenModel(false)}
+        />
       </div>
-    </div>
+    </>
   );
 };
 

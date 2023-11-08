@@ -35,3 +35,7 @@
     color: #145098 !important;
     cursor: pointer;
 }
+
+.left-col {
+    border-right: 2px solid lightgray;
+}
