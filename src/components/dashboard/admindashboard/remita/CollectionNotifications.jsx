@@ -1,8 +1,12 @@
+import { useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import { Table } from "react-bootstrap";
 import Headline from "../../../shared/Headline";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import NextPreBtn from "../../shared/NextPreBtn";
+import PageLoader from "../../shared/PageLoader";
 
 const CollectionNotifications = () => {
   const styles = {
@@ -28,6 +32,25 @@ const CollectionNotifications = () => {
       color: "#ecaa00",
     },
   };
+
+  // fetch all customer
+  const dispatch = useDispatch();
+  const customers = useSelector(
+    (state) => state.customerReducer.customers.customer
+  );
+
+  const status = useSelector((state) => state.customerReducer.status);
+
+  useEffect(() => {
+    dispatch(fetchAllCustomer());
+  }, [dispatch]);
+
+  // filter customer by remitaStatus
+  const remitaCustomers = customers.filter(
+    (customer) => customer?.remita.loanStatus === "approved"
+  );
+  // console.log("Filter customer", remitaCustomers);
+
   return (
     <div>
       <div>
@@ -44,6 +67,9 @@ const CollectionNotifications = () => {
           </BocButton>
         </div>
       </div>
+
+      {/* data loader */}
+      {status === "loading" && <PageLoader />}
 
       {/* table section */}
       <div className="RBox">
@@ -66,6 +92,32 @@ const CollectionNotifications = () => {
               </tr>
             </thead>
             <tbody>
+              {remitaCustomers.length === 0 && (
+                <tr>
+                  <td colSpan="7" style={{ textAlign: "center" }}>
+                    No record found
+                  </td>
+                </tr>
+              )}
+
+              {remitaCustomers.map((customer) => (
+                <tr key={customer._id}>
+                  <td>{customer.remita.remitaDetails.customerId}</td>
+                  <td>{customer.loanproduct || "General Loan"}</td>
+                  <td>{customer.loanamount}</td>
+                  <td>{customer.loanamount}</td>
+                  <td>
+                    {customer.remita.disbursementDetails.data.mandateReference}
+                  </td>
+                  <td>
+                    {customer.remita.remitaDetails.firstPaymentDate.slice(
+                      0,
+                      10
+                    )}
+                  </td>
+                  <td>{customer.remita.notificationdate}</td>
+                </tr>
+              ))}
               <tr>
                 <td>C001</td>
                 <td>Car Loan</td>

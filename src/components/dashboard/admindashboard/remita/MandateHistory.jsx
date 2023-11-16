@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import Headline from "../../../shared/Headline";
@@ -34,8 +34,13 @@ const MandateHistory = () => {
   useEffect(() => {
     dispatch(fetchAllCustomer());
   }, [dispatch]);
-  // console.log("status", status);
-  // console.log("customers", customers);
+  
+  // filter customer by remitaStatus
+  const remitaCustomers = customers.filter(
+    (customer) => customer?.remita.loanStatus === "approved"
+  );
+  console.log("Filter customer", remitaCustomers);
+
   return (
     <div>
       <div>
@@ -77,6 +82,36 @@ const MandateHistory = () => {
               </tr>
             </thead>
             <tbody>
+              {remitaCustomers.length === 0 && (
+                <tr>
+                  <td colSpan="8" style={{ textAlign: "center" }}>
+                    No record found
+                  </td>
+                </tr>
+              )}
+              
+              {remitaCustomers.map((customer) => (
+                <tr key={customer._id}>
+                  <td>{customer.salaryaccountnumber}</td>
+                  <td>{customer.firstname} { customer.lastname}</td>
+                  <td>{customer.employername || "N/A"}</td>
+                  <td>N{customer.loantotalrepayment}</td>
+                  <td>{customer.remita.loanBalance}</td>
+                  <td>{customer.remita.loanDisbursementDate}</td>
+                  <td>{customer.remita.loanCollectionStartDate}</td>
+                  <td style={styles.padding}>
+                    <BocButton
+                      bradius="12px"
+                      fontSize="14px"
+                      width="90px"
+                      margin="0 4px"
+                      bgcolor="#7dd50e"
+                    >
+                      View
+                    </BocButton>
+                  </td>
+                </tr>
+              ))}
               <tr>
                 <td>2346161553</td>
                 <td>Cynthia Bola</td>

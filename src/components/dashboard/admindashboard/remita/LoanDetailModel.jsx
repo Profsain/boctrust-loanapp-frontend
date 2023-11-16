@@ -1,10 +1,18 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import DetailsCard from "./DetailsCard";
+import PageLoader from "../../shared/PageLoader";
+import updateSalaryHistory from "./updateSalaryHistory.js";
 import "./Remita.css";
 
 const LoanDetailModel = (props) => {
+  const customer = props.customer;
+  const userType = props.usertype;
+  const remitaData = customer?.remita?.remitaDetails;
+  const [isLoading, setIsLoading] = useState(false);
+
   // close model box
   const handleClose = () => {
     props.onHide();
@@ -14,6 +22,41 @@ const LoanDetailModel = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setIsLoading(true);
+
+    // get customer history from remita
+    const response = await fetch(
+      "http://localhost:3030/api/remita/loan-disbursement-notification",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        // send customer details to remita
+        body: JSON.stringify({
+          customer: customer,
+        }),
+      }
+    );
+
+    const disbursement = await response.json();
+
+    if (disbursement.data.status === "success") {
+      console.log("success", customer._id)
+      // update customer loan approval status
+      await updateSalaryHistory(
+        customer._id,
+        remitaData,
+        "processed",
+        "approved",
+        disbursement.data
+      );
+    }
+
+
+    setIsLoading(false);
+  
     handleClose();
   };
 
@@ -28,22 +71,36 @@ const LoanDetailModel = (props) => {
     >
       <Modal.Header>
         <Modal.Title id="contained-modal-title-vcenter">
-          Person name
+          {customer.firstname} {customer.lastname} Loan Details
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {/* details section */}
         <div className="row">
           <div className="col-sm12 col-md-6 left-col">
-            <DetailsCard title="Customer Name" text="Akinwande" />
-
-            <DetailsCard title="Customer Account Number" text="7468868564" />
+            <DetailsCard
+              title="Disbursement Account Number"
+              text={
+                customer.disbursementaccountnumber ||
+                customer.salaryaccountnumber
+              }
+            />
+            <DetailsCard
+              title="Disbursement Bank"
+              text={customer.disbursementbankname || customer.salarybankname}
+            />
 
             <DetailsCard title="Income from employer" text="N250,000" />
 
-            <DetailsCard title="Loan Amount" text="N100,000" />
+            <DetailsCard
+              title="Loan Amount"
+              text={`N${customer.loanamount || "0.00"}`}
+            />
 
-            <DetailsCard title="Collection Amount" text="N120,000" />
+            <DetailsCard
+              title="Collection Amount"
+              text={`N${customer.loantotalrepayment || "0.00"}`}
+            />
           </div>
           <div className="col-sm12 col-md-6">
             <DetailsCard
@@ -63,12 +120,15 @@ const LoanDetailModel = (props) => {
         </div>
       </Modal.Body>
       <Modal.Footer>
+        {isLoading && <PageLoader />}
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" type="button" onClick={handleSubmit}>
-          Approve Loan
-        </Button>
+        {userType === "admin" && (
+          <Button variant="primary" type="button" onClick={handleSubmit}>
+            Approve Loan
+          </Button>
+        )}
       </Modal.Footer>
     </Modal>
   );

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import { Table } from "react-bootstrap";
 import DashboardHeadline from "../../shared/DashboardHeadline";
-import DetailsCard from "./DetailsCard";
 import Headline from "../../../shared/Headline";
 import BocButton from "../../shared/BocButton";
 import NextPreBtn from "../../shared/NextPreBtn";
@@ -59,10 +58,16 @@ const RemitaDashboard = () => {
   const customers = useSelector(
     (state) => state.customerReducer.customers.customer
   );
+
   const status = useSelector((state) => state.customerReducer.status);
 
-  const [openModel, setOpenModel] = useState(false);
+  // current login admin user
+  const currentUser = useSelector((state) => state.adminAuth.user);
+  const userType = currentUser.userType;
+ 
 
+  const [openModel, setOpenModel] = useState(false);
+  const [currentCustomer, setCurrentCustomer] = useState("");
 
   useEffect(() => {
     dispatch(fetchAllCustomer());
@@ -75,9 +80,10 @@ const RemitaDashboard = () => {
 
   // handle view details
   const handleView = (id) => {
-    console.log("Detail Id", id);
+    const customer = customers.find((customer) => customer._id === id);
+    setCurrentCustomer(customer);
     setOpenModel(true);
-  }
+  };
 
   return (
     <>
@@ -139,10 +145,11 @@ const RemitaDashboard = () => {
                       <td>N{customer.loantotalrepayment || "0.00"}</td>
                       <td>{getDateOnly(customer.updatedAt)}</td>
                       <td>
-                        {customer?.remita.remitaDetails.data.data.firstPaymentDate.slice(
+                        {customer?.remita?.remitaDetails?.data?.data?.firstPaymentDate.slice(
                           0,
                           10
-                        )}
+                        ) || "N/A"}
+                        {/* Date */}
                       </td>
                       {customer?.remita.loanStatus === "approved" ? (
                         <td style={styles.approved}>Done</td>
@@ -156,16 +163,16 @@ const RemitaDashboard = () => {
                         <td style={styles.completed}>Pending</td>
                       )}
 
-                      <td 
-                        onClick={() => handleView(customer._id)} 
-                        className="startBtn" 
-                        style={styles.completed}>
+                      <td
+                        onClick={() => handleView(customer._id)}
+                        className="startBtn"
+                        style={styles.completed}
+                      >
                         View
                       </td>
                     </tr>
                   );
-                }
-                )}
+                })}
                 <tr>
                   <td>7456161553</td>
                   <td>Cynthia Aremu</td>
@@ -198,6 +205,8 @@ const RemitaDashboard = () => {
 
         {/* loan details model */}
         <LoanDetailModel
+          customer={currentCustomer}
+          usertype={userType}
           show={openModel}
           onHide={() => setOpenModel(false)}
         />

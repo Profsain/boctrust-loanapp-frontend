@@ -81,10 +81,10 @@ const CheckSalaryHistory = () => {
     const data = await response.json();
     // set customerObj to remita data
     setCustomerObj(data);
-   
+
     // update customer history
     await updateSalaryHistory(customer._id, data);
-    
+
     setIsLoading(false);
     setOpenDetails(true);
 
@@ -101,8 +101,7 @@ const CheckSalaryHistory = () => {
     // set customerObj to customer
     setCustomerObj(customer);
     setOpenDetails(true);
-
-  }
+  };
 
   const handleAction = async (e, id) => {
     e.preventDefault();
@@ -113,18 +112,18 @@ const CheckSalaryHistory = () => {
     const data = customer.remita.remitaDetails;
 
     if (actionBtn === "Process") {
-    // update remitaStatus to processed
+      // update remitaStatus to processed
       await updateSalaryHistory(id, data, "processed");
     } else if (actionBtn === "Drop") {
       // update remitaStatus to droped
       await updateSalaryHistory(id, data, "dropped");
-      
+
       // send email notification to customer
     }
 
     // call dispatch to update list
     dispatch(fetchAllCustomer());
-   }
+  };
 
   return (
     <div>
@@ -256,7 +255,12 @@ const CheckSalaryHistory = () => {
 
       {/* details section */}
       {isLoading ? <PageLoader /> : null}
-      {openDetails && <CheckSalaryDetails customerObj={customerObj} setOpenDetails={setOpenDetails} />}
+      {openDetails && (
+        <CheckSalaryDetails
+          customerObj={customerObj}
+          setOpenDetails={setOpenDetails}
+        />
+      )}
     </div>
   );
 };
