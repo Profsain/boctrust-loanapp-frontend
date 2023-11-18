@@ -8,8 +8,6 @@ import "./Remita.css";
 const LoanDetailModel = (props) => {
   const customer = props.customer;
   const customerData = customer?.data;
-  console.log(customerData);
-
 
   // close model box
   const handleClose = () => {
