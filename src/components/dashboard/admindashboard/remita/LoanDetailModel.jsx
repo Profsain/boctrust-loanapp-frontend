@@ -43,7 +43,7 @@ const LoanDetailModel = (props) => {
     const disbursement = await response.json();
 
     if (disbursement.data.status === "success") {
-      console.log("success", customer._id)
+    
       // update customer loan approval status
       await updateSalaryHistory(
         customer._id,

@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import { Table } from "react-bootstrap";
@@ -7,6 +7,7 @@ import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import NextPreBtn from "../../shared/NextPreBtn";
 import PageLoader from "../../shared/PageLoader";
+import getNextMonthDate from "../../../../../utilities/getNextMonthDate";
 
 const CollectionNotifications = () => {
   const styles = {
@@ -45,11 +46,18 @@ const CollectionNotifications = () => {
     dispatch(fetchAllCustomer());
   }, [dispatch]);
 
+
   // filter customer by remitaStatus
-  const remitaCustomers = customers.filter(
-    (customer) => customer?.remita.loanStatus === "approved"
-  );
-  // console.log("Filter customer", remitaCustomers);
+  const [remitaCustomers, setRemitaCustomers] = useState([]);
+  // check if customer is not empty and filter by remitaStatus
+  useEffect(() => {
+    if (customers?.length > 0) {
+      const remitaCustomers = customers.filter(
+        (customer) => customer?.remita.loanStatus === "approved"
+      );
+      setRemitaCustomers(remitaCustomers);
+    }
+  }, [customers]);
 
   return (
     <div>
@@ -104,8 +112,8 @@ const CollectionNotifications = () => {
                 <tr key={customer._id}>
                   <td>{customer.remita.remitaDetails.customerId}</td>
                   <td>{customer.loanproduct || "General Loan"}</td>
-                  <td>{customer.loanamount}</td>
-                  <td>{customer.loanamount}</td>
+                  <td>N{customer.loanamount}</td>
+                  <td>N{customer.loantotalrepayment}</td>
                   <td>
                     {customer.remita.disbursementDetails.data.mandateReference}
                   </td>
@@ -115,7 +123,14 @@ const CollectionNotifications = () => {
                       10
                     )}
                   </td>
-                  <td>{customer.remita.notificationdate}</td>
+                  <td>
+                    {getNextMonthDate(
+                      customer.remita.remitaDetails.firstPaymentDate.slice(
+                        0,
+                        10
+                      )
+                    )}
+                  </td>
                 </tr>
               ))}
               <tr>

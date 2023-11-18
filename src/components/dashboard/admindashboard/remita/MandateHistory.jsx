@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllCustomer } from "../../../../redux/reducers/customerReducer";
 import Headline from "../../../shared/Headline";
@@ -6,8 +6,9 @@ import { Table } from "react-bootstrap";
 import BocButton from "../../shared/BocButton";
 import DashboardHeadline from "../../shared/DashboardHeadline";
 import NextPreBtn from "../../shared/NextPreBtn";
-import DetailsCard from "./DetailsCard";
 import PageLoader from "../../shared/PageLoader";
+import MandateHistoryDetailsModel from "./MandateHistoryDetailsModel";
+import getNextMonthDate from "../../../../../utilities/getNextMonthDate";
 
 const MandateHistory = () => {
   const styles = {
@@ -39,10 +40,47 @@ const MandateHistory = () => {
   const remitaCustomers = customers.filter(
     (customer) => customer?.remita.loanStatus === "approved"
   );
-  console.log("Filter customer", remitaCustomers);
+
+  // handle mandate view
+  const [show, setShow] = useState(false);
+  const [viewLoader, setViewLoader] = useState(false);
+  const [mandateObj, setMandateObj] = useState({});
+
+  const handleMandateView = async (id) => {
+    setViewLoader(true);
+    // find customer by id
+    const customer = customers.find((customer) => customer._id === id);
+
+    // call mandate history api
+     const response = await fetch(
+       "http://localhost:3030/api/remita/mandate-history",
+       {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+         },
+
+         // send customer details to remita
+         body: JSON.stringify({
+           customer: customer,
+         }),
+       }
+    );
+    const data = await response.json();
+  
+    // update model object
+    if (data.data.status === "success") {
+      setMandateObj(data.data);
+    }
+    // open model
+    setShow(true);
+
+    setViewLoader(false);
+
+  }
 
   return (
-    <div>
+    <>
       <div>
         <Headline text="View by:" />
         <div style={styles.btnBox} className="VBox">
@@ -60,11 +98,12 @@ const MandateHistory = () => {
 
       {/* data loader */}
       {status === "loading" && <PageLoader />}
+
       {/* table section */}
       <div className="RBox">
         <DashboardHeadline
-          height="62px"
-          mspacer="2rem 0 -3.3rem -1rem"
+          height="52px"
+          mspacer="2rem 0 -2.5rem -1rem"
           bgcolor="#145098"
         ></DashboardHeadline>
         <div style={styles.table}>
@@ -75,7 +114,6 @@ const MandateHistory = () => {
                 <th>Customer Name</th>
                 <th>Employer Name</th>
                 <th>Total Disbursed</th>
-                <th>Outstanding Balance</th>
                 <th>Date of Disbursement</th>
                 <th>Collection Start Date</th>
                 <th>Details</th>
@@ -89,35 +127,50 @@ const MandateHistory = () => {
                   </td>
                 </tr>
               )}
-              
+
               {remitaCustomers.map((customer) => (
                 <tr key={customer._id}>
                   <td>{customer.salaryaccountnumber}</td>
-                  <td>{customer.firstname} { customer.lastname}</td>
+                  <td>
+                    {customer.firstname} {customer.lastname}
+                  </td>
                   <td>{customer.employername || "N/A"}</td>
                   <td>N{customer.loantotalrepayment}</td>
-                  <td>{customer.remita.loanBalance}</td>
-                  <td>{customer.remita.loanDisbursementDate}</td>
-                  <td>{customer.remita.loanCollectionStartDate}</td>
+                  <td>
+                    {customer.remita.remitaDetails.firstPaymentDate.slice(
+                      0,
+                      10
+                    )}
+                  </td>
+                  <td>
+                    {getNextMonthDate(
+                      customer.remita.remitaDetails.firstPaymentDate.slice(
+                        0,
+                        10
+                      )
+                    )}
+                  </td>
                   <td style={styles.padding}>
+                    {viewLoader && <PageLoader width="25"/>}
                     <BocButton
                       bradius="12px"
                       fontSize="14px"
                       width="90px"
                       margin="0 4px"
                       bgcolor="#7dd50e"
+                      func={() => handleMandateView(customer._id)}
                     >
                       View
                     </BocButton>
                   </td>
                 </tr>
               ))}
+
               <tr>
                 <td>2346161553</td>
                 <td>Cynthia Bola</td>
                 <td>NPF</td>
                 <td>75,000</td>
-                <td>80,500</td>
                 <td>03-03-2023</td>
                 <td>03-04-2023</td>
                 <td style={styles.padding}>
@@ -137,7 +190,6 @@ const MandateHistory = () => {
                 <td>John Doe</td>
                 <td>Nigeria Custom</td>
                 <td>750,000</td>
-                <td>900,000</td>
                 <td>01-04-2023</td>
                 <td>01-05-2023</td>
                 <td style={styles.padding}>
@@ -157,7 +209,6 @@ const MandateHistory = () => {
                 <td>Musa Misola</td>
                 <td>Immigration</td>
                 <td>500,000</td>
-                <td>600,000</td>
                 <td>01-03-2023</td>
                 <td>01-04-2023</td>
                 <td style={styles.padding}>
@@ -178,31 +229,13 @@ const MandateHistory = () => {
         <NextPreBtn />
       </div>
 
-      {/* details section */}
-      <div style={styles.view}>
-        <DashboardHeadline mspacer="2rem 0 5rem 0">
-          View Customer Mandate History
-        </DashboardHeadline>
-        <div className="RBox">
-          <DetailsCard title="Customer ID" text="10032" />
-          <DetailsCard title="Authorized Code" text="NPF123" />
-          <DetailsCard title="Customer Name" text="Akinwande Bola" />
-          <DetailsCard title="Salary Account" text="7468868564" />
-          <DetailsCard title="Employer Name" text="NPF" />
-          <DetailsCard title="" text="N75,000" />
-          <DetailsCard title="Outstanding Loan Balance" text="N80,000" />
-          <DetailsCard
-            title="Date of Disbursement"
-            text="23-02-2023 .  16:49"
-          />
-          <DetailsCard title="Date of Collection" text="23-03-2023 .  17:25" />
-          <DetailsCard title="Collection Start Date" text="23-04-2023" />
-          <DetailsCard title="Total Collection amount" text="N45,000" />
-          <DetailsCard title="Number of Repayements" text="2" />
-          <DetailsCard title="Mandate Reference" text="NPF-123" />
-        </div>
-      </div>
-    </div>
+      {/* mandate view model */}
+      <MandateHistoryDetailsModel
+        show={show}
+        onHide={() => setShow(false)}
+        customer={mandateObj}
+      />
+    </>
   );
 };
 
