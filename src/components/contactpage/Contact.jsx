@@ -26,7 +26,7 @@ const Contact = () => {
       backgroundColor: "#fff",
       borderRadius: "16px",
       paddingTop: "28px",
-    }
+    },
   };
 
   useEffect(() => {
@@ -36,55 +36,57 @@ const Contact = () => {
   }, []);
 
   // contact form submission
-  const [form, setForm] = useState({
-    fullname: "",
-    phone: "",
+  const [message, setMessage] = useState("");
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phoneNumber: "",
     email: "",
     subject: "",
     message: "",
   });
 
-  console.log('Form Data', form)
-
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const clearField = () => {
-    setForm({
-            fullname: "",
-            phone: "",
-            email: "",
-            subject: "",
-            message: "",
+    setFormData({
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      subject: "",
+      message: "",
     });
   };
 
-// connect for submission to backend
+  // connect for submission to backend
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch("https://boctrustmfb.com/api/contact", {
+
+    const { fullName, phoneNumber, email, subject, message } = formData;
+    const contact = {
+      fullName,
+      phoneNumber,
+      email,
+      subject,
+      message,
+    };
+
+    await fetch("http://localhost:3030/api/contact/contacts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(form),
-    })
-      .then((res) => res.json())
-      .then((data) => { 
-        if (data.status === "success") {
-          alert("Message sent successfully");
-          clearField();
-        } else {
-          alert("Message not sent");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+      body: JSON.stringify(contact),
+    });
 
-    
+    clearField();
+    // set notification messgae
+    setMessage("Message sent successfully");
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+  };
 
   return (
     <>
@@ -97,7 +99,11 @@ const Contact = () => {
           />
 
           <div className="row" style={styles.form}>
-            <div className="col-md-6 col-sm-12" style={{backgroundColor: "#fff"}} data-aos="fade-up">
+            <div
+              className="col-md-6 col-sm-12"
+              style={{ backgroundColor: "#fff" }}
+              data-aos="fade-up"
+            >
               <Headline
                 spacer="62px 0 0 0"
                 align="left"
@@ -127,23 +133,27 @@ const Contact = () => {
             >
               <Headline align="left" text="Send us a message" />
               <hr style={{ marginBottom: "28px" }} />
-              <Form method="POST" action="https://formspree.io/f/xqkovgdp">
+              <Form onSubmit={(e) => handleSubmit(e)}>
                 <Form.Group className="mb-3">
                   <Row>
                     <Col>
                       <Form.Control
                         onChange={handleChange}
-                        name="fullname"
+                        name="fullName"
                         type="text"
+                        value={formData.fullName}
                         placeholder="Full Name"
+                        required
                       />
                     </Col>
                     <Col>
                       <Form.Control
                         onChange={handleChange}
-                        name="phone"
+                        name="phoneNumber"
                         type="tel"
+                        value={formData.phoneNumber}
                         placeholder="Phone Number"
+                        required
                       />
                     </Col>
                   </Row>
@@ -154,7 +164,9 @@ const Contact = () => {
                     onChange={handleChange}
                     name="email"
                     type="email"
+                    value={formData.email}
                     placeholder="Email Address"
+                    required
                   />
                   <Form.Text className="text-muted">
                     We&apos;ll never share your email with anyone else.
@@ -166,7 +178,9 @@ const Contact = () => {
                     onChange={handleChange}
                     name="subject"
                     type="text"
+                    value={formData.subject}
                     placeholder="Subject"
+                    required
                   />
                 </Form.Group>
 
@@ -175,25 +189,32 @@ const Contact = () => {
                   <Form.Control
                     onChange={handleChange}
                     name="message"
+                    value={formData.message}
                     as="textarea"
                     rows={6}
                     placeholder="Type here"
+                    required
                   />
                 </Form.Group>
 
                 <Button
                   style={{
-                    backgroundColor: "#145088", border: "none",
+                    backgroundColor: "#145088",
+                    border: "none",
                   }}
-                  variant="primary" type="submit">
+                  variant="primary"
+                  type="submit"
+                >
                   Submit
                 </Button>
               </Form>
+              <p style={{ textAlign: "center", color: "#094379" }}>{message}</p>
             </div>
           </div>
         </div>
       </div>
-      {/* bottom section */}
+
+      {/* bottom section contact map*/}
       <div style={styles.map} data-aos="fade-up">
         <iframe
           width="100%"

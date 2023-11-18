@@ -1,8 +1,10 @@
+import LoanHome from "./loanhome/LoanHome";
+
 const Loan = () => {
   return (
-    <div>
-      <h1>Welcome to Loan page</h1>
-    </div>
+    <>
+      <LoanHome />
+    </>
   );
 };
 

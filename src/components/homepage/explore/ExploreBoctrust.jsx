@@ -12,7 +12,7 @@ const ExploreBoctrust = () => {
   }, []);
 
   return (
-    <div className="Container">
+    <div className="ExploreContainer">
       <div className="Explore">
         <h2>Explore Boctrust Mfb</h2>
         <p>

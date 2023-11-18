@@ -1,15 +1,17 @@
 import { FaCoins, FaChartLine, FaAtlas } from "react-icons/fa";
 
-import FeaturesCard from "./FeaturesCard";
+import FeaturesCard from "../../shared/FeaturesCard";
 import "../Home.css";
 
 const HomeCarousel = () => {
+  // slide images
   const images = [
     "images/bocslide1.jpg",
     "images/bocslide2.jpg",
     "images/bocslide3.jpg",
   ];
 
+  // carousel top card 
   const features = [
     {
       title: "Savings",
@@ -55,7 +57,7 @@ const HomeCarousel = () => {
                 className={
                   index === 0 ? "carousel-item active" : "carousel-item"
                 }
-                data-bs-interval="4000"
+                data-bs-interval="3000"
               >
                 <img src={image} className="d-block w-100" alt="..." />
               </div>

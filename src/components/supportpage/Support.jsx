@@ -12,6 +12,54 @@ import Divider from "./Divider";
 import TermsPolicy from "./TermsPolicy";
 
 const Support = () => {
+  // inquiry form state
+  const [formData, setFormData] = useState({
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [message, setMessage] = useState("");
+
+  // handle form input change
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  // clear form fields
+  const clearForm = () => {
+    setFormData({
+      email: "",
+      subject: "",
+      message: "",
+    });
+  };
+
+  // handle form submit
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const { email, subject, message } = formData;
+    const inquiry = {
+      email,
+      subject,
+      message,
+    };
+
+    await fetch("http://localhost:3030/api/inquiry/inquiries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(inquiry),
+    });
+
+    clearForm();
+    setMessage("Inquiry sent successfully");
+    setTimeout(() => {
+      setMessage("");
+    }, 3000);
+  };
+
   useEffect(() => {
     AOS.init({
       duration: 2000,
@@ -55,7 +103,6 @@ const Support = () => {
     });
     const currentBtn = document.querySelector(`#${category}`);
     currentBtn.classList.add("ActiveCategory");
-    console.log(currentBtn);
   };
 
   // handle search term change
@@ -72,7 +119,7 @@ const Support = () => {
     const inquiryForm = document.querySelector(".InquiryForm");
     inquiryForm.classList.toggle("ShowInquiryForm");
   };
-  
+
   return (
     <>
       <Header imgurl="images/bocsupport.png" />
@@ -108,35 +155,56 @@ const Support = () => {
           {firstFaqs.length === 0 ? (
             <div className="NoResult">
               <h3 className="text-center">No results found</h3>
-              <Button
-                variant="outline-warning"
-                onClick={handleInquiry}
-              >
+              <Button variant="outline-warning" onClick={handleInquiry}>
                 Send as Inquiry
               </Button>
 
+              {/* inquiry form */}
               <div className="InquiryForm">
                 <h4>Inquiry Form</h4>
-                <Form>
+                <Form onSubmit={(e) => handleFormSubmit(e)}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" required/>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={(e) => handleFormChange(e)}
+                      placeholder="Enter email"
+                      required
+                    />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicSubject">
                     <Form.Label>Subject</Form.Label>
-                    <Form.Control type="text" placeholder="Enter subject" required />
+                    <Form.Control
+                      type="text"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={(e) => handleFormChange(e)}
+                      placeholder="Enter subject"
+                      required
+                    />
                   </Form.Group>
 
                   <Form.Group className="mb-3" controlId="formBasicMessage">
-                    <Form.Label>Message</Form.Label>
-                    <Form.Control as="textarea" rows={8} required/>
+                    <Form.Label>Message/Inquiry</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      name="message"
+                      value={formData.message}
+                      onChange={(e) => handleFormChange(e)}
+                      rows={8}
+                      placeholder="Enter message or inquiry"
+                      required
+                    />
                   </Form.Group>
 
                   <Button variant="primary" type="submit">
                     Submit
                   </Button>
                 </Form>
+                <p style={{textAlign: "center"}}>{ message}</p>
               </div>
             </div>
           ) : (

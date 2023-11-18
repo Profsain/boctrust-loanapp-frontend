@@ -1,3 +1,5 @@
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/reducers/userSlice";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import "./Navigation.css";
 import { Link } from "react-router-dom";
@@ -8,6 +10,15 @@ const TopNav = () => {
     const nav = document.querySelector(".Nav");
     nav.classList.toggle("Sticky", window.scrollY > 0);
   });
+
+  // handle logout
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
+  // get current user
+  const currentUser = useSelector((state) => state.user.currentUser);
 
   return (
     <div className="TopNavContainer">
@@ -44,22 +55,26 @@ const TopNav = () => {
 
                   {/* about dropdown */}
                   <NavDropdown title="About" id="basic-nav-dropdown">
-                    <NavDropdown.Item className="DropContainer" href="/about">
+                    <div className="DropSpace"></div>
+                    <NavDropdown.Item className="DropItem" href="/about">
                       Company Overview
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/board">Our Board</NavDropdown.Item>
+                    <NavDropdown.Item href="/board" className="DropItem">
+                      Our Board
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="/career">Careers</NavDropdown.Item>
+                    <NavDropdown.Item href="/career" className="DropItem">
+                      Careers
+                    </NavDropdown.Item>
                     <NavDropdown.Divider />
                   </NavDropdown>
 
                   {/* our product dropdown */}
                   <NavDropdown
-                    className="DropBox mx-4"
+                    className="DropBox"
                     title="Our Products"
                     id="basic-nav-dropdown"
-                    
                   >
                     {/* savings dropdown start*/}
                     <NavDropdown
@@ -89,11 +104,11 @@ const TopNav = () => {
                       className="DropBox"
                     >
                       <NavDropdown.Item href="/fixed-investment">
-                        Fixed Investment
+                        Fixed Deposit
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                       <NavDropdown.Item href="/investment-note">
-                        Investment Note
+                        Investment Notes
                       </NavDropdown.Item>
                       <NavDropdown.Divider />
                     </NavDropdown>
@@ -155,7 +170,18 @@ const TopNav = () => {
                   <Nav.Link href="/blogs" className="mx-4">
                     Blogs
                   </Nav.Link>
-                  <Nav.Link href="/contact">Contact</Nav.Link>
+                  <Nav.Link href="/contact" className="mx-4">
+                    Contact
+                  </Nav.Link>
+                  {currentUser ? (
+                    <Nav.Link href="/dashboard" onClick={handleLogout} className="mx-4">
+                      Logout
+                    </Nav.Link>
+                  ) : (
+                    <Nav.Link href="/dashboard" className="mx-4">
+                      Login
+                    </Nav.Link>
+                  )}
                 </Nav>
               </Navbar.Collapse>
             </Container>
