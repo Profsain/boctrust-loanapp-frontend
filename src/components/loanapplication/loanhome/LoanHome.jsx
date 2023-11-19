@@ -9,7 +9,7 @@ import Button from "react-bootstrap/Button";
 import "../Loan.css";
 import Header from "../../shared/Header";
 import Headline from "../../shared/Headline";
-import LoanStep from "./loanStep";
+import LoanStep from "./LoanStep";
 import BocTrustMsg from "./BocTrustMsg";
 import Testimonial from "./Testimonial";
 import EmailSection from "./EmailSection";
