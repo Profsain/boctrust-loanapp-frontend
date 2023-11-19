@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import Webcam from "react-webcam";
 import { useRef, useState, useCallback } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
-import "./PhotoCapture.css";
+import "./Photocapture.css";
 
 const PhotoCapture = ({ func }) => {
   const webcamRef = useRef(null);
