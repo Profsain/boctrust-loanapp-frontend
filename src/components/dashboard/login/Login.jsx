@@ -5,7 +5,7 @@ import { loginUser } from "../../../redux/reducers/adminAuthReducer";
 // import { login } from "../../../redux/reducers/userSlice";
 import { Form, Button } from "react-bootstrap";
 import loginUserOnServer from "./loginUserOnServer";
-import HeadLine from "../../shared/HeadLine";
+import HeadLine from "../../shared/Headline";
 import "./Login.css";
 
 const Login = ({ setLogin }) => {
